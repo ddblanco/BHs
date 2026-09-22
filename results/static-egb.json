@@ -1,0 +1,487 @@
+{
+  "parameters": {
+    "r_h": 1.0,
+    "G5": 1.0,
+    "alpha_hat_sweep": [
+      0.0,
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.5
+    ],
+    "spectral_resolutions": [
+      16,
+      20,
+      24,
+      32,
+      48
+    ],
+    "spectral_default_resolution": 32,
+    "adaptive_tolerances": [
+      1e-08,
+      1e-10,
+      1e-12,
+      1e-13
+    ],
+    "adaptive_default_tolerance": 1e-13,
+    "hardest_alpha_hat": 0.5,
+    "cutoff": 0.001,
+    "check_points": 201,
+    "profile_tolerance": 1e-06,
+    "ode_tolerance": 1e-06,
+    "tensor_tolerance": 1e-06,
+    "horizon_tolerance": 1e-08,
+    "source_sha256": {
+      "src/rotating_bh/static_egb.py": "4b865c93d9b5509709cefbf464d752888f292d4c546ce0c5a542b52be3c3a19e",
+      "src/rotating_bh/_static_egb_generated.py": "38e3d705e3e491e83e3c2eeacf7dbf20ebd7aed84720f1e08a3951aadb66dd0c",
+      "src/rotating_bh/static_egb_equations.py": "bb30e9a2822867129e2b54cd276621723106d0dbd70cbe65a5b94ecd9bd07de5",
+      "src/rotating_bh/static_egb_bvp.py": "82d6d3f61e2ac11f8dd3846b848f46ef31187d9ae520ef2dcc6e1e035f30f423",
+      "src/rotating_bh/static_egb_validation.py": "54e34758f74c36d4ae91defe7c649235b21ebb7a01c64bfa7c9e6183293b8f62",
+      "src/rotating_bh/static_egb_benchmark.py": "752c38c38753b6559c7f986bc336628620101e078ba580dd54c1f9ea32f14422",
+      "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+      "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+      "experiments/derive_static_egb.py": "6415a33a21462a563d87428bb7c6724b901354fedccb1ce199842d847dc65931",
+      "experiments/static_egb_bvp.py": "340edd679e0b3e50783bc3f2c3b1b53c475e0275f8a00ec8267e48c251bf454b",
+      "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+      "docs/static-egb.md": "ef92de187d6f268340829d43fd1766b85d094a4c52e653c83aa576d5076d5192",
+      "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+    }
+  },
+  "runs": [
+    {
+      "method": "spectral",
+      "alpha_hat": 0.0,
+      "resolution": 32,
+      "tolerance": 1e-11,
+      "iterations": 1,
+      "profile_error": 5.551115123125783e-16,
+      "ode_residual": 2.2490867396158482e-15,
+      "einstein_residual": 1.4545880906651551e-13,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 2.0000000000000373,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "adaptive",
+      "alpha_hat": 0.0,
+      "resolution": 411,
+      "tolerance": 1e-13,
+      "iterations": 411,
+      "profile_error": 5.3512749786932545e-14,
+      "ode_residual": 7.300028750974855e-12,
+      "einstein_residual": 6.820505356755412e-08,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 2.0,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "spectral",
+      "alpha_hat": 0.01,
+      "resolution": 32,
+      "tolerance": 1e-11,
+      "iterations": 2,
+      "profile_error": 2.886579864025407e-15,
+      "ode_residual": 6.317062163414009e-15,
+      "einstein_residual": 2.1871393585115584e-13,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.9230769230768565,
+      "horizon_condition": 3.3306690738754696e-16,
+      "accepted": true
+    },
+    {
+      "method": "adaptive",
+      "alpha_hat": 0.01,
+      "resolution": 408,
+      "tolerance": 1e-13,
+      "iterations": 408,
+      "profile_error": 5.717648576819556e-14,
+      "ode_residual": 8.285739602028359e-12,
+      "einstein_residual": 1.9820498983577006e-08,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.9230769231425695,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "spectral",
+      "alpha_hat": 0.02,
+      "resolution": 32,
+      "tolerance": 1e-11,
+      "iterations": 2,
+      "profile_error": 1.8318679906315083e-14,
+      "ode_residual": 2.7466571731466182e-14,
+      "einstein_residual": 1.0478390641938383e-12,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.8518518518521567,
+      "horizon_condition": 1.1102230246251565e-16,
+      "accepted": true
+    },
+    {
+      "method": "adaptive",
+      "alpha_hat": 0.02,
+      "resolution": 405,
+      "tolerance": 1e-13,
+      "iterations": 405,
+      "profile_error": 5.651035195342047e-14,
+      "ode_residual": 9.116744434923959e-12,
+      "einstein_residual": 3.211151893109561e-08,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.8518518519600249,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "spectral",
+      "alpha_hat": 0.05,
+      "resolution": 32,
+      "tolerance": 1e-11,
+      "iterations": 3,
+      "profile_error": 6.106226635438361e-16,
+      "ode_residual": 2.613607897895405e-15,
+      "einstein_residual": 5.799341858336759e-13,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.6666666666669023,
+      "horizon_condition": 1.1102230246251565e-16,
+      "accepted": true
+    },
+    {
+      "method": "adaptive",
+      "alpha_hat": 0.05,
+      "resolution": 397,
+      "tolerance": 1e-13,
+      "iterations": 397,
+      "profile_error": 2.716715741257758e-13,
+      "ode_residual": 1.6495849325954126e-11,
+      "einstein_residual": 8.251251684933223e-08,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.6666666668204753,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "spectral",
+      "alpha_hat": 0.1,
+      "resolution": 32,
+      "tolerance": 1e-11,
+      "iterations": 3,
+      "profile_error": 8.881784197001252e-16,
+      "ode_residual": 3.3930900283163307e-15,
+      "einstein_residual": 3.069351273521521e-13,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.4285714285714435,
+      "horizon_condition": 4.440892098500626e-16,
+      "accepted": true
+    },
+    {
+      "method": "adaptive",
+      "alpha_hat": 0.1,
+      "resolution": 386,
+      "tolerance": 1e-13,
+      "iterations": 386,
+      "profile_error": 3.1462332739096155e-12,
+      "ode_residual": 2.6503371369726464e-10,
+      "einstein_residual": 1.5196871749166963e-07,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.4285714286925728,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "spectral",
+      "alpha_hat": 0.2,
+      "resolution": 32,
+      "tolerance": 1e-11,
+      "iterations": 3,
+      "profile_error": 1.5543122344752192e-15,
+      "ode_residual": 1.4708726261555205e-14,
+      "einstein_residual": 3.5491609651217004e-12,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.111111111109972,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "adaptive",
+      "alpha_hat": 0.2,
+      "resolution": 378,
+      "tolerance": 1e-13,
+      "iterations": 378,
+      "profile_error": 3.966466044502681e-12,
+      "ode_residual": 1.5892774500243336e-10,
+      "einstein_residual": 3.733332051142346e-08,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 1.1111111111242569,
+      "horizon_condition": 0.0,
+      "accepted": true
+    },
+    {
+      "method": "spectral",
+      "alpha_hat": 0.5,
+      "resolution": 32,
+      "tolerance": 1e-11,
+      "iterations": 3,
+      "profile_error": 8.93507490218326e-13,
+      "ode_residual": 6.8295612525732056e-12,
+      "einstein_residual": 5.687418536126643e-09,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.666666667551963,
+      "horizon_condition": 3.885780586188048e-16,
+      "accepted": true
+    },
+    {
+      "method": "adaptive",
+      "alpha_hat": 0.5,
+      "resolution": 381,
+      "tolerance": 1e-13,
+      "iterations": 381,
+      "profile_error": 4.633626815575553e-12,
+      "ode_residual": 6.130391738694822e-10,
+      "einstein_residual": 5.30817285415305e-07,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666666665646084,
+      "horizon_condition": 0.0,
+      "accepted": true
+    }
+  ],
+  "method_differences": [
+    5.1958437552457326e-14,
+    5.4289905904170155e-14,
+    5.3512749786932545e-14,
+    2.1084523016412504e-13,
+    3.962968841975112e-12,
+    2.7697288906836093e-12,
+    2.476630012182568e-12
+  ],
+  "gr_limit": [
+    {
+      "alpha_hat": 0.0,
+      "max_difference": 0.0
+    },
+    {
+      "alpha_hat": 0.01,
+      "max_difference": 0.007557072512487384
+    },
+    {
+      "alpha_hat": 0.02,
+      "max_difference": 0.014939732994181276
+    },
+    {
+      "alpha_hat": 0.05,
+      "max_difference": 0.036069007842946865
+    },
+    {
+      "alpha_hat": 0.1,
+      "max_difference": 0.06807614156020148
+    },
+    {
+      "alpha_hat": 0.2,
+      "max_difference": 0.12158637285143603
+    },
+    {
+      "alpha_hat": 0.5,
+      "max_difference": 0.237826359330227
+    }
+  ],
+  "resolution_sweep": [
+    {
+      "resolution": 16,
+      "profile_error": 1.4683638645540675e-06,
+      "ode_residual": 4.623680919759811e-06,
+      "einstein_residual": 0.003754716180626197,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6663318071186917,
+      "horizon_condition": 2.220446049250313e-16,
+      "accepted": false
+    },
+    {
+      "resolution": 20,
+      "profile_error": 4.2801161170835655e-08,
+      "ode_residual": 2.046069282746322e-07,
+      "einstein_residual": 0.0001807817828307634,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666513428057268,
+      "horizon_condition": 1.6653345369377348e-16,
+      "accepted": false
+    },
+    {
+      "resolution": 24,
+      "profile_error": 1.0569344288668958e-09,
+      "ode_residual": 7.82571371478386e-09,
+      "einstein_residual": 4.5856930462509085e-06,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666661766573252,
+      "horizon_condition": 5.551115123125783e-17,
+      "accepted": false
+    },
+    {
+      "resolution": 32,
+      "profile_error": 8.93507490218326e-13,
+      "ode_residual": 6.4905814974312605e-12,
+      "einstein_residual": 5.68917357668397e-09,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666666675522309,
+      "horizon_condition": 5.551115123125783e-17,
+      "accepted": true
+    },
+    {
+      "resolution": 48,
+      "profile_error": 1.2212453270876722e-15,
+      "ode_residual": 7.288182241333089e-15,
+      "einstein_residual": 4.014425476343026e-12,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666666666668047,
+      "horizon_condition": 0.0,
+      "accepted": true
+    }
+  ],
+  "tolerance_sweep": [
+    {
+      "tolerance": 1e-08,
+      "profile_error": 9.004371182008697e-08,
+      "ode_residual": 1.4033497473566383e-06,
+      "einstein_residual": 0.00029893277499285864,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666666665646084,
+      "horizon_condition": 0.0,
+      "accepted": false
+    },
+    {
+      "tolerance": 1e-10,
+      "profile_error": 1.1339759131701044e-09,
+      "ode_residual": 5.931333725960122e-08,
+      "einstein_residual": 2.0419549915389784e-05,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666666665646084,
+      "horizon_condition": 0.0,
+      "accepted": false
+    },
+    {
+      "tolerance": 1e-12,
+      "profile_error": 2.7094659849069558e-11,
+      "ode_residual": 2.2955163649263195e-09,
+      "einstein_residual": 1.3513024912189236e-06,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666666665646084,
+      "horizon_condition": 0.0,
+      "accepted": false
+    },
+    {
+      "tolerance": 1e-13,
+      "profile_error": 4.633626815575553e-12,
+      "ode_residual": 6.130391738694822e-10,
+      "einstein_residual": 5.30817285415305e-07,
+      "positive_exterior": true,
+      "tensor_sample_coverage": true,
+      "simple_horizon": true,
+      "horizon_slope": 0.6666666665646084,
+      "horizon_condition": 0.0,
+      "accepted": true
+    }
+  ],
+  "negative_control_residual": 0.011237243578414075,
+  "failure_controls": [
+    {
+      "method": "spectral",
+      "converged": false,
+      "reason": "spectral Newton exhausted 0 iterations; residual=999.999"
+    }
+  ],
+  "checks": [
+    {
+      "name": "fine_solutions_independently_accepted",
+      "passed": true
+    },
+    {
+      "name": "spectral_resolution_convergence",
+      "passed": true
+    },
+    {
+      "name": "adaptive_tolerance_convergence",
+      "passed": true
+    },
+    {
+      "name": "methods_agree",
+      "passed": true,
+      "value": 3.962968841975112e-12
+    },
+    {
+      "name": "gr_limit_shrinks_with_alpha",
+      "passed": true,
+      "value": [
+        0.0,
+        0.007557072512487384,
+        0.014939732994181276,
+        0.036069007842946865,
+        0.06807614156020148,
+        0.12158637285143603,
+        0.237826359330227
+      ]
+    },
+    {
+      "name": "perturbation_detected",
+      "passed": true,
+      "value": 0.011237243578414075
+    },
+    {
+      "name": "real_resource_failures_reported",
+      "passed": true
+    }
+  ],
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sympy": "1.14.0",
+    "matplotlib": "3.11.1"
+  },
+  "scope": "Static (w=0,h=r^2) EGB, r_h=1, small alpha_hat sweep; sampled coordinate norms; no rotation, no extremality, no interior",
+  "representation": "Chebyshev polynomial (spectral, regular at both compact endpoints) and RK45 dense output (adaptive); only F(0)=0 imposed, F(1)~=1 checked"
+}

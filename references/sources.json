@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1010.0860",
+    "version": "v1",
+    "url": "https://arxiv.org/pdf/1010.0860v1",
+    "sha256": "1113f30b163b3f87f9c808150d241c05e4e480d8223ed774a97d33c4331c939e",
+    "role": "benchmark-primary"
+  },
+  {
+    "id": "0801.1021",
+    "version": "v4",
+    "url": "https://arxiv.org/pdf/0801.1021v4",
+    "sha256": "bb4eb36642ac929b874569335f2a00099a805d0d2cd279a35cbff839930a8349",
+    "role": "benchmark-secondary"
+  },
+  {
+    "id": "2607.07418",
+    "version": "v1",
+    "url": "https://arxiv.org/pdf/2607.07418v1",
+    "sha256": "c76b5c725fd027a2a9aa0030353ae9391de0e9ad552db2299039b03759cf1a9f",
+    "role": "method"
+  },
+  {
+    "id": "2606.07070",
+    "version": "v2",
+    "url": "https://arxiv.org/pdf/2606.07070v2",
+    "sha256": "8da578ac129185d144c0a8dcee0e0f7d1e63635b4db5e9f442365c4ff043b1d5",
+    "role": "motivation"
+  }
+]

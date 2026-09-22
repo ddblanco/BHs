@@ -1,0 +1,1355 @@
+{
+  "schema": 1,
+  "units": "r_H=G5=1; J is each spin; alpha_paper = 4 alpha_gb",
+  "scope": "Neural seed for the rotating EGB spectral solver. The network only supplies the solver's `previous` argument; the solver, the adaptive method, the Hito 4A derivation and the generated equations are untouched. Acceptance uses the unchanged Hito 4 gates, so a seed that merely terminates the solver's own iteration does not count.",
+  "method": "Myers-Perry-anchored tanh network in u=z^2, boundary conditions exact by construction, analytic gradient verified against a complex-step oracle over every parameter, trained by Gauss-Newton on the residual vector.",
+  "gradient_check": [
+    {
+      "alpha_gb": 0.1,
+      "seed": 0,
+      "worst_relative_deviation": 3.701857616995301e-15
+    },
+    {
+      "alpha_gb": 0.1,
+      "seed": 1,
+      "worst_relative_deviation": 2.2475564103185752e-15
+    },
+    {
+      "alpha_gb": 0.5,
+      "seed": 0,
+      "worst_relative_deviation": 6.709076111677523e-15
+    },
+    {
+      "alpha_gb": 0.5,
+      "seed": 1,
+      "worst_relative_deviation": 3.287447294721986e-15
+    }
+  ],
+  "boundary_check": [
+    {
+      "seed": 0,
+      "B_infinity_error": 0.0,
+      "F_infinity_error": 0.0,
+      "dH_dx_infinity": 0.0,
+      "dW_dx_infinity": 0.0,
+      "W_horizon_error": 0.0,
+      "H_infinity": 7.248276100552864,
+      "W_infinity": -10.231800098212318
+    },
+    {
+      "seed": 1,
+      "B_infinity_error": 0.0,
+      "F_infinity_error": 0.0,
+      "dH_dx_infinity": 0.0,
+      "dW_dx_infinity": 0.0,
+      "W_horizon_error": 0.0,
+      "H_infinity": 4.362363588746999,
+      "W_infinity": -1.1844132776595886
+    },
+    {
+      "seed": 2,
+      "B_infinity_error": 0.0,
+      "F_infinity_error": 0.0,
+      "dH_dx_infinity": 0.0,
+      "dW_dx_infinity": 0.0,
+      "W_horizon_error": 0.0,
+      "H_infinity": 3.4474277889516576,
+      "W_infinity": -11.996754719121927
+    },
+    {
+      "seed": 3,
+      "B_infinity_error": 0.0,
+      "F_infinity_error": 0.0,
+      "dH_dx_infinity": 0.0,
+      "dW_dx_infinity": 0.0,
+      "W_horizon_error": 0.0,
+      "H_infinity": 12.101582803935433,
+      "W_infinity": -7.803339002110738
+    },
+    {
+      "seed": 4,
+      "B_infinity_error": 0.0,
+      "F_infinity_error": 0.0,
+      "dH_dx_infinity": 0.0,
+      "dW_dx_infinity": 0.0,
+      "W_horizon_error": 0.0,
+      "H_infinity": -15.796069742249538,
+      "W_infinity": 9.819534399832003
+    },
+    {
+      "seed": 5,
+      "B_infinity_error": 0.0,
+      "F_infinity_error": 0.0,
+      "dH_dx_infinity": 0.0,
+      "dW_dx_infinity": 0.0,
+      "W_horizon_error": 0.0,
+      "H_infinity": -10.526430909218078,
+      "W_infinity": 8.78362111301934
+    }
+  ],
+  "controls": [
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "trivial_seed": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 11,
+        "max_tensor_residual": 4.760636329592671e-13,
+        "boundary_residual": 3.134369118645253e-13,
+        "seconds": 36.63153889999376,
+        "observables": {
+          "E": 1.5068076125510397,
+          "J": 0.3091639213653626,
+          "T_H": 0.09574575787724732,
+          "A_H": 19.50627749691023,
+          "S": 10.774217520518127,
+          "U": -1.279018025738642,
+          "U_f": -1.2790180257431571,
+          "W": 0.3936397304877719,
+          "mass_tail_spread": 2.818115781481271e-10,
+          "spin_tail_spread": 4.079816459983789e-11,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -1.279018025738642,
+              "U_f": -1.2790180257431571,
+              "W": 0.3936397304877719
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -1.2790180257307064,
+              "U_f": -1.2790180257375123,
+              "W": 0.39363973048509976
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -1.279018025499433,
+              "U_f": -1.279018025534978,
+              "W": 0.39363973043582606
+            }
+          ],
+          "mass_b_f_difference": 5.3191738528880636e-12,
+          "spin_current_difference": 1.2023715356690445e-13
+        }
+      },
+      "untrained_network": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=13.4902",
+        "seconds": 45.97323169998708
+      },
+      "untrained_is_myers_perry": true,
+      "continuation": {
+        "step": 0.025,
+        "solves": 5,
+        "newton_iterations": 31,
+        "seconds": 63.451321200001985,
+        "max_tensor_residual": 3.253720822183435e-13,
+        "accepted": true
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "trivial_seed": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=171.594",
+        "seconds": 34.396755299996585
+      },
+      "untrained_network": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=79.5321",
+        "seconds": 35.32503039998119
+      },
+      "untrained_is_myers_perry": true,
+      "continuation": {
+        "step": 0.025,
+        "solves": 21,
+        "newton_iterations": 142,
+        "seconds": 332.6384728999983,
+        "max_tensor_residual": 3.183594109396079e-10,
+        "accepted": true
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "trivial_seed": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=87.5327",
+        "seconds": 36.83042809998733
+      },
+      "untrained_network": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=90.8684",
+        "seconds": 35.587821100023575
+      },
+      "untrained_is_myers_perry": true,
+      "continuation": {
+        "step": 0.025,
+        "solves": 31,
+        "newton_iterations": 211,
+        "seconds": 495.402078300016,
+        "max_tensor_residual": 7.257654033310246e-09,
+        "accepted": true
+      }
+    }
+  ],
+  "cells": [
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 0,
+      "training": {
+        "evaluations": 300,
+        "seconds": 33.631973999988986,
+        "loss": 2.5795524583288774e-05,
+        "max_bulk_residual": 0.001321869391700187,
+        "max_horizon_residual": 1.9211051171870204e-05
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.000809327",
+        "seconds": 52.10469419998117
+      }
+    },
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 1,
+      "training": {
+        "evaluations": 300,
+        "seconds": 46.61756869999226,
+        "loss": 1.4885282485903868e-06,
+        "max_bulk_residual": 0.00027862666116159896,
+        "max_horizon_residual": 7.132820518312832e-05
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 10,
+        "max_tensor_residual": 5.577760475716786e-13,
+        "boundary_residual": 5.296236167652892e-13,
+        "seconds": 34.35427630000049,
+        "observables": {
+          "E": 1.5068076125507541,
+          "J": 0.3091639213653638,
+          "T_H": 0.09574575787724499,
+          "A_H": 19.50627749691023,
+          "S": 10.774217520518127,
+          "U": -1.2790180257383998,
+          "U_f": -1.2790180257430068,
+          "W": 0.39363973048777345,
+          "mass_tail_spread": 2.81542925077068e-10,
+          "spin_tail_spread": 4.079816459983789e-11,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -1.2790180257383998,
+              "U_f": -1.2790180257430068,
+              "W": 0.39363973048777345
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -1.2790180257309594,
+              "U_f": -1.2790180257369919,
+              "W": 0.3936397304851015
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -1.2790180254994188,
+              "U_f": -1.2790180255346646,
+              "W": 0.3936397304358276
+            }
+          ],
+          "mass_b_f_difference": 5.427472169751232e-12,
+          "spin_current_difference": 1.212363542890671e-13
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 2,
+      "training": {
+        "evaluations": 300,
+        "seconds": 37.986392399994656,
+        "loss": 2.913213336190419e-07,
+        "max_bulk_residual": 0.00014439658478014594,
+        "max_horizon_residual": 1.4687824733788545e-05
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 2,
+        "max_tensor_residual": 6.252776074688882e-13,
+        "boundary_residual": 2.9019190062059274e-12,
+        "seconds": 4.5382027000014205,
+        "observables": {
+          "E": 1.5068076125467826,
+          "J": 0.3091639213653633,
+          "T_H": 0.09574575787724575,
+          "A_H": 19.50627749691023,
+          "S": 10.774217520518127,
+          "U": -1.2790180257350288,
+          "U_f": -1.2790180257436092,
+          "W": 0.39363973048777284,
+          "mass_tail_spread": 2.81008758016598e-10,
+          "spin_tail_spread": 4.079799020641299e-11,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -1.2790180257350288,
+              "U_f": -1.2790180257436092,
+              "W": 0.39363973048777284
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -1.2790180257286627,
+              "U_f": -1.2790180257376431,
+              "W": 0.3936397304851011
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -1.2790180254965011,
+              "U_f": -1.2790180255352626,
+              "W": 0.39363973043582723
+            }
+          ],
+          "mass_b_f_difference": 1.0108627677641066e-11,
+          "spin_current_difference": 1.2156942119645464e-13
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 3,
+      "training": {
+        "evaluations": 300,
+        "seconds": 36.46953969998867,
+        "loss": 5.1460428558194404e-08,
+        "max_bulk_residual": 5.366126371428134e-05,
+        "max_horizon_residual": 5.229206091327412e-06
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 3,
+        "max_tensor_residual": 6.713479253486168e-13,
+        "boundary_residual": 7.228941195420957e-12,
+        "seconds": 6.841083599982085,
+        "observables": {
+          "E": 1.5068076125473833,
+          "J": 0.30916392136535764,
+          "T_H": 0.09574575787725069,
+          "A_H": 19.506277496910233,
+          "S": 10.774217520518128,
+          "U": -1.2790180257355386,
+          "U_f": -1.2790180257430044,
+          "W": 0.3936397304877656,
+          "mass_tail_spread": 2.812897058241126e-10,
+          "spin_tail_spread": 4.079803380476922e-11,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -1.2790180257355386,
+              "U_f": -1.2790180257430044,
+              "W": 0.3936397304877656
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -1.279018025728599,
+              "U_f": -1.2790180257375896,
+              "W": 0.39363973048509404
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -1.2790180254967725,
+              "U_f": -1.2790180255349357,
+              "W": 0.39363973043581996
+            }
+          ],
+          "mass_b_f_difference": 8.795445188140817e-12,
+          "spin_current_difference": 1.2145839889399213e-13
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 0,
+      "training": {
+        "evaluations": 300,
+        "seconds": 127.5741352000041,
+        "loss": 1.0671980134582911e-05,
+        "max_bulk_residual": 0.0009170909853091738,
+        "max_horizon_residual": 4.975336116939778e-05
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.000749139",
+        "seconds": 64.01449810000486
+      }
+    },
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 1,
+      "training": {
+        "evaluations": 300,
+        "seconds": 137.09314310000627,
+        "loss": 2.7198824980395245e-06,
+        "max_bulk_residual": 0.00036770814904558204,
+        "max_horizon_residual": 5.869215006120219e-05
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 5,
+        "max_tensor_residual": 3.8906594209329406e-13,
+        "boundary_residual": 1.1231103723505943e-13,
+        "seconds": 16.83781330002239,
+        "observables": {
+          "E": 1.506807612554149,
+          "J": 0.30916392136536147,
+          "T_H": 0.09574575787724804,
+          "A_H": 19.506277496910233,
+          "S": 10.774217520518128,
+          "U": -1.2790180257412813,
+          "U_f": -1.27901802574302,
+          "W": 0.3936397304877705,
+          "mass_tail_spread": 2.82202393813329e-10,
+          "spin_tail_spread": 4.079799020641299e-11,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -1.2790180257412813,
+              "U_f": -1.27901802574302,
+              "W": 0.3936397304877705
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -1.2790180257326635,
+              "U_f": -1.279018025737509,
+              "W": 0.39363973048509904
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -1.2790180255017405,
+              "U_f": -1.2790180255349017,
+              "W": 0.3936397304358249
+            }
+          ],
+          "mass_b_f_difference": 2.048250775455569e-12,
+          "spin_current_difference": 1.2118084313783584e-13
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 2,
+      "training": {
+        "evaluations": 300,
+        "seconds": 98.66687220000313,
+        "loss": 1.7677253080932185e-05,
+        "max_bulk_residual": 0.0009321196420734189,
+        "max_horizon_residual": 7.211297694641103e-05
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.000589931",
+        "seconds": 32.68587000001571
+      }
+    },
+    {
+      "alpha_gb": 0.1,
+      "alpha_paper": 0.4,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 3,
+      "training": {
+        "evaluations": 300,
+        "seconds": 92.6643378000008,
+        "loss": 6.215729765023945e-08,
+        "max_bulk_residual": 5.3506737225831244e-05,
+        "max_horizon_residual": 3.1965131458307872e-06
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 8,
+        "max_tensor_residual": 5.329070518200751e-13,
+        "boundary_residual": 1.9032018319046762e-13,
+        "seconds": 21.194204900006298,
+        "observables": {
+          "E": 1.5068076125511343,
+          "J": 0.30916392136536247,
+          "T_H": 0.09574575787724834,
+          "A_H": 19.506277496910233,
+          "S": 10.774217520518128,
+          "U": -1.2790180257387225,
+          "U_f": -1.279018025743206,
+          "W": 0.3936397304877718,
+          "mass_tail_spread": 2.8160675307058157e-10,
+          "spin_tail_spread": 4.079803380476922e-11,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -1.2790180257387225,
+              "U_f": -1.279018025743206,
+              "W": 0.3936397304877718
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -1.2790180257312418,
+              "U_f": -1.2790180257373083,
+              "W": 0.3936397304850999
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -1.2790180254996872,
+              "U_f": -1.279018025534923,
+              "W": 0.3936397304358261
+            }
+          ],
+          "mass_b_f_difference": 5.282028053384272e-12,
+          "spin_current_difference": 1.2101430968414206e-13
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 0,
+      "training": {
+        "evaluations": 300,
+        "seconds": 39.12774639998679,
+        "loss": 0.0098774896148863,
+        "max_bulk_residual": 0.04003560567911972,
+        "max_horizon_residual": 0.0023168030515414773
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.0395964",
+        "seconds": 36.62537920000614
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 1,
+      "training": {
+        "evaluations": 300,
+        "seconds": 38.5935574999894,
+        "loss": 1.470378340331394,
+        "max_bulk_residual": 0.4784467501504954,
+        "max_horizon_residual": 0.030838598752337017
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral line search failed; residual=0.473783",
+        "seconds": 2.42908040000475
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 2,
+      "training": {
+        "evaluations": 300,
+        "seconds": 37.637945199996466,
+        "loss": 8.94471218621036e-06,
+        "max_bulk_residual": 0.00054205801851216,
+        "max_horizon_residual": 5.591998779873263e-05
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.000410332",
+        "seconds": 23.955125900014536
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 3,
+      "training": {
+        "evaluations": 300,
+        "seconds": 28.447311100026127,
+        "loss": 9.37889940761235e-06,
+        "max_bulk_residual": 0.0008428247277731979,
+        "max_horizon_residual": 8.923404728829262e-05
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 4,
+        "max_tensor_residual": 3.187957293970197e-10,
+        "boundary_residual": 3.43631471034864e-13,
+        "seconds": 6.569515700015472,
+        "observables": {
+          "E": 2.414201688186619,
+          "J": 0.4953812276198566,
+          "T_H": 0.04105197997983116,
+          "A_H": 17.42225325915826,
+          "S": 32.41391928629004,
+          "U": -2.049238038910395,
+          "U_f": -2.0492380391360365,
+          "W": 0.6307389687250522,
+          "mass_tail_spread": 2.156200654255786e-08,
+          "spin_tail_spread": 3.889855370026058e-09,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -2.049238038910395,
+              "U_f": -2.0492380391360365,
+              "W": 0.6307389687250522
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -2.049238038015726,
+              "U_f": -2.0492380379200794,
+              "W": 0.6307389684702642
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -2.049238020607995,
+              "U_f": -2.0492380202440748,
+              "W": 0.6307389637723345
+            }
+          ],
+          "mass_b_f_difference": 2.6582789757572786e-10,
+          "spin_current_difference": 8.29247781553022e-12
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 0,
+      "training": {
+        "evaluations": 300,
+        "seconds": 87.67014840000775,
+        "loss": 2.2810618330067326e-06,
+        "max_bulk_residual": 0.00036652461331501256,
+        "max_horizon_residual": 2.9240944411044927e-05
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.000306445",
+        "seconds": 37.63657810000586
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 1,
+      "training": {
+        "evaluations": 300,
+        "seconds": 97.42221439999412,
+        "loss": 0.607860380825905,
+        "max_bulk_residual": 0.18821353816854103,
+        "max_horizon_residual": 0.015116070939095973
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral line search failed; residual=0.196411",
+        "seconds": 2.1889109000039753
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 2,
+      "training": {
+        "evaluations": 300,
+        "seconds": 98.24398400000064,
+        "loss": 0.00011209233006164979,
+        "max_bulk_residual": 0.0023358776724213015,
+        "max_horizon_residual": 0.0002107062279842218
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.00156745",
+        "seconds": 34.738738299987745
+      }
+    },
+    {
+      "alpha_gb": 0.5,
+      "alpha_paper": 2.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 3,
+      "training": {
+        "evaluations": 300,
+        "seconds": 98.89573799999198,
+        "loss": 1.1555629510570836e-06,
+        "max_bulk_residual": 0.00024716813806461955,
+        "max_horizon_residual": 4.357107136855043e-05
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 4,
+        "max_tensor_residual": 3.18660019495418e-10,
+        "boundary_residual": 2.4017681753293527e-13,
+        "seconds": 9.026724399998784,
+        "observables": {
+          "E": 2.4142016881928496,
+          "J": 0.49538122761987025,
+          "T_H": 0.04105197997982919,
+          "A_H": 17.42225325915829,
+          "S": 32.41391928629007,
+          "U": -2.0492380389156835,
+          "U_f": -2.049238039135807,
+          "W": 0.6307389687250696,
+          "mass_tail_spread": 2.1562879730436335e-08,
+          "spin_tail_spread": 3.889855544419483e-09,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -2.0492380389156835,
+              "U_f": -2.049238039135807,
+              "W": 0.6307389687250696
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -2.0492380380194,
+              "U_f": -2.049238037919889,
+              "W": 0.6307389684702822
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -2.0492380206125427,
+              "U_f": -2.0492380202438563,
+              "W": 0.6307389637723517
+            }
+          ],
+          "mass_b_f_difference": 2.5932685948228957e-10,
+          "spin_current_difference": 8.292755371286376e-12
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 0,
+      "training": {
+        "evaluations": 300,
+        "seconds": 37.6350911000045,
+        "loss": 0.0004745969399331565,
+        "max_bulk_residual": 0.004715140912779534,
+        "max_horizon_residual": 0.0010436164768918847
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 3,
+        "max_tensor_residual": 7.255408718265244e-09,
+        "boundary_residual": 2.7993374944965847e-13,
+        "seconds": 7.834250600019004,
+        "observables": {
+          "E": 2.992557815163362,
+          "J": 0.6129489198155197,
+          "T_H": 0.028650229204997994,
+          "A_H": 16.57236369904277,
+          "S": 45.099152400308775,
+          "U": -2.5401619667815014,
+          "U_f": -2.5401619634005956,
+          "W": 0.780430803611822,
+          "mass_tail_spread": 9.326118607690467e-08,
+          "spin_tail_spread": 1.698691231987328e-08,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -2.5401619667815014,
+              "U_f": -2.5401619634005956,
+              "W": 0.780430803611822
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -2.5401619557494555,
+              "U_f": -2.540161956355332,
+              "W": 0.7804308019712347
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -2.540161887618948,
+              "U_f": -2.540161884514993,
+              "W": 0.7804307819834135
+            }
+          ],
+          "mass_b_f_difference": 3.983035782474745e-09,
+          "spin_current_difference": 4.886613336196888e-11
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 1,
+      "training": {
+        "evaluations": 300,
+        "seconds": 36.37759280001046,
+        "loss": 1.2441360743528809,
+        "max_bulk_residual": 0.3312656212736769,
+        "max_horizon_residual": 0.032160047396925705
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral line search failed; residual=0.338637",
+        "seconds": 2.257750799995847
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 2,
+      "training": {
+        "evaluations": 300,
+        "seconds": 35.95173689999501,
+        "loss": 2.869668692216004e-05,
+        "max_bulk_residual": 0.0010366612654872048,
+        "max_horizon_residual": 0.00013492488164934633
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.000928037",
+        "seconds": 35.67402370000491
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        12,
+        12,
+        4
+      ],
+      "parameters": 232,
+      "seed": 3,
+      "training": {
+        "evaluations": 300,
+        "seconds": 38.898615000012796,
+        "loss": 0.0005651902256707065,
+        "max_bulk_residual": 0.007859204165019725,
+        "max_horizon_residual": 0.0003803894684491711
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 4,
+        "max_tensor_residual": 7.259878032073175e-09,
+        "boundary_residual": 1.1013412404281553e-13,
+        "seconds": 9.451220400020247,
+        "observables": {
+          "E": 2.9925578151646692,
+          "J": 0.6129489198155195,
+          "T_H": 0.02865022920500137,
+          "A_H": 16.572363699042864,
+          "S": 45.099152400308924,
+          "U": -2.540161966782611,
+          "U_f": -2.5401619634008483,
+          "W": 0.7804308036118217,
+          "mass_tail_spread": 9.326148481284151e-08,
+          "spin_tail_spread": 1.6986913017446983e-08,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -2.540161966782611,
+              "U_f": -2.5401619634008483,
+              "W": 0.7804308036118217
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -2.5401619557500332,
+              "U_f": -2.5401619563555515,
+              "W": 0.7804308019712333
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -2.540161887619804,
+              "U_f": -2.5401618845152325,
+              "W": 0.7804307819834123
+            }
+          ],
+          "mass_b_f_difference": 3.9840455204049186e-09,
+          "spin_current_difference": 4.886213655908023e-11
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 0,
+      "training": {
+        "evaluations": 300,
+        "seconds": 74.75282560000778,
+        "loss": 0.012305664209168867,
+        "max_bulk_residual": 0.026856002834327368,
+        "max_horizon_residual": 0.0011143227674306113
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.0227658",
+        "seconds": 34.61155060000601
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 1,
+      "training": {
+        "evaluations": 300,
+        "seconds": 77.46826209998108,
+        "loss": 0.0032026584775110825,
+        "max_bulk_residual": 0.012189339699422048,
+        "max_horizon_residual": 0.0006618893865990516
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 7,
+        "max_tensor_residual": 7.261157008997543e-09,
+        "boundary_residual": 2.3916574653040425e-13,
+        "seconds": 14.85173099997337,
+        "observables": {
+          "E": 2.9925578151622707,
+          "J": 0.6129489198155089,
+          "T_H": 0.028650229204998767,
+          "A_H": 16.57236369904293,
+          "S": 45.09915240030904,
+          "U": -2.540161966780575,
+          "U_f": -2.5401619634007115,
+          "W": 0.7804308036118083,
+          "mass_tail_spread": 9.326122531542526e-08,
+          "spin_tail_spread": 1.6986912494266707e-08,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -2.540161966780575,
+              "U_f": -2.5401619634007115,
+              "W": 0.7804308036118083
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -2.5401619557484802,
+              "U_f": -2.540161956355533,
+              "W": 0.7804308019712207
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -2.5401618876179883,
+              "U_f": -2.5401618845151535,
+              "W": 0.7804307819833995
+            }
+          ],
+          "mass_b_f_difference": 3.9818078783700216e-09,
+          "spin_current_difference": 4.8864690072036865e-11
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 2,
+      "training": {
+        "evaluations": 300,
+        "seconds": 80.92077630001586,
+        "loss": 0.002951710182697205,
+        "max_bulk_residual": 0.012437584370590322,
+        "max_horizon_residual": 0.0007344078049951173
+      },
+      "refinement": {
+        "converged": true,
+        "accepted": true,
+        "iterations": 6,
+        "max_tensor_residual": 7.2587624799780315e-09,
+        "boundary_residual": 8.979747125266577e-14,
+        "seconds": 13.969725200004177,
+        "observables": {
+          "E": 2.992557815165313,
+          "J": 0.61294891981552,
+          "T_H": 0.028650229204998788,
+          "A_H": 16.572363699042914,
+          "S": 45.099152400309,
+          "U": -2.540161966783158,
+          "U_f": -2.5401619634005894,
+          "W": 0.7804308036118225,
+          "mass_tail_spread": 9.326179558192469e-08,
+          "spin_tail_spread": 1.6986912668660134e-08,
+          "tail_fits": [
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 4,
+              "U": -2.540161966783158,
+              "U_f": -2.5401619634005894,
+              "W": 0.7804308036118225
+            },
+            {
+              "z_min": 0.04,
+              "z_max": 0.16,
+              "degree": 4,
+              "U": -2.540161955749969,
+              "U_f": -2.540161956355349,
+              "W": 0.7804308019712342
+            },
+            {
+              "z_min": 0.03,
+              "z_max": 0.12,
+              "degree": 3,
+              "U": -2.540161887620087,
+              "U_f": -2.5401618845150087,
+              "W": 0.7804307819834135
+            }
+          ],
+          "mass_b_f_difference": 3.984994569423227e-09,
+          "spin_current_difference": 4.886313575980239e-11
+        }
+      }
+    },
+    {
+      "alpha_gb": 0.75,
+      "alpha_paper": 3.0,
+      "layers": [
+        1,
+        24,
+        24,
+        4
+      ],
+      "parameters": 748,
+      "seed": 3,
+      "training": {
+        "evaluations": 300,
+        "seconds": 74.77858579999884,
+        "loss": 0.07500874012259412,
+        "max_bulk_residual": 0.06392407783702614,
+        "max_horizon_residual": 0.00016922491138098928
+      },
+      "refinement": {
+        "converged": false,
+        "accepted": false,
+        "reason": "spectral Newton exhausted 15 iterations; residual=0.987997",
+        "seconds": 27.507118399982573
+      }
+    }
+  ],
+  "spurious_convergences": [],
+  "budget": 15,
+  "tensor_gate": 1e-06,
+  "boundary_gate": 1e-08,
+  "omega_h": 0.33,
+  "seeds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "architectures": [
+    [
+      1,
+      12,
+      12,
+      4
+    ],
+    [
+      1,
+      24,
+      24,
+      4
+    ]
+  ],
+  "checks": [
+    {
+      "name": "gradient_matches_complex_step_oracle",
+      "passed": true
+    },
+    {
+      "name": "boundary_conditions_exact_for_any_weights",
+      "passed": true
+    },
+    {
+      "name": "infinity_values_left_free",
+      "passed": true
+    },
+    {
+      "name": "untrained_network_is_myers_perry",
+      "passed": true
+    },
+    {
+      "name": "conventional_seeds_fail_at_the_benchmark",
+      "passed": true
+    },
+    {
+      "name": "continuation_baseline_succeeds",
+      "passed": true
+    },
+    {
+      "name": "acceptance_uses_independent_gates",
+      "passed": true
+    },
+    {
+      "name": "architecture_and_seed_spread_reported",
+      "passed": true
+    },
+    {
+      "name": "neural_seed_reaches_an_unreachable_coupling",
+      "passed": true
+    }
+  ],
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sympy": "1.14.0"
+  },
+  "source_sha256": {
+    "experiments/egb_rotating_neural_seed.py": "cf6323352fae2dbf23929e5415b3712dca72571ac8d39b765ac8472e82d06b31",
+    "src/rotating_bh/neural_seed.py": "5f387ed05edf54e28a222f6ea4f7e58358797f7f81fe055bc252898b3b97dc32",
+    "src/rotating_bh/neural_seed_validation.py": "dc60b58aab4a2be4dcb130f97d7d93503e3bed86ad9f3e09932fcde3412093e7",
+    "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+    "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+    "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+    "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+    "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+    "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+    "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+    "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+  }
+}

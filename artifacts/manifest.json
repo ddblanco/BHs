@@ -1,0 +1,2165 @@
+[
+  {
+    "id": "bvp-solver-spike",
+    "kind": "result",
+    "path": "results/bvp-spike.json",
+    "command": ".venv/Scripts/python.exe experiments/bvp_solver_spike.py --resolutions 16 24 32 48 --output results/bvp-spike.json",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/bvp_solver_spike.py",
+      "src/rotating_bh/bvp_benchmark.py",
+      "src/rotating_bh/provenance.py",
+      "environment/requirements-lock.txt"
+    ],
+    "parameters": {
+      "resolutions": [
+        16,
+        24,
+        32,
+        48
+      ],
+      "adaptive_tol": 1e-10,
+      "adaptive_max_nodes": 10000,
+      "check_point_count": 1001,
+      "acceptance_threshold": 1e-07,
+      "adaptive_representation": "integrated velocity cubic with linear boundary correction",
+      "spectral_representation": "Chebyshev-Lobatto polynomial; DCT-I coefficients",
+      "source_sha256": {
+        "experiments/bvp_solver_spike.py": "0d29f6a14458760dbf16fdd1e428dcf2bbd1650a7e615b033595a4b54dc42887",
+        "src/rotating_bh/bvp_benchmark.py": "07b3e3e47ca908b83e68cc6f35808a84ab67477bfe8e33426a480d766b3cbe8a",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "integrated velocity cubic with linear boundary correction",
+      "Chebyshev-Lobatto polynomial; DCT-I coefficients",
+      "1001 uniform midpoints, with collocation coincidences displaced",
+      "Residual differentiates the evaluated approximation; sampled maxima are not bounds",
+      "solve_bvp remains baseline; spectral candidacy requires convergence and no worse residual",
+      "smooth linear manufactured BVP only; no EGB performance certification"
+    ],
+    "checks": [
+      {
+        "name": "all_sampled_errors_below_1e-7",
+        "passed": true
+      },
+      {
+        "name": "all_off_collocation_residuals_below_1e-7",
+        "passed": true
+      },
+      {
+        "name": "all_boundary_errors_below_1e-12",
+        "passed": true
+      },
+      {
+        "name": "spectral_error_and_residual_converge_8_to_12",
+        "passed": true
+      },
+      {
+        "name": "spectral_residual_not_worse_than_baseline",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "e81e2697bd63c8cd91e75e270decfe4faefde5727741ed31eec1b6babd7fdcff"
+  },
+  {
+    "id": "static-egb",
+    "kind": "result",
+    "path": "results/static-egb.json",
+    "command": ".venv/Scripts/python experiments/static_egb_bvp.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/static_egb.py",
+      "src/rotating_bh/_static_egb_generated.py",
+      "src/rotating_bh/static_egb_equations.py",
+      "src/rotating_bh/static_egb_bvp.py",
+      "src/rotating_bh/static_egb_validation.py",
+      "src/rotating_bh/static_egb_benchmark.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/derive_static_egb.py",
+      "experiments/static_egb_bvp.py",
+      "environment/requirements-lock.txt",
+      "docs/static-egb.md",
+      "docs/convenciones.md"
+    ],
+    "parameters": {
+      "r_h": 1.0,
+      "G5": 1.0,
+      "alpha_hat_sweep": [
+        0.0,
+        0.01,
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.5
+      ],
+      "spectral_resolutions": [
+        16,
+        20,
+        24,
+        32,
+        48
+      ],
+      "spectral_default_resolution": 32,
+      "adaptive_tolerances": [
+        1e-08,
+        1e-10,
+        1e-12,
+        1e-13
+      ],
+      "adaptive_default_tolerance": 1e-13,
+      "hardest_alpha_hat": 0.5,
+      "cutoff": 0.001,
+      "check_points": 201,
+      "profile_tolerance": 1e-06,
+      "ode_tolerance": 1e-06,
+      "tensor_tolerance": 1e-06,
+      "horizon_tolerance": 1e-08,
+      "source_sha256": {
+        "src/rotating_bh/static_egb.py": "4b865c93d9b5509709cefbf464d752888f292d4c546ce0c5a542b52be3c3a19e",
+        "src/rotating_bh/_static_egb_generated.py": "38e3d705e3e491e83e3c2eeacf7dbf20ebd7aed84720f1e08a3951aadb66dd0c",
+        "src/rotating_bh/static_egb_equations.py": "bb30e9a2822867129e2b54cd276621723106d0dbd70cbe65a5b94ecd9bd07de5",
+        "src/rotating_bh/static_egb_bvp.py": "82d6d3f61e2ac11f8dd3846b848f46ef31187d9ae520ef2dcc6e1e035f30f423",
+        "src/rotating_bh/static_egb_validation.py": "54e34758f74c36d4ae91defe7c649235b21ebb7a01c64bfa7c9e6183293b8f62",
+        "src/rotating_bh/static_egb_benchmark.py": "752c38c38753b6559c7f986bc336628620101e078ba580dd54c1f9ea32f14422",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/derive_static_egb.py": "6415a33a21462a563d87428bb7c6724b901354fedccb1ce199842d847dc65931",
+        "experiments/static_egb_bvp.py": "340edd679e0b3e50783bc3f2c3b1b53c475e0275f8a00ec8267e48c251bf454b",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/static-egb.md": "ef92de187d6f268340829d43fd1766b85d094a4c52e653c83aa576d5076d5192",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Static field equations derived directly from the tensor (Riemann+GB), not a reduced action",
+      "b=f and the theta-theta equation follow from tt+rr (Bianchi); both checked symbolically before solving",
+      "Closed-form eq. (2.20) used only as an oracle in validation, never fed into either solver",
+      "Chebyshev polynomial (spectral, regular at both compact endpoints) and RK45 dense output (adaptive); only F(0)=0 imposed, F(1)~=1 checked",
+      "Static (w=0,h=r^2) EGB, r_h=1, small alpha_hat sweep; sampled coordinate norms; no rotation, no extremality, no interior",
+      "GR-limit distance measured against the closed form, not asserted from a fixed power"
+    ],
+    "checks": [
+      {
+        "name": "fine_solutions_independently_accepted",
+        "passed": true
+      },
+      {
+        "name": "spectral_resolution_convergence",
+        "passed": true
+      },
+      {
+        "name": "adaptive_tolerance_convergence",
+        "passed": true
+      },
+      {
+        "name": "methods_agree",
+        "passed": true,
+        "value": 3.962968841975112e-12
+      },
+      {
+        "name": "gr_limit_shrinks_with_alpha",
+        "passed": true,
+        "value": [
+          0.0,
+          0.007557072512487384,
+          0.014939732994181276,
+          0.036069007842946865,
+          0.06807614156020148,
+          0.12158637285143603,
+          0.237826359330227
+        ]
+      },
+      {
+        "name": "perturbation_detected",
+        "passed": true,
+        "value": 0.011237243578414075
+      },
+      {
+        "name": "real_resource_failures_reported",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "f964eed817a869902d7eb155ed8793cfebe2334abce2ff0279a335fad0d176a8"
+  },
+  {
+    "id": "static-egb-convergence",
+    "kind": "figure",
+    "path": "artifacts/static-egb.png",
+    "command": ".venv/Scripts/python experiments/static_egb_bvp.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/static_egb.py",
+      "src/rotating_bh/_static_egb_generated.py",
+      "src/rotating_bh/static_egb_equations.py",
+      "src/rotating_bh/static_egb_bvp.py",
+      "src/rotating_bh/static_egb_validation.py",
+      "src/rotating_bh/static_egb_benchmark.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/derive_static_egb.py",
+      "experiments/static_egb_bvp.py",
+      "environment/requirements-lock.txt",
+      "docs/static-egb.md",
+      "docs/convenciones.md"
+    ],
+    "parameters": {
+      "r_h": 1.0,
+      "G5": 1.0,
+      "alpha_hat_sweep": [
+        0.0,
+        0.01,
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.5
+      ],
+      "spectral_resolutions": [
+        16,
+        20,
+        24,
+        32,
+        48
+      ],
+      "spectral_default_resolution": 32,
+      "adaptive_tolerances": [
+        1e-08,
+        1e-10,
+        1e-12,
+        1e-13
+      ],
+      "adaptive_default_tolerance": 1e-13,
+      "hardest_alpha_hat": 0.5,
+      "cutoff": 0.001,
+      "check_points": 201,
+      "profile_tolerance": 1e-06,
+      "ode_tolerance": 1e-06,
+      "tensor_tolerance": 1e-06,
+      "horizon_tolerance": 1e-08,
+      "source_sha256": {
+        "src/rotating_bh/static_egb.py": "4b865c93d9b5509709cefbf464d752888f292d4c546ce0c5a542b52be3c3a19e",
+        "src/rotating_bh/_static_egb_generated.py": "38e3d705e3e491e83e3c2eeacf7dbf20ebd7aed84720f1e08a3951aadb66dd0c",
+        "src/rotating_bh/static_egb_equations.py": "bb30e9a2822867129e2b54cd276621723106d0dbd70cbe65a5b94ecd9bd07de5",
+        "src/rotating_bh/static_egb_bvp.py": "82d6d3f61e2ac11f8dd3846b848f46ef31187d9ae520ef2dcc6e1e035f30f423",
+        "src/rotating_bh/static_egb_validation.py": "54e34758f74c36d4ae91defe7c649235b21ebb7a01c64bfa7c9e6183293b8f62",
+        "src/rotating_bh/static_egb_benchmark.py": "752c38c38753b6559c7f986bc336628620101e078ba580dd54c1f9ea32f14422",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/derive_static_egb.py": "6415a33a21462a563d87428bb7c6724b901354fedccb1ce199842d847dc65931",
+        "experiments/static_egb_bvp.py": "340edd679e0b3e50783bc3f2c3b1b53c475e0275f8a00ec8267e48c251bf454b",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/static-egb.md": "ef92de187d6f268340829d43fd1766b85d094a4c52e653c83aa576d5076d5192",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Static field equations derived directly from the tensor (Riemann+GB), not a reduced action",
+      "b=f and the theta-theta equation follow from tt+rr (Bianchi); both checked symbolically before solving",
+      "Closed-form eq. (2.20) used only as an oracle in validation, never fed into either solver",
+      "Chebyshev polynomial (spectral, regular at both compact endpoints) and RK45 dense output (adaptive); only F(0)=0 imposed, F(1)~=1 checked",
+      "Static (w=0,h=r^2) EGB, r_h=1, small alpha_hat sweep; sampled coordinate norms; no rotation, no extremality, no interior",
+      "GR-limit distance measured against the closed form, not asserted from a fixed power"
+    ],
+    "checks": [
+      {
+        "name": "fine_solutions_independently_accepted",
+        "passed": true
+      },
+      {
+        "name": "spectral_resolution_convergence",
+        "passed": true
+      },
+      {
+        "name": "adaptive_tolerance_convergence",
+        "passed": true
+      },
+      {
+        "name": "methods_agree",
+        "passed": true,
+        "value": 3.962968841975112e-12
+      },
+      {
+        "name": "gr_limit_shrinks_with_alpha",
+        "passed": true,
+        "value": [
+          0.0,
+          0.007557072512487384,
+          0.014939732994181276,
+          0.036069007842946865,
+          0.06807614156020148,
+          0.12158637285143603,
+          0.237826359330227
+        ]
+      },
+      {
+        "name": "perturbation_detected",
+        "passed": true,
+        "value": 0.011237243578414075
+      },
+      {
+        "name": "real_resource_failures_reported",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "5559a8cf7ddacbb4599fdfc25149e4a2ec6aa04e504f5bdb9aae99f9a633664f"
+  },
+  {
+    "id": "myers-perry-bvp",
+    "kind": "result",
+    "path": "results/myers-perry-bvp.json",
+    "command": ".venv/Scripts/python experiments/myers_perry_bvp.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/vacuum_equations.py",
+      "src/rotating_bh/_vacuum_generated.py",
+      "src/rotating_bh/vacuum_bvp.py",
+      "src/rotating_bh/vacuum_continuation.py",
+      "src/rotating_bh/vacuum_validation.py",
+      "src/rotating_bh/vacuum_benchmark.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/derive_vacuum.py",
+      "experiments/myers_perry_bvp.py",
+      "environment/requirements-lock.txt",
+      "docs/vacuum-bvp.md",
+      "docs/convenciones.md"
+    ],
+    "parameters": {
+      "r_h": 1.0,
+      "G5": 1.0,
+      "positive_targets": [
+        0,
+        0.1,
+        0.2,
+        0.33,
+        0.5,
+        0.6
+      ],
+      "negative_targets": [
+        0,
+        -0.1,
+        -0.2,
+        -0.33
+      ],
+      "spectral_resolutions": [
+        12,
+        20,
+        32,
+        48
+      ],
+      "spectral_tolerance": 1e-11,
+      "adaptive_tolerances": [
+        0.0001,
+        1e-06,
+        1e-08
+      ],
+      "adaptive_initial_resolution": 32,
+      "default_cutoff": 0.003,
+      "cutoffs": [
+        0.01,
+        0.003,
+        0.001
+      ],
+      "min_continuation_step": 0.001,
+      "max_retries": 20,
+      "check_points": 401,
+      "profile_tolerance": 1e-06,
+      "ode_tolerance": 1e-06,
+      "tensor_tolerance": 1e-06,
+      "constraint_tolerance": 1e-06,
+      "boundary_tolerance": 1e-08,
+      "source_sha256": {
+        "src/rotating_bh/vacuum_equations.py": "6b7498b18fc522a7c5464bd052c9cebe92a480266c37ff9cd337ad158f18c215",
+        "src/rotating_bh/_vacuum_generated.py": "b32ab5c62ff0aaf094a50bfc2e369f25c528a7eb1e5aacb9502e60b17f34fee5",
+        "src/rotating_bh/vacuum_bvp.py": "18d4b2f956b9e93afe5fbc8bd8f6dcda7ddf8206bcf119c677de399d7bfc94ce",
+        "src/rotating_bh/vacuum_continuation.py": "f139410e850bbb14816d2e1bc75644a285bd6f86f36c49a552722cc98b901f76",
+        "src/rotating_bh/vacuum_validation.py": "43e21d79c631b22014f49cd950964e90ac8ca9b2b47deca34d524035223092e9",
+        "src/rotating_bh/vacuum_benchmark.py": "f48ecbd64f667519e43fdc463c593cd30563d90bd5d5fa7e255c0a73b9f79f5b",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/derive_vacuum.py": "d00ead98e907c671be952270431cd24033398d25ed862d035e1f639821c739fa",
+        "experiments/myers_perry_bvp.py": "8607b861bf1b4d9f7f308762dff99202287ccf91d47a9d2eaf85582e0c0bf64c",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/vacuum-bvp.md": "8e74ecb8c087658848e4f28b33b383d168f2e003eaa50ca5c0910205c637ed87",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Generic action varied before radial gauge; E_f excluded from solve",
+      "Perturbed static seed and numerical continuation; analytic oracle only in validation",
+      "Chebyshev polynomials; adaptive integrated velocity splines for B,H,W and cubic F",
+      "Nonextremal GR; sampled coordinate norms, explicit adaptive cutoff; no EGB or global bounds",
+      "Coarse converged candidates retained with individual acceptance; no timing claims"
+    ],
+    "checks": [
+      {
+        "name": "fine_solutions_independently_accepted",
+        "passed": true
+      },
+      {
+        "name": "spectral_convergence_before_roundoff",
+        "passed": true
+      },
+      {
+        "name": "adaptive_ode_convergence",
+        "passed": true
+      },
+      {
+        "name": "cutoff_convergence",
+        "passed": true
+      },
+      {
+        "name": "methods_agree",
+        "passed": true,
+        "value": 9.612738482989158e-08
+      },
+      {
+        "name": "perturbation_detected",
+        "passed": true,
+        "value": 0.0032819177451625164
+      },
+      {
+        "name": "real_resource_failures_reported",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "9107637b452aada5e64f173040290bfb4a5b16f9a882358f2138a091422d4a71"
+  },
+  {
+    "id": "myers-perry-bvp-convergence",
+    "kind": "figure",
+    "path": "artifacts/myers-perry-bvp.png",
+    "command": ".venv/Scripts/python experiments/myers_perry_bvp.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/vacuum_equations.py",
+      "src/rotating_bh/_vacuum_generated.py",
+      "src/rotating_bh/vacuum_bvp.py",
+      "src/rotating_bh/vacuum_continuation.py",
+      "src/rotating_bh/vacuum_validation.py",
+      "src/rotating_bh/vacuum_benchmark.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/derive_vacuum.py",
+      "experiments/myers_perry_bvp.py",
+      "environment/requirements-lock.txt",
+      "docs/vacuum-bvp.md",
+      "docs/convenciones.md"
+    ],
+    "parameters": {
+      "r_h": 1.0,
+      "G5": 1.0,
+      "positive_targets": [
+        0,
+        0.1,
+        0.2,
+        0.33,
+        0.5,
+        0.6
+      ],
+      "negative_targets": [
+        0,
+        -0.1,
+        -0.2,
+        -0.33
+      ],
+      "spectral_resolutions": [
+        12,
+        20,
+        32,
+        48
+      ],
+      "spectral_tolerance": 1e-11,
+      "adaptive_tolerances": [
+        0.0001,
+        1e-06,
+        1e-08
+      ],
+      "adaptive_initial_resolution": 32,
+      "default_cutoff": 0.003,
+      "cutoffs": [
+        0.01,
+        0.003,
+        0.001
+      ],
+      "min_continuation_step": 0.001,
+      "max_retries": 20,
+      "check_points": 401,
+      "profile_tolerance": 1e-06,
+      "ode_tolerance": 1e-06,
+      "tensor_tolerance": 1e-06,
+      "constraint_tolerance": 1e-06,
+      "boundary_tolerance": 1e-08,
+      "source_sha256": {
+        "src/rotating_bh/vacuum_equations.py": "6b7498b18fc522a7c5464bd052c9cebe92a480266c37ff9cd337ad158f18c215",
+        "src/rotating_bh/_vacuum_generated.py": "b32ab5c62ff0aaf094a50bfc2e369f25c528a7eb1e5aacb9502e60b17f34fee5",
+        "src/rotating_bh/vacuum_bvp.py": "18d4b2f956b9e93afe5fbc8bd8f6dcda7ddf8206bcf119c677de399d7bfc94ce",
+        "src/rotating_bh/vacuum_continuation.py": "f139410e850bbb14816d2e1bc75644a285bd6f86f36c49a552722cc98b901f76",
+        "src/rotating_bh/vacuum_validation.py": "43e21d79c631b22014f49cd950964e90ac8ca9b2b47deca34d524035223092e9",
+        "src/rotating_bh/vacuum_benchmark.py": "f48ecbd64f667519e43fdc463c593cd30563d90bd5d5fa7e255c0a73b9f79f5b",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/derive_vacuum.py": "d00ead98e907c671be952270431cd24033398d25ed862d035e1f639821c739fa",
+        "experiments/myers_perry_bvp.py": "8607b861bf1b4d9f7f308762dff99202287ccf91d47a9d2eaf85582e0c0bf64c",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/vacuum-bvp.md": "8e74ecb8c087658848e4f28b33b383d168f2e003eaa50ca5c0910205c637ed87",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Generic action varied before radial gauge; E_f excluded from solve",
+      "Perturbed static seed and numerical continuation; analytic oracle only in validation",
+      "Chebyshev polynomials; adaptive integrated velocity splines for B,H,W and cubic F",
+      "Nonextremal GR; sampled coordinate norms, explicit adaptive cutoff; no EGB or global bounds",
+      "Coarse converged candidates retained with individual acceptance; no timing claims"
+    ],
+    "checks": [
+      {
+        "name": "fine_solutions_independently_accepted",
+        "passed": true
+      },
+      {
+        "name": "spectral_convergence_before_roundoff",
+        "passed": true
+      },
+      {
+        "name": "adaptive_ode_convergence",
+        "passed": true
+      },
+      {
+        "name": "cutoff_convergence",
+        "passed": true
+      },
+      {
+        "name": "methods_agree",
+        "passed": true,
+        "value": 9.612738482989158e-08
+      },
+      {
+        "name": "perturbation_detected",
+        "passed": true,
+        "value": 0.0032819177451625164
+      },
+      {
+        "name": "real_resource_failures_reported",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "eec10ea024a5bf714ec38d1b571f01b5637380c5d85d3a0db1a715026c1d584b"
+  },
+  {
+    "id": "myers-perry-benchmark",
+    "kind": "result",
+    "path": "results/myers-perry.json",
+    "command": ".venv/Scripts/python.exe experiments/myers_perry_benchmark.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/myers_perry_benchmark.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/myers_perry_benchmark.py",
+      "environment/requirements-lock.txt",
+      "docs/convenciones.md",
+      "docs/myers-perry.md",
+      "references/sources.json"
+    ],
+    "parameters": {
+      "spins_q": [
+        0.0,
+        -0.33,
+        0.33,
+        0.68
+      ],
+      "scales_r_h": [
+        0.7,
+        1.0,
+        2.0
+      ],
+      "radii_rho": [
+        1.05,
+        1.3,
+        2.0,
+        5.0,
+        20.0
+      ],
+      "angles_theta": [
+        0.2,
+        0.7,
+        1.2
+      ],
+      "G5": 1.0,
+      "tolerances": {
+        "einstein": 1e-08,
+        "smarr": 1e-13,
+        "first_law": 2e-08,
+        "horizon": 1e-13,
+        "asymptotic": 2e-08
+      },
+      "negative_control": {
+        "r_h": 1,
+        "q": 0.33,
+        "rho": 1.3,
+        "theta": 0.7,
+        "w_fraction": 0.01
+      },
+      "profile_r_h": 1,
+      "profile_rho_range": [
+        1,
+        6
+      ],
+      "profile_points": 251,
+      "source_sha256": {
+        "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/myers_perry_benchmark.py": "5ada8e82a8ea031a1238c761a3f89b18be50ddb74386d99f3772ef33ccaa41d3",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/myers_perry_benchmark.py": "479524025aa5db25f220ba4d9e93f1c7dfd68f35877eb5677249acb3c5a67acd",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3",
+        "docs/myers-perry.md": "9c6abae612c35751ab5c647fa643ce0ef38af9bd18849706d36ebe7b51449fd5",
+        "references/sources.json": "94374db1311fe3338e625cbe902786acbb49f5646ee4b4a611f403b3cc43355a"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "NumPy radial formulas; SymPy metric derivatives; NumPy full tensor contractions",
+      "Separate mu,a symbolic metric checked against r_h,Omega_H radial implementation",
+      "All 25 Einstein components sampled away from chart singularities",
+      "r_h^2 max_ij |G_ij/(s_i s_j)|, s=(1,1,r,r,r)",
+      "Analytic GR; sampled coordinate residuals, not global bounds or EGB validation",
+      "No randomness; G5=1 declared; fixed output paths inside project"
+    ],
+    "checks": [
+      {
+        "name": "all_25_einstein_components_below_tolerance",
+        "passed": true
+      },
+      {
+        "name": "horizon_and_null_generator",
+        "passed": true
+      },
+      {
+        "name": "smarr",
+        "passed": true
+      },
+      {
+        "name": "first_law_two_directions_two_steps",
+        "passed": true
+      },
+      {
+        "name": "asymptotic_charges",
+        "passed": true
+      },
+      {
+        "name": "asymptotic_flatness_decay",
+        "passed": true
+      },
+      {
+        "name": "perturbed_metric_detected",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "e52861495da871092db190313a0d174459e2bd8996d4570ff99bb1ccfd9dedbd"
+  },
+  {
+    "id": "myers-perry-profiles",
+    "kind": "figure",
+    "path": "artifacts/myers-perry.png",
+    "command": ".venv/Scripts/python.exe experiments/myers_perry_benchmark.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/myers_perry_benchmark.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/myers_perry_benchmark.py",
+      "environment/requirements-lock.txt",
+      "docs/convenciones.md",
+      "docs/myers-perry.md",
+      "references/sources.json"
+    ],
+    "parameters": {
+      "spins_q": [
+        0.0,
+        -0.33,
+        0.33,
+        0.68
+      ],
+      "scales_r_h": [
+        0.7,
+        1.0,
+        2.0
+      ],
+      "radii_rho": [
+        1.05,
+        1.3,
+        2.0,
+        5.0,
+        20.0
+      ],
+      "angles_theta": [
+        0.2,
+        0.7,
+        1.2
+      ],
+      "G5": 1.0,
+      "tolerances": {
+        "einstein": 1e-08,
+        "smarr": 1e-13,
+        "first_law": 2e-08,
+        "horizon": 1e-13,
+        "asymptotic": 2e-08
+      },
+      "negative_control": {
+        "r_h": 1,
+        "q": 0.33,
+        "rho": 1.3,
+        "theta": 0.7,
+        "w_fraction": 0.01
+      },
+      "profile_r_h": 1,
+      "profile_rho_range": [
+        1,
+        6
+      ],
+      "profile_points": 251,
+      "source_sha256": {
+        "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/myers_perry_benchmark.py": "5ada8e82a8ea031a1238c761a3f89b18be50ddb74386d99f3772ef33ccaa41d3",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/myers_perry_benchmark.py": "479524025aa5db25f220ba4d9e93f1c7dfd68f35877eb5677249acb3c5a67acd",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3",
+        "docs/myers-perry.md": "9c6abae612c35751ab5c647fa643ce0ef38af9bd18849706d36ebe7b51449fd5",
+        "references/sources.json": "94374db1311fe3338e625cbe902786acbb49f5646ee4b4a611f403b3cc43355a"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "NumPy radial formulas; SymPy metric derivatives; NumPy full tensor contractions",
+      "Separate mu,a symbolic metric checked against r_h,Omega_H radial implementation",
+      "All 25 Einstein components sampled away from chart singularities",
+      "r_h^2 max_ij |G_ij/(s_i s_j)|, s=(1,1,r,r,r)",
+      "Analytic GR; sampled coordinate residuals, not global bounds or EGB validation",
+      "No randomness; G5=1 declared; fixed output paths inside project"
+    ],
+    "checks": [
+      {
+        "name": "all_25_einstein_components_below_tolerance",
+        "passed": true
+      },
+      {
+        "name": "horizon_and_null_generator",
+        "passed": true
+      },
+      {
+        "name": "smarr",
+        "passed": true
+      },
+      {
+        "name": "first_law_two_directions_two_steps",
+        "passed": true
+      },
+      {
+        "name": "asymptotic_charges",
+        "passed": true
+      },
+      {
+        "name": "asymptotic_flatness_decay",
+        "passed": true
+      },
+      {
+        "name": "perturbed_metric_detected",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "f844b6f951344feb9c62a3e3b7d7b3dca5bf500b332853a3cbcaab47818f4153"
+  },
+  {
+    "id": "egb-rotating",
+    "kind": "result",
+    "path": "results/egb-rotating.json",
+    "command": ".venv/Scripts/python experiments/egb_rotating_bvp.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/egb_rotating_benchmark.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py",
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/egb_rotating_bvp.py",
+      "experiments/derive_egb_rotating.py",
+      "environment/requirements-lock.txt",
+      "docs/egb-rotating.md",
+      "docs/convenciones.md"
+    ],
+    "parameters": {
+      "r_h": 1.0,
+      "omega_h": 0.3,
+      "alpha_gb_sweep": [
+        0.0,
+        0.02,
+        0.05,
+        0.1
+      ],
+      "resolutions": [
+        16,
+        24
+      ],
+      "default_resolution": 32,
+      "check_points": 21,
+      "tensor_tolerance": 1e-06,
+      "source_sha256": {
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/egb_rotating_benchmark.py": "c0787c0ddc7be7f16c24d35dc49d588f376b5b8f2f8a2d1d04913bf177e8c910",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311",
+        "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/egb_rotating_bvp.py": "9a0bb12fba80d719541903ff483db666921c19ce5f6fe97763d61c7c743a4928",
+        "experiments/derive_egb_rotating.py": "a4122a5be448110a1e2772bbbb27d16d4ed5e7ead866f532b21082ebce5ced35",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/egb-rotating.md": "baf27012837e8e08cec67367618a910011de0e72cee7139e52038419f3ecfe90",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Spectral solver only (Hito 4B first pass); horizon rows from compact_horizon_conditions, infinity rows B=1,F=1,Hx=Wx=0 as in vacuum_bvp.py; W(horizon)=omega_h replaces the raw w-equation row",
+      "Accepted via the independent tensor evaluator (G+alpha_GB H), not the action-derived equations used to derive/solve the system",
+      "First accepted rotating EGB points (Hito 4B), one omega_h, short alpha_GB continuation; not the Hito 4C family/comparison sweep"
+    ],
+    "checks": [
+      {
+        "name": "myers_perry_limit",
+        "passed": true,
+        "value": 7.66053886991358e-15
+      },
+      {
+        "name": "resolution_convergence",
+        "passed": true
+      },
+      {
+        "name": "tensor_residual_accepted",
+        "passed": true
+      },
+      {
+        "name": "perturbation_detected",
+        "passed": true,
+        "value": 0.005367327993702393
+      },
+      {
+        "name": "real_resource_failures_reported",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "b253ebe8b96ed640ae44b7e1a1c81a7ca709decc5190d1517f6dd26b5eb7c28c"
+  },
+  {
+    "id": "egb-rotating-convergence",
+    "kind": "figure",
+    "path": "artifacts/egb-rotating.png",
+    "command": ".venv/Scripts/python experiments/egb_rotating_bvp.py",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/egb_rotating_benchmark.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py",
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/egb_rotating_bvp.py",
+      "experiments/derive_egb_rotating.py",
+      "environment/requirements-lock.txt",
+      "docs/egb-rotating.md",
+      "docs/convenciones.md"
+    ],
+    "parameters": {
+      "r_h": 1.0,
+      "omega_h": 0.3,
+      "alpha_gb_sweep": [
+        0.0,
+        0.02,
+        0.05,
+        0.1
+      ],
+      "resolutions": [
+        16,
+        24
+      ],
+      "default_resolution": 32,
+      "check_points": 21,
+      "tensor_tolerance": 1e-06,
+      "source_sha256": {
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/egb_rotating_benchmark.py": "c0787c0ddc7be7f16c24d35dc49d588f376b5b8f2f8a2d1d04913bf177e8c910",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311",
+        "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "experiments/egb_rotating_bvp.py": "9a0bb12fba80d719541903ff483db666921c19ce5f6fe97763d61c7c743a4928",
+        "experiments/derive_egb_rotating.py": "a4122a5be448110a1e2772bbbb27d16d4ed5e7ead866f532b21082ebce5ced35",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "docs/egb-rotating.md": "baf27012837e8e08cec67367618a910011de0e72cee7139e52038419f3ecfe90",
+        "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Spectral solver only (Hito 4B first pass); horizon rows from compact_horizon_conditions, infinity rows B=1,F=1,Hx=Wx=0 as in vacuum_bvp.py; W(horizon)=omega_h replaces the raw w-equation row",
+      "Accepted via the independent tensor evaluator (G+alpha_GB H), not the action-derived equations used to derive/solve the system",
+      "First accepted rotating EGB points (Hito 4B), one omega_h, short alpha_GB continuation; not the Hito 4C family/comparison sweep"
+    ],
+    "checks": [
+      {
+        "name": "myers_perry_limit",
+        "passed": true,
+        "value": 7.66053886991358e-15
+      },
+      {
+        "name": "resolution_convergence",
+        "passed": true
+      },
+      {
+        "name": "tensor_residual_accepted",
+        "passed": true
+      },
+      {
+        "name": "perturbation_detected",
+        "passed": true,
+        "value": 0.005367327993702393
+      },
+      {
+        "name": "real_resource_failures_reported",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "dbbb4b54cdd10838373816043beb2ba2174888be24c8dd4b9616c5dd7782b932"
+  },
+  {
+    "id": "egb-rotating-cross-check",
+    "kind": "result",
+    "path": "results/egb-rotating-cross-check.json",
+    "command": "python experiments/egb_rotating_cross_check.py (PYTHONPATH=src)",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_adaptive.py",
+      "src/rotating_bh/egb_rotating_angular.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py",
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/egb_rotating_cross_check.py",
+      "environment/requirements-lock.txt"
+    ],
+    "parameters": {
+      "omega_h": 0.3,
+      "alpha_gb": 0.1,
+      "r_h": 1.0,
+      "spectral_resolution": 24,
+      "spectral_tolerance": 1e-11,
+      "adaptive_initial_nodes": 81,
+      "adaptive_max_nodes": 4000,
+      "profile_tolerance": 1e-05,
+      "tensor_tolerance": 1e-05,
+      "profile_interval": [
+        0.02,
+        0.98
+      ],
+      "profile_samples": 151,
+      "tensor_samples": 51
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Adaptive Lobatto collocation initialized from spectral continuation; second-order Taylor boundary transport independent of the seed",
+      "Full tensor on represented derivatives, cutoff/tolerance sweeps, perturbed seed, closed Myers-Perry and wrong-alpha controls",
+      "Only omega_h=.3, alpha_gb=.1; no Hito 4C or merge decision"
+    ],
+    "checks": [
+      {
+        "name": "numerical_completion",
+        "passed": true
+      },
+      {
+        "name": "myers_perry",
+        "passed": true
+      },
+      {
+        "name": "methods_agree",
+        "passed": true
+      },
+      {
+        "name": "independent_tensor",
+        "passed": true
+      },
+      {
+        "name": "unimposed_infinity_f",
+        "passed": true
+      },
+      {
+        "name": "cutoff_refinement",
+        "passed": true
+      },
+      {
+        "name": "seed_perturbation",
+        "passed": true
+      },
+      {
+        "name": "wrong_alpha_detected",
+        "passed": true
+      },
+      {
+        "name": "resource_exhaustion_reported",
+        "passed": true
+      },
+      {
+        "name": "angular_first_integral",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "bd52ad2d7475eb68a7f3a6cd9d52b99ef9b32c018e10cd6f7cfeda216e7318e5"
+  },
+  {
+    "id": "egb-rotating-resolution",
+    "kind": "result",
+    "path": "results/egb-rotating-resolution.json",
+    "command": "python experiments/egb_rotating_convergence.py (PYTHONPATH=src)",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/egb_rotating_convergence.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_adaptive.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/egb_rotating_convergence.py",
+      "environment/requirements-lock.txt"
+    ],
+    "parameters": {
+      "omega_h": 0.3,
+      "alpha_gb": 0.1,
+      "r_h": 1.0,
+      "resolutions": [
+        12,
+        16,
+        24,
+        32,
+        40
+      ],
+      "tolerances": [
+        1e-05,
+        1e-08,
+        1e-11
+      ],
+      "seed_resolution": 16,
+      "seed_tolerance": 1e-09,
+      "seed_factor": 1.01,
+      "max_iterations": 15,
+      "tensor_count": 51,
+      "profile_interval": [
+        0.02,
+        0.98
+      ],
+      "profile_count": 151,
+      "adaptive_cutoff": 0.0015,
+      "adaptive_tolerance": 1e-07,
+      "acceptance": {
+        "boundary_tolerance": 1e-08,
+        "tensor_tolerance": 1e-06,
+        "methods_tolerance": 1e-05,
+        "fine_profile_tolerance": 1e-08,
+        "minimum_tensor_improvement": 100,
+        "minimum_fine_strict_solutions": 2
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Same 1% perturbed coarse seed for every resolution/tolerance cell",
+      "Tensor on represented derivatives and independent adaptive profile",
+      "Preserve loose/coarse rejections and strict-tolerance failures; closure requires the specified fine nominal and strict cells"
+    ],
+    "checks": [
+      {
+        "name": "complete_resolution_tolerance_grid",
+        "passed": true
+      },
+      {
+        "name": "independently_verified_seed",
+        "passed": true
+      },
+      {
+        "name": "three_fine_nominal_solutions",
+        "passed": true
+      },
+      {
+        "name": "two_fine_strict_solutions",
+        "passed": true
+      },
+      {
+        "name": "tensor_resolution_improvement",
+        "passed": true
+      },
+      {
+        "name": "fine_profiles_stable",
+        "passed": true
+      },
+      {
+        "name": "independent_adaptive_tensor",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "0434d4f30141b76a8f3a05d8f1f30204ab3d3bb19454060a53e7f903d609757e"
+  },
+  {
+    "id": "egb-rotating-resolution-figure",
+    "kind": "figure",
+    "path": "artifacts/egb-rotating-resolution.png",
+    "command": "python experiments/egb_rotating_convergence.py (PYTHONPATH=src)",
+    "commit": "working-tree",
+    "inputs": [
+      "src/rotating_bh/egb_rotating_convergence.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_adaptive.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/provenance.py",
+      "experiments/egb_rotating_convergence.py",
+      "environment/requirements-lock.txt"
+    ],
+    "parameters": {
+      "omega_h": 0.3,
+      "alpha_gb": 0.1,
+      "r_h": 1.0,
+      "resolutions": [
+        12,
+        16,
+        24,
+        32,
+        40
+      ],
+      "tolerances": [
+        1e-05,
+        1e-08,
+        1e-11
+      ],
+      "seed_resolution": 16,
+      "seed_tolerance": 1e-09,
+      "seed_factor": 1.01,
+      "max_iterations": 15,
+      "tensor_count": 51,
+      "profile_interval": [
+        0.02,
+        0.98
+      ],
+      "profile_count": 151,
+      "adaptive_cutoff": 0.0015,
+      "adaptive_tolerance": 1e-07,
+      "acceptance": {
+        "boundary_tolerance": 1e-08,
+        "tensor_tolerance": 1e-06,
+        "methods_tolerance": 1e-05,
+        "fine_profile_tolerance": 1e-08,
+        "minimum_tensor_improvement": 100,
+        "minimum_fine_strict_solutions": 2
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Same 1% perturbed coarse seed for every resolution/tolerance cell",
+      "Tensor on represented derivatives and independent adaptive profile",
+      "Preserve loose/coarse rejections and strict-tolerance failures; closure requires the specified fine nominal and strict cells"
+    ],
+    "checks": [
+      {
+        "name": "complete_resolution_tolerance_grid",
+        "passed": true
+      },
+      {
+        "name": "independently_verified_seed",
+        "passed": true
+      },
+      {
+        "name": "three_fine_nominal_solutions",
+        "passed": true
+      },
+      {
+        "name": "two_fine_strict_solutions",
+        "passed": true
+      },
+      {
+        "name": "tensor_resolution_improvement",
+        "passed": true
+      },
+      {
+        "name": "fine_profiles_stable",
+        "passed": true
+      },
+      {
+        "name": "independent_adaptive_tensor",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "0641f1dfb3091dce12ff5aa9886153d4fad2b7de615ec30177736ba2274aed5c"
+  },
+  {
+    "id": "egb-rotating-family",
+    "kind": "result",
+    "path": "results/egb-rotating-family.json",
+    "command": "python experiments/egb_rotating_family.py; python experiments/egb_rotating_family_artifacts.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_family.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_adaptive.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/egb_rotating_family_validation.py",
+      "src/rotating_bh/egb_rotating_angular.py",
+      "src/rotating_bh/static_egb.py",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_equations_generated.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py",
+      "experiments/egb_rotating_family_artifacts.py",
+      "src/rotating_bh/provenance.py",
+      "results/egb-rotating-family-failed-continuation.json",
+      "reports/hito-4c-failed-continuation-source.txt",
+      "references/notes/1010.0860-hito-4c.md"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "experiments/egb_rotating_family.py": "4bf2b719fe2651df0be838cff3a1243e51eceefca5edd5d057e272f093d8f845",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_adaptive.py": "4de3f20b315408bc53f0ec67b8de312aa419c4b15ddc00262fc0ead71b29cfc1",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/egb_rotating_family_validation.py": "9f4e0da39f7f553e41d8498f7b7784c054cff3c31b102574da7a385779271690",
+        "src/rotating_bh/egb_rotating_angular.py": "d6bd368735ebc0d0eb381a583f414cc63fea2f5b5e96634a67fde7618ca159c2",
+        "src/rotating_bh/static_egb.py": "4b865c93d9b5509709cefbf464d752888f292d4c546ce0c5a542b52be3c3a19e",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311",
+        "experiments/egb_rotating_family_artifacts.py": "250ea46261ec61a511b4453850406256cc82c70c2a356b25ce188d91b92c8c9c",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "results/egb-rotating-family-failed-continuation.json": "f081dfd41382eb6109264491fb7b55d96e327f499ec9ecba8d4332db81f5f0ba",
+        "reports/hito-4c-failed-continuation-source.txt": "1f60e36d5dd704bbe53c3a47d5e66342ecc24cea044c4e59758082ebc1baff20",
+        "references/notes/1010.0860-hito-4c.md": "19a483e26de7f95ed2bd42be83ba5435277c136e5729e1d9ba14ed2044275ee5"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Preserve failed external comparison; no automatic milestone closure",
+      "Paper error bars unavailable; displayed tolerance adopted from printed precision"
+    ],
+    "checks": [
+      {
+        "name": "complete_family",
+        "passed": true
+      },
+      {
+        "name": "independent_tensor",
+        "passed": true
+      },
+      {
+        "name": "resolution_refined",
+        "passed": true
+      },
+      {
+        "name": "resolution_observables",
+        "passed": true
+      },
+      {
+        "name": "routes_agree",
+        "passed": true
+      },
+      {
+        "name": "tail_extraction",
+        "passed": true
+      },
+      {
+        "name": "first_law",
+        "passed": true
+      },
+      {
+        "name": "first_law_refines",
+        "passed": true
+      },
+      {
+        "name": "cutoff_tensor",
+        "passed": true
+      },
+      {
+        "name": "cutoff_observables",
+        "passed": true
+      },
+      {
+        "name": "external_agreement",
+        "passed": false
+      },
+      {
+        "name": "external_independent_method",
+        "passed": true
+      },
+      {
+        "name": "figure_parameters",
+        "passed": true
+      }
+    ],
+    "status": "candidate",
+    "sha256": "afb72dd82422132930aab72c28b3d8632584abb8a33c8917bc4520f94b168463"
+  },
+  {
+    "id": "egb-rotating-family-figure",
+    "kind": "figure",
+    "path": "artifacts/egb-rotating-family.png",
+    "command": "python experiments/egb_rotating_family.py; python experiments/egb_rotating_family_artifacts.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_family.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_adaptive.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/egb_rotating_family_validation.py",
+      "src/rotating_bh/egb_rotating_angular.py",
+      "src/rotating_bh/static_egb.py",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_equations_generated.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py",
+      "experiments/egb_rotating_family_artifacts.py",
+      "src/rotating_bh/provenance.py",
+      "results/egb-rotating-family-failed-continuation.json",
+      "reports/hito-4c-failed-continuation-source.txt",
+      "references/notes/1010.0860-hito-4c.md"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "experiments/egb_rotating_family.py": "4bf2b719fe2651df0be838cff3a1243e51eceefca5edd5d057e272f093d8f845",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_adaptive.py": "4de3f20b315408bc53f0ec67b8de312aa419c4b15ddc00262fc0ead71b29cfc1",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/egb_rotating_family_validation.py": "9f4e0da39f7f553e41d8498f7b7784c054cff3c31b102574da7a385779271690",
+        "src/rotating_bh/egb_rotating_angular.py": "d6bd368735ebc0d0eb381a583f414cc63fea2f5b5e96634a67fde7618ca159c2",
+        "src/rotating_bh/static_egb.py": "4b865c93d9b5509709cefbf464d752888f292d4c546ce0c5a542b52be3c3a19e",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311",
+        "experiments/egb_rotating_family_artifacts.py": "250ea46261ec61a511b4453850406256cc82c70c2a356b25ce188d91b92c8c9c",
+        "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+        "results/egb-rotating-family-failed-continuation.json": "f081dfd41382eb6109264491fb7b55d96e327f499ec9ecba8d4332db81f5f0ba",
+        "reports/hito-4c-failed-continuation-source.txt": "1f60e36d5dd704bbe53c3a47d5e66342ecc24cea044c4e59758082ebc1baff20",
+        "references/notes/1010.0860-hito-4c.md": "19a483e26de7f95ed2bd42be83ba5435277c136e5729e1d9ba14ed2044275ee5"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Preserve failed external comparison; no automatic milestone closure",
+      "Paper error bars unavailable; displayed tolerance adopted from printed precision"
+    ],
+    "checks": [
+      {
+        "name": "complete_family",
+        "passed": true
+      },
+      {
+        "name": "independent_tensor",
+        "passed": true
+      },
+      {
+        "name": "resolution_refined",
+        "passed": true
+      },
+      {
+        "name": "resolution_observables",
+        "passed": true
+      },
+      {
+        "name": "routes_agree",
+        "passed": true
+      },
+      {
+        "name": "tail_extraction",
+        "passed": true
+      },
+      {
+        "name": "first_law",
+        "passed": true
+      },
+      {
+        "name": "first_law_refines",
+        "passed": true
+      },
+      {
+        "name": "cutoff_tensor",
+        "passed": true
+      },
+      {
+        "name": "cutoff_observables",
+        "passed": true
+      },
+      {
+        "name": "external_agreement",
+        "passed": false
+      },
+      {
+        "name": "external_independent_method",
+        "passed": true
+      },
+      {
+        "name": "figure_parameters",
+        "passed": true
+      }
+    ],
+    "status": "candidate",
+    "sha256": "a9d504da33ebc590b3488f27ce2a287720bbe554383005875429d0d912b4cb91"
+  },
+  {
+    "id": "egb-rotating-family-failed-continuation",
+    "kind": "result",
+    "path": "results/egb-rotating-family-failed-continuation.json",
+    "command": "Archived experiment source in reports/hito-4c-failed-continuation-source.txt",
+    "commit": "working-tree",
+    "inputs": [
+      "reports/hito-4c-failed-continuation-source.txt"
+    ],
+    "parameters": {
+      "q": 0.33,
+      "alpha_gb": 0.6,
+      "previous_alpha_gb": 0.5,
+      "N": 32,
+      "tolerance": 1e-11,
+      "max_iterations": 50
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Preserve failed Newton continuation; no physical boundary claim"
+    ],
+    "checks": [
+      {
+        "name": "newton_converged",
+        "passed": false
+      }
+    ],
+    "status": "rejected",
+    "sha256": "f081dfd41382eb6109264491fb7b55d96e327f499ec9ecba8d4332db81f5f0ba"
+  },
+  {
+    "id": "egb-rotating-external-routes",
+    "kind": "result",
+    "path": "results/egb-rotating-external-routes.json",
+    "command": "python experiments/egb_rotating_external_routes.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_external_routes.py",
+      "experiments/egb_rotating_family.py",
+      "src/rotating_bh/egb_rotating_saved.py",
+      "results/egb-rotating-family.json",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_adaptive.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/egb_rotating_family_validation.py",
+      "src/rotating_bh/egb_rotating_angular.py",
+      "src/rotating_bh/static_egb.py",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_equations_generated.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py"
+    ],
+    "parameters": {
+      "alpha_gb": 0.5,
+      "source_sha256": {
+        "experiments/egb_rotating_external_routes.py": "5de3ae4a38b32efe7785a158deaf06a146605d19ec0f0eb48e80af4e2a388f7d",
+        "experiments/egb_rotating_family.py": "4bf2b719fe2651df0be838cff3a1243e51eceefca5edd5d057e272f093d8f845",
+        "src/rotating_bh/egb_rotating_saved.py": "7f52254618dc520d7c0bd8490b1a0d04046bc9b0d187d6019dd2a268ca947505",
+        "results/egb-rotating-family.json": "afb72dd82422132930aab72c28b3d8632584abb8a33c8917bc4520f94b168463",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_adaptive.py": "4de3f20b315408bc53f0ec67b8de312aa419c4b15ddc00262fc0ead71b29cfc1",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/egb_rotating_family_validation.py": "9f4e0da39f7f553e41d8498f7b7784c054cff3c31b102574da7a385779271690",
+        "src/rotating_bh/egb_rotating_angular.py": "d6bd368735ebc0d0eb381a583f414cc63fea2f5b5e96634a67fde7618ca159c2",
+        "src/rotating_bh/static_egb.py": "4b865c93d9b5509709cefbf464d752888f292d4c546ce0c5a542b52be3c3a19e",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Test continuation-route dependence without changing paper tolerance"
+    ],
+    "checks": [
+      {
+        "name": "route_completed",
+        "passed": true
+      },
+      {
+        "name": "routes_agree",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "8c0fe2f6c08d817b8d80b34bbd99720070df0090dcb6975938fc210d99f0b26d"
+  },
+  {
+    "id": "egb-rotating-paper-profiles",
+    "kind": "result",
+    "path": "results/egb-rotating-paper-profiles.json",
+    "command": "python experiments/egb_rotating_paper_profiles.py",
+    "commit": "working-tree",
+    "inputs": [
+      "results/egb-rotating-family.json",
+      "experiments/egb_rotating_paper_profiles.py"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "references/data/1010.0860v1-figure-1b.png": "a5760ea5b2d2ae6c397560bef6431e55acd37e72fc31ce7b10a1ea0006673543",
+        "results/egb-rotating-family.json": "afb72dd82422132930aab72c28b3d8632584abb8a33c8917bc4520f94b168463",
+        "experiments/egb_rotating_paper_profiles.py": "5ca615a3b4e394fcbfea3598ce8249f2c00a5e870d24b9d3dd619ca099cd5f41"
+      },
+      "horizontal_pixels": 1,
+      "vertical_pixels": 2,
+      "columns": [
+        153,
+        200,
+        295
+      ]
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "codex",
+    "prompt_refs": [],
+    "decisions": [
+      "Affine calibration from five printed ticks per axis",
+      "Discard merged f/w crossing at column153; no enlargement of pixel uncertainty",
+      "Additional comparison does not erase the failed radius comparison"
+    ],
+    "checks": [
+      {
+        "name": "ten_separable_curve_values_agree",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "e57a9e5a20d9857b5c40072899f067ce81c10009b59245d52102bfec49b6301a",
+    "external_inputs": [
+      {
+        "path": "references/data/1010.0860v1-figure-1b.png",
+        "url": "https://arxiv.org/html/1010.0860v1/profiles-alpha.png",
+        "reason": "Not redistributed: arXiv non-exclusive distribution license; see references/data/README.md"
+      }
+    ]
+  },
+  {
+    "id": "egb-rotating-external-contrasts",
+    "kind": "result",
+    "path": "results/egb-rotating-external-contrasts.json",
+    "command": "python experiments/egb_rotating_external_contrasts.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_external_contrasts.py",
+      "src/rotating_bh/egb_rotating_contrast_validation.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/myers_perry.py",
+      "src/rotating_bh/einstein.py",
+      "references/notes/1010.0860-external-contrasts.md",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_equations_generated.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "experiments/egb_rotating_external_contrasts.py": "ba0c47fe7cc2ff65acd85ad1e4680618bd013c4bcf5a83aec07a8fd3ce05383b",
+        "src/rotating_bh/egb_rotating_contrast_validation.py": "453be0c9d7303fdfa5b6f84b53173f9e298aff53121dee25181c11f3400424e8",
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "references/notes/1010.0860-external-contrasts.md": "194bd9ee84b22d1562b83dd58a32a3f88282b6f04c8cdbe34ab27875e5c102bf",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+      },
+      "omega_h": 0.33,
+      "r_h": 1.0,
+      "alpha_paper_normalisation": 4.0
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Tolerances fixed before comparison: half a unit of the last printed digit",
+      "Einstein-limit and Gauss-Bonnet-sector contrasts reported separately",
+      "The failed section 4.1.1 radius is restated, not replaced or re-toleranced",
+      "No erratum is attributed to the paper"
+    ],
+    "checks": [
+      {
+        "name": "reduced_normalisation_pinned",
+        "sector": "convention",
+        "passed": true
+      },
+      {
+        "name": "einstein_reduced_relation",
+        "sector": "einstein-limit",
+        "passed": true
+      },
+      {
+        "name": "einstein_each_spin_reading",
+        "sector": "convention",
+        "passed": true
+      },
+      {
+        "name": "einstein_critical_temperature",
+        "sector": "einstein-limit",
+        "passed": true
+      },
+      {
+        "name": "wald_entropy_matches_paper",
+        "sector": "gauss-bonnet",
+        "passed": true
+      },
+      {
+        "name": "gb_horizon_derivative",
+        "sector": "gauss-bonnet",
+        "passed": true
+      },
+      {
+        "name": "gb_horizon_derivatives_monotonic",
+        "sector": "gauss-bonnet",
+        "passed": true
+      },
+      {
+        "name": "published_ergosurface_radii",
+        "sector": "gauss-bonnet",
+        "passed": false
+      }
+    ],
+    "status": "candidate",
+    "sha256": "2bbdff1a14f0d99553ae253a1fda7aa12ebe9899ad083771b136e62a2279b9a1"
+  },
+  {
+    "id": "egb-rotating-neural-seed",
+    "kind": "result",
+    "path": "results/egb-rotating-neural-seed.json",
+    "command": "python experiments/egb_rotating_neural_seed.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_neural_seed.py",
+      "src/rotating_bh/neural_seed.py",
+      "src/rotating_bh/neural_seed_validation.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_equations_generated.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "experiments/egb_rotating_neural_seed.py": "cf6323352fae2dbf23929e5415b3712dca72571ac8d39b765ac8472e82d06b31",
+        "src/rotating_bh/neural_seed.py": "5f387ed05edf54e28a222f6ea4f7e58358797f7f81fe055bc252898b3b97dc32",
+        "src/rotating_bh/neural_seed_validation.py": "dc60b58aab4a2be4dcb130f97d7d93503e3bed86ad9f3e09932fcde3412093e7",
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+      },
+      "omega_h": 0.33,
+      "couplings": [
+        0.1,
+        0.5,
+        0.75
+      ],
+      "architectures": [
+        [
+          1,
+          12,
+          12,
+          4
+        ],
+        [
+          1,
+          24,
+          24,
+          4
+        ]
+      ],
+      "seeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "newton_budget": 15,
+      "training_evaluations": 300
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Benchmark placed where the conventional seeds fail, so the comparison can lose",
+      "Both architectures and every random seed reported, not the ones that worked",
+      "Acceptance by the unchanged Hito 4 gates, not by the solver terminating",
+      "Cost reported as wall clock in this interpreter, which is not a speed claim"
+    ],
+    "checks": [
+      {
+        "name": "gradient_matches_complex_step_oracle",
+        "passed": true
+      },
+      {
+        "name": "boundary_conditions_exact_for_any_weights",
+        "passed": true
+      },
+      {
+        "name": "infinity_values_left_free",
+        "passed": true
+      },
+      {
+        "name": "untrained_network_is_myers_perry",
+        "passed": true
+      },
+      {
+        "name": "conventional_seeds_fail_at_the_benchmark",
+        "passed": true
+      },
+      {
+        "name": "continuation_baseline_succeeds",
+        "passed": true
+      },
+      {
+        "name": "acceptance_uses_independent_gates",
+        "passed": true
+      },
+      {
+        "name": "architecture_and_seed_spread_reported",
+        "passed": true
+      },
+      {
+        "name": "neural_seed_reaches_an_unreachable_coupling",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "203e5871b723e5192efdbfac228267810607dc42308c12081d0e61dcfe9d762d"
+  },
+  {
+    "id": "egb-rotating-gb-potential",
+    "kind": "result",
+    "path": "results/egb-rotating-gb-potential.json",
+    "command": "python experiments/egb_rotating_gb_potential.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_gb_potential.py",
+      "src/rotating_bh/gb_potential.py",
+      "src/rotating_bh/gb_potential_validation.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/myers_perry.py",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_equations_generated.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "experiments/egb_rotating_gb_potential.py": "9e8619ac23e7d2445f47ef24326c4fdf6e7405f21c5c9b8065db869b7c03df06",
+        "src/rotating_bh/gb_potential.py": "15ba73a22b9fc98235b84e8e6bba34b11da72635759ee636844efa680eb067a3",
+        "src/rotating_bh/gb_potential_validation.py": "5bef0d339f523543489c1188588fe067c32595540386bdd5358ca5ad0c6c672f",
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+      },
+      "spins": [
+        0.3,
+        0.5,
+        0.6,
+        0.65
+      ],
+      "couplings": [
+        0.02,
+        0.06,
+        0.1,
+        0.2
+      ],
+      "sign_change_spins": [
+        0.3,
+        0.5,
+        0.6,
+        0.65,
+        0.66,
+        0.68
+      ],
+      "continuation_step": 0.02,
+      "difference_step_cap": 0.01,
+      "vanishing_ladder": [
+        0.02,
+        0.04,
+        0.06,
+        0.08
+      ]
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Smarr coefficients fixed by the exact alpha_gb=0 limit, not assumed",
+      "The perturbative oracle is treated as a hypothesis and its gate may fail",
+      "A sign-change locus is recorded only when a real change of sign brackets it",
+      "Existence of the potential and of its sign change are not claimed as new"
+    ],
+    "checks": [
+      {
+        "name": "smarr_exact_in_the_vacuum_limit",
+        "passed": true
+      },
+      {
+        "name": "psi_converges_under_step_refinement",
+        "passed": true
+      },
+      {
+        "name": "smarr_closes_at_finite_coupling",
+        "passed": true
+      },
+      {
+        "name": "every_solution_passes_the_hito_4_gates",
+        "passed": true
+      },
+      {
+        "name": "all_requested_points_reported",
+        "passed": true
+      },
+      {
+        "name": "refinement_covers_the_hard_points",
+        "passed": true
+      },
+      {
+        "name": "psi_independent_of_resolution",
+        "passed": true
+      },
+      {
+        "name": "sign_change_bracketed",
+        "passed": true
+      },
+      {
+        "name": "oracle_test_is_discriminating",
+        "passed": true
+      },
+      {
+        "name": "perturbative_oracle_confirmed",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "9fe667740cb6e6ba09b8f664897aff5afaf2b512472fd009dfcc0ada32b6e833"
+  },
+  {
+    "id": "near-horizon-generated",
+    "kind": "derivation",
+    "path": "src/rotating_bh/_near_horizon_generated.py",
+    "command": "python experiments/derive_near_horizon.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/derive_near_horizon.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/near_horizon.py",
+      "environment/requirements-lock.txt"
+    ],
+    "parameters": {
+      "ansatz": "ds2 = v1(-r^2 dt^2 + dr^2/r^2) + (v2/4)(dtheta^2 + sin^2 theta dphi^2) + (v3/4)(dpsi + cos theta dphi + k r dt)^2",
+      "angular_volume": "16 pi^2",
+      "source_sha256": {
+        "experiments/derive_near_horizon.py": "da8abd9a784576f452ebc060843bb11115239b41d4c249c79c2074dcc1671437",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/near_horizon.py": "e1de430176eeace0e8153fbdb338b6f343c74f211270b68bd36094bd8db6912a",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Rederived independently but NOT claimed as new: it reproduces section 4.2 of arXiv:1010.0860v1 (reports/hito-8-originality.md)",
+      "Written only if the symbolic curvature matches einstein.py, the extremal state solves the full field equations, and the published equations (4.11)-(4.12) are satisfied as printed",
+      "The coupling normalisation alpha_paper = 4 alpha_gb is a consequence of that third gate, not an assumption"
+    ],
+    "checks": [
+      {
+        "name": "symbolic_curvature_matches_the_tensor_evaluator",
+        "passed": true
+      },
+      {
+        "name": "extremal_state_solves_the_full_field_equations",
+        "passed": true
+      },
+      {
+        "name": "published_near_horizon_equations_reproduced",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "a9743f63929b829e190c037e745b0dc190f11e57d7dcec14ab9ea8b43b471518"
+  },
+  {
+    "id": "egb-extremality",
+    "kind": "result",
+    "path": "results/egb-extremality.json",
+    "command": "python experiments/egb_extremality.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_extremality.py",
+      "src/rotating_bh/extremality.py",
+      "src/rotating_bh/extremality_validation.py",
+      "src/rotating_bh/gb_response.py",
+      "src/rotating_bh/near_horizon.py",
+      "src/rotating_bh/egb_rotating_predictor.py",
+      "src/rotating_bh/egb_rotating_scale.py",
+      "src/rotating_bh/_near_horizon_generated.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/gb_potential.py",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py"
+    ],
+    "parameters": {
+      "resolution": 64,
+      "refined_resolution": 96,
+      "contrast_resolution": 48,
+      "extremal_couplings": [
+        0.0,
+        0.005,
+        0.01,
+        0.02,
+        0.035,
+        0.05,
+        0.075,
+        0.1,
+        0.15,
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "map_couplings": [
+        0.0,
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.5
+      ],
+      "relative_tensor_gate": 1e-08,
+      "boundary_gate": 1e-08,
+      "source_sha256": {
+        "experiments/egb_extremality.py": "619ab1fca0f227c171ec4b21a9b794c1d555e5fa49931734ad9d057d084d983d",
+        "src/rotating_bh/extremality.py": "fc3f11a6a1dd545cd105d7c87d46b706d60881c98971ed569c7422930cf12b62",
+        "src/rotating_bh/extremality_validation.py": "d1b4d614f5f7c8ae1373db73f219ae340e801b56224170177303d4fda533fb1f",
+        "src/rotating_bh/gb_response.py": "d547ad98706cb83e15f1b2ae1bd333cd1222762d3c05d504b56f82e8854e869a",
+        "src/rotating_bh/near_horizon.py": "e1de430176eeace0e8153fbdb338b6f343c74f211270b68bd36094bd8db6912a",
+        "src/rotating_bh/egb_rotating_predictor.py": "1c087314ed473bb36bd9d50dfd444148a5a4c81d0a867a203e7a2eab4038975c",
+        "src/rotating_bh/egb_rotating_scale.py": "cbb29318d1f724c087ec1128fa6b3dc70182ef0fc49d328199891394dc26b0fc",
+        "src/rotating_bh/_near_horizon_generated.py": "a9743f63929b829e190c037e745b0dc190f11e57d7dcec14ab9ea8b43b471518",
+        "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/gb_potential.py": "15ba73a22b9fc98235b84e8e6bba34b11da72635759ee636844efa680eb067a3",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "Psi_GB taken exactly by linear response; the central differences it replaces are kept and must converge to it at second order",
+      "The absolute Hito 4 tensor gate is replaced near extremality by a relative one at 1e-8, declared, with both numbers recorded per state",
+      "The extremal shift is measured twice, the second route using masses and spins only, and compared as an integral identity rather than as two derivative estimates",
+      "Scope narrowed after the literature review: the extremal solutions, the near-horizon entropy function and the linear-order mass are external anchors, not results (reports/hito-8-originality.md)"
+    ],
+    "checks": [
+      {
+        "name": "oracle_reproduced_to_eight_digits",
+        "passed": true
+      },
+      {
+        "name": "oracle_test_is_discriminating",
+        "passed": true
+      },
+      {
+        "name": "central_differences_converge_to_the_linear_response",
+        "passed": true
+      },
+      {
+        "name": "every_state_passes_the_declared_gates",
+        "passed": true
+      },
+      {
+        "name": "smarr_closes_at_every_state",
+        "passed": true
+      },
+      {
+        "name": "every_walk_reaches_extremality",
+        "passed": true
+      },
+      {
+        "name": "published_extremal_mass_reproduced",
+        "passed": true
+      },
+      {
+        "name": "published_extremal_shift_reproduced",
+        "passed": true
+      },
+      {
+        "name": "published_shift_recovered_from_masses_alone",
+        "passed": true
+      },
+      {
+        "name": "near_horizon_agrees",
+        "passed": true
+      },
+      {
+        "name": "published_near_horizon_equations_reproduced",
+        "passed": true
+      },
+      {
+        "name": "routes_agree",
+        "passed": true
+      },
+      {
+        "name": "result_independent_of_resolution",
+        "passed": true
+      },
+      {
+        "name": "sign_locus_bracketed_in_the_scaled_temperature",
+        "passed": true
+      },
+      {
+        "name": "published_scaled_bounds_hold",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "9db08930fca98c24eceef878f55c6f6cdbea3c05c3b558627d245330f2e175c2"
+  }
+]

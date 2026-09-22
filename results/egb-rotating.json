@@ -1,0 +1,127 @@
+{
+  "parameters": {
+    "r_h": 1.0,
+    "omega_h": 0.3,
+    "alpha_gb_sweep": [
+      0.0,
+      0.02,
+      0.05,
+      0.1
+    ],
+    "resolutions": [
+      16,
+      24
+    ],
+    "default_resolution": 32,
+    "check_points": 21,
+    "tensor_tolerance": 1e-06,
+    "source_sha256": {
+      "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+      "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+      "src/rotating_bh/egb_rotating_benchmark.py": "c0787c0ddc7be7f16c24d35dc49d588f376b5b8f2f8a2d1d04913bf177e8c910",
+      "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+      "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311",
+      "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+      "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+      "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+      "experiments/egb_rotating_bvp.py": "9a0bb12fba80d719541903ff483db666921c19ce5f6fe97763d61c7c743a4928",
+      "experiments/derive_egb_rotating.py": "a4122a5be448110a1e2772bbbb27d16d4ed5e7ead866f532b21082ebce5ced35",
+      "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+      "docs/egb-rotating.md": "baf27012837e8e08cec67367618a910011de0e72cee7139e52038419f3ecfe90",
+      "docs/convenciones.md": "dd8604185afa01aaa5658bf4a220be4e4a54f7b2d6348418b8e32f44987978c3"
+    }
+  },
+  "runs": [
+    {
+      "alpha_gb": 0.0,
+      "resolution": 32,
+      "iterations": 7,
+      "boundary_residual": 9.924173814847253e-13,
+      "max_tensor_residual": 6.596252384572994e-14,
+      "mean_tensor_residual": 1.4540233530070626e-14,
+      "count": 21
+    },
+    {
+      "alpha_gb": 0.02,
+      "resolution": 32,
+      "iterations": 6,
+      "boundary_residual": 1.3571505196032631e-11,
+      "max_tensor_residual": 6.682348552051652e-14,
+      "mean_tensor_residual": 1.564985116885749e-14,
+      "count": 21
+    },
+    {
+      "alpha_gb": 0.05,
+      "resolution": 32,
+      "iterations": 5,
+      "boundary_residual": 4.182272798020491e-10,
+      "max_tensor_residual": 9.094931379444964e-13,
+      "mean_tensor_residual": 1.715837197565307e-13,
+      "count": 21
+    },
+    {
+      "alpha_gb": 0.1,
+      "resolution": 32,
+      "iterations": 8,
+      "boundary_residual": 4.015977328416074e-13,
+      "max_tensor_residual": 1.038459341194024e-13,
+      "mean_tensor_residual": 1.9545485752218403e-14,
+      "count": 21
+    }
+  ],
+  "myers_perry_max_difference": 7.66053886991358e-15,
+  "resolution_sweep": [
+    {
+      "resolution": 16,
+      "max_tensor_residual": 7.525594375774059e-08,
+      "mean_tensor_residual": 1.9010653384277513e-08,
+      "count": 21
+    },
+    {
+      "resolution": 24,
+      "max_tensor_residual": 8.402844380396994e-12,
+      "mean_tensor_residual": 2.003602234255221e-12,
+      "count": 21
+    }
+  ],
+  "negative_control_residual": 0.005367327993702393,
+  "failure_controls": [
+    {
+      "converged": false,
+      "reason": "spectral Newton exhausted 0 iterations; residual=49.28"
+    }
+  ],
+  "checks": [
+    {
+      "name": "myers_perry_limit",
+      "passed": true,
+      "value": 7.66053886991358e-15
+    },
+    {
+      "name": "resolution_convergence",
+      "passed": true
+    },
+    {
+      "name": "tensor_residual_accepted",
+      "passed": true
+    },
+    {
+      "name": "perturbation_detected",
+      "passed": true,
+      "value": 0.005367327993702393
+    },
+    {
+      "name": "real_resource_failures_reported",
+      "passed": true
+    }
+  ],
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sympy": "1.14.0",
+    "matplotlib": "3.11.1"
+  },
+  "scope": "First accepted rotating EGB points (Hito 4B), one omega_h, short alpha_GB continuation; not the Hito 4C family/comparison sweep"
+}

@@ -1,0 +1,19 @@
+.venv/
+.cache/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+# Optional third-party input: do not redistribute.
+references/data/1010.0860v1-figure-1b.png
+# Keep results, figures, supplements and the published PDF.
+!results/*.json
+!artifacts/*.png
+!manuscript/figures/*.pdf
+!manuscript/supplementary/*
+!manuscript/main-revised.pdf

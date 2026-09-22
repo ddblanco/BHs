@@ -1,0 +1,150 @@
+{
+  "problem": "y'' + pi^2 sin(pi*x) = 0; y(0)=y(1)=0",
+  "parameters": {
+    "resolutions": [
+      16,
+      24,
+      32,
+      48
+    ],
+    "adaptive_tol": 1e-10,
+    "adaptive_max_nodes": 10000,
+    "check_point_count": 1001,
+    "acceptance_threshold": 1e-07,
+    "adaptive_representation": "integrated velocity cubic with linear boundary correction",
+    "spectral_representation": "Chebyshev-Lobatto polynomial; DCT-I coefficients",
+    "source_sha256": {
+      "experiments/bvp_solver_spike.py": "0d29f6a14458760dbf16fdd1e428dcf2bbd1650a7e615b033595a4b54dc42887",
+      "src/rotating_bh/bvp_benchmark.py": "07b3e3e47ca908b83e68cc6f35808a84ab67477bfe8e33426a480d766b3cbe8a",
+      "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+      "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6"
+    }
+  },
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "runs": [
+    {
+      "solver": "adaptive",
+      "initial_resolution": 16,
+      "effective_resolution": 1989,
+      "elapsed_seconds": 0.03993030000128783,
+      "max_error": 1.2545520178264269e-14,
+      "residual": 5.505635947145038e-10,
+      "boundary_error": 0.0
+    },
+    {
+      "solver": "spectral",
+      "initial_resolution": 16,
+      "effective_resolution": 16,
+      "elapsed_seconds": 0.0004256999818608165,
+      "max_error": 7.438494264988549e-15,
+      "residual": 5.1008896759241473e-11,
+      "boundary_error": 3.3306690738754696e-16
+    },
+    {
+      "solver": "adaptive",
+      "initial_resolution": 24,
+      "effective_resolution": 2509,
+      "elapsed_seconds": 0.015809299977263436,
+      "max_error": 5.329070518200751e-15,
+      "residual": 1.6007062342282552e-10,
+      "boundary_error": 0.0
+    },
+    {
+      "solver": "spectral",
+      "initial_resolution": 24,
+      "effective_resolution": 24,
+      "elapsed_seconds": 0.000454699998954311,
+      "max_error": 1.0422218643668657e-14,
+      "residual": 1.8402227658365078e-11,
+      "boundary_error": 1.0436096431476471e-14
+    },
+    {
+      "solver": "adaptive",
+      "initial_resolution": 32,
+      "effective_resolution": 2173,
+      "elapsed_seconds": 0.010826400015503168,
+      "max_error": 8.43769498715119e-15,
+      "residual": 4.923506047305182e-10,
+      "boundary_error": 0.0
+    },
+    {
+      "solver": "spectral",
+      "initial_resolution": 32,
+      "effective_resolution": 32,
+      "elapsed_seconds": 0.00023869998403824866,
+      "max_error": 1.2878587085651816e-14,
+      "residual": 1.5372140192704276e-10,
+      "boundary_error": 5.995204332975845e-15
+    },
+    {
+      "solver": "adaptive",
+      "initial_resolution": 48,
+      "effective_resolution": 1965,
+      "elapsed_seconds": 0.01147060000221245,
+      "max_error": 1.021405182655144e-14,
+      "residual": 4.878155657195293e-10,
+      "boundary_error": 0.0
+    },
+    {
+      "solver": "spectral",
+      "initial_resolution": 48,
+      "effective_resolution": 48,
+      "elapsed_seconds": 0.00031629999284632504,
+      "max_error": 3.241851231905457e-14,
+      "residual": 3.0010757247345143e-10,
+      "boundary_error": 1.3988810110276972e-14
+    }
+  ],
+  "spectral_convergence": [
+    {
+      "solver": "spectral",
+      "initial_resolution": 8,
+      "effective_resolution": 8,
+      "elapsed_seconds": 0.0001252999936696142,
+      "max_error": 1.8104588558109924e-05,
+      "residual": 0.02005789916370563,
+      "boundary_error": 5.551115123125783e-16
+    },
+    {
+      "solver": "spectral",
+      "initial_resolution": 12,
+      "effective_resolution": 12,
+      "elapsed_seconds": 0.00015279999934136868,
+      "max_error": 5.288739446385193e-10,
+      "residual": 2.414797587590653e-06,
+      "boundary_error": 7.771561172376096e-16
+    }
+  ],
+  "checks": [
+    {
+      "name": "all_sampled_errors_below_1e-7",
+      "passed": true
+    },
+    {
+      "name": "all_off_collocation_residuals_below_1e-7",
+      "passed": true
+    },
+    {
+      "name": "all_boundary_errors_below_1e-12",
+      "passed": true
+    },
+    {
+      "name": "spectral_error_and_residual_converge_8_to_12",
+      "passed": true
+    },
+    {
+      "name": "spectral_residual_not_worse_than_baseline",
+      "passed": true
+    }
+  ],
+  "decision": {
+    "baseline": "scipy.integrate.solve_bvp",
+    "spectral_candidate": true,
+    "scope": "smooth linear manufactured BVP only; no EGB performance certification"
+  }
+}

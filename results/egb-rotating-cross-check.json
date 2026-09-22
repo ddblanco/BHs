@@ -1,0 +1,314 @@
+{
+  "parameters": {
+    "omega_h": 0.3,
+    "alpha_gb": 0.1,
+    "r_h": 1.0,
+    "spectral_resolution": 24,
+    "spectral_tolerance": 1e-11,
+    "adaptive_initial_nodes": 81,
+    "adaptive_max_nodes": 4000,
+    "profile_tolerance": 1e-05,
+    "tensor_tolerance": 1e-05,
+    "profile_interval": [
+      0.02,
+      0.98
+    ],
+    "profile_samples": 151,
+    "tensor_samples": 51
+  },
+  "spectral_runs": [
+    {
+      "alpha_gb": 0.0,
+      "iterations": 8,
+      "boundary_residual": 2.993258876413508e-13,
+      "angular": {
+        "first_integral_spread": 1.4654943925052066e-14,
+        "first_integral_at_midpoint": -1.3186813186813284,
+        "coefficient_min_sampled": 1.0
+      },
+      "max_tensor_residual": 7.004358391081198e-14,
+      "mean_tensor_residual": 8.39681694104025e-15,
+      "count": 31
+    },
+    {
+      "alpha_gb": 0.02,
+      "iterations": 6,
+      "boundary_residual": 2.6676757332491897e-12,
+      "angular": {
+        "first_integral_spread": 1.687538997430238e-14,
+        "first_integral_at_midpoint": -1.3230991693228655,
+        "coefficient_min_sampled": 1.0000000144318293
+      },
+      "max_tensor_residual": 2.8821389719269064e-13,
+      "mean_tensor_residual": 2.4725248230454164e-14,
+      "count": 31
+    },
+    {
+      "alpha_gb": 0.05,
+      "iterations": 6,
+      "boundary_residual": 4.0285937935982344e-13,
+      "angular": {
+        "first_integral_spread": 2.1538326677728037e-14,
+        "first_integral_at_midpoint": -1.3529167309638888,
+        "coefficient_min_sampled": 1.0000000376423643
+      },
+      "max_tensor_residual": 2.220446049250313e-13,
+      "mean_tensor_residual": 3.585186768068383e-14,
+      "count": 31
+    },
+    {
+      "alpha_gb": 0.1,
+      "iterations": 8,
+      "boundary_residual": 3.7466125880761e-13,
+      "angular": {
+        "first_integral_spread": 3.326228181776969e-13,
+        "first_integral_at_midpoint": -1.432551086634238,
+        "coefficient_min_sampled": 1.0000000809645295
+      },
+      "max_tensor_residual": 7.69321094561867e-12,
+      "mean_tensor_residual": 1.787783608531973e-12,
+      "count": 31
+    }
+  ],
+  "myers_perry": {
+    "spectral_difference": 4.790672442078758e-10,
+    "adaptive_difference": 3.7364134009010286e-10,
+    "max_tensor_residual": 7.902298978332983e-09,
+    "mean_tensor_residual": 1.1837587157043973e-09,
+    "count": 31
+  },
+  "adaptive_runs": [
+    {
+      "cutoff": 0.006,
+      "tolerance": 1e-07,
+      "perturbed_seed": false,
+      "converged": true,
+      "nodes": 179,
+      "iterations": 6,
+      "boundary_residual": 3.5575827772786514e-12,
+      "collocation_residual": 9.039923973040574e-08,
+      "amplitude_errors": [
+        9.909729936641298e-08,
+        3.582387364531314e-08,
+        1.767164826971257e-08,
+        6.202332775151476e-08
+      ],
+      "max_difference": 9.909729936641298e-08,
+      "infinity_f_defect": 8.070314416741553e-10,
+      "angular": {
+        "first_integral_spread": 8.765521641862506e-11,
+        "first_integral_at_midpoint": -1.4325513341633047,
+        "coefficient_min_sampled": 1.0000000809645313
+      },
+      "max_tensor_residual": 2.7739568544404847e-06,
+      "mean_tensor_residual": 1.2677513134915772e-07,
+      "count": 51
+    },
+    {
+      "cutoff": 0.003,
+      "tolerance": 1e-06,
+      "perturbed_seed": false,
+      "converged": true,
+      "nodes": 88,
+      "iterations": 6,
+      "boundary_residual": 1.6231547414391913e-12,
+      "collocation_residual": 8.364445109555412e-07,
+      "amplitude_errors": [
+        1.016200490422392e-08,
+        5.870637087568298e-09,
+        2.1966901769809866e-09,
+        7.609300856081802e-09
+      ],
+      "max_difference": 1.016200490422392e-08,
+      "infinity_f_defect": 5.391465052184685e-11,
+      "angular": {
+        "first_integral_spread": 1.6354830822962185e-09,
+        "first_integral_at_midpoint": -1.4325511171974474,
+        "coefficient_min_sampled": 1.0000000809645224
+      },
+      "max_tensor_residual": 2.456365386649395e-07,
+      "mean_tensor_residual": 5.5203444361029216e-08,
+      "count": 51
+    },
+    {
+      "cutoff": 0.003,
+      "tolerance": 1e-07,
+      "perturbed_seed": false,
+      "converged": true,
+      "nodes": 177,
+      "iterations": 6,
+      "boundary_residual": 3.041434304057818e-12,
+      "collocation_residual": 9.113618401010825e-08,
+      "amplitude_errors": [
+        9.889409624541656e-09,
+        4.565779199161568e-09,
+        2.133754062327853e-09,
+        7.463619833281143e-09
+      ],
+      "max_difference": 9.889409624541656e-09,
+      "infinity_f_defect": 4.6478043636000166e-11,
+      "angular": {
+        "first_integral_spread": 8.996625666668479e-11,
+        "first_integral_at_midpoint": -1.4325511164663776,
+        "coefficient_min_sampled": 1.0000000809645297
+      },
+      "max_tensor_residual": 2.417943250065946e-07,
+      "mean_tensor_residual": 1.1956002315870915e-08,
+      "count": 51
+    },
+    {
+      "cutoff": 0.0015,
+      "tolerance": 1e-07,
+      "perturbed_seed": false,
+      "converged": true,
+      "nodes": 173,
+      "iterations": 6,
+      "boundary_residual": 8.593835018521959e-11,
+      "collocation_residual": 8.221456095742425e-08,
+      "amplitude_errors": [
+        1.0039281628237973e-09,
+        5.472924335947482e-10,
+        2.6352966336906647e-10,
+        9.155869395982563e-10
+      ],
+      "max_difference": 1.0039281628237973e-09,
+      "infinity_f_defect": 5.477840403500522e-13,
+      "angular": {
+        "first_integral_spread": 9.400391576264155e-11,
+        "first_integral_at_midpoint": -1.43255109030527,
+        "coefficient_min_sampled": 1.0000000809645315
+      },
+      "max_tensor_residual": 1.640909157040847e-08,
+      "mean_tensor_residual": 4.3996518615258755e-09,
+      "count": 51
+    },
+    {
+      "cutoff": 0.003,
+      "tolerance": 1e-08,
+      "perturbed_seed": false,
+      "converged": true,
+      "nodes": 374,
+      "iterations": 8,
+      "boundary_residual": 6.93406272689445e-12,
+      "collocation_residual": 9.996731451661832e-09,
+      "amplitude_errors": [
+        9.871927719729001e-09,
+        4.529223884830458e-09,
+        2.130091533714129e-09,
+        7.455457584626402e-09
+      ],
+      "max_difference": 9.871927719729001e-09,
+      "infinity_f_defect": 5.111089329545848e-11,
+      "angular": {
+        "first_integral_spread": 5.764277943853813e-12,
+        "first_integral_at_midpoint": -1.432551116424998,
+        "coefficient_min_sampled": 1.0000000809645295
+      },
+      "max_tensor_residual": 2.4611865256929377e-07,
+      "mean_tensor_residual": 1.1250854076590604e-08,
+      "count": 51
+    },
+    {
+      "cutoff": 0.003,
+      "tolerance": 1e-07,
+      "perturbed_seed": true,
+      "converged": true,
+      "nodes": 177,
+      "iterations": 6,
+      "boundary_residual": 1.4197510411535857e-11,
+      "collocation_residual": 9.117946082684368e-08,
+      "amplitude_errors": [
+        9.889412289076915e-09,
+        4.565779421206173e-09,
+        2.1337541039612162e-09,
+        7.463620055325748e-09
+      ],
+      "max_difference": 9.889412289076915e-09,
+      "infinity_f_defect": 4.6478043636000166e-11,
+      "angular": {
+        "first_integral_spread": 8.996581257747494e-11,
+        "first_integral_at_midpoint": -1.4325511164663791,
+        "coefficient_min_sampled": 1.0000000809645297
+      },
+      "max_tensor_residual": 2.417941580290517e-07,
+      "mean_tensor_residual": 1.1956001471938503e-08,
+      "count": 51
+    }
+  ],
+  "seed_perturbation_difference": 2.6645352591003757e-15,
+  "negative_control_residual": 0.005367328013967996,
+  "resource_failure": "The maximum number of mesh nodes is exceeded.; status=1; nodes=8; rms=0.0385608; boundary=2.92346e-11",
+  "angular": {
+    "spectral_horizon_relations": [
+      -6.120750042766531e-14,
+      -5.036612450555155e-13,
+      -4.867200643120009e-13,
+      -2.398834678937539e-10
+    ],
+    "inverse_coefficient_integral": 0.2094166154345291,
+    "quadrature_error_estimate": 2.585596686948327e-13,
+    "omega_from_first_integral": 0.299999999999999,
+    "omega_error": 9.992007221626409e-16
+  },
+  "checks": [
+    {
+      "name": "numerical_completion",
+      "passed": true
+    },
+    {
+      "name": "myers_perry",
+      "passed": true
+    },
+    {
+      "name": "methods_agree",
+      "passed": true
+    },
+    {
+      "name": "independent_tensor",
+      "passed": true
+    },
+    {
+      "name": "unimposed_infinity_f",
+      "passed": true
+    },
+    {
+      "name": "cutoff_refinement",
+      "passed": true
+    },
+    {
+      "name": "seed_perturbation",
+      "passed": true
+    },
+    {
+      "name": "wrong_alpha_detected",
+      "passed": true
+    },
+    {
+      "name": "resource_exhaustion_reported",
+      "passed": true
+    },
+    {
+      "name": "angular_first_integral",
+      "passed": true
+    }
+  ],
+  "source_sha256": {
+    "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+    "src/rotating_bh/egb_rotating_adaptive.py": "4de3f20b315408bc53f0ec67b8de312aa419c4b15ddc00262fc0ead71b29cfc1",
+    "src/rotating_bh/egb_rotating_angular.py": "d6bd368735ebc0d0eb381a583f414cc63fea2f5b5e96634a67fde7618ca159c2",
+    "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+    "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+    "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311",
+    "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+    "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+    "src/rotating_bh/provenance.py": "35ec97db117321ce9ed79b78257d471b66c14f38c1938ae04d9f48eae73863c3",
+    "experiments/egb_rotating_cross_check.py": "1883b3956a44750455a50f880ca75364ff77c895cc70fca252a88f51d95f47f0",
+    "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6"
+  },
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sympy": "1.14.0"
+  }
+}

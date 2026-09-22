@@ -1,0 +1,644 @@
+{
+  "schema": 1,
+  "source_url": "https://arxiv.org/html/1010.0860v1",
+  "units": "r_H=G5=1; J is each spin; alpha_paper = 4 alpha_gb",
+  "scope": "External contrasts against statements of arXiv:1010.0860v1 that are closed forms or carry more digits than the section 4.1.1 radii. Einstein-limit agreements do not test the Gauss-Bonnet terms and are labelled apart. This does not replace or overturn the failed radius comparison, which is restated and quantified here.",
+  "normalisation": {
+    "statement": "a_H = t_H = 1 for the static Einstein solution",
+    "a_H": "1",
+    "t_H": "1",
+    "holds": true
+  },
+  "einstein_reduced_relation": {
+    "statement": "omega_H^2(j^2) = 2(1-sqrt(1-j^2))/j^2 - 1, Einstein gravity",
+    "sector": "einstein-limit",
+    "algebraic_tolerance": 1e-12,
+    "extraction_tolerance": 1e-06,
+    "tolerance_note": "Algebraic identity held to machine precision; the spectral leg is bounded by the project tail-fit gate 1e-6, not by the algebraic tolerance. Split after the first run, which is why both numbers are reported.",
+    "rows": [
+      {
+        "omega_h": 0.05,
+        "j2": 0.009975,
+        "omega_H2": 0.0025062656641604017,
+        "paper_formula": 0.0025062656641612335,
+        "closed_form_difference": 8.31799906730879e-16,
+        "spectral_omega_H2": 0.0025062656641518157,
+        "spectral_j2": 0.009975000000102522,
+        "spectral_difference": 3.4508854107606624e-14,
+        "spectral_tensor": 1.2475766300957398e-13
+      },
+      {
+        "omega_h": 0.1,
+        "j2": 0.03960000000000001,
+        "omega_H2": 0.010101010101010105,
+        "paper_formula": 0.010101010101010832,
+        "closed_form_difference": 7.268491364342822e-16,
+        "spectral_omega_H2": 0.010101010100925366,
+        "spectral_j2": 0.039600000000997164,
+        "spectral_difference": 3.425940087176116e-13,
+        "spectral_tensor": 1.4887915116890332e-13
+      },
+      {
+        "omega_h": 0.2,
+        "j2": 0.1536,
+        "omega_H2": 0.04166666666666668,
+        "paper_formula": 0.0416666666666663,
+        "closed_form_difference": 3.8163916471489756e-16,
+        "spectral_omega_H2": 0.04166666666647387,
+        "spectral_j2": 0.15360000000213453,
+        "spectral_difference": 8.21703816100694e-13,
+        "spectral_tensor": 8.60008251277257e-14
+      },
+      {
+        "omega_h": 0.3,
+        "j2": 0.32759999999999995,
+        "omega_H2": 0.09890109890109888,
+        "paper_formula": 0.09890109890109877,
+        "closed_form_difference": 1.1102230246251565e-16,
+        "spectral_omega_H2": 0.09890109890050032,
+        "spectral_j2": 0.3276000000059578,
+        "spectral_difference": 2.792030495690767e-12,
+        "spectral_tensor": 1.8422821341431025e-13
+      },
+      {
+        "omega_h": 0.33,
+        "j2": 0.38816316,
+        "omega_H2": 0.12220850634047807,
+        "paper_formula": 0.12220850634047808,
+        "closed_form_difference": 1.3877787807814457e-17,
+        "spectral_omega_H2": 0.12220850634016346,
+        "spectral_j2": 0.38816316000301354,
+        "spectral_difference": 1.5276530040964076e-12,
+        "spectral_tensor": 2.7918870288074736e-13
+      },
+      {
+        "omega_h": 0.4,
+        "j2": 0.5376000000000001,
+        "omega_H2": 0.19047619047619052,
+        "paper_formula": 0.19047619047619047,
+        "closed_form_difference": 5.551115123125783e-17,
+        "spectral_omega_H2": 0.19047619047616063,
+        "spectral_j2": 0.5376000000002666,
+        "spectral_difference": 1.6861512186494565e-13,
+        "spectral_tensor": 2.2282149326750067e-13
+      },
+      {
+        "omega_h": 0.5,
+        "j2": 0.7499999999999999,
+        "omega_H2": 0.3333333333333333,
+        "paper_formula": 0.33333333333333326,
+        "closed_form_difference": 5.551115123125783e-17,
+        "spectral_omega_H2": 0.33333333333208054,
+        "spectral_j2": 0.7500000000084674,
+        "spectral_difference": 8.779366122979582e-12,
+        "spectral_tensor": 4.557919447008071e-13
+      },
+      {
+        "omega_h": 0.6,
+        "j2": 0.9215999999999998,
+        "omega_H2": 0.5624999999999999,
+        "paper_formula": 0.5624999999999993,
+        "closed_form_difference": 5.551115123125783e-16
+      },
+      {
+        "omega_h": 0.65,
+        "j2": 0.9759749999999999,
+        "omega_H2": 0.7316017316017318,
+        "paper_formula": 0.7316017316017311,
+        "closed_form_difference": 6.661338147750939e-16
+      },
+      {
+        "omega_h": 0.7,
+        "j2": 0.9996,
+        "omega_H2": 0.96078431372549,
+        "paper_formula": 0.9607843137254923,
+        "closed_form_difference": 2.3314683517128287e-15
+      }
+    ],
+    "max_closed_form_difference": 2.3314683517128287e-15,
+    "max_spectral_difference": 8.779366122979582e-12,
+    "summed_spin_reading_max_difference": 0.03298490789927772,
+    "summed_spin_readings_outside_domain": 2,
+    "summed_spin_readings_tested": 3
+  },
+  "einstein_critical_temperature": {
+    "statement": "T_Hc = 0.087396/(G J)^(1/3), specific heat sign change",
+    "sector": "einstein-limit",
+    "published": 0.087396,
+    "rounding_half_unit": 5e-07,
+    "q_star": 0.32304191099769075,
+    "computed": 0.08739596693496926,
+    "absolute_difference": 3.306503074118616e-08,
+    "closed_form_vs_symbolic": 2.7755575615628914e-17,
+    "agrees": true
+  },
+  "wald_entropy": {
+    "statement": "the paper entropy split equals the Wald entropy used here",
+    "sector": "gauss-bonnet",
+    "difference": "0",
+    "agrees": true
+  },
+  "gb_horizon_derivative": {
+    "statement": "b'(r_H) = 2 r_H/(r_H^2 + alpha) at Omega_H = 0",
+    "sector": "gauss-bonnet",
+    "tolerance": 1e-10,
+    "rows": [
+      {
+        "alpha_gb": 0.0,
+        "alpha_paper": 0.0,
+        "computed": 2.0,
+        "paper_formula": 2.0,
+        "absolute_difference": 0.0,
+        "tensor": 1.1890658435007097e-14
+      },
+      {
+        "alpha_gb": 0.0125,
+        "alpha_paper": 0.05,
+        "computed": 1.9047619047619135,
+        "paper_formula": 1.9047619047619047,
+        "absolute_difference": 8.881784197001252e-15,
+        "tensor": 1.5417556958136357e-13
+      },
+      {
+        "alpha_gb": 0.025,
+        "alpha_paper": 0.1,
+        "computed": 1.8181818181818037,
+        "paper_formula": 1.8181818181818181,
+        "absolute_difference": 1.4432899320127035e-14,
+        "tensor": 1.293748845079045e-13
+      },
+      {
+        "alpha_gb": 0.05,
+        "alpha_paper": 0.2,
+        "computed": 1.6666666666666698,
+        "paper_formula": 1.6666666666666667,
+        "absolute_difference": 3.1086244689504383e-15,
+        "tensor": 1.110779174138373e-13
+      },
+      {
+        "alpha_gb": 0.075,
+        "alpha_paper": 0.3,
+        "computed": 1.5384615384615339,
+        "paper_formula": 1.5384615384615383,
+        "absolute_difference": 4.440892098500626e-15,
+        "tensor": 1.0277132854841605e-13
+      },
+      {
+        "alpha_gb": 0.1,
+        "alpha_paper": 0.4,
+        "computed": 1.4285714285714155,
+        "paper_formula": 1.4285714285714286,
+        "absolute_difference": 1.3100631690576847e-14,
+        "tensor": 1.035329552194126e-13
+      },
+      {
+        "alpha_gb": 0.15,
+        "alpha_paper": 0.6,
+        "computed": 1.2499999999999942,
+        "paper_formula": 1.25,
+        "absolute_difference": 5.773159728050814e-15,
+        "tensor": 3.0518667178178283e-13
+      },
+      {
+        "alpha_gb": 0.2,
+        "alpha_paper": 0.8,
+        "computed": 1.1111111111111045,
+        "paper_formula": 1.1111111111111112,
+        "absolute_difference": 6.661338147750939e-15,
+        "tensor": 1.8028137875281355e-13
+      },
+      {
+        "alpha_gb": 0.25,
+        "alpha_paper": 1.0,
+        "computed": 1.0000000000000142,
+        "paper_formula": 1.0,
+        "absolute_difference": 1.4210854715202004e-14,
+        "tensor": 2.553926862994185e-12
+      },
+      {
+        "alpha_gb": 0.3,
+        "alpha_paper": 1.2,
+        "computed": 0.9090909090909194,
+        "paper_formula": 0.9090909090909091,
+        "absolute_difference": 1.0325074129013956e-14,
+        "tensor": 4.212678560468077e-12
+      },
+      {
+        "alpha_gb": 0.4,
+        "alpha_paper": 1.6,
+        "computed": 0.7692307692307958,
+        "paper_formula": 0.7692307692307692,
+        "absolute_difference": 2.6645352591003757e-14,
+        "tensor": 1.0235721325334257e-10
+      },
+      {
+        "alpha_gb": 0.5,
+        "alpha_paper": 2.0,
+        "computed": 0.6666666666666065,
+        "paper_formula": 0.6666666666666666,
+        "absolute_difference": 6.017408793468348e-14,
+        "tensor": 4.470302846679662e-10
+      }
+    ],
+    "max_absolute_difference": 6.017408793468348e-14,
+    "covers_alpha_paper_2": true
+  },
+  "gb_horizon_monotonicity": {
+    "statement": "b'(r_H) and f'(r_H) decrease monotonically with Omega_H",
+    "sector": "gauss-bonnet",
+    "families": [
+      {
+        "alpha_gb": 0.05,
+        "omega_h": [
+          0.0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5
+        ],
+        "b_prime": [
+          1.666666666666686,
+          1.6423572416569965,
+          1.5689263167898413,
+          1.4449063796199737,
+          1.267988593834203,
+          1.0352425893891033
+        ],
+        "f_prime": [
+          1.6666666666666665,
+          1.6432017393134606,
+          1.5724395132221054,
+          1.4531859216286946,
+          1.2831397136283722,
+          1.0583991057126536
+        ],
+        "b_decreases": true,
+        "f_decreases": true
+      },
+      {
+        "alpha_gb": 0.1,
+        "omega_h": [
+          0.0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5
+        ],
+        "b_prime": [
+          1.428571428571412,
+          1.4124591859200772,
+          1.3625037053985314,
+          1.2744141280634755,
+          1.142520763825108,
+          0.9610778081277581
+        ],
+        "f_prime": [
+          1.4285714285714275,
+          1.4033092118706967,
+          1.3293004435544702,
+          1.211025825844513,
+          1.0537726881620382,
+          0.8618467376734458
+        ],
+        "b_decreases": true,
+        "f_decreases": true
+      }
+    ],
+    "holds": true
+  },
+  "ergosurface_audit": {
+    "statement": "approximate ergosurface radii, section 4.1.1",
+    "sector": "gauss-bonnet",
+    "omega_h": 0.33,
+    "r_h": 1.0,
+    "curve": [
+      {
+        "alpha_gb": 0.0,
+        "alpha_paper": 0.0,
+        "r_e": 1.059343431725745
+      },
+      {
+        "alpha_gb": 0.0125,
+        "alpha_paper": 0.05,
+        "r_e": 1.0592396765707022
+      },
+      {
+        "alpha_gb": 0.025,
+        "alpha_paper": 0.1,
+        "r_e": 1.0594994907516473
+      },
+      {
+        "alpha_gb": 0.0375,
+        "alpha_paper": 0.15,
+        "r_e": 1.0600131485222433
+      },
+      {
+        "alpha_gb": 0.05,
+        "alpha_paper": 0.2,
+        "r_e": 1.0607101604815758
+      },
+      {
+        "alpha_gb": 0.0625,
+        "alpha_paper": 0.25,
+        "r_e": 1.0615429853953986
+      },
+      {
+        "alpha_gb": 0.075,
+        "alpha_paper": 0.3,
+        "r_e": 1.062478255754594
+      },
+      {
+        "alpha_gb": 0.0875,
+        "alpha_paper": 0.35,
+        "r_e": 1.0634917734230098
+      },
+      {
+        "alpha_gb": 0.1,
+        "alpha_paper": 0.4,
+        "r_e": 1.064565511066453
+      },
+      {
+        "alpha_gb": 0.1125,
+        "alpha_paper": 0.45,
+        "r_e": 1.0656857362993737
+      },
+      {
+        "alpha_gb": 0.125,
+        "alpha_paper": 0.5,
+        "r_e": 1.0668417930713576
+      },
+      {
+        "alpha_gb": 0.1375,
+        "alpha_paper": 0.55,
+        "r_e": 1.068025283464806
+      },
+      {
+        "alpha_gb": 0.15,
+        "alpha_paper": 0.6,
+        "r_e": 1.0692295022768634
+      },
+      {
+        "alpha_gb": 0.1625,
+        "alpha_paper": 0.65,
+        "r_e": 1.0704490363325676
+      },
+      {
+        "alpha_gb": 0.175,
+        "alpha_paper": 0.7,
+        "r_e": 1.0716794742219102
+      },
+      {
+        "alpha_gb": 0.1875,
+        "alpha_paper": 0.75,
+        "r_e": 1.0729171919369274
+      },
+      {
+        "alpha_gb": 0.2,
+        "alpha_paper": 0.8,
+        "r_e": 1.0741591918536872
+      },
+      {
+        "alpha_gb": 0.2125,
+        "alpha_paper": 0.85,
+        "r_e": 1.0754029799563802
+      },
+      {
+        "alpha_gb": 0.225,
+        "alpha_paper": 0.9,
+        "r_e": 1.0766464709643393
+      },
+      {
+        "alpha_gb": 0.2375,
+        "alpha_paper": 0.95,
+        "r_e": 1.0778879141417224
+      },
+      {
+        "alpha_gb": 0.25,
+        "alpha_paper": 1.0,
+        "r_e": 1.0791258346561647
+      },
+      {
+        "alpha_gb": 0.2625,
+        "alpha_paper": 1.05,
+        "r_e": 1.0803589867772425
+      },
+      {
+        "alpha_gb": 0.275,
+        "alpha_paper": 1.1,
+        "r_e": 1.0815863161947514
+      },
+      {
+        "alpha_gb": 0.2875,
+        "alpha_paper": 1.15,
+        "r_e": 1.0828069294360236
+      },
+      {
+        "alpha_gb": 0.3,
+        "alpha_paper": 1.2,
+        "r_e": 1.0840200688624007
+      },
+      {
+        "alpha_gb": 0.3125,
+        "alpha_paper": 1.25,
+        "r_e": 1.085225092089082
+      },
+      {
+        "alpha_gb": 0.325,
+        "alpha_paper": 1.3,
+        "r_e": 1.0864214549404942
+      },
+      {
+        "alpha_gb": 0.3375,
+        "alpha_paper": 1.35,
+        "r_e": 1.0876086972527717
+      },
+      {
+        "alpha_gb": 0.35,
+        "alpha_paper": 1.4,
+        "r_e": 1.0887864309847595
+      },
+      {
+        "alpha_gb": 0.3625,
+        "alpha_paper": 1.45,
+        "r_e": 1.0899543302130823
+      },
+      {
+        "alpha_gb": 0.375,
+        "alpha_paper": 1.5,
+        "r_e": 1.091112122673917
+      },
+      {
+        "alpha_gb": 0.3875,
+        "alpha_paper": 1.55,
+        "r_e": 1.0922595825817727
+      },
+      {
+        "alpha_gb": 0.4,
+        "alpha_paper": 1.6,
+        "r_e": 1.0933965245080364
+      },
+      {
+        "alpha_gb": 0.4125,
+        "alpha_paper": 1.65,
+        "r_e": 1.0945227981433447
+      },
+      {
+        "alpha_gb": 0.425,
+        "alpha_paper": 1.7,
+        "r_e": 1.0956382838004952
+      },
+      {
+        "alpha_gb": 0.4375,
+        "alpha_paper": 1.75,
+        "r_e": 1.0967428885404127
+      },
+      {
+        "alpha_gb": 0.45,
+        "alpha_paper": 1.8,
+        "r_e": 1.097836542824643
+      },
+      {
+        "alpha_gb": 0.4625,
+        "alpha_paper": 1.85,
+        "r_e": 1.0989191976143131
+      },
+      {
+        "alpha_gb": 0.475,
+        "alpha_paper": 1.9,
+        "r_e": 1.0999908218491872
+      },
+      {
+        "alpha_gb": 0.4875,
+        "alpha_paper": 1.95,
+        "r_e": 1.1010514002514535
+      },
+      {
+        "alpha_gb": 0.5,
+        "alpha_paper": 2.0,
+        "r_e": 1.1021009314076424
+      },
+      {
+        "alpha_gb": 0.5125,
+        "alpha_paper": 2.05,
+        "r_e": 1.10313942608978
+      },
+      {
+        "alpha_gb": 0.525,
+        "alpha_paper": 2.1,
+        "r_e": 1.1041669057826955
+      },
+      {
+        "alpha_gb": 0.5375,
+        "alpha_paper": 2.15,
+        "r_e": 1.105183401389578
+      },
+      {
+        "alpha_gb": 0.55,
+        "alpha_paper": 2.2,
+        "r_e": 1.1061889520921162
+      }
+    ],
+    "published": [
+      {
+        "alpha_paper": 0,
+        "published_radius": 1.059,
+        "rounding_half_unit": 0.0005,
+        "computed_radius": 1.059343431725745,
+        "absolute_difference": 0.0003434317257451358,
+        "agrees": true,
+        "alpha_gb_reproducing_published": null,
+        "implied_normalisation": null,
+        "nominal_normalisation": 4.0
+      },
+      {
+        "alpha_paper": 1,
+        "published_radius": 1.08,
+        "rounding_half_unit": 0.005,
+        "computed_radius": 1.0791258346561647,
+        "absolute_difference": 0.0008741653438353314,
+        "agrees": true,
+        "alpha_gb_reproducing_published": 0.2588610858394266,
+        "implied_normalisation": 3.8630758144169546,
+        "nominal_normalisation": 4.0
+      },
+      {
+        "alpha_paper": 2,
+        "published_radius": 1.104,
+        "rounding_half_unit": 0.0005,
+        "computed_radius": 1.1021009314076424,
+        "absolute_difference": 0.0018990685923576667,
+        "agrees": false,
+        "alpha_gb_reproducing_published": 0.5229694758951652,
+        "implied_normalisation": 3.8243149785685033,
+        "nominal_normalisation": 4.0
+      }
+    ],
+    "agrees": false,
+    "note": "The alpha_paper=1 datum is printed to two decimals, so its rounding band admits a wide range of couplings and cannot discriminate; only alpha_paper=2 is printed sharply enough to constrain anything."
+  },
+  "checks": [
+    {
+      "name": "reduced_normalisation_pinned",
+      "sector": "convention",
+      "passed": true
+    },
+    {
+      "name": "einstein_reduced_relation",
+      "sector": "einstein-limit",
+      "passed": true
+    },
+    {
+      "name": "einstein_each_spin_reading",
+      "sector": "convention",
+      "passed": true
+    },
+    {
+      "name": "einstein_critical_temperature",
+      "sector": "einstein-limit",
+      "passed": true
+    },
+    {
+      "name": "wald_entropy_matches_paper",
+      "sector": "gauss-bonnet",
+      "passed": true
+    },
+    {
+      "name": "gb_horizon_derivative",
+      "sector": "gauss-bonnet",
+      "passed": true
+    },
+    {
+      "name": "gb_horizon_derivatives_monotonic",
+      "sector": "gauss-bonnet",
+      "passed": true
+    },
+    {
+      "name": "published_ergosurface_radii",
+      "sector": "gauss-bonnet",
+      "passed": false
+    }
+  ],
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sympy": "1.14.0"
+  },
+  "source_sha256": {
+    "experiments/egb_rotating_external_contrasts.py": "ba0c47fe7cc2ff65acd85ad1e4680618bd013c4bcf5a83aec07a8fd3ce05383b",
+    "src/rotating_bh/egb_rotating_contrast_validation.py": "453be0c9d7303fdfa5b6f84b53173f9e298aff53121dee25181c11f3400424e8",
+    "src/rotating_bh/egb_rotating_bvp.py": "43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad",
+    "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+    "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+    "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+    "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+    "references/notes/1010.0860-external-contrasts.md": "194bd9ee84b22d1562b83dd58a32a3f88282b6f04c8cdbe34ab27875e5c102bf",
+    "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+    "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+    "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+    "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+    "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+  }
+}
