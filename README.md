@@ -1,11 +1,11 @@
 # Rotating black holes at finite Gauss–Bonnet coupling
 
-Código y evidencia del manuscrito **Extremality shift of rotating black holes
-at finite Gauss–Bonnet coupling**, de David Blanco (2026).
+Código y evidencia del proyecto **Extremality shift of rotating black holes
+at finite Gauss–Bonnet coupling**.
 La pregunta es cómo cambia la masa extrema a momento angular fijo en gravedad
 de Einstein–Gauss–Bonnet, en cinco dimensiones y con dos momentos angulares iguales.
 
-El [paper vigente](manuscript/main.pdf), su [fuente LaTeX](manuscript/main.tex)
+El [manuscrito](manuscript/main.pdf), su [fuente LaTeX](manuscript/main.tex)
 y la [explicación en español](manuscript/explicacion-en-espanol.md) son los puntos de entrada.
 Las estimaciones del límite extremo son extrapolaciones numéricas; las barras del
 paper describen sensibilidad a los ajustes, no intervalos de confianza.
@@ -49,7 +49,7 @@ El código está bajo **MIT**, copyright © **2026 David Blanco**; véase [LICEN
 El manuscrito, las figuras originales, los textos y los datos originales de esta
 distribución se ofrecen bajo **[Creative Commons Attribution 4.0 International
 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**.
-Para atribuirlos, indicar David Blanco, el título del trabajo, 2026, el enlace a la
+Para atribuirlos, indicar el título del trabajo, 2026, el enlace a la
 licencia y las modificaciones realizadas, si las hay.
 
 La licencia propia no cubre obras de terceros. Los artículos citados y la imagen
