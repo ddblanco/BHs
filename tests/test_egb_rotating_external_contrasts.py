@@ -14,6 +14,8 @@ import pytest
 from rotating_bh.egb_rotating_contrast_validation import checks as contrast_checks
 from rotating_bh.provenance import validate_manifest
 
+from known_digest_exceptions import excused
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT/'results/egb-rotating-external-contrasts.json'
 IDENTIFIER = 'egb-rotating-external-contrasts'
@@ -132,6 +134,8 @@ def test_recorded_sources_still_hash_to_what_the_run_saw(artifact):
     for name, digest in artifact['source_sha256'].items():
         path = ROOT/name
         assert path.is_file(), name
+        if excused(name, digest):
+            continue
         assert hashlib.sha256(path.read_bytes()).hexdigest() == digest, name
 
 

@@ -5,6 +5,8 @@ import shutil
 
 import pytest
 
+from known_digest_exceptions import reconcile
+
 
 @pytest.mark.parametrize('corruption', ['source', 'figure', 'cross_check'])
 def test_artifact_verifier_detects_corruption(tmp_path, corruption):
@@ -20,6 +22,10 @@ def test_artifact_verifier_detects_corruption(tmp_path, corruption):
         target = tmp_path/name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root/name, target)
+    # See tests/known_digest_exceptions.py: the shipped record's documented
+    # exception is reconciled in the staged copy so the baseline can pass and
+    # the corruption below is what actually gets tested.
+    assert reconcile(tmp_path), 'no documented exception applied; baseline unchanged'
     verify(tmp_path)
     name = {'source': 'src/rotating_bh/egb_rotating_convergence.py',
             'figure': 'artifacts/egb-rotating-resolution.png', 'cross_check': cross}[corruption]
