@@ -1,0 +1,3 @@
+20260927 CodeX
+Review the paper about extremality shift of rotating black holes and extended thermodyanics. Be super critical with the claims and results exposed in the paper, explain what do you find something non super clear or dubious and suggest changes o clarifications (do nothing, just suggest). Make a report in hmtl and latex+pdf and place it in a folder /codex-review.
+

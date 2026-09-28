@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revision Report</title>
+<style>
+  :root {
+    --bg: #fbfaf8; --panel: #ffffff; --ink: #1d1d1f; --soft: #5d6570;
+    --line: #e2ded7; --accent: #8b3a1e; --good: #17693f; --warn: #8a5200;
+    --code: #f4f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17181a; --panel: #1f2124; --ink: #e8e6e3; --soft: #a4acb6;
+      --line: #32353a; --accent: #e08a68; --good: #6dc496; --warn: #e0b060;
+      --code: #26282c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17181a; --panel: #1f2124; --ink: #e8e6e3; --soft: #a4acb6;
+    --line: #32353a; --accent: #e08a68; --good: #6dc496; --warn: #e0b060;
+    --code: #26282c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.62 Georgia, "Iowan Old Style", "Times New Roman", serif;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 56px 16px 90px; }
+  header { border-bottom: 2px solid var(--line); padding-bottom: 22px; margin-bottom: 34px; }
+  h1 { font-size: 1.92rem; line-height: 1.22; margin: 0 0 .35rem; letter-spacing: -.012em; }
+  .sub { color: var(--soft); font-size: .95rem; font-style: italic; margin: 0; }
+  h2 {
+    font-size: 1.28rem; margin: 2.6rem 0 .85rem; padding-bottom: .3rem;
+    border-bottom: 1px solid var(--line); letter-spacing: -.008em;
+  }
+  h3 { font-size: 1.02rem; margin: 1.7rem 0 .5rem; }
+  p, li { margin: 0 0 .85rem; }
+  ul, ol { padding-left: 1.35rem; }
+  .lede {
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 4px solid var(--accent); border-radius: 5px;
+    padding: 18px 22px; margin: 0 0 30px;
+  }
+  .lede p:last-child { margin-bottom: 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 22px 0 30px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 5px; padding: 13px 15px; }
+  .stat b { display: block; font-size: 1.44rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--soft); font-size: .8rem; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 26px; font-size: .88rem; }
+  th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .76rem; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); font-weight: 600; }
+  .mono, code, pre { font-family: "SFMono-Regular", Menlo, Consolas, monospace; }
+  .mono { font-size: .82rem; color: var(--soft); }
+  code { background: var(--code); padding: .1em .35em; border-radius: 3px; font-size: .85em; }
+  pre {
+    background: var(--code); border: 1px solid var(--line); border-radius: 5px;
+    padding: 14px 16px; overflow-x: auto; font-size: .8rem; line-height: 1.5;
+  }
+  .v { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: .72rem;
+        font-weight: 700; letter-spacing: .05em; }
+  .v.pass { color: var(--good); }
+  .v.fail { color: var(--accent); }
+  .item { background: var(--panel); border: 1px solid var(--line); border-radius: 5px;
+           padding: 15px 19px; margin: 0 0 14px; }
+  .item h3 { margin-top: 0; }
+  .tag { display: inline-block; font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+          font-size: .68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+          padding: .16em .5em; border-radius: 3px; margin-left: .5em; vertical-align: .12em; }
+  .tag.done { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+  .tag.part { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
+  .tag.open { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+  .ba { font-size: .86rem; margin: .6rem 0 0; }
+  .ba div { padding: .4rem .7rem; border-left: 3px solid var(--line); margin-bottom: .35rem; }
+  .ba .was { color: var(--soft); text-decoration: line-through solid color-mix(in srgb, var(--soft) 60%, transparent); }
+  .ba .now { border-left-color: var(--good); }
+  figure { margin: 18px 0 8px; }
+  figure img {
+    display: block; width: 100%; height: auto; border: 1px solid var(--line);
+    border-radius: 5px; background: #fff;
+  }
+  figure figcaption { color: var(--soft); font-size: .82rem; margin-top: .5rem; }
+  footer { margin-top: 46px; padding-top: 18px; border-top: 1px solid var(--line);
+            color: var(--soft); font-size: .84rem; }
+  @media (max-width: 620px) {
+    .wrap { padding: 34px 16px 70px; }
+    h1 { font-size: 1.55rem; }
+    table { font-size: .8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Revision report</h1>
+  <p class="sub">&ldquo;Extremality shift of rotating black holes at finite Gauss&ndash;Bonnet
+  coupling&rdquo; &mdash; changes made on 28 September 2026 in response to
+  <code>prompts.txt</code> and <code>codex-review/</code>.</p>
+</header>
+
+<div class="lede">
+  <p><b>The short version.</b> The draft&rsquo;s physics survived a severe independent
+  audit: every printed identity I could check symbolically is correct, and the
+  13&nbsp;couplings really are 13 independent nonlinear boundary-value solves, not the
+  static potential replotted. Two defects were real. The source <em>did not compile</em>
+  &mdash; <code>$\alpha=\Nmaplist$</code> nests <code>$&hellip;$</code> inside
+  <code>$&hellip;$</code> &mdash; and one number was labelled as a quantity it is not.
+  Both are fixed.</p>
+  <p>The substantive work was to stop the paper over-claiming and to make its weakest
+  step visible: the zero-temperature extrapolation now has its own figure, its own
+  residual and drop-one diagnostics, and a full uncertainty budget; and
+  &Psi;<sub>ext</sub> now has a second, response-free determination from the Smarr
+  relation. The headline is narrowed from a global minimum mass to the branch actually
+  computed.</p>
+  <p><b>The resolution study is now done.</b> The complete cold sequence and the
+  complete T&nbsp;=&nbsp;0 extrapolation were re-solved at N&nbsp;=&nbsp;48 and
+  N&nbsp;=&nbsp;56 at every one of the 13 couplings &mdash; 26 sequences, plus 3
+  control walks at the production N&nbsp;=&nbsp;64. The extremal intercept moves by at
+  most 6.89&times;10<sup>&minus;5</sup>, which is below the fit sensitivity at the same
+  coupling in all 26 sequences and four orders of magnitude below the fall from
+  &pi;. Radial resolution is no longer an open gap in the paper.</p>
+</div>
+
+<div class="grid">
+  <div class="stat"><b>43 / 43</b><span>independent checks pass</span></div>
+  <div class="stat"><b>2</b><span>real defects found and fixed</span></div>
+  <div class="stat"><b>15 &rarr; 25</b><span>pages, rebuilt from source</span></div>
+  <div class="stat"><b>29</b><span>new solver walks, all 13 couplings</span></div>
+</div>
+
+<h2>1. What I verified before changing anything</h2>
+
+<p>The instruction was to be severe, and the specific doubt was whether figure&nbsp;1 and
+the 13-coupling claim describe rotating numerical solutions or the static potential.
+They describe rotating solutions. <code>work/manuscript_audit.py</code> re-derives the
+paper&rsquo;s algebra with <code>sympy</code> and asserts each difference vanishes, then
+reads the saved dataset back and asserts it against what the paper prints. It does not
+re-solve the boundary-value problem &mdash; the resolution study in &sect;3 does that, the
+audit does not &mdash; so here the solver outputs are taken as given and only the claims
+<em>about</em> them are tested.</p>
+
+<p>On the specific doubt: the dataset holds <b>356 accepted states across 13 couplings</b>
+from &alpha;&nbsp;=&nbsp;0 to 1/2, each carrying its own collocation resolution
+(64 or&nbsp;96) and its own independently evaluated tensor residual
+(worst 9.76&times;10<sup>&minus;9</sup> relative). Every coupling reaches
+q&nbsp;&gt;&nbsp;0.5, so none of them is a static member. The six curves of the potential
+figure each carry 40&ndash;45 distinct spins. Nothing there is a rescaled static solution
+or a perturbation about &alpha;&nbsp;=&nbsp;0.</p>
+
+<table>
+<thead><tr><th style="width:4.5rem">Verdict</th><th>Check</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(15) Psi_static equals (3pi/4)(4a-3)/(1+4a)</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(15) -&gt; -9pi/4 as alpha -&gt; 0</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(15) changes sign at alpha/r_H^2 = 3/4</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>static t_H = sqrt(1+2a)/(1+4a) matches eq.(10) on eq.(14)</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(8) Smarr closes on the static solution at J=0</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>Euler on the listed weights gives 2M = 3TS + 3*sum(Omega_i J_i) + 2*alpha*Psi</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(8) 2M = 3TS + 6*Omega_H*J + 2*alpha*Psi is its equal-spin case</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>differentiated Smarr minus twice the first law gives the printed constraint</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(17) Psi_0(u=0) = -9pi/4, the static limit of eq.(15)</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(17) Psi_0(u=1) = pi, the published linear-order slope</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(17) sign change at the q the paper prints</td><td class="mono">derived 0.634935846 vs printed 0.634936</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(9) q = a/r_H follows from Omega_H = a/(r_+^2+a^2) and r_H^2 = r_+^2+a^2</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>eq.(9) u = q^2/(1-q^2) equals a^2/r_+^2</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>equal-spin Myers-Perry is extremal at r_+ = a</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>extremality therefore sits at q = 1/sqrt(2)</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>appendix mass formula M = 3pi r_H^2/[8(1-q^2)] is 3pi mu/8</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>13 couplings were walked, as the paper says</td><td class="mono">[0.0, 0.005, 0.01, 0.02, 0.035, 0.05, 0.075, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>every walked state is a solve of the radial problem, not a rescaling</td><td class="mono">356 states, resolutions [64, 96]</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the state count in the paper matches the dataset</td><td class="mono">356</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>every coupling carries rotating states, not only the static member</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>figure 2 plots rotating solutions: each curve has &gt;= 25 spins</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the independent tensor residual passes the gate the paper quotes</td><td class="mono">worst 9.761e-09</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>all 13 central Psi_ext are positive</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the lowest central Psi_ext is the one printed</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the last central Psi_ext is the one printed</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>mu is strictly increasing across the sampled couplings</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the suppression factor pi/Psi_min is the one printed</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the total change in mu is the one printed</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the fall and the rise both exceed every quoted sensitivity band</td><td class="mono">fall 2.0701, rise 0.3729, worst band 0.1603</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the endpoint and the largest running discrepancy are told apart</td><td class="mono">endpoint 3.807e-04, maximum running 4.375e-04</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>every interval discrepancy lies within the two routes&#x27; combined spread</td><td class="mono">worst ratio 0.90</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>Smarr-derived Psi reproduces the response Psi at every finite-coupling state</td><td class="mono">313 states, worst relative 1.454e-06, worst absolute 3.297e-06</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>y, mu and sigma carry recorded spreads that the paper does not display</td><td class="mono">worst mu spread 1.605e-03</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the Smarr route reproduces the printed worst relative agreement</td><td class="mono">1.590e-06</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the Smarr route agrees far inside every fit sensitivity</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the fit residual and the drop-one shift are below every sensitivity</td><td class="mono">smallest band 6.183e-04</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the study covers every coupling at every coarse resolution</td><td class="mono">26 sequences over 13 couplings at N=[48, 56]</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the production side was reproduced from the shipped states, not re-solved</td><td class="mono">1.42e-14 absolute</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the resolution difference is below the fit sensitivity everywhere</td><td class="mono">worst ratio 1.50e-03</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the resolution difference is far below the fall and the rise</td><td class="mono">6.89e-05 against a fall of 2.070</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the printed worst-case study numbers match the artifact</td><td class="mono"></td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the environment alone accounts for less than the resolution change</td><td class="mono">environment 1.13e-05 vs resolution+environment 6.89e-05</td></tr>
+<tr><td><span class="v pass">PASS</span></td><td>the shipped measurement carries its own same-environment comparison</td><td class="mono">at alpha = [0.02, 0.1, 0.5]</td></tr>
+</tbody>
+</table>
+
+<h2>2. The two defects</h2>
+
+<div class="item">
+  <h3>The manuscript source did not compile<span class="tag done">fixed</span></h3>
+  <p>Section&nbsp;4 contained <code>namely $\alpha=\Nmaplist$</code>, and the generated
+  macro <code>\Nmaplist</code> already expands to <code>$0$, $0.02$, &hellip;</code>.
+  The result is <code>$&hellip;$0$&hellip;</code>: TeX aborts with
+  <em>Display math should end with&nbsp;$$</em>. This is why the committed
+  <code>main.pdf</code> was a stale 15-page build that did not match its own source, which
+  is the referee&rsquo;s first and most serious complaint. The macro now carries the symbol
+  in its first entry and the prose prints it as text.</p>
+  <p class="ba"><span class="mono">manuscript/make_figures.py</span>, <span class="mono">manuscript/main.tex</span></p>
+</div>
+
+<div class="item">
+  <h3>A mislabelled integral discrepancy<span class="tag done">fixed</span></h3>
+  <p>The paper said the discrepancy in the integral identity
+  &int;&Psi;<sub>ext</sub>dy&nbsp;=&nbsp;&Delta;&mu; &ldquo;across the full range&rdquo;
+  accumulates to 4.38&times;10<sup>&minus;4</sup>. That is the largest
+  <em>running</em> value, reached before the last interval and then partly cancelled. The
+  value across the full range is the one at the last interval,
+  3.81&times;10<sup>&minus;4</sup>. Both are now generated as separate macros and named
+  for what they are.</p>
+  <div class="ba">
+    <div class="was">Across the full range it accumulates to 4.38&times;10<sup>&minus;4</sup>&hellip;</div>
+    <div class="now">The discrepancy accumulated across the whole range, that is its value
+    at the last interval y&nbsp;=&nbsp;0.5112, is 3.81&times;10<sup>&minus;4</sup>&hellip;;
+    the largest <em>running</em> value, reached before the last interval and then partly
+    cancelled, is 4.38&times;10<sup>&minus;4</sup>.</div>
+  </div>
+</div>
+
+<h2>3. The referee&rsquo;s six main revisions</h2>
+
+<div class="item">
+  <h3>1. Freeze one authoritative version<span class="tag part">partly</span></h3>
+  <p>The PDF is rebuilt from the current source and installed, so source, figures, tables
+  and PDF now agree; the compile is clean, with no undefined references and no overfull
+  boxes. The build is reproducible on Linux with Tectonic, recorded in
+  <code>manuscript/README.md</code>; <code>\pdfoutput=1</code> is now guarded so it no
+  longer forces a pdfTeX driver a XeTeX engine cannot provide. The appendix states plainly
+  that no number is typed into the source, so a rebuild reproduces the paper or fails.</p>
+  <p><b>Not done:</b> no commit or archival identifier was created &mdash; the working
+  agreement forbids committing unasked &mdash; and I did not adjudicate the
+  <code>KNOWN_EXCEPTIONS</code> whitelist in
+  <code>checks/verify_recorded_digests.py</code>, which needs the locked environment to
+  re-record rather than a text edit.</p>
+</div>
+
+<div class="item">
+  <h3>2. Narrow the headline from a global minimum to the branch computed<span class="tag done">done</span></h3>
+  <div class="ba">
+    <div class="was">We study how the minimum mass of a rotating black hole at fixed
+    angular momentum changes&hellip; Thus the extremal mass increases monotonically while
+    its slope does not.</div>
+    <div class="now">We study how the extremal mass&hellip; on the equal-spin branch
+    continuously connected to Myers&ndash;Perry&hellip; the <em>central extrapolants</em> of
+    this slope stay positive&hellip; the extrapolated extremal mass correspondingly
+    increases throughout while its slope does not.</div>
+  </div>
+  <p>The introduction now defines &ldquo;the extremal branch&rdquo; explicitly and
+  disclaims uniqueness, stability and global minimality in the same paragraph. In the
+  discussion the claim is restated at the precision the evidence supports, close to the
+  referee&rsquo;s own suggested wording. The overloaded word &ldquo;spin&rdquo; is
+  separated into q, j, J and y by a new conventions table.</p>
+</div>
+
+<div class="item">
+  <h3>3. Resolution convergence at the important couplings<span class="tag done">done</span></h3>
+  <p>The complete ascending walk and the complete T&nbsp;=&nbsp;0 extrapolation were
+  re-solved at <b>N&nbsp;=&nbsp;48 and N&nbsp;=&nbsp;56 at every one of the 13
+  couplings</b>: 26 independent sequences, each using the production start spin, the
+  production acceptance gates and the production escalation rule, so that the base
+  resolution is the only thing varied. The production side was <em>not</em> re-solved &mdash;
+  it is the saved states re-extrapolated, which reproduces the shipped extremal table to
+  1.4&times;10<sup>&minus;14</sup> absolute, so only the coarse sides cost anything.
+  <code>experiments/egb_rotating_resolution_study.py</code>, 29 walks, about 40 minutes.</p>
+  <table>
+  <thead><tr><th>Worst over all 26 sequences</th><th>Value</th></tr></thead>
+  <tbody>
+  <tr><td>&delta;&Psi;<sub>ext</sub></td><td>6.89&times;10<sup>&minus;5</sup></td></tr>
+  <tr><td>&delta;&mu;</td><td>1.68&times;10<sup>&minus;5</sup></td></tr>
+  <tr><td>&delta;y</td><td>5.59&times;10<sup>&minus;7</sup></td></tr>
+  <tr><td>&delta;M/M, &delta;J/J, &delta;S/S</td><td>5.62, 8.13, 7.09 &times;10<sup>&minus;5</sup></td></tr>
+  <tr><td>&delta;&Psi;<sub>ext</sub> &divide; fit sensitivity at the same coupling</td><td>7.82&times;10<sup>&minus;4</sup></td></tr>
+  </tbody>
+  </table>
+  <figure>
+    <img alt="Log-scale plot of the change in the extremal intercept against y, for
+      N=48 and N=56, with the fit-sensitivity curve far above both marker sets."
+      src="data:image/png;base64,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q6++6uXlNXny5OzsbKnFxMSktLS0sLCw7GaJiYnt27eXltetWyctPHz4MC0tbeLEiYQdAAUiAGiuvXv3jh8//nlrzczMWrZsmZiYuGDBAktLy5UrV9rY2AghfH191dscOXJk5MiR1tbW6pZLly717t277PsoFIpDhw4dO3YsJiamZ8+ehB0ABSIAaK6IiIjvv//+eWvd3d3d3d0vXbokhPD3958+fXq5DS5evHjlypXY2NiyjVFRUYsXLy7bYmVlNX78+BYtWqxevbpbt25lq0kAjRP3IAKAhrp582bLli1btmxZ9WZS/ff666+Xa09OTl61alVsbGzZdygsLHz27JmlpeUffhPo6pqamo4cOVJfX3/s2LFEHgAFIgBoqF27dk2YMKHazWJjY3V0dAYMGFC2UalUrl69es+ePS1btrx48aL6lsSjR496e3uXrReHDRt28OBB6WXr1q2l/kgAFIgA0Hjl5OT8+OOPjx49KttYXFxcS08ZSUlJOX78+MWLF6t9/5KSkpiYmFGjRlW9WVFR0fnz593c3MpeF87NzZ0/f/4777xz586dy5cv79ixw8zMTFp15MiR4cOHl93y8uXLxcXF0ku5XP7aa69xVgCgQPo0wzgAAAUeSURBVATQeP32228ff/zxs2fPXnnlFZlMpm739PRcsGDBy/2s5OTk0aNHr1+/Xl9f/8yZMz169EhKSpJW3blzp+L2sbGxHh4eTZs2rfpt4+LicnJyyl1ffv/993fs2NG/f38PD48+ffr8/PPPOjo6Qojs7GwjI6OyY6KbNWu2du3ax48fX7lyJTw8/MmTJ1999RUnBgAGqQBovFavXr1q1aqSkpKsrKwLFy506NBBCJGUlHT58uWpU6eW3XLnzp3/+Mc/avKeixYtGjZsWLnGhISEQYMGLViw4MMPPxRCDBw4UCaTBQQEnD59urS09PPPP9+5c2e5XXbv3l2TGWcqvQFxx44dO3bsqLjx/v37R48eXa5x6tSpT58+/emnn1xcXK5fv66np8eJAYACEUAjlZGRoaen16xZM6mW6tOnj9R++vTpiiXXuHHjhgwZUpO3rTgEOD8/f8yYMU5OTlJ1KBk6dOhXX311//79J0+elJt0RtrlwoUL27dvr0mBqKOj079//5p8t3PnzgUGBlb6nSsWtQAoEAGg0WnWrFlISIgQYufOnZ6eni4uLuoC0dbWVv1SYmhoaGtr++c+aNeuXbdu3VIPBJFII4vv3Llz+PDh9evXl9slOjp62LBh1XbmSTcgvvLKK9L0h1VLSUlp3bq1dK0ZAKrGPYgAGut/f7q6TZs2ffLkyenTp9XPnRNCnDlzptyI4P/Svn37DAwMyo4dFkJINxfGxMR07NhRPYJErYbXlyu9AfF5Hjx4MGXKFPIOoCboQQTQqP34448lJSXq6u3x48f379+fO3duuc2io6OjoqJq8obTp08vd8H3119/dXV1NTExqbixTCbbtm1bucanT58mJSX16NGj4vaHDh1SKBRBQUHSy+fNgFgpLy8v0g2AAhEAqpeYmGhkZOTk5CS9rPQGRCFE//7927ZtW5M3VL+VmpWVlbGxcblGXV1dIcTkyZOlhbIiIyPHjRtX8Z3v3Lnj6+uro6PzzjvvmJubCyEiIiJMTExqeHMkAFAgAkCNSHcWFhYWGhgY5Ofnb9y4sUWLFp06dSq3WfPmzZs3b/7nPiIgIOAvf/mLSqVSzy9z7dq1v/3tb8bGxpmZmVJVWvai9p49e/bt21fxfbKyslq1arVw4UKpOty9e3d8fPyGDRuklwBAgQgAL8f48ePDwsJmzpzZt2/fS5cu/fLLL2XnkX4pZs2aJZPJxo0bN2bMGKVSKZPJnJ2dt27d6uDgsH///tTUVPUAaiGETCYzMjJq06ZNxfdxd3fv379/69atU1JSjh07tnDhwi+//HLGjBkkEcBLp1NaWkoUADRyCQkJOjo66enpXl5eO3fuDAgIeOkfoVAoHjx40KJFi7KXqu/fv29qatqqVSt1S3BwcOvWrdV3GZZTUlJy7Nixu3fv2tvbe3t703cIgAIRAF6yb775ZtGiRd99952rq6sQIigo6NSpUzdv3mzSpEl9faXOnTufO3fOwsKC7ACoR1xiBtB47dixIycnx9TUVAhx4cKFqKio48eP12N1eOHChY4dO1IdAqBABIB6ExgY6OzsfOfOnW+++SYmJubUqVPdu3evx+9Tw+kPAaC2cYkZQKOWmpoaHx9vb2/ftWvX+v0mxcXFnTp1unnzpqGhIXkBQIEIABBCCLlcXnEaRQCgQAQAAEA941nMAAAAoEAEAAAABSIAAAAoEAEAAECBCAAAAApEAAAAUCACAACAAhEAAAAUiAAAAKgX/w+22tjs0rCo/wAAAABJRU5ErkJggg==">
+    <figcaption>Figure&nbsp;6 of the paper. The line is the fit sensitivity already quoted
+    for each coupling; the markers are what the intercept does when the whole sequence is
+    recomputed at a coarser base resolution. The vertical gap between them is the
+    result.</figcaption>
+  </figure>
+  <p>At <b>all 26</b> sequences the resolution difference is below the fit sensitivity
+  already quoted for that coupling; the figure above draws the two together and the
+  gap is two to five orders of magnitude. The valley at y&nbsp;=&nbsp;0.1752, which the
+  referee singled out because none of the three published comparisons was near it, moves
+  by 7.7&times;10<sup>&minus;7</sup>. Radial resolution is therefore not the leading term
+  in the error budget; the extrapolation is. Going from N&nbsp;=&nbsp;48 to
+  N&nbsp;=&nbsp;56 shrinks the difference at 9 of the 13 couplings.</p>
+  <p><b>Three caveats, all stated in the paper rather than smoothed over.</b> The
+  escalation rule lets the coldest states be accepted at N&nbsp;=&nbsp;96 on both sides at
+  20 of the 26 sequences, where the comparison is weaker than the base resolutions
+  suggest. A coarse walk need not reach as cold as the production one, so refitting both
+  sides over a common temperature range isolates the resolution; that leaves
+  5.43&times;10<sup>&minus;5</sup>. And the shipped measurement was produced under Python
+  3.11.9 / NumPy 2.4.6 / SciPy 1.17.1 while this study runs under 3.12.3 / 1.26.4 /
+  1.11.4, so each difference bounds the resolution change <em>and</em> the stack change
+  together.</p>
+  <p>That last one is why I added an <b>environment control</b>: re-walking at the
+  production N&nbsp;=&nbsp;64 here, at &alpha;&nbsp;=&nbsp;0.02, 0.15 and 0.5. It
+  attributes up to 1.13&times;10<sup>&minus;5</sup> to the environment alone &mdash; not
+  negligible, and at &alpha;&nbsp;=&nbsp;1/2 larger than either resolution difference at
+  the same coupling. The table entries are therefore upper bounds on the resolution
+  effect, not estimates of it, and the true resolution sensitivity is smaller than the
+  table says. The three comparisons recorded with the shipped measurement are free of this
+  caveat, both sides having been computed in the same environment, and they are kept as
+  table&nbsp;9 for that reason.</p>
+  <p>Two incidental notes. The study script crashed twice at the JSON write, after all
+  solves had finished &mdash; a <code>nan</code> from a relative difference taken against
+  y&nbsp;=&nbsp;0, then an <code>inf</code> from a trend ratio taken against an exactly
+  vanishing difference, both rejected by <code>allow_nan=False</code>. Both now return
+  <code>None</code>, and the disk memo meant neither crash cost a solve. And the condition
+  number now states its norm
+  (&#8214;A&#8214;<sub>2</sub>&#8214;A<sup>&minus;1</sup>&#8214;<sub>2</sub>), its variables
+  and that no scaling was applied, so it can no longer be read as comparable with another
+  solver&rsquo;s.</p>
+</div>
+
+<div class="item">
+  <h3>4. Treat the extremal extrapolation as the central modelling issue<span class="tag done">done</span></h3>
+  <p>A new figure&nbsp;3 shows the step itself, which a table of intercepts hides: for each
+  coupling, the six fitted states, the production cubic through them, the intercepts of all
+  twenty competing fits drawn on the axis they land on, and the residuals in a second panel.
+  The abscissa is the coordinate the fit actually uses, so thirteen windows spanning four
+  decades of T can be compared. Two new diagnostics are generated and quoted: the production
+  cubic describes its own points to 1.77&times;10<sup>&minus;6</sup> or better, and refitting
+  with each of the six states dropped in turn moves the intercept by at most
+  1.09&times;10<sup>&minus;5</sup> &mdash; both far below every sensitivity in the extremal
+  table, so the envelope reflects the length of the extrapolation and not a poor fit.
+  Every extremal entry is now called a <em>central extrapolant</em>, in the abstract as
+  well as the body.</p>
+  <p><b>Not done:</b> the leading near-extremal powers of T are not derived. The paper now
+  says so, in place of implying the cubic is a model.</p>
+</div>
+
+<div class="item">
+  <h3>5. An independent check of &Psi;<span class="tag done">done</span></h3>
+  <p>Read as an equation for &Psi; rather than as a residual, the Smarr relation gives
+  &Psi;<sub>Smarr</sub>&nbsp;=&nbsp;(2M&nbsp;&minus;&nbsp;3TS&nbsp;&minus;&nbsp;6&Omega;<sub>H</sub>J)/2&alpha;,
+  which uses only the charges of a single solution: no Jacobian, no linear solve, no
+  parameter derivative, no second solution. It therefore tests the whole implicit-response
+  machinery instead of repeating it. Over the <b>313</b> accepted states at
+  &alpha;&nbsp;&ne;&nbsp;0 it reproduces the response value to
+  <b>1.45&times;10<sup>&minus;6</sup></b> relative; extrapolated to T&nbsp;=&nbsp;0 by the
+  same cubic, the two routes to &Psi;<sub>ext</sub> agree to
+  <b>1.59&times;10<sup>&minus;6</sup></b> at all 12 finite couplings (new table&nbsp;5).
+  The paper states what the two routes still share &mdash; the solutions and the asymptotic
+  charge extraction &mdash; so the check is not oversold. The real finite-difference
+  comparison now prints its locations, step sizes and the errors they leave (new
+  table&nbsp;2) instead of only the factor-of-four ratios.</p>
+</div>
+
+<div class="item">
+  <h3>6. A complete and readable uncertainty budget<span class="tag done">done</span></h3>
+  <p>New table&nbsp;7 gives the recorded spread of <em>every</em> extrapolated column, not
+  just &Psi;<sub>ext</sub>: &delta;y, &delta;&mu;, &delta;&sigma; from their own intercepts,
+  and &delta;j formed from each pair of extrapolated (M,&nbsp;J) intercepts so that their
+  correlation is propagated rather than quadrature-summed, plus the two new fit diagnostics.
+  The accompanying text names the effects the table does <em>not</em> separate &mdash; radial
+  resolution, tail extraction, solver tolerance, the response solve, the quadrature &mdash;
+  and says that the columns are not to be added. For the mass-curve check, propagating the
+  recorded spreads of both routes puts the discrepancy inside the combined spread at all
+  12 intervals, the worst reaching 0.90 of it; the paper says in the same breath that the
+  two routes share those spreads, so this is a consistency statement and not confirmation.</p>
+</div>
+
+<h3>Smaller points</h3>
+<table>
+<thead><tr><th>Referee&rsquo;s point</th><th>What changed</th></tr></thead>
+<tbody>
+<tr><td>Running vs full-range integral discrepancy mislabelled</td><td>Two macros, each named for what it is</td></tr>
+<tr><td>Potential figure hides the sampling density</td><td>Markers on every body curve; the caption says the lines join discrete solutions</td></tr>
+<tr><td>Profile figure labels only the first and last shade</td><td>A discrete colour bar, one cell per coupling, placed in the one band no curve crosses</td></tr>
+<tr><td>&ldquo;Published&rdquo; entropy curve is really a rederivation</td><td>Text and caption now say rederived and checked against the published equations</td></tr>
+<tr><td>Sign-change bracket endpoints not printed</td><td>Both endpoints in q are tabulated; the text calibrates the interpolant against the analytic zero at &alpha;&nbsp;=&nbsp;0 (bracket 0.02 wide, interpolant 1.95&times;10<sup>&minus;4</sup> off) rather than silently keeping five digits</td></tr>
+<tr><td>&ldquo;Non-perturbative dependence&rdquo; invites an EFT reading</td><td>Replaced by &ldquo;finite-coupling, nonlinear-in-&alpha; dependence within classical EGB&rdquo;, with a sentence saying why</td></tr>
+<tr><td>Ergosurface discrepancy buried in a footnote</td><td>Moved into the limitations discussion, with what it does and does not test spelled out</td></tr>
+<tr><td>Convention conversions scattered through the text</td><td>New table&nbsp;1, early: individual vs total J, the two radial coordinates, q, j, x, y, and &alpha;<sub>ref.</sub>&nbsp;=&nbsp;4&alpha;</td></tr>
+</tbody>
+</table>
+
+<h2>4. The eight explanations requested in <code>prompts.txt</code></h2>
+
+<p>These were already written into the working-tree source before this session; I checked
+each against the compiled PDF and against my own derivations rather than assuming. All
+eight are present and, where they make a mathematical claim, correct.</p>
+
+<table>
+<thead><tr><th>Request</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>&ldquo;Without identifying angular momentum with electric charge&rdquo; &mdash; why, and what it means</td><td>Explained in the introduction: J is not a gauge charge, there is no light state to appeal to, and the Goon&ndash;Penco relation is used only as an identity of the extended first law</td></tr>
+<tr><td>Why q&nbsp;=&nbsp;1/&radic;2 at extremality; and is q&nbsp;=&nbsp;&Omega;<sub>H</sub> when r<sub>H</sub>&nbsp;=&nbsp;1?</td><td>Derived from r<sup>2</sup>&nbsp;=&nbsp;&rho;<sup>2</sup>+a<sup>2</sup> and r<sub>+</sub>&nbsp;=&nbsp;a; both statements verified symbolically. The two quantities coincide numerically at r<sub>H</sub>&nbsp;=&nbsp;1 and the text says so and says why they are still different quantities</td></tr>
+<tr><td>Factors in eqs.&nbsp;(11) and (12) vs the Smarr formula&nbsp;(8)</td><td>Explained: (8) is Euler on the scaling weights for one solution, (11)&ndash;(12) come from the differential first law between neighbouring solutions. Verified: (8) follows from the listed weights, and (11)&rsquo;s single factor of two is the number of equal spins</td></tr>
+<tr><td>Is eq.&nbsp;(13) just the chain rule, and is the sign wrong?</td><td>It is the implicit function theorem, and the sign is right. The text now says the chain rule is applied to a function <em>held at zero</em>, which is where the minus sign comes from, and what the linear solve buys</td></tr>
+<tr><td>Where eq.&nbsp;(16) comes from &mdash; guess, or another paper?</td><td>Transcribed from Wu&ndash;L&uuml;, with both steps of the transcription shown. Verified independently: it returns &minus;9&pi;/4 at u&nbsp;=&nbsp;0, &pi; at u&nbsp;=&nbsp;1, and its sign zero reproduces the printed q to 5&times;10<sup>&minus;7</sup></td></tr>
+<tr><td>Is the t<sub>H</sub> of figure&nbsp;1 the static one?</td><td>No, and the text now says so explicitly: both coordinates of every plotted point are measured on that same rotating solution; the static values are crosses at the q&rarr;0 limit the curves run towards</td></tr>
+<tr><td>What &ldquo;sensitivity&rdquo; means; report the temperature if it is ~0</td><td>Defined in the text and constructed in the appendix. The rows have T&nbsp;=&nbsp;0 by construction, so reporting it would report the construction; &tau;<sub>min</sub>, the coldest state actually solved, is reported instead. This session added the figure and the two diagnostics that make the claim auditable</td></tr>
+<tr><td>Figure of b, f, h, w at each coupling, shaded per function</td><td>Present, in the style of fig.&nbsp;1 of arXiv:1010.0860 (h/r<sup>2</sup> and &minus;b). This session added the colour bar so intermediate couplings are readable</td></tr>
+</tbody>
+</table>
+
+<h2>5. What I did not do</h2>
+<ul>
+<li><b>No independent solver.</b> The resolution study varies the radial resolution
+inside the same code; it does not check that code against a different implementation.</li>
+<li><b>No commit, no tag, no archival identifier.</b> The working agreement says not to
+commit unasked.</li>
+<li><b>The test suite was not run.</b> <code>pytest</code> is not installed and the working
+agreement forbids installing into the base environment; the manuscript&rsquo;s own checker
+(<code>check_manuscript.py</code>) and my audit both pass. <code>tests/test_manuscript.py</code>
+was updated to require the two new figures and the new data artifact.</li>
+<li><b>Literature attributions were not re-verified.</b> There is no <code>papers/</code>
+directory in this tree, so the transcriptions from Wu&ndash;L&uuml;, Ma&ndash;Li&ndash;L&uuml;
+and Brihaye et&nbsp;al. rest on the manuscript&rsquo;s own account. Their internal
+consistency was checked; their fidelity to the sources was not.</li>
+<li><b>The near-extremal expansion was not derived,</b> and the paper now says so instead
+of letting the cubic look like a model. It would do more for the quantitative claim than
+any further numerics, since it would replace the fitted cubic with a model.</li>
+<li><b>No extremal bulk solution was constructed.</b> Every extremal quantity remains a
+central extrapolant.</li>
+</ul>
+
+<h2>6. Files touched</h2>
+<table>
+<thead><tr><th>File</th><th>Change</th></tr></thead>
+<tbody>
+<tr><td class="mono">manuscript/main.tex</td><td>Abstract, introduction, conventions table, extrapolation section, Smarr check, resolution study, discussion, appendix; the nested-maths fix</td></tr>
+<tr><td class="mono">manuscript/make_figures.py</td><td>Two new figures, five new tables, the Smarr, fit-diagnostic and resolution-study macros, the split cumulative macros, the colour bars and markers</td></tr>
+<tr><td class="mono">manuscript/reanalysis.py</td><td>Rewritten: adds <code>production_fit</code>, <code>leave_one_out</code>, <code>matched_window</code>, <code>smarr_potential</code></td></tr>
+<tr><td class="mono">experiments/egb_rotating_resolution_study.py</td><td>New: 29 walks, the study artifact, the environment control</td></tr>
+<tr><td class="mono">results/egb-rotating-resolution-study.json</td><td>New: every state of all 29 sequences, so the table and figure recompute without re-solving</td></tr>
+<tr><td class="mono">manuscript/jhepstyle.sty</td><td>Two named table shapes, so no typographic decimal sits in the body</td></tr>
+<tr><td class="mono">manuscript/numbers.tex</td><td>Regenerated: 128 macros (was 85)</td></tr>
+<tr><td class="mono">manuscript/figures/fig-extrapolation.pdf, fig-resolution.pdf</td><td>New</td></tr>
+<tr><td class="mono">manuscript/figures/fig-profiles.pdf, fig-potential.pdf</td><td>Colour bar; sample markers</td></tr>
+<tr><td class="mono">manuscript/main.pdf</td><td>Rebuilt from the current source: 25 pages, six figures, nine tables</td></tr>
+<tr><td class="mono">manuscript/README.md, tests/test_manuscript.py</td><td>Six figures, the new artifact, and the Linux build recipe</td></tr>
+<tr><td class="mono">work/manuscript_audit.py</td><td>New: the 43 checks above</td></tr>
+<tr><td class="mono">vault/exercises/extremality-shift-paper-revision.md</td><td>New: the revision and its run receipt</td></tr>
+<tr><td class="mono">vault/concepts/environment-drift-in-recorded-measurements.md</td><td>New: why a coarse-against-recorded difference is an upper bound</td></tr>
+</tbody>
+</table>
+
+<h2>Run receipt</h2>
+<pre>Date:        2026-09-28
+Environment: Linux-6.8.0-142-generic-x86_64-with-glibc2.39
+             Python 3.12.3, numpy 1.26.4, scipy 1.11.4, sympy 1.12, matplotlib 3.6.3
+             Tectonic 0.17.0 (TeX Live bundle v33)
+
+$ PYTHONPATH=src python3 experiments/egb_rotating_resolution_study.py
+  production side reproduced from saved states to 1.42e-14 absolute
+  29 walks: 13 couplings x {48, 56}, plus 3 control walks at N=64
+  the difference in Psi_ext shrinks from N=48 to N=56 at 9 of 13 couplings
+  worst |dPsi_ext| over all couplings and resolutions: 6.89e-05
+  worst |dmu| over all couplings and resolutions:      1.68e-05
+  worst |dPsi_ext| attributable to the environment alone: 1.13e-05
+  wrote results/egb-rotating-resolution-study.json
+
+$ python3 work/manuscript_audit.py
+  43 passed, 0 failed
+
+$ PYTHONPATH=src python3 manuscript/make_figures.py
+  wrote supplementary/solutions.csv with 356 rows
+  wrote numbers.tex with 128 macros
+  wrote figures/fig-entropy.pdf        22842 bytes
+  wrote figures/fig-extrapolation.pdf  42312 bytes
+  wrote figures/fig-potential.pdf      28566 bytes
+  wrote figures/fig-profiles.pdf       37969 bytes
+  wrote figures/fig-resolution.pdf     24124 bytes
+  wrote figures/fig-shift.pdf          27092 bytes
+
+$ python3 manuscript/check_manuscript.py
+  ok: 128 generated quantities, 20 references, no literal numbers in the body
+
+$ tectonic -X compile manuscript/main.tex
+  25 pages; no errors, no undefined references, no overfull boxes
+
+NOT RUN: the pytest suite (pytest absent, base environment not to be modified);
+         any comparison against an independent solver; any construction of a
+         solution at exactly T = 0; any verification of the cited literature.</pre>
+
+<footer>
+  Generated by Claude Opus&nbsp;5 for
+  <span class="mono">/home/agoya/Documents/ClaudiE/BHs</span>. Every number quoted here is
+  either read from <span class="mono">manuscript/numbers.tex</span> or printed by the audit
+  script above.
+</footer>
+
+</div>
+</body>
+</html>

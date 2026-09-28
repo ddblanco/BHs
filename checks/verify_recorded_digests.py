@@ -10,8 +10,9 @@ that produced it.
 
 This check walks both recording mechanisms in use:
 
-* `source_sha256` maps, nested anywhere inside `results/**/*.json` and
-  `artifacts/manifest.json`;
+* `source_sha256` maps -- and `sources` maps, the spelling
+  `egb_rotating_family.py` used -- nested anywhere inside `results/**/*.json`
+  and `artifacts/manifest.json`;
 * the top-level `sha256` of each `artifacts/manifest.json` entry.
 
 Run from the project root:
@@ -50,6 +51,28 @@ KNOWN_EXCEPTIONS = {
         'not a numerical input; every code source of that artifact verifies. '
         'Present already in .cache/clean-hito-4c, the copy that passed 315 tests '
         'on 2026-09-10, so it predates any line-ending work.',
+    ('src/rotating_bh/egb_rotating_bvp.py',
+     '43aa372e0bbda345bf7d887fdd3578d4e0149d3b2ebd925d425515a2db8521ad'):
+        'Module docstring corrected after the eight shipped results and the '
+        'manifest entry that record this digest were produced; the ninth '
+        'recording, results/egb-rotating-profiles.json, was regenerated and '
+        'carries the corrected digest. It had the compactified endpoints '
+        'inverted -- it '
+        'said x=0 is infinity and x=1 the horizon, while `_cheb` returns nodes '
+        'in descending order so x=0 is the horizon and x=1 is infinity, which is '
+        'what the code imposes, what every other module in the package states '
+        'and what the paper appendix says. The edit is confined to the module '
+        'docstring: parsing both versions and blanking that docstring gives '
+        'identical abstract syntax trees, and the compiled code objects agree on '
+        'co_code, co_names, co_varnames and co_consts, differing only in the '
+        'line table, so no numerical result can depend on it. Re-recording by '
+        'rerunning those eight experiments needs the locked environment of '
+        'environment/requirements-lock.txt (Python 3.11, numpy 2.4.6, '
+        'scipy 1.17.1); a rerun under any other environment would replace the '
+        'recorded results as well as the digest and is not a repair. '
+        'results/egb-rotating-family.json records this same digest under a '
+        '"sources" key; the walker below now reads that spelling too, so the '
+        'rerun list is nine experiments, egb_rotating_family.py included.',
 }
 
 
@@ -71,6 +94,21 @@ def variant_note(path, expected):
     return 'CONTENT DIFFERS beyond line endings'
 
 
+HEX = set('0123456789abcdef')
+# Both spellings a result file uses for "these source bytes produced me".
+# `egb_rotating_family.py` wrote `sources`; everything else wrote `source_sha256`.
+# Reading only the second silently exempted fourteen recordings.
+DIGEST_MAPS = ('source_sha256', 'sources')
+
+
+def digest_map(value):
+    """True for a {path: sha256} mapping, whatever key it was filed under."""
+    return (isinstance(value, dict) and value
+            and all(isinstance(k, str) and isinstance(v, str)
+                    and len(v) == 64 and set(v) <= HEX
+                    for k, v in value.items()))
+
+
 def recorded_digests(root):
     """Yield (recording file, target path, expected digest) for every mechanism."""
     for json_path in sorted(root.glob('results/**/*.json')) + [root/'artifacts/manifest.json']:
@@ -81,10 +119,10 @@ def recorded_digests(root):
 
         def walk(node):
             if isinstance(node, dict):
-                sources = node.get('source_sha256')
-                if isinstance(sources, dict):
-                    for target, digest in sources.items():
-                        yield rel, target, digest
+                for name in DIGEST_MAPS:
+                    if digest_map(node.get(name)):
+                        for target, digest in node[name].items():
+                            yield rel, target, digest
                 for value in node.values():
                     yield from walk(value)
             elif isinstance(node, list):

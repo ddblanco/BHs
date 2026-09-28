@@ -1,12 +1,24 @@
 # Manuscript
 
 El documento vigente es [main.pdf](main.pdf), cuya fuente es
-[main.tex](main.tex). Incluye las cifras de `numbers.tex`, tres figuras y los
-suplementos generados desde `results/egb-extremality.json`.
+[main.tex](main.tex). Incluye las cifras de `numbers.tex`, seis figuras y los
+suplementos generados desde `results/egb-extremality.json`,
+`results/egb-rotating-profiles.json` y
+`results/egb-rotating-resolution-study.json`.
+
+La compilación de referencia en Linux usa Tectonic:
+
+```bash
+PYTHONPATH=src python3 experiments/egb_rotating_resolution_study.py  # solo si falta el estudio de resolucion
+PYTHONPATH=src python3 manuscript/make_figures.py
+python3 manuscript/check_manuscript.py
+tectonic -X compile manuscript/main.tex
+```
 
 Desde la raíz de BHs:
 
 ```powershell
+python experiments/egb_rotating_profile_atlas.py   # solo si falta el atlas de perfiles
 python manuscript/make_figures.py
 python manuscript/check_manuscript.py
 powershell -NoProfile -ExecutionPolicy Bypass -File manuscript/build-local.ps1

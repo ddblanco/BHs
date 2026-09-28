@@ -73,6 +73,13 @@
 \renewcommand{\textfraction}{.08}
 \renewcommand{\floatpagefraction}{.8}
 
+% --- table shapes ----------------------------------------------------------
+% Named rather than written inline, so that `check_manuscript.py` can keep
+% insisting that every decimal in the body of main.tex comes from the
+% measurement. These two are typography and not results.
+\newcommand{\airyrows}{\renewcommand{\arraystretch}{1.25}}
+\newcommand{\tightcolumns}{\setlength{\tabcolsep}{4.2pt}}
+
 % --- maths shorthands used throughout the paper ----------------------------
 \newcommand{\GB}{\mathrm{GB}}
 \newcommand{\ext}{\mathrm{ext}}

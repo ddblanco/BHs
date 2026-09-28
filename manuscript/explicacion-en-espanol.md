@@ -69,7 +69,7 @@ Despejando:
 
 El sentido de esta expresión es quitar del cambio total de masa lo que corresponde al cambio de entropía y de momento angular. Lo que queda corresponde al cambio de teoría.
 
-No se están igualando dos derivadas tomadas con restricciones diferentes. La igualdad es entre una derivada a \(S,J\) fijos y **una combinación de tres derivadas** tomadas a \(r_H,\Omega_H\) fijos. Tampoco faltan términos \(S T_\alpha\) o \(J\Omega_\alpha\): se evalúa la primera ley, no se deriva un producto \(TS+2\Omega J\).
+No se están igualando dos derivadas tomadas con restricciones diferentes. La igualdad es entre una derivada a \(S,J\) fijos y **una combinación de tres derivadas** tomadas a \(r_H,\Omega_H\) fijos. Tampoco faltan términos \(S T_\alpha\) o \(J\Omega_\alpha\): se evalúa la primera ley diferencial, en la que \(T\) y \(\Omega_H\) multiplican a \(dS\) y \(dJ\) y no se varían. Esos términos aparecerían al derivar la relación de Smarr \(2M=3TS+6\Omega_H J+2\alpha\Psi\), que es otra cosa: una relación algebraica entre las cargas de **una sola** solución, cuyos enteros son pesos de escala. Por eso el único factor que se repite en \(\Psi\) es el \(2\) que cuenta los dos momentos angulares, y no aparecen ni el \(3\) ni el \(6\).
 
 Más generalmente, para cualquier recorrido de equilibrio parametrizado por \(\lambda\),
 

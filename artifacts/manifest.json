@@ -2161,5 +2161,93 @@
     ],
     "status": "verified",
     "sha256": "9db08930fca98c24eceef878f55c6f6cdbea3c05c3b558627d245330f2e175c2"
+  },
+  {
+    "id": "egb-rotating-profiles",
+    "kind": "result",
+    "path": "results/egb-rotating-profiles.json",
+    "command": "python experiments/egb_rotating_profile_atlas.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_profile_atlas.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_predictor.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "results/egb-extremality.json"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "experiments/egb_rotating_profile_atlas.py": "2c086e4048c8349c55d659087b41b74fd1e2935898a1f90fed054a5028ae9c0b",
+        "src/rotating_bh/egb_rotating_bvp.py": "3cf475762255b14bcfe922ff311028fa33bc6248109c24ba72e920c2a272c49c",
+        "src/rotating_bh/egb_rotating_predictor.py": "1c087314ed473bb36bd9d50dfd444148a5a4c81d0a867a203e7a2eab4038975c",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "results/egb-extremality.json": "9db08930fca98c24eceef878f55c6f6cdbea3c05c3b558627d245330f2e175c2"
+      },
+      "couplings": [
+        0.0,
+        0.005,
+        0.01,
+        0.02,
+        0.035,
+        0.05,
+        0.075,
+        0.1,
+        0.15,
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "start_spin": 0.6,
+      "resolution": 64,
+      "tolerance": 1e-10,
+      "spin_step": 0.02,
+      "coupling_step": 0.01,
+      "samples": 601,
+      "r_max": 30.0
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "One shared spin for all couplings, so the figure isolates the coupling",
+      "A continuation route different from the production one, so agreement is evidence",
+      "Agreement with the production states is a gate, not a remark",
+      "The vacuum horizon squashing is checked against the closed Myers-Perry value"
+    ],
+    "checks": [
+      {
+        "name": "every_paper_coupling_solved",
+        "passed": true,
+        "detail": "13 of 13 couplings returned a solution"
+      },
+      {
+        "name": "boundary_residual_under_gate",
+        "passed": true,
+        "detail": "worst 4.801e-11"
+      },
+      {
+        "name": "independent_tensor_residual_under_gate",
+        "passed": true,
+        "detail": "worst 2.797e-12"
+      },
+      {
+        "name": "agrees_with_production_states",
+        "passed": true,
+        "detail": "worst relative difference 2.513e-11 over E, J, S, T_H"
+      },
+      {
+        "name": "vacuum_horizon_squashing_matches_myers_perry",
+        "passed": true,
+        "detail": "h(r_H)/r_H^2 = 1.562500000 against 1/(1-q^2) = 1.562500000"
+      },
+      {
+        "name": "horizon_angular_velocity_imposed",
+        "passed": true,
+        "detail": "worst 2.220e-16"
+      }
+    ],
+    "status": "verified",
+    "sha256": "81c70275a566ac97bccb33935546a42d24bc3468a5c60d7d177f0e35a8162071"
   }
 ]

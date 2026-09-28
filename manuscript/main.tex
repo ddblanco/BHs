@@ -1,5 +1,7 @@
 \documentclass[11pt,a4paper]{article}
-\pdfoutput=1
+% arXiv reads this to select pdfLaTeX; guarded so that a XeTeX or LuaTeX
+% build does not advertise a pdfTeX driver it cannot provide.
+\ifdefined\pdftexversion\pdfoutput=1\fi
 
 % Local manuscript layout.
 \usepackage{jhepstyle}
@@ -17,25 +19,32 @@
 % \emailAdd{}
 
 \abstract{%
-We study how the minimum mass of a rotating black hole at fixed angular momentum
-changes with the Gauss--Bonnet coupling in five dimensions. We construct
+We study how the extremal mass of a rotating black hole at fixed angular
+momentum changes with the Gauss--Bonnet coupling in five dimensions, on the
+equal-spin branch continuously connected to Myers--Perry. We construct
 stationary, asymptotically flat solutions with two equal angular momenta at
 finite coupling and calculate the thermodynamic potential $\Psi$ conjugate to
 that coupling. The calculation differentiates the discretised field equations
 implicitly and solves a linear response problem; it avoids real finite
 differences between neighbouring solutions, but remains numerical.
 Extrapolating to zero temperature gives the local slope
-$\partial M_\ext/\partial\alpha|_J$, subject to a regular extremal limit.
-Across the sampled range this slope stays positive: it decreases from the
-known perturbative value $\pi$ to about $\Npsimin$, then rises to
-$\Npsilast$. Thus the extremal mass increases monotonically while its slope
-does not. The potential and the changes in the extrapolated mass curve satisfy
-an integral consistency check, with shared numerical inputs and errors.
-We validate the calculation against the analytic static solution, the published
-perturbative potential and the extremal near-horizon entropy. We report
-sensitivity to the extrapolation model, fitting window and temperature
-coordinate, and restrict the interpretation to classical
-Einstein--Gauss--Bonnet theory in the range computed.}
+$\partial M_\ext/\partial\alpha|_J$ on that branch, subject to a regular
+extremal limit. No solution is constructed at $T=0$: every extremal quantity
+below is a central extrapolant from positive-temperature states, and we call
+it one. Across the sampled range the central extrapolants of this slope stay
+positive, decreasing from the known perturbative value $\pi$ to about
+$\Npsimin$ and then rising to $\Npsilast$; the extrapolated extremal mass
+correspondingly increases throughout while its slope does not. The potential
+and the changes in the extrapolated mass curve satisfy an integral consistency
+check, with shared numerical inputs and errors. We validate the calculation
+against the analytic static solution, the published perturbative potential,
+the Smarr relation read as an independent equation for $\Psi$, and the extremal
+near-horizon entropy. We report sensitivity to the extrapolation model, fitting
+window and temperature coordinate, and repeat the entire construction at two
+coarser radial resolutions at every coupling, which leaves the extremal
+intercept below its own fit sensitivity; and we restrict the interpretation to
+classical Einstein--Gauss--Bonnet theory on the branch and in the range
+computed.}
 
 \keywords{Black Holes, Classical Theories of Gravity, Higher Curvature Gravity}
 
@@ -100,27 +109,51 @@ $\partial M_\ext/\partial\alpha|_J$. The thermodynamic identities are
 analytic; the rotating finite-coupling solutions, their responses and the
 extremal extrapolation are numerical.
 
+Throughout, ``the extremal branch'' means the zero-temperature endpoint of
+the equal-spin family continuously connected to Myers--Perry, and nothing
+wider. We do not show that this branch is unique, stable, or the lowest in
+mass among all five-dimensional solutions at the same angular momenta, and we
+do not claim a global minimum mass anywhere below.
+
 The measured potential changes sign between slowly rotating and
 near-extremal states. Its extremal limit stays positive over the sampled
 couplings, falls substantially below $\pi$, and then rises again.
 The result concerns the slope of the mass, not a non-monotonic mass.
 We check this interpretation against changes in the extrapolated mass curve,
 while accounting for the numerical inputs shared by the two calculations.
+Several distinct quantities are all called ``spin'' in this subject, and which
+one is held fixed changes the statement; they are separated in
+table~\ref{tab:conventions}, together with the conversions to the conventions
+of the papers we compare with.
 
 Extremality shifts are often discussed in connection with the weak gravity
 conjecture \cite{ArkaniHamed:2006dz,Kats:2006xp} and the thermodynamic
 entropy--extremality relation of Goon and Penco \cite{Goon:2019faz}.
-For the present rotating, uncharged family we use that relation as a
-thermodynamic identity, without identifying angular momentum with electric
-charge. Our finite-coupling result is a statement about classical
-Einstein--Gauss--Bonnet gravity. Its interpretation as a gravitational
+Both are usually stated for \emph{charged} black holes, where the bound
+$M\ge M_\ext(Q)$ compares a mass with a gauge charge and therefore has a
+reading in terms of a spectrum of states: a particle with charge-to-mass
+ratio above the extremal black hole's is what allows that black hole to
+decay. The family studied here is uncharged and carries angular momentum
+instead. Angular momentum is not a charge under a gauge field, there is no
+corresponding light state to appeal to, and none of the spectrum arguments
+transfers without additional assumptions that we do not make; this is what
+we mean by using the relation \emph{without identifying angular momentum
+with electric charge}. Formal analogues of the conjecture in which $J$
+replaces $Q$ have been considered in the literature, but nothing below
+depends on one. We use the Goon--Penco relation only for what it is in this
+setting: an identity that follows from the extended first law
+\eqref{eq:firstlaw} and ties the sign of $\partial S/\partial\alpha|_{M,J}$
+to the sign of $\partial M_\ext/\partial\alpha|_J$, derived in
+section~\ref{sec:potential}. Our finite-coupling result is a statement about
+classical Einstein--Gauss--Bonnet gravity. Its interpretation as a gravitational
 effective field theory is restricted, as discussed in section~\ref{sec:discussion}.
 
 Section~\ref{sec:setup} specifies the solutions and observables.
 Section~\ref{sec:potential} explains the potential and its numerical
 evaluation. Results and checks follow in sections~\ref{sec:results}
 and \ref{sec:checks}; appendix~\ref{app:numerics} describes the numerical
-construction and the sensitivity of the extrapolation.
+construction, the uncertainty budget and the sensitivity of the
+extrapolation.
 
 \section{The equal-spin family and its thermodynamics}
 \label{sec:setup}
@@ -163,14 +196,37 @@ Regularity and these boundary conditions define the numerical problem.
 The solutions are stationary: their metric is independent of time,
 although their horizons rotate.
 
-We set $r_H=1$ in the numerical construction and label the rotation by
+We set $r_H=1$ in the numerical construction. The horizon angular velocity
+$\Omega_H$ has dimensions of inverse length, so the family is labelled by the
+dimensionless combination
 \begin{equation}
- q=r_H\Omega_H .
+ q=r_H\Omega_H ,
 \end{equation}
-At $\alpha=0$, $q$ ranges from zero to $1/\sqrt2$ at extremality.
-At finite coupling the extremal value changes. Statements about the
-physical coupling can instead be made in the scale-invariant variables below;
-the tabulated numerical $\alpha$ is $\alpha/r_H^2$ in these units.
+which is what survives the rescaling of section~\ref{sec:invariants}.
+In the solver's units, $r_H=1$, the numerical values of $q$ and $\Omega_H$
+coincide; they are nevertheless different quantities, and only $q$ labels a
+solution independently of the chosen length unit. All spins quoted below are
+values of $q$.
+
+The range of $q$ is fixed at $\alpha=0$ by Myers--Perry. Write that solution
+in Boyer--Lindquist form, with rotation parameter $a$ and horizon at
+$\rho=r_+$. The ansatz \eqref{eq:ansatz} has $g_{\theta\theta}=r^2$ whereas
+Boyer--Lindquist has $g_{\theta\theta}=\rho^2+a^2$, so the two radial
+coordinates are related by $r^2=\rho^2+a^2$, and in particular
+$r_H^2=r_+^2+a^2$. Using $\Omega_H=a/(r_+^2+a^2)$,
+\begin{equation}
+ q=r_H\Omega_H=\frac{a}{r_H},\qquad
+ u\equiv\frac{a^2}{r_+^2}=\frac{q^2}{1-q^2}.
+ \label{eq:qmp}
+\end{equation}
+Equal-spin Myers--Perry is extremal at $r_+=a$, where $r_H^2=2a^2$; hence $q$
+runs over $[0,1/\sqrt2)$ on the vacuum family and reaches $1/\sqrt2$ exactly
+at extremality. That value is a property of the Einstein solution and not a
+definition: at finite coupling the extremal $q$ is an output of the
+construction, and the solutions reported below reach $q>1/\sqrt2$.
+The tabulated numerical $\alpha$ is $\alpha/r_H^2$ in these units; statements
+about the physical coupling are made in the scale-invariant variables of
+section~\ref{sec:invariants}.
 
 \subsection{Charges, entropy and the first law}
 
@@ -197,13 +253,26 @@ The intrinsic expression applies to the stationary horizon cross-section;
 we do not use it as an entropy prescription for dynamical horizons.
 
 The two equal angular momenta contribute
-$\Omega_1\dd J_1+\Omega_2\dd J_2=2\Omega_H\dd J$ to
-\eqref{eq:firstlaw}. Scaling the lengths yields
+$\Omega_1\dd J_1+\Omega_2\dd J_2=2\Omega_H\dd J$ to \eqref{eq:firstlaw}.
+Applying Euler's theorem to the scaling weights listed in
+section~\ref{sec:invariants} --- $M$ and $\alpha$ of weight two, $S$ and each
+$J_i$ of weight three --- yields
 \begin{equation}
  2M=3TS+6\Omega_HJ+2\alpha\Psi.
  \label{eq:smarr}
 \end{equation}
-We evaluate this relation as an internal consistency check.
+The integers here are scaling weights and nothing else. The $3$ multiplies
+$TS$ because $S$ has weight three, the $2$ multiplies $\alpha\Psi$ because
+$\alpha$ has weight two, and the $6$ is $3\times2$: the weight of $J$ times
+the number of equal spins. Only that last factor of two reappears in the
+differential relations \eqref{eq:psi} and \eqref{eq:goonpenco} below.
+The weights $3$ and $2$ do not, and their absence there is not an
+inconsistency: \eqref{eq:smarr} is a finite algebraic relation among the
+charges of a \emph{single} solution, obtained from the scaling, whereas
+\eqref{eq:firstlaw} and everything derived from it relates \emph{neighbouring}
+solutions and knows nothing about the scaling. Neither statement implies the
+other, and the two sets of coefficients should not be expected to match.
+We evaluate \eqref{eq:smarr} as an internal consistency check.
 For $\alpha\ne0$ it also gives
 $\Psi=(2M-3TS-6\Omega_HJ)/(2\alpha)$, but subtraction in its numerator
 is ill-conditioned as $\alpha\to0$. At $\alpha=0$ it cannot determine
@@ -237,10 +306,67 @@ For the non-extremal plots we use \cite{Kleihaus:2023zzs}
  \label{eq:massvars}
 \end{equation}
 The normalisation gives $t_H=1$ for the static Einstein solution and
-$j=1$ for extremal Myers--Perry. The measured Einstein extremal value is
-$j=\Nvacuumj$. At finite coupling the static temperature is instead
+$j=1$ for extremal Myers--Perry. Both are properties of the normalisation,
+not results, so recovering them is a check of the numerics rather than of the
+physics: the value measured on our own extrapolated Einstein extremal state is
+$j=\Nvacuumj$, which tests the mass and spin extraction together with the
+zero-temperature extrapolation. At finite coupling the static temperature is instead
 $t_H=\sqrt{1+2\bar\alpha}/(1+4\bar\alpha)$, where
 $\bar\alpha=\alpha/r_H^2$; it is not unity.
+
+\subsection{Conventions and conversions}
+\label{sec:conventions}
+
+Five quantities in this subject are routinely called the spin, the radius or
+the coupling, and papers differ on which one they print.
+Table~\ref{tab:conventions} collects every conversion used below in one place,
+so that no comparison with the literature has to be reconstructed from the
+surrounding text. It is a statement of conventions and contains no measured
+number.
+
+\begin{table}[t]
+ \centering\small
+ \airyrows
+ \begin{tabular}{@{}p{.26\textwidth}p{.30\textwidth}p{.36\textwidth}@{}}
+ \toprule
+ quantity & here & elsewhere \\
+ \midrule
+ angular momentum &
+ $J$ is the momentum in \emph{each} plane, $J_1=J_2=J$ &
+ the total is $2J$; the charge normalisations of \eqref{eq:charges} are
+ those of \cite{Brihaye:2010wp}, and $j$, $x$ and $\sigma$ below are all
+ formed from the individual $J$ \\
+ radial coordinate &
+ $r$, fixed by $g_{\theta\theta}=r^2$ in \eqref{eq:ansatz}; horizon at $r_H$ &
+ Boyer--Lindquist $\rho$, horizon at $r_+$, with $r^2=\rho^2+a^2$ and
+ $r_H^2=r_+^2+a^2$ \\
+ spin label &
+ $q=r_H\Omega_H$, dimensionless; numerically equal to $\Omega_H$ only because
+ we set $r_H=1$ &
+ rotation parameter $a=qr_H$, and $u=a^2/r_+^2=q^2/(1-q^2)$;
+ the vacuum family is extremal at $q=1/\sqrt2$ \\
+ scaled spin &
+ $j=(3/2)^{3/2}\sqrt\pi\,J/M^{3/2}$, normalised to $j=1$ on extremal
+ Myers--Perry &
+ the same $j$ as \cite{Kleihaus:2023zzs}, whose domain bound is $j\le1$ \\
+ Gauss--Bonnet coupling &
+ $\alpha$ multiplying $\mathcal L_\GB$ inside $(16\pi G)^{-1}$ in
+ \eqref{eq:action}; tables print $\alpha/r_H^2$ &
+ $\alpha_{\rm ref.}=4\alpha$ in \cite{Brihaye:2010wp};
+ the coefficient of $R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}$ in
+ \cite{Wu:2024xnb} equals $\alpha$ on a Ricci-flat background \\
+ scale-invariant coupling &
+ $y=\alpha/J^{2/3}$, used wherever a statement is about the physical coupling &
+ $x=3\pi\alpha/(4M)$ of \cite{Kleihaus:2023zzs}, whose domain bound is $x<1$ \\
+ \bottomrule
+ \end{tabular}
+ \caption{Every conversion used in this paper. The distinction that matters
+ most for the result is the last but one: $q$ labels a solution at fixed
+ horizon radius, $j$ labels it at fixed mass, and $y$ is what is held fixed
+ when the extremal mass is differentiated with respect to the coupling at
+ fixed $J$.}
+ \label{tab:conventions}
+\end{table}
 
 \section{What the Gauss--Bonnet potential measures}
 \label{sec:potential}
@@ -250,8 +376,11 @@ $\bar\alpha=\alpha/r_H^2$; it is not unity.
 By definition, $\Psi$ is the derivative of mass with respect to $\alpha$
 at fixed entropy and both angular momenta. The solver, however, fixes
 $r_H$ and $\Omega_H$. Along its coupling direction, both entropy and
-angular momentum generally change. Evaluating the first law on that
-direction gives
+angular momentum generally change, so the derivative the solver delivers is
+not the one wanted. Let $\alpha\mapsto\bigl(M(\alpha),S(\alpha),J(\alpha)\bigr)$
+be the one-parameter family of solutions at fixed $(r_H,\Omega_H)$. Dividing
+\eqref{eq:firstlaw} by $\dd\alpha$ along that family and solving for $\Psi$
+gives
 \begin{equation}
  \boxed{\displaystyle
  \Psi=\left.\frac{\partial M}{\partial\alpha}\right|_{S,J}
@@ -267,24 +396,47 @@ static member. It does not equate partial derivatives with different
 constraints: it equates one constrained derivative to a combination of
 three derivatives evaluated along a different path.
 
-No terms such as $S\,\partial_\alpha T$ appear, because we evaluate the
-differential first law; we do not differentiate a putative expression
-$M=TS+2\Omega_HJ$. More generally any differentiable path through
-equilibrium solutions with $\dd\alpha\ne0$ gives the same $\Psi$ after
-subtracting the entropy and spin contributions and dividing by
-$\dd\alpha$.
+The single factor of two in \eqref{eq:psi} counts the two equal spins and
+nothing more. The weights $3$ and $2$ of the Smarr relation \eqref{eq:smarr}
+are absent for the reason given there: \eqref{eq:psi} is the differential
+first law divided by $\dd\alpha$, not the scaling relation differentiated.
+
+Nor do terms such as $S\,\partial_\alpha T$ or $J\,\partial_\alpha\Omega_H$
+appear. Such terms would arise from differentiating the finite expression for
+$M$ contained in \eqref{eq:smarr}, in which $T$, $S$, $\Omega_H$, $J$ and
+$\Psi$ all depend on $\alpha$. We do not take that route. In
+\eqref{eq:firstlaw} the intensive quantities $T$ and $\Omega_H$ multiply the
+variations $\dd S$ and $\dd J$ and are not themselves varied, which is why
+\eqref{eq:psi} has exactly three terms. Differentiating \eqref{eq:smarr}
+and eliminating $\dd M$ with \eqref{eq:firstlaw} yields instead the
+Gibbs--Duhem-type constraint
+$T\,\dd S+3S\,\dd T+2\Omega_H\,\dd J+6J\,\dd\Omega_H+2\alpha\,\dd\Psi=0$,
+which the solutions satisfy but which determines nothing new.
+More generally any differentiable path through equilibrium solutions with
+$\dd\alpha\ne0$ gives the same $\Psi$ after subtracting the entropy and spin
+contributions and dividing by $\dd\alpha$.
 
 \subsection{Connection with extremality}
 
-Suppose the sampled family approaches a regular extremal branch with
-$S=S_\ext(J,\alpha)$. Differentiating
-$M_\ext(J,\alpha)=M(S_\ext(J,\alpha),J,\alpha)$ gives
+Suppose the sampled family approaches a regular extremal branch, on which the
+entropy is a function $S_\ext(J,\alpha)$ of the remaining charges. The
+extremal mass is then the composition
+$M_\ext(J,\alpha)=M\bigl(S_\ext(J,\alpha),J,\alpha\bigr)$, and the chain rule
+together with \eqref{eq:firstlaw} gives
 \begin{equation}
  \left.\frac{\partial M_\ext}{\partial\alpha}\right|_J
- =T\left.\frac{\partial S_\ext}{\partial\alpha}\right|_J+\Psi
- =\Psi_\ext,\qquad T=0.
+ =T\left.\frac{\partial S_\ext}{\partial\alpha}\right|_J
+ +\left.\frac{\partial M}{\partial\alpha}\right|_{S,J}
+ =T\left.\frac{\partial S_\ext}{\partial\alpha}\right|_J+\Psi .
  \label{eq:goonpenco}
 \end{equation}
+No $\Omega_H$ term appears because $J$ is held fixed, and no scaling weights
+appear because this is a chain rule and not a form of \eqref{eq:smarr}.
+Since $T$ vanishes identically along the extremal branch, the first term
+drops as soon as $\partial S_\ext/\partial\alpha|_J$ is finite, leaving
+$\partial M_\ext/\partial\alpha|_J=\Psi_\ext$, where
+$\Psi_\ext\equiv\lim_{T\to0}\Psi$ along the branch.
+
 To infer this value from non-extremal numerical solutions we assume that
 their potentials have a continuous limit on that branch and that the
 entropy term has a vanishing limit. A bounded extremal entropy derivative
@@ -297,8 +449,20 @@ At positive temperature the same first law implies the exact identity
  \left.\frac{\partial S}{\partial\alpha}\right|_{M,J}
  =-\frac{\Psi}{T}.
 \end{equation*}
-Its extremal limit is the entropy--extremality relation of
-Goon and Penco \cite{Goon:2019faz}. In particular, positive $\Psi$
+Combining it with \eqref{eq:goonpenco} gives
+\begin{equation*}
+ \left.\frac{\partial M_\ext}{\partial\alpha}\right|_J
+ =\lim_{T\to0}\left(-T\left.\frac{\partial S}{\partial\alpha}\right|_{M,J}\right),
+\end{equation*}
+which is the entropy--extremality relation of Goon and Penco
+\cite{Goon:2019faz} for this family: the correction to the extremal mass is
+recovered from the correction to the entropy of nearby non-extremal states.
+We use it in that direction only, as an identity of the extended first law,
+with $\alpha$ in the role their relation gives to the coefficient of a
+higher-derivative term and $J$ in the role it gives to the conserved charges.
+As stressed in the introduction, $J$ is not a gauge charge, and we draw no
+weak-gravity or spectrum consequence from the analogy.
+In particular, positive $\Psi$
 means decreasing entropy at fixed mass and angular momenta.
 This should not be confused with the entropy along the extremal branch,
 where the mass also changes with $\alpha$.
@@ -306,23 +470,61 @@ where the mass also changes with $\alpha$.
 \subsection{Numerical response by implicit differentiation}
 \label{sec:response}
 
-Let $u$ collect the metric amplitudes at the $N$ collocation nodes.
-The discretised equations and boundary conditions are
-$R_N(u;\alpha,r_H,\Omega_H)=0$.
-After solving this nonlinear system, we differentiate it at fixed
-$r_H,\Omega_H$:
+Equation~\eqref{eq:psi} needs three derivatives of a numerically constructed
+solution with respect to the coupling. The obvious way to obtain them is to
+solve the boundary-value problem at $\alpha$ and at $\alpha\pm\Delta\alpha$
+and difference the resulting charges. We avoid this. Such a difference
+carries a truncation error growing like $\Delta\alpha^2$ that must be traded
+against a cancellation error growing like the solver tolerance divided by
+$\Delta\alpha$, and the trade-off worsens near extremality, where the
+solutions are hardest to converge. The procedure below has no step size.
+
+Let $u\in\mathbb R^{4N}$ collect the four metric amplitudes at the $N$
+collocation nodes, and write the discretised interior equations together with
+the horizon and asymptotic conditions as
+\begin{equation*}
+ R_N(u;\alpha,r_H,\Omega_H)=0 ,
+\end{equation*}
+which is $4N$ equations for $4N$ unknowns. A converged run returns a root
+$u(\alpha)$ at fixed $(r_H,\Omega_H)$. The useful observation is that $R_N$
+does not merely vanish at one point: it vanishes \emph{identically} in
+$\alpha$ along the branch of roots. Its \emph{total} derivative in $\alpha$
+therefore vanishes too, and that total derivative expands by the chain rule
+into a term through $u$ and a term through the explicit $\alpha$:
 \begin{equation}
- \underbrace{\frac{\partial R_N}{\partial u}}_{\mathsf A}
- \frac{\partial u}{\partial\alpha}
- =-\frac{\partial R_N}{\partial\alpha}.
+ \frac{\dd}{\dd\alpha}R_N\bigl(u(\alpha);\alpha\bigr)
+ =\underbrace{\frac{\partial R_N}{\partial u}}_{\mathsf A}
+  \frac{\dd u}{\dd\alpha}
+ +\frac{\partial R_N}{\partial\alpha}=0
+ \qquad\Longrightarrow\qquad
+ \mathsf A\,\frac{\dd u}{\dd\alpha}=-\frac{\partial R_N}{\partial\alpha}.
  \label{eq:response}
 \end{equation}
-Where the Jacobian $\mathsf A$ is invertible, one linear solve gives the
-response of the discretised metric. Propagating it through the same
-charge and entropy functionals gives the three derivatives in
-\eqref{eq:psi}. The entropy response retains the explicit coupling
-derivative of \eqref{eq:entropy}, in addition to the change of the horizon
-geometry.
+This is the implicit function theorem. It is the chain rule applied to a
+function that is being held at zero, not to a function whose value is being
+tracked, and the minus sign comes from that constraint: raising the coupling
+by itself would spoil the equations by $\partial_\alpha R_N$, and the metric
+must move by exactly the amount that cancels it. Where $\mathsf A$ is
+invertible --- it is the same Jacobian the last Newton step already used ---
+a single linear solve returns $\dd u/\dd\alpha$, with no extrapolation and no
+step to refine.
+
+What this buys is the missing ingredient of \eqref{eq:psi}. Mass, entropy and
+each angular momentum are explicit functionals $\mathcal F[u;\alpha]$ of the
+discretised profile: the asymptotic fits of \eqref{eq:charges} and the horizon
+integral of \eqref{eq:entropy}. Their coupling derivatives follow by one more
+chain rule,
+\begin{equation*}
+ \frac{\dd\mathcal F}{\dd\alpha}
+ =\frac{\partial\mathcal F}{\partial u}\cdot\frac{\dd u}{\dd\alpha}
+ +\frac{\partial\mathcal F}{\partial\alpha},
+\end{equation*}
+in which the second term is present only for the entropy, whose integrand
+\eqref{eq:entropy} contains $\alpha$ explicitly as well as through the horizon
+geometry. Inserting $\dd M/\dd\alpha$, $\dd S/\dd\alpha$ and $\dd J/\dd\alpha$
+into \eqref{eq:psi} returns $\Psi$ at that solution. Omitting the explicit
+$\partial_\alpha$ of the entropy is the easiest way to produce a smooth but
+wrong answer, so it is coded and tested separately.
 
 The production code assembles $\mathsf A$ by the chain rule from local
 complex-step derivatives of the radial equations and horizon relations.
@@ -342,28 +544,108 @@ finite-coupling determination of $\Psi$.
 
 This local linear response is evaluated about solutions at finite
 $\alpha$. It does not truncate the whole family at first order about
-$\alpha=0$. That distinction is what allows us to measure a
-non-perturbative dependence on the coupling within classical EGB gravity.
+$\alpha=0$. That distinction is what allows us to measure a finite-coupling,
+nonlinear-in-$\alpha$ dependence within classical EGB gravity. We avoid the
+word non-perturbative, which in this context invites a reading about
+effective field theory that section~\ref{sec:discussion} explicitly declines.
 
 As a check, we compare the response with central real differences of
 neighbouring solutions. At $\Nrefinementpoints$ points, using
 $\Nrefinementsteps$ step sizes related by halving, the discrepancy
 decreases by factors between $\Nratiolow$ and $\Nratiohigh$, consistent
-with second-order convergence. The largest initial gap is $\Nlargestgap$.
+with second-order convergence. Table~\ref{tab:refinement} gives the locations,
+the first and last step sizes and the errors they leave, rather than the
+ratios alone: the largest initial gap is $\Nlargestgap$ and the smallest final
+one is what a step-based method would have had to pay for, which is the
+argument for not using one.
 Responses in both $\alpha$ and $\Omega_H$ also provide tangent predictors
 for the continuation towards extremality.
+
+\begin{table}[t]
+ \centering\small
+ \begin{tabular}{@{}cccccccc@{}}
+ \toprule
+ $q$ & $\alpha$ & response $\Psi$ &
+ \multicolumn{2}{c}{largest step} & \multicolumn{2}{c}{smallest step} &
+ ratios \\
+ \cmidrule(lr){4-5}\cmidrule(lr){6-7}
+ & & & $\Delta\alpha$ & error & $\Delta\alpha$ & error & \\
+ \midrule
+ \Nrefinementtable
+ \bottomrule
+ \end{tabular}
+ \caption{The implicit response against real central differences of
+ neighbouring solutions. The error columns are the absolute difference between
+ the differenced value and the response value quoted in the third column, at
+ the two ends of a halving ladder of $\Nrefinementsteps$ steps; the last column
+ gives the range of successive error ratios along that ladder. Four is the
+ value expected of a second-order central difference. The response itself has
+ no step size, so it has no entry in either error column.}
+ \label{tab:refinement}
+\end{table}
 
 \section{Results}
 \label{sec:results}
 
 The dataset contains $\Nstates$ accepted solutions at $\Ncouplings$
 couplings from $\alpha=0$ to $\alpha=1/2$ in units $r_H=1$.
-It reaches $x=\Nxlast$ on the sampled family and $x=\Nxextlast$
+Every one of them is a solution of the nonlinear radial boundary-value
+problem of section~\ref{sec:response}, solved at that coupling: nothing is
+obtained by perturbing about $\alpha=0$ or by rescaling the static solution.
+The spin coverage is not uniform across the $\Ncouplings$ couplings, and the
+difference matters for what each figure can show.
+At $\Nmapcouplings$ of them, namely \Nmaplist, the family was walked
+over the whole spin range, from $q$ near zero up to the near-extremal end.
+At the remaining $\Nnarrowcouplings$ the walk starts at $q=\Nstartspin$ and
+runs to the near-extremal end, which is the region the zero-temperature
+extrapolation of section~\ref{sec:shift} uses. Consequently
+table~\ref{tab:extremal} has $\Ncouplings$ rows while
+figure~\ref{fig:potential} and table~\ref{tab:locus}, which need the low-spin
+end, have $\Nmapcouplings$.
+
+Figure~\ref{fig:profiles} shows the four radial amplitudes themselves at all
+$\Ncouplings$ couplings, at the one spin $q=\Nstartspin$ that every walk
+passes through, so that the comparison isolates the coupling. These are
+independent re-solves along a different continuation route from the one used
+for the dataset --- a spin ladder in the vacuum followed by a coupling ladder
+at fixed spin, rather than a response-seeded descent in the spin at fixed
+coupling --- and they reproduce the mass, spin, entropy and temperature of the
+corresponding accepted states to $\Nprofileagreement$ relative.
+The deformation the coupling produces is visible there and is not small.
+At $\alpha=0$ the horizon three-sphere is squashed by
+$h(r_H)/r_H^2=\Nsquashingfirst$, which is the Myers--Perry value $1/(1-q^2)$
+and is reproduced by the solver rather than imposed. By $\alpha=1/2$ the same
+ratio has fallen to $\Nsquashinglast$. It has crossed unity, so at the largest
+coupling the horizon is squashed in the opposite sense from its Myers--Perry
+counterpart at the same $q$.
+
+The dataset reaches $x=\Nxlast$ on the sampled family and $x=\Nxextlast$
 on the extrapolated extremal branch. These are subsets of the allowed
 domain, whose published bound is $x<1$ \cite{Kleihaus:2023zzs}.
 We follow the branch continuously connected to Myers--Perry.
 Continuation and regularity checks identify the branch sampled here;
 they do not establish global uniqueness or exhaust its domain.
+
+\begin{figure}[t]
+ \centering
+ \includegraphics{figures/fig-profiles.pdf}
+ \caption{The four metric functions of \eqref{eq:ansatz} at all
+ $\Ncouplings$ couplings of table~\ref{tab:extremal}, all at the same spin
+ $q=\Nstartspin$ and in units $r_H=1$. One colour per function, one shade per
+ coupling, running from $\alpha=0$ (lightest) to $\alpha=1/2$ (darkest).
+ Two conventions follow fig.~1 of \cite{Brihaye:2010wp}, so that the two
+ figures can be compared directly: $h$ is shown as $h/r^2$, which tends to
+ unity at infinity whereas $h$ itself grows like $r^2$, and $b$ is shown as
+ $-b$, because $b$ and $f$ otherwise overlap over most of the range.
+ The boundary conditions are visible rather than imposed on the plot:
+ $b=f=0$ and $w=q$ at $r=r_H$, and $b,f,h/r^2\to1$ and $w\to0$ as
+ $r\to\infty$. Each curve is a separate solution of the nonlinear radial
+ problem, not a perturbation of the curve beside it. The spread within each
+ colour is the effect of the coupling at fixed horizon radius and fixed spin;
+ it is largest for $h/r^2$, whose horizon value crosses unity, and smallest
+ for $w$.}
+ \label{fig:profiles}
+\end{figure}
 
 \subsection{An analytic example: the static limit}
 \label{sec:static}
@@ -376,9 +658,11 @@ In our conventions,
  S=\frac{\pi^2}{2}r_H^3+6\pi^2\alpha r_H.
  \label{eq:static}
 \end{equation}
-This example also illustrates the constraints in \eqref{eq:psi}.
-At fixed radius $M_\alpha=3\pi/4$ is positive, but the entropy changes
-by $S_\alpha=6\pi^2r_H$. Subtracting its contribution gives
+This example also illustrates, in closed form, the constraints in
+\eqref{eq:psi}. Differentiating \eqref{eq:static} at fixed radius, the mass
+derivative $M_\alpha=3\pi/4$ is positive, but the entropy is not held fixed:
+it changes by $S_\alpha=6\pi^2r_H$. There is no spin term, so subtracting the
+entropy contribution is all that \eqref{eq:psi} requires, and gives
 \begin{equation}
  \Psi_{\rm static}
  =\frac{3\pi}{4}-T(6\pi^2r_H)
@@ -402,31 +686,55 @@ on the static branch. That result alone does not fix the sign on
 all rotating solutions beyond the range sampled here.
 
 \subsection{The published perturbative potential}
+\label{sec:perturbative}
 
-The full spin dependence at $\alpha=0$ follows from the perturbative
-free energy in \cite{Wu:2024xnb}. Define the Gibbs potential
-$\mathcal G=M-TS-\sum_i\Omega_iJ_i$. The extended first law gives
-$\dd\mathcal G=-S\,\dd T-\sum_iJ_i\,\dd\Omega_i+\Psi\,\dd\alpha$,
-so the coefficient of $\alpha$ in $\mathcal G$ at fixed
-$T,\Omega_i$ is $\Psi_0$.
+The $\alpha=0$ potential is known in closed form at every spin, and
+\eqref{eq:psizero} below is neither a guess of ours nor a fit to our data: it
+is transcribed from a published perturbative free energy, with the two steps
+of that transcription spelled out here.
 
-Specialising eq.~(33) of the arXiv version of \cite{Wu:2024xnb}
-to $D=5$ and equal rotation parameters gives
+The source is Wu and L\"u \cite{Wu:2024xnb}, who compute the
+$\mathcal O(\alpha)$ correction to the thermodynamics of Myers--Perry black
+holes in a general quadratic-curvature theory, at fixed temperature and
+angular velocities, with the same $1/16\pi G$ action normalisation used in
+\eqref{eq:action}. Their result applies to the Gauss--Bonnet term because the
+Myers--Perry background is Ricci-flat: the $R^2$ and $R_{\mu\nu}R^{\mu\nu}$
+terms of $\mathcal L_\GB$ contribute nothing at this order, so at first order
+the coefficient of their $R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}$ is our
+$\alpha$.
+
+The first step is thermodynamic. Define the Gibbs potential
+$\mathcal G=M-TS-\sum_i\Omega_iJ_i$. The extended first law
+\eqref{eq:firstlaw} gives
+$\dd\mathcal G=-S\,\dd T-\sum_iJ_i\,\dd\Omega_i+\Psi\,\dd\alpha$, so the
+coefficient of $\alpha$ in $\mathcal G$ at fixed $T$ and $\Omega_i$ is
+$\Psi$ evaluated on the Einstein solution, which we call $\Psi_0$.
+Equation~(33) of the arXiv version of \cite{Wu:2024xnb}, specialised to $D=5$
+with equal rotation parameters $a_1=a_2=a$, is then
 \begin{equation*}
- \frac{\Delta\mathcal G}{\alpha}
- =-\frac{\pi}{4r_+^4}(a^4-14a^2r_+^2+9r_+^4).
+ \Psi_0=\frac{\Delta\mathcal G}{\alpha}
+ =-\frac{\pi}{4r_+^4}\bigl(a^4-14a^2r_+^2+9r_+^4\bigr),
 \end{equation*}
-The Ricci-flat background makes the curvature-squared expression
-applicable to the Gauss--Bonnet term at this order.
-In our radial gauge $r_H^2=r_+^2+a^2$ and $q=a/r_H$, hence
+with $r_+$ the Boyer--Lindquist horizon radius.
+The second step is the change of radial coordinate already recorded in
+\eqref{eq:qmp}, which turns this into a function of our spin label alone:
 \begin{equation}
- \Psi_0(q)=-\frac\pi4(u^2-14u+9),\qquad
+ \Psi_0(q)=-\frac\pi4\bigl(u^2-14u+9\bigr),\qquad
  u=\frac{a^2}{r_+^2}=\frac{q^2}{1-q^2}.
  \label{eq:psizero}
 \end{equation}
-This published analytic result provides a reference for the numerical calculation.
-It gives $-9\pi/4$ at $u=0$ and $\pi$ at the extremal value $u=1$,
-and vanishes at $q=\Nperturbativezero$.
+
+Equation~\eqref{eq:psizero} interpolates between the two ends of the vacuum
+family, and reproduces both independently known endpoint values although
+neither was used to obtain it. At $u=0$ the solution is static, and
+\eqref{eq:psizero} returns $-9\pi/4$, which is the $\alpha\to0$ limit of the
+closed-form Boulware--Deser potential \eqref{eq:psistatic} obtained in
+section~\ref{sec:static} from an entirely different calculation. At $u=1$,
+which by \eqref{eq:qmp} is $q=1/\sqrt2$ and hence extremality, it returns
+$\pi$, the linear-order slope in \eqref{eq:published} taken from
+\cite{Ma:2020xwi}. Between them it changes sign once, at
+$q=\Nperturbativezero$. This is the analytic reference against which the
+numerical response is tested at zero coupling.
 
 We evaluate the numerical response on the Myers--Perry background at
 $\alpha=0$. It agrees with \eqref{eq:psizero} to at least
@@ -437,8 +745,22 @@ the numerical response and charge extraction remain discretised.
 
 \subsection{The potential across the family}
 
-Figure~\ref{fig:potential} shows $\Psi$ against $t_H$ for the couplings
-sampled across the spin range. On those sequences $\Psi$ is negative
+Figure~\ref{fig:potential} shows $\Psi$ against $t_H$ for the
+$\Nmapcouplings$ couplings walked over the whole spin range.
+Every plotted point is one accepted rotating solution, and both of its
+coordinates are measured on that same solution: $\Psi$ from its own linear
+response \eqref{eq:response}, and $t_H$ from its own $T$ and $M$ through
+\eqref{eq:massvars}. Neither axis uses a static quantity. In particular
+$t_H$ is not the static value $\sqrt{1+2\bar\alpha}/(1+4\bar\alpha)$ held
+fixed along a curve; that value is the $q\to0$ \emph{limit} the curve runs
+towards, and the closed-form static potential \eqref{eq:psistatic} is plotted
+there as a cross so that the approach can be checked. The walks stop at a
+small nonzero spin, so the crosses lie just beyond the right-hand end of the
+curves rather than on them.
+The curves are therefore sequences of rotating solutions at fixed coupling,
+parametrised by spin, and not the static potential replotted.
+
+On those sequences $\Psi$ is negative
 near the static member and becomes positive towards extremality.
 Thus increasing $\alpha$ lowers the mass at fixed $(S,J)$ in the former
 region and raises it in the latter. The location of the sign change
@@ -447,20 +769,32 @@ depends on the coupling.
 \begin{figure}[t]
  \centering
  \includegraphics{figures/fig-potential.pdf}
- \caption{The potential along the sampled stationary families.
- The static endpoint depends on coupling:
- $t_H=\sqrt{1+2\bar\alpha}/(1+4\bar\alpha)$.
- Crosses mark the analytic static values; circles at $t_H=0$ mark
- extrapolated extremal values for the same couplings.
- Only the Einstein static endpoint has $t_H=1$.}
+ \caption{The measured potential along the $\Nmapcouplings$ stationary
+ families that were walked over the whole spin range; the other
+ $\Nnarrowcouplings$ couplings of table~\ref{tab:extremal} do not reach the
+ low-spin end and are not shown. Each point on a curve is one rotating
+ numerical solution, with $\Psi$ and $t_H$ both evaluated on that solution.
+ A curve ends on the left at the coldest state reached and on the right at
+ the slowest rotating state reached. Crosses are the exact static values
+ \eqref{eq:psistatic}, plotted at the static temperature
+ $t_H=\sqrt{1+2\bar\alpha}/(1+4\bar\alpha)$, which depends on the coupling so
+ that only the Einstein static endpoint has $t_H=1$; they are the $q\to0$
+ limits the curves run towards, not points on them. Circles at $t_H=0$ are
+ the extrapolated extremal values of table~\ref{tab:extremal} for the same
+ couplings; they are intercepts of fits, not constructed solutions.}
  \label{fig:potential}
 \end{figure}
 
 Every crossing in table~\ref{tab:locus} is bracketed by two accepted
-solutions of opposite sign. The quoted position is an interpolant;
-the bracket width indicates the resolution of the crossing.
-At zero coupling its difference from the analytic zero is
-$\Nlocuszerodev$. In the scaled spin the locus moves from
+solutions of opposite sign, and both endpoints of the bracket are given there.
+The quoted position between them is an interpolant, so the digits it carries
+are not the width of the bracket and should not be read as one. What they can
+be calibrated against is the zero-coupling row, where the analytic zero
+\eqref{eq:psizero} is known: the crossing is bracketed by solutions
+$\Nlocuszerogap$ apart in $q$ and the interpolant lands $\Nlocuszerodev$ from
+the analytic value, so the interpolation is better than the sampling by two
+orders of magnitude, and it is that, rather than the bracket, that supports the
+digits printed. In the scaled spin the locus moves from
 $j=\Njlocusfirst$ to $\Njlocuslast$. In temperature it moves from
 $t_H=\Ntlocusfirst$ down to $\Ntlocusmin$ at
 $\alpha=\Nalphalocusmin$, then increases. A turning point in this
@@ -476,7 +810,10 @@ with the minimum of the extremal slope.
  \Nlocustable
  \bottomrule
  \end{tabular}
- \caption{The measured sign-change locus. Digits of the interpolant are
+ \caption{The measured sign-change locus, for the $\Nmapcouplings$ couplings
+ whose walks cover the low-spin end where $\Psi$ is negative; at the other
+ $\Nnarrowcouplings$ no crossing is bracketed by accepted solutions and none
+ is reported. Digits of the interpolant are
  supplied for reproducibility, not as an error estimate. At $\alpha=0$
  the crossing is $q=\Nlocuszero$, compared with the analytic
  $q=\Nperturbativezero$.}
@@ -486,34 +823,109 @@ with the minimum of the extremal slope.
 \subsection{The extremal mass and its slope}
 \label{sec:shift}
 
-The walks reach $\tau\le\Ntaufloor$ at every coupling and
-$\Ntaubest$ at the closest approach. The extrapolated branch is given
-in table~\ref{tab:extremal}. Central values are cubic fits in the
-unscaled temperature $T$ to the six coldest states at each coupling.
-The sensitivity column includes changes of polynomial degree, fitting
-window, non-analytic fit terms and replacement of $T$ by $\tau$.
-The precise procedure is in appendix~\ref{app:numerics}.
-These are extrapolations from positive temperature, not solutions
-constructed directly at $T=0$.
+The walks reach $\tau\le\Ntaufloor$ at every coupling and $\Ntaubest$ at the
+closest approach, in the scaled temperature $\tau$ of \eqref{eq:spinvars};
+the value at each coupling is the $\tau_{\min}$ column of
+table~\ref{tab:extremal}, which is the scaled temperature of the coldest
+solution actually constructed there. The extrapolated branch is given in the
+same table. Central values are the $T=0$ intercepts of cubic fits in the
+unscaled temperature $T$ through the six coldest states at each coupling.
+
+Every row of table~\ref{tab:extremal} is therefore an extrapolation from
+positive temperature and not a solution constructed at $T=0$. No state in the
+dataset has zero temperature; the rows are called extremal because they are
+intercepts at $T=0$, so their temperature is zero by construction rather than
+by measurement, and reporting it would report the construction. What can be
+reported, and is, is how far the extrapolation had to reach: that is
+$\tau_{\min}$, which varies by orders of magnitude across the couplings and is
+the measure of the distance between the coldest solution and the quoted row.
+The rows at the couplings with the largest $\tau_{\min}$ are correspondingly
+the ones with the largest sensitivity, as table~\ref{tab:extremal} shows.
+We therefore call the entries central extrapolants and not measurements at
+extremality, and the wording is not a formality: the extrapolation is the
+single step in this calculation that no check in section~\ref{sec:checks}
+repeats independently.
+
+Figure~\ref{fig:extrapolation} shows that step itself, which a table of
+intercepts hides. For each coupling it plots the six states the production fit
+uses, the cubic fitted through them, the intercepts returned by the other
+twenty fits of the sensitivity list, and the residuals the production fit
+leaves. Three things are visible there. The fit describes its own points to
+$\Nfitresidualworst$ or better at every coupling, which is small compared with
+every sensitivity in table~\ref{tab:extremal}; so the envelope in that table is
+not driven by a poor fit but by the length of the extrapolation. The
+distance the fit travels differs by more than an order of magnitude between
+couplings, and the four whose curves travel furthest are precisely the four
+carrying the largest sensitivities in table~\ref{tab:extremal}. And the competing intercepts cluster at the axis rather
+than scattering, so the spread the table reports is a spread between models
+that mostly agree, not a disagreement about the value.
+
+What the figure cannot show is a bias shared by all twenty-one fits. We have
+not derived the leading near-extremal powers of $T$ for this system, so the
+cubic is a convenience and not a model of the approach to extremality; the
+square-root and logarithmic probes in table~\ref{tab:models} test for two
+specific departures from analyticity and not for the general case. One further
+stability test is reported in appendix~\ref{app:numerics}: refitting with each
+of the six states removed in turn moves the intercept by at most
+$\Nlooworst$, so no single cold or warm state carries the result.
+
+The \emph{sensitivity} column answers one question: by how much does that
+intercept move when the fit is changed? We refit the same states with
+polynomials of degree one, two and three, on the six coldest states and on up
+to the twelve coldest, in the coordinate $T$ and in the coordinate $\tau$, and
+with two non-polynomial models; the quoted half-width is the largest
+displacement of the intercept over that whole list. It is a sensitivity to a
+stated set of modelling choices. It carries no confidence level, it is not a
+standard error, and it bounds no bias shared by every fit in the list --- in
+particular none of these variations can detect an error common to all of them,
+such as a systematic error in the underlying charges. The full list is in
+appendix~\ref{app:numerics}; the contribution of the two non-polynomial
+models, which dominates the envelope at most couplings, is tabulated there in
+table~\ref{tab:models}.
 
 \begin{table}[t]
  \centering\small
- \begin{tabular}{@{}cccccccc@{}}
+ \begin{tabular}{@{}ccccccccc@{}}
  \toprule
- $\alpha$ & $y$ & $x$ & $\mu$ &
+ $\alpha$ & $y$ & $x$ & $\tau_{\min}$ & $\mu$ &
  $\Psi_\ext$ & sensitivity & $j$ & $\sigma$\\
  \midrule
  \Nextremaltable
  \bottomrule
  \end{tabular}
- \caption{Extrapolated extremal states. The sensitivity refers to
- $\Psi_\ext$, not to the other columns; it is an envelope of the fit
- variations described in the text, not a statistical confidence
- interval or a rigorous error bound. Extra digits identify the
+ \caption{The extrapolated extremal branch. These rows are not solutions.
+ Each is the $T=0$ intercept of a fit through the coldest states at that
+ coupling, so the temperature of a row is zero by construction and is not a
+ measurement; $\tau_{\min}=\min TJ^{1/3}$ is instead reported, and gives the
+ scaled temperature of the coldest solution the walk at that coupling
+ actually reached. The sensitivity refers to $\Psi_\ext$ and to no other
+ column; it is defined in section~\ref{sec:shift} and constructed in
+ appendix~\ref{app:numerics}, and it is neither a statistical confidence
+ interval nor a rigorous error bound. Extra digits identify the
  numerical central values. The first row is compared with
  $\mu=(3/2)\pi^{1/3}$ and $\Psi_\ext=\pi$ in section~\ref{sec:checks}.}
  \label{tab:extremal}
 \end{table}
+
+\begin{figure}[t]
+ \centering
+ \includegraphics{figures/fig-extrapolation.pdf}
+ \caption{The zero-temperature extrapolation, which produces every row of
+ table~\ref{tab:extremal}. Filled circles are the $\Nfitwindow$ coldest
+ accepted solutions at each coupling and the line through them is the
+ production cubic; the abscissa is the temperature divided by the temperature
+ of the warmest fitted state, which is the coordinate the fit itself uses, so
+ that windows spanning four decades of $T$ can be compared. The physical
+ temperatures are the $\tau_{\min}$ column of table~\ref{tab:extremal} and the
+ $T_{\min}$ column of table~\ref{tab:models}. The central value is subtracted,
+ so every curve reaches the origin by construction and what the figure shows is
+ how far it travelled to get there. Short horizontal ticks on the left axis are
+ the intercepts of the other twenty fits in the sensitivity list; the envelope
+ of those ticks is the sensitivity column of table~\ref{tab:extremal}. The
+ lower panel gives the residuals of the production fit on a symmetric
+ logarithmic scale.}
+ \label{fig:extrapolation}
+\end{figure}
 
 The main qualitative result is visible in figure~\ref{fig:shift}:
 the slope $\Psi_\ext$ is positive throughout the sampled range,
@@ -527,8 +939,11 @@ about a factor $\Nsuppression$.
 We do not assign a precise location or confidence interval to a
 continuous minimum between the sampled couplings.
 
-The mass itself remains increasing at fixed spin. The accumulated
-mass change is the integral of the slope:
+The central extrapolated $M_\ext$ remains increasing at fixed $J$ across the
+sampled range: the $\mu$ column of table~\ref{tab:extremal} is monotone, and
+its increments exceed the corresponding spreads in table~\ref{tab:budget} by
+two orders of magnitude or more. The accumulated mass change is the integral of
+the slope:
 \begin{equation*}
  M_\ext(J,\alpha)-M_\ext(J,0)
  =J^{2/3}\int_0^{\alpha/J^{2/3}}\Psi_\ext(y')\,\dd y'.
@@ -551,11 +966,19 @@ We integrate a local cubic interpolant through the four nearest
 potential samples. The largest interval discrepancy in
 \eqref{eq:identity} is $\Nrouteworst$, or $\Nrouteworstrel$
 relative to the corresponding change in $\mu$.
-Across the full range it accumulates to $\Nroutecumulative$
-on a total change $\Nmutotal$. Using trapezoids instead gives a
-largest discrepancy $\Nroutetrapezoid$.
+Two different cumulative figures have to be distinguished. The discrepancy
+accumulated across the whole range, that is its value at the last interval
+$y=\Nroutecumulativey$, is $\Nroutecumulativeend$ on a total change
+$\Nmutotal$; the largest \emph{running} value, reached before the last
+interval and then partly cancelled, is $\Nroutecumulative$. Using trapezoids
+instead gives a largest interval discrepancy $\Nroutetrapezoid$.
 The comparison includes quadrature error and correlated errors
-in the observables. Agreement of the changes in $\mu$ does not
+in the observables. Propagating the recorded extrapolation spreads of both
+routes, the discrepancy is within the combined spread at
+$\Nroutewithinspread$ of the $\Nrouteintervals$ intervals, the worst case
+reaching $\Nroutespreadratio$ of it; since the two routes share those spreads
+this is a consistency statement about the quadrature and not an independent
+confirmation. Agreement of the changes in $\mu$ does not
 bound a common offset in the masses, and we do not use it as an
 absolute mass-accuracy estimate or a calibration of the sensitivity bars.
 
@@ -596,12 +1019,63 @@ These numbers result from the same continuation and extrapolation
 used at finite coupling; the limiting constants are not fitted constraints.
 The agreement at $y=0$ does not by itself establish the error at finite $y$.
 
+\paragraph{The potential from the Smarr relation.}
+The response calculation of section~\ref{sec:response} is the one step of this
+work with no analytic counterpart at finite coupling and finite spin, so it is
+worth checking against something that does not use it. The Smarr relation
+\eqref{eq:smarr} is such a thing. Read as an equation for $\Psi$ rather than as
+a residual, it gives
+\begin{equation}
+ \Psi_{\rm Smarr}=\frac{2M-3TS-6\Omega_HJ}{2\alpha},
+ \label{eq:psismarr}
+\end{equation}
+which involves only the charges of a single solution: no Jacobian, no linear
+solve, no parameter derivative and no second solution. It is therefore a
+genuine test of the implicit-response machinery --- of \eqref{eq:response}, of
+the chain-rule assembly, of the complex-step parameter derivative and of the
+explicit $\partial_\alpha$ of the entropy --- and not a repetition of it. What
+it does share with the response is the set of solutions and the asymptotic
+charge extraction, so a bias in either would move both.
+
+Over the $\Nsmarrstates$ accepted states at $\alpha\ne0$, \eqref{eq:psismarr}
+reproduces the response value to a worst relative difference
+$\Nsmarrpsiworst$, worst absolute difference $\Nsmarrpsiabsolute$.
+Extrapolating $\Psi_{\rm Smarr}$ to $T=0$ by the same cubic used for the
+production values gives the comparison in table~\ref{tab:smarr}: the two routes
+to $\Psi_\ext$ agree to $\Nsmarrextworst$ relative at all
+$\Nsmarrextcouplings$ finite couplings, well below every fit sensitivity in
+table~\ref{tab:extremal}. The division by
+$\alpha$ in \eqref{eq:psismarr} is ill-conditioned as $\alpha\to0$, which is
+why no row appears at $\alpha=0$ and why this route cannot replace the response
+calculation; at $\alpha=0$ the corresponding test is the published
+perturbative potential of section~\ref{sec:perturbative}.
+
+\begin{table}[t]
+ \centering\small
+ \begin{tabular}{@{}cccc@{}}
+ \toprule
+ $\alpha$ & $\Psi_\ext$, response & $\Psi_\ext$, Smarr & relative difference\\
+ \midrule
+ \Nsmarrtable
+ \bottomrule
+ \end{tabular}
+ \caption{The extremal potential by two routes. The first column repeats
+ table~\ref{tab:extremal}. The second extrapolates \eqref{eq:psismarr},
+ evaluated state by state from the charges alone, to $T=0$ with the same cubic
+ through the same $\Nfitwindow$ states. The two share the solutions and the
+ charge extraction but not the response solve. There is no $\alpha=0$ row:
+ \eqref{eq:psismarr} divides by the coupling.}
+ \label{tab:smarr}
+\end{table}
+
 \paragraph{Extremal entropy.}
-The near-horizon entropy function of \cite{Brihaye:2010wp} determines
-$S_\ext/J$ as a function of $y$ without integrating the radial equations.
-Our rederivation is summarised in appendix~\ref{app:nearhorizon}.
-Solving its algebraic equations numerically at finite coupling gives
-the comparison in figure~\ref{fig:entropy}; the worst relative difference
+The near-horizon entropy function determines $S_\ext/J$ as a function of $y$
+without integrating the radial equations. We rederived it rather than
+transcribing it, as summarised in appendix~\ref{app:nearhorizon}, and checked
+the rederivation against the equations published in \cite{Brihaye:2010wp};
+the curve in figure~\ref{fig:entropy} is that rederived solution and not a
+quotation. Solving its algebraic equations numerically at finite coupling gives
+the comparison shown there; the worst relative difference
 from the extrapolated bulk entropy is $\Nhorizonworst$.
 This validates the extremal entropy at finite coupling, but does not
 provide a near-horizon measurement of the asymptotic mass.
@@ -609,21 +1083,19 @@ provide a near-horizon measurement of the asymptotic mass.
 \begin{figure}[t]
  \centering
  \includegraphics{figures/fig-entropy.pdf}
- \caption{Extremal entropy per angular momentum. The line joins values
- from the near-horizon entropy function \cite{Brihaye:2010wp};
- the points are extrapolations of bulk solutions to zero temperature.}
+ \caption{Extremal entropy per angular momentum. The line joins values from
+ our rederived near-horizon entropy function, checked against the equations of
+ \cite{Brihaye:2010wp} to the precision quoted in the text; the points are
+ extrapolations of bulk solutions to zero temperature.}
  \label{fig:entropy}
 \end{figure}
 
 In the variables of \cite{Brihaye:2010wp}, our near-horizon solutions
 satisfy its eqs.~(4.11) and (4.12) to $\Npublishedstationarity$
 and $\Npublishedspin$, respectively. This comparison checks the
-coupling conversion $\alpha_{\rm ref.}=4\alpha$.
-\footnote{A separate reconstruction of the non-extremal family gave an
-outer ergosurface radius $1.102101$, compared with $1.104$ quoted in
-\cite{Brihaye:2010wp}, at $\alpha=1/2$ in our convention.
-The discrepancy remains unresolved and is not used as evidence for
-an erratum. The potential calculation does not use the ergosurface radius.}
+coupling conversion $\alpha_{\rm ref.}=4\alpha$ of
+table~\ref{tab:conventions}. One comparison with the same reference does not
+close; it is discussed in section~\ref{sec:discussion}.
 
 \paragraph{Internal thermodynamic checks.}
 At $\Nconsistencypoints$ selected states we evaluate the first law
@@ -641,8 +1113,12 @@ generically $J$ vanishes linearly with spin and its spin derivative
 there is nonzero.
 
 The Jacobian condition number at these selected states reaches
-$\Nconditionworst$. Its role and the limits of this diagnostic
-are discussed in appendix~\ref{app:numerics}.
+$\Nconditionworst$. This is the $2$-norm condition number of the assembled
+$\partial R_N/\partial u$ in the collocation variables of
+appendix~\ref{app:numerics}, with no row or column scaling applied; a
+different scaling of the unknowns would give a different number, so it is
+comparable between our own states and not with another solver's. Its role and
+the limits of this diagnostic are discussed in appendix~\ref{app:numerics}.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -651,13 +1127,26 @@ The observable calculated here is the response of mass to the
 Gauss--Bonnet coupling at fixed entropy and angular momenta.
 Its zero-temperature limit gives the response of the extremal mass
 at fixed angular momenta, provided the branch has a regular thermodynamic
-limit. The numerical evidence supports a positive, non-monotonic slope
-over the sampled finite-coupling range. The positive initial slope
-was already known; the substantial decrease and subsequent increase
-are the finite-coupling behaviour investigated here.
+limit. Stated at the precision the evidence supports: for the equal-spin
+branch continuously connected to five-dimensional Myers--Perry, our
+positive-temperature solutions and their zero-temperature extrapolations
+indicate that $\partial M_\ext/\partial\alpha|_J$ remains positive over the
+sampled range, its central extrapolant decreasing from the perturbative value
+$\pi$ to a broad low region near $\Npsimin$ and then rising to about
+$\Npsilast$. This trend is stable under every fitting variation tested, but
+the displayed ranges are fit sensitivities and not complete numerical error
+bounds. The positive initial slope was already known; the substantial decrease
+and subsequent increase are the finite-coupling behaviour investigated here.
+Both moves are large compared with the fit sensitivities of
+table~\ref{tab:extremal}: the fall from $\pi$ to $\Npsimin$ and the rise from
+there to $\Npsilast$ each exceed the sensitivities of the rows involved by
+more than an order of magnitude. What those sensitivities do not resolve is
+where the turning point lies between the sampled couplings, which is why we
+quote a lowest sampled value and not a minimum.
 
 The distinction between a slope and an accumulated mass change matters.
-At fixed $J$, the mass keeps increasing in the range measured.
+At fixed $J$, the central extrapolated extremal mass keeps increasing in the
+range measured.
 Its rate of increase reaches a lowest sampled value near
 $\alpha=\Nalphamin$ in units $r_H=1$, corresponding to
 $x=\Nxmin$, and then recovers. By $x=\Nhalfx$ the slope is
@@ -700,16 +1189,47 @@ classical truncation from an ultraviolet completion
 \cite{Camanho:2014apa}.
 
 The main limitations are the extremal extrapolation, the incomplete
-coupling coverage and the equal-spin restriction.
+coupling coverage, its uneven spin coverage --- the low-spin end, and hence
+the sign-change locus, is mapped at only $\Nmapcouplings$ of the
+$\Ncouplings$ couplings --- and the equal-spin restriction.
 The displayed bands measure sensitivity to specified fitting choices;
 they are not rigorous numerical error bounds.
+Radial resolution is not among them. The complete ascending sequence and its
+$T=0$ extrapolation have been repeated at two coarser base resolutions at every
+one of the $\Ncouplings$ couplings, including the three samples at
+$y=\Nminimumlow$, $\Nymin$ and $\Nminimumhigh$ that bracket the turn in the
+slope. The extremal intercept moves by at most $\Nstudypsiworst$, which is
+below the fit sensitivity at the same coupling in $\Nstudybelow$ of the
+$\Nstudywalks$ sequences and never approaches the size of either the fall from
+$\pi$ or the subsequent rise. Appendix~\ref{app:numerics} reports it observable
+by observable, together with the three reasons it is a bound and not a
+convergence proof. Small field-equation residuals still do not by themselves
+bound the error in $M$, $J$, $S$ or $\Psi$, and we do not present them as if
+they did; what bounds it here is the recomputation.
 The mass-curve consistency check shares systematic errors with the
 potential calculation, while the near-horizon check determines entropy
 rather than mass. The near-horizon geometry discards the asymptotic
 normalisation needed to recover the global mass by itself.
-A direct construction of extremal solutions with response measurements,
-additional resolution studies, and a comparison with an independent
-solver would strengthen the quantitative determination.
+The Smarr route of section~\ref{sec:checks} removes the response solve from
+the chain, but not the solutions or the charge extraction, so it does not close
+this gap either.
+
+One comparison with \cite{Brihaye:2010wp} does not close. A separate
+reconstruction of the non-extremal family gave an outer ergosurface radius
+$1.102101$ against the $1.104$ quoted there, at $\alpha=1/2$ in our
+convention. The discrepancy is unresolved and we do not offer it as evidence
+of an erratum. It tests the reconstruction of the non-extremal metric
+functions away from the horizon; it does not test the asymptotic charge
+extraction, the response solve or the extrapolation, none of which uses the
+ergosurface radius, and the near-horizon comparison above, which does test the
+coupling conversion, agrees to $\Npublishedstationarity$. We record it as an
+open point rather than resolving it.
+
+A direct construction of extremal solutions with response measurements and a
+comparison with an independent solver would strengthen the quantitative
+determination further.
+A derivation of the leading near-extremal powers of $T$ would do more than any
+of these, since it would replace the fitted cubic with a model.
 A second-order perturbative calculation would also provide a useful
 test of the initial departure from $\Psi_\ext=\pi$.
 
@@ -726,9 +1246,10 @@ The unknown amplitudes factor out the boundary behaviour:
  h=\frac{1+z^4H}{z^2},\qquad w=z^4W.
 \end{equation*}
 They are represented at Chebyshev--Lobatto nodes.
-At infinity we impose $B=F=1$, $H'=W'=0$.
-At the horizon, where the solved interior equations are singular,
-we impose three regularity relations and $W(0)=\Omega_H$.
+At infinity, $\chi=1$, we impose $B=F=1$ and $H'=W'=0$, primes denoting
+$\chi$-derivatives. At the horizon, $\chi=0$, where the solved interior
+equations are singular, we impose three regularity relations together with
+$W(\chi=0)=\Omega_H$, which is what fixes the spin of the solution.
 The equations and horizon relations are generated symbolically.
 Damped Newton iteration solves the collocation system.
 Production walks use $N=\Nresolution$, with
@@ -775,8 +1296,13 @@ is $\Nsmarrworst$. These residuals diagnose equation closure; they
 are not bounds on the error of an extracted observable.
 
 The largest condition number in the selected $\Nconsistencypoints$
-checks is $\Nconditionworst$. Multiplying a condition number by
-machine precision estimates possible error amplification, not the
+checks is $\Nconditionworst$. It is $\|\mathsf A\|_2\,\|\mathsf A^{-1}\|_2$
+for the assembled $\mathsf A=\partial R_N/\partial u$ in the collocation
+variables $(B,F,H,W)$ at the Chebyshev--Lobatto nodes, with no row
+equilibration and no rescaling of the unknowns; the quantity is therefore
+tied to that choice of variables and is not comparable with a condition
+number reported by a solver using different ones. Multiplying a condition
+number by machine precision estimates possible error amplification, not the
 number of correct digits in $\Psi$.
 These selected checks do not bound conditioning at all
 near-extremal states or at every resolution.
@@ -843,29 +1369,220 @@ not bound biases shared by all fits.
  \bottomrule
  \end{tabular}
  \caption{Sensitivity of the potential intercept to non-polynomial
- fit models. The temperature range is that of the up-to-twelve-point
- window. Each shift is the largest absolute difference from the
- production central value over both windows and both coordinates.}
+ fit models. $T_{\min}$ is the unscaled temperature of the coldest state at
+ that coupling, and is the same state whose scaled temperature appears as
+ $\tau_{\min}$ in table~\ref{tab:extremal}; the ratio column gives the span of
+ the up-to-twelve-point window, which is the lever arm of the fit. Each shift
+ is the largest absolute difference from the production central value over
+ both windows and both coordinates. These two columns are part of the
+ sensitivity envelope of table~\ref{tab:extremal}, not a separate estimate.}
  \label{tab:models}
 \end{table}
 
-Repeating three walks at the comparison resolution changes the
-extrapolated potential by at most $\Ncontrastworst$ and $\mu$
-by at most $\Ncontrastmu$. This supports resolution stability at
-those couplings, but does not replace a systematic convergence
-study of every near-extremal endpoint.
+\paragraph{Removing a fitted state.}
+The envelope above varies the model, the window and the coordinate but always
+fits the same states. A separate test varies the states: we refit the
+production cubic $\Nfitwindow$ times, each time with one of the six fitted
+states removed, keeping the model fixed so that only one thing changes. Five
+points still over-determine a cubic. The largest resulting displacement of the
+intercept over all couplings is $\Nlooworst$, and the largest residual the
+production fit leaves on its own points is $\Nfitresidualworst$; both are
+smaller than every sensitivity in table~\ref{tab:extremal}. Neither is a bound
+on a bias shared by the six states, which is what a systematic error in the
+underlying charges would be.
+
+\paragraph{The uncertainty budget.}
+Table~\ref{tab:extremal} carries a sensitivity for $\Psi_\ext$ alone, but $y$,
+$\mu$, $j$ and $\sigma$ are extrapolated too, and the mass-curve check of
+\eqref{eq:identity} depends on $y$ and $\mu$ directly. Table~\ref{tab:budget}
+collects what is recorded for each. The spreads for $y$, $\mu$ and $\sigma$ are
+those of their own intercepts across the original degree checks; the spread for
+$j$ is obtained by forming $j$ from each pair of extrapolated $(M,J)$
+intercepts, which propagates their correlation rather than adding them in
+quadrature. The last two columns are the fit diagnostics of the preceding
+paragraph.
+
+These are not a combined error bound and we do not add them. The list of
+effects they do \emph{not} separate is the honest part of this table: radial
+resolution, which is measured at only $\Ncontrastcouplings$ couplings
+(table~\ref{tab:contrast}); the asymptotic tail extraction, whose recorded
+spread is $\Ntailspreadworst$ and which can be biased without spreading; the
+nonlinear solver tolerance; the response linear solve; and the interpolation
+used in \eqref{eq:identity}. A reader who wants one number per row should read
+the $\Psi_\ext$ sensitivity as the largest of the effects we can measure, not
+as a bound on their sum.
+
+\begin{table}[t]
+ \centering\footnotesize\tightcolumns
+ \begin{tabular}{@{}cccccccc@{}}
+ \toprule
+ $\alpha$ & $\delta y$ & $\delta\mu$ & $\delta j$ & $\delta\sigma$ &
+ $\delta\Psi_\ext$ & fit residual & drop-one shift \\
+ \midrule
+ \Nbudgettable
+ \bottomrule
+ \end{tabular}
+ \caption{What is recorded for every extrapolated column of
+ table~\ref{tab:extremal}, not only for $\Psi_\ext$. The first four are
+ intercept spreads across the original degree checks, $\delta j$ propagated
+ through the extrapolated $M$ and $J$ together; $\delta\Psi_\ext$ is the
+ envelope of table~\ref{tab:extremal}. The last two columns are the largest
+ residual the production cubic leaves on its own six states and the largest
+ displacement of its intercept when one of those states is removed. None of
+ these is a confidence interval, and they are not independent contributions to
+ be combined.}
+ \label{tab:budget}
+\end{table}
+
+\paragraph{Radial resolution.}
+Production walks use $N=\Nresolution$, raised to $\Nrefinedresolution$ when a
+state is refused. To bound what that choice costs, the complete ascending walk
+and the complete $T=0$ extrapolation were repeated at $N=\Nstudyresolutions$ at
+every one of the $\Nstudycouplings$ couplings: $\Nstudywalks$ independent
+sequences, each using the production start spin, the production acceptance gates
+and the production escalation rule, so that the base resolution is the only
+thing varied. Only the ascending branch is walked, since the twelve coldest
+states that enter the fit all lie on it. Table~\ref{tab:resolution} gives the
+outcome observable by observable, because a small change in $\Psi_\ext$ does not
+by itself bound a change in $M$, $J$, $S$, $y$ or $\mu$, and
+\eqref{eq:identity} uses the last two.
+
+Across all $\Nstudywalks$ sequences the extremal intercept moves by at most
+$\Nstudypsiworst$ in $\Psi_\ext$, $\Nstudymuworst$ in $\mu$ and
+$\Nstudyyworst$ in $y$, and the
+extrapolated charges by at most $\Nstudymassworst$, $\Nstudymomentumworst$ and
+$\Nstudyentropyworst$ relative in $M$, $J$ and $S$ respectively; the two
+remaining columns of table~\ref{tab:budget} move by at most $\Nstudyspinworst$
+in $j$ and $\Nstudysigmaworst$ in $\sigma$. The quantity
+this has to be compared with is the fit sensitivity already quoted at the same
+coupling. Figure~\ref{fig:resolution} draws the two together: at
+$\Nstudybelow$ of the $\Nstudywalks$ sequences the resolution difference is
+below that sensitivity, the worst ratio between them being $\Nstudyratio$.
+Radial resolution is therefore not the leading term in the budget of
+table~\ref{tab:budget}; the extrapolation is, by several orders of magnitude.
+Raising the coarse resolution from $N=\Nstudylowresolution$ to
+$N=\Nstudyhighresolution$ reduces the difference in $\Psi_\ext$ at
+$\Nstudyshrink$ of the $\Nstudycouplings$ couplings.
+
+Three things keep this short of a convergence proof, and we would rather name
+them than let the table read as one. First, the escalation rule means the
+coldest states can be accepted at $N=\Nrefinedresolution$ on both sides; that
+happens at $\Nstudyescalated$ of the $\Nstudywalks$ sequences, where the
+comparison is weaker than the two base resolutions suggest. Second, a coarse
+walk need not reach as cold as the production one, so the two fits can
+extrapolate from different distances and the difference between them is not
+purely a resolution effect; refitting both sides over a common temperature range
+isolates the resolution and leaves a worst difference $\Nstudymatchedworst$ over
+the $\Nstudymatchedwalks$ sequences in which both sides keep a full window.
+Third, the shipped measurement was produced under \Nstudyshipped\ and this study
+runs under \Nstudyhere, so each difference above bounds the change of resolution
+and the change of environment together. Re-walking at the production resolution
+here, at \Nstudycontrollist, attributes at most $\Nstudycontrolworst$ to the
+environment alone. That is not a negligible share: at two of the three control
+couplings it exceeds at least one of the two resolution differences measured at
+the same coupling, and at $\alpha=1/2$ it exceeds both. The entries of
+table~\ref{tab:resolution} are therefore upper bounds on the effect of the
+resolution, not estimates of it, and the true resolution sensitivity of this
+calculation is smaller than the table says. Table~\ref{tab:contrast} is free of that caveat: its two sides
+were both computed in the shipped environment, at the $\Ncontrastcouplings$
+couplings where that comparison exists, and there the extrapolated potential
+moves by at most $\Ncontrastworst$ and $\mu$ by at most $\Ncontrastmu$.
+
+\begin{table}[t]
+ \centering\footnotesize\tightcolumns
+ \begin{tabular}{@{}cccccccc@{}}
+ \toprule
+ $\alpha$ & $N$ & $\delta M/M$ & $\delta J/J$ & $\delta S/S$ &
+ $\delta\Psi_\ext$ & $\delta y$ & $\delta\mu$ \\
+ \midrule
+ \Nresolutiontable
+ \bottomrule
+ \end{tabular}
+ \caption{The radial-resolution study: the complete ascending walk and the
+ complete $T=0$ extrapolation, repeated at two coarser base resolutions at every
+ coupling. Each entry is the difference between the production value at
+ $N=\Nresolution$ and the value the coarser sequence extrapolates to; the two
+ sequences are independent from the first continuation step onwards. $M$, $J$
+ and $S$ are quoted relative and the rest absolute, matching how each is used in
+ the text. The columns are separate because they are separate: none of them
+ bounds another.}
+ \label{tab:resolution}
+\end{table}
+
+\begin{figure}[t]
+ \centering
+ \includegraphics{figures/fig-resolution.pdf}
+ \caption{The resolution study against the quantity it has to be compared with.
+ Markers are the change in the extremal intercept when the whole sequence is
+ recomputed at a coarser base resolution; the line is the fit sensitivity
+ already quoted for the same coupling in table~\ref{tab:extremal}. The gap
+ between them is the statement: at every coupling the extrapolation model
+ dominates the radial resolution. The vertical scale is logarithmic and the two
+ marker sets are the two coarse resolutions of table~\ref{tab:resolution}.}
+ \label{fig:resolution}
+\end{figure}
+
+\begin{table}[t]
+ \centering\small
+ \begin{tabular}{@{}cccccc@{}}
+ \toprule
+ $\alpha$ & $\Psi_\ext$ at $N=\Nresolution$ & change at $N=\Ncoarseresolution$
+ & $\mu$ at $N=\Nresolution$ & change & change in $y$ \\
+ \midrule
+ \Ncontrasttable
+ \bottomrule
+ \end{tabular}
+ \caption{The resolution comparison recorded with the shipped measurement, at
+ the $\Ncontrastcouplings$ couplings where it exists. It carries less coverage
+ than table~\ref{tab:resolution} and one advantage over it: both sides were
+ computed in the same environment, so these differences are attributable to the
+ resolution alone.}
+ \label{tab:contrast}
+\end{table}
+
 The integral comparison in \eqref{eq:identity} has its own
 interpolation error and correlations with both sets of estimates;
 we report its discrepancy separately instead of interpreting it as
 coverage by independent error bars.
 
+\paragraph{The profile atlas.}
+Figure~\ref{fig:profiles} is produced by a separate run, whose only purpose is
+to exhibit the solutions behind the rest of the paper and to test them along a
+second route. It fixes $q=\Nstartspin$, climbs the spin from the vacuum in
+steps of that size, and then climbs the coupling at fixed spin, seeding each
+Newton solve with the previous solution and using no response predictor. The
+production walks do the opposite: they climb the coupling first, with a
+predictor, and then descend or ascend in spin. The two routes visit the same
+$\Ncouplings$ solutions and agree on $M$, $J$, $S$ and $T$ to
+$\Nprofileagreement$ relative. Each state in the atlas passes the same
+boundary and independent tensor-residual gates as the production states, and
+the run also checks that the vacuum member reproduces the closed-form
+Myers--Perry horizon squashing $1/(1-q^2)$ and that $w(r_H)=\Omega_H$ is
+recovered to machine precision.
+
 \paragraph{Data and code.}
 The supplementary table contains the $\Nstates$ accepted states,
-their observables and acceptance diagnostics.
+their observables and acceptance diagnostics, one row per solution, so that
+every point of figure~\ref{fig:potential} and every row of
+tables~\ref{tab:locus} and \ref{tab:extremal} can be traced to the state it
+came from. The radial amplitudes of figure~\ref{fig:profiles} are stored
+separately, on the common grid used to draw them, and the fitted points,
+residuals, competing intercepts and drop-one shifts behind
+figure~\ref{fig:extrapolation} and tables~\ref{tab:models} and
+\ref{tab:budget} are exported with them. The radial-resolution study is a
+separate artifact carrying every state of all $\Nstudywalks$ coarse sequences,
+so that table~\ref{tab:resolution} and figure~\ref{fig:resolution} can be
+recomputed without repeating the solves.
 The accompanying source tree contains the solver, symbolic
 derivation scripts, tests and figure-generation script.
 The latter also exports the fitted intercepts and sensitivity
 envelopes used in this version, together with source hashes.
+
+Every number in this manuscript is generated from the recorded measurement by
+that script and none is typed into the source, so the PDF, the figures, the
+tables and the data cannot disagree with one another: rebuilding reproduces
+them or fails. What this arrangement does not by itself provide is an
+immutable identifier for the state it was built from.
 These materials document the calculation; this manuscript does
 not claim an existing public archival DOI.
 

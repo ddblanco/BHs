@@ -1,0 +1,705 @@
+{
+ "schema": 1,
+ "summary": {
+  "total": 58,
+  "checked": 47,
+  "failed": 0,
+  "by_kind": {
+   "analytic": {
+    "total": 19,
+    "passed": 19,
+    "failed": 0
+   },
+   "numerical": {
+    "total": 18,
+    "passed": 18,
+    "failed": 0
+   },
+   "transcription": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0
+   },
+   "called": {
+    "total": 11,
+    "passed": 0,
+    "failed": 0
+   }
+  }
+ },
+ "ledger": [
+  {
+   "kind": "analytic",
+   "claim": "Psi_static = (3pi/4)(4a-3)/(1+4a) from dM/da - T dS/da",
+   "source": "Boulware-Deser charges; manuscript eq. (15)",
+   "method": "sympy, difference simplifies to 0",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "Psi_static -> -9pi/4 as alpha -> 0",
+   "source": "manuscript eq. (15)",
+   "method": "sympy limit",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "Psi_static changes sign at alpha/r_H^2 = 3/4",
+   "source": "manuscript sec. 4.1",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "Smarr 2M = 3TS + 2*alpha*Psi closes on Boulware-Deser at J=0",
+   "source": "manuscript eq. (8) on eq. (14)",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "static t_H = sqrt(1+2a)/(1+4a) follows from eq. (10)",
+   "source": "manuscript sec. 2.3",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "Euler on the listed weights gives 2M = 3TS + 3 sum(Omega_i J_i) + 2 alpha Psi",
+   "source": "manuscript eq. (8)",
+   "method": "sympy, homogeneity in lambda",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "its equal-spin case is the printed 2M = 3TS + 6 Omega_H J + 2 alpha Psi",
+   "source": "manuscript eq. (8)",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "differentiated Smarr minus twice the first law is the printed Gibbs-Duhem constraint",
+   "source": "manuscript sec. 3.1",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "q = r_H Omega_H = a/r_H from Omega_H = a/(r_+^2+a^2), r_H^2 = r_+^2+a^2",
+   "source": "manuscript eq. (9)",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "u = q^2/(1-q^2) equals a^2/r_+^2",
+   "source": "manuscript eq. (9)",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "equal-spin Myers-Perry is extremal at r_+ = a (d mu / d r_+ = 0)",
+   "source": "Myers-Perry horizon function",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "hence extremality sits at q = 1/sqrt(2)",
+   "source": "manuscript sec. 2.1",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "M = 3pi r_H^2/[8(1-q^2)] is the same as 3 pi mu_MP / 8",
+   "source": "manuscript appendix A",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "Psi_0(u=0) = -9pi/4, matching the alpha->0 limit of Psi_static",
+   "source": "manuscript eq. (17) against eq. (15)",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "Psi_0(u=1) = pi, matching the published linear-order slope",
+   "source": "manuscript eq. (17) against arXiv:2009.00015",
+   "method": "sympy",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "Psi_0 sign zero at q = 7-2sqrt(10) mapped through eq. (9)",
+   "source": "manuscript sec. 4.2",
+   "method": "sympy exact root",
+   "passed": true,
+   "value": 0.6349358458295623,
+   "tolerance": 1e-09,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "our metric ansatz is identically eq. (2.8) of 1010.0860 with g = r^2",
+   "source": "manuscript eq. (4) against arXiv:1010.0860 eq. (2.8)",
+   "method": "sympy, expanded in the angular one-forms",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "the published entropy (3.10) equals our Jacobson-Myers form iff alpha_paper = 4 alpha",
+   "source": "manuscript eq. (7) against arXiv:1010.0860 eq. (3.10)",
+   "method": "sympy, ratio of the GB term to the Einstein term",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "analytic",
+   "claim": "dS/dalpha at fixed (M,J) equals -Psi/T, from the extended first law",
+   "source": "manuscript sec. 3.2",
+   "method": "first law solved for dS at dM = dJ = 0",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the alpha=0 mass reproduces the Myers-Perry closed form",
+   "source": "Myers-Perry, M = 3 pi r_H^2/[8(1-q^2)]",
+   "method": "6 spins up to q=0.7, relative",
+   "passed": true,
+   "value": 3.2662741640786043e-13,
+   "tolerance": 1e-10,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the alpha=0 horizon squashing reproduces the Myers-Perry 1/(1-q^2)",
+   "source": "Myers-Perry",
+   "method": "profile atlas at q=0.6, relative",
+   "passed": true,
+   "value": 8.29913915367797e-14,
+   "tolerance": 1e-08,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the static mass reproduces the Boulware-Deser closed form at finite coupling",
+   "source": "Boulware-Deser",
+   "method": "7 couplings, relative",
+   "passed": true,
+   "value": 3.1960098212489985e-11,
+   "tolerance": 1e-08,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the static temperature reproduces the Boulware-Deser closed form at finite coupling",
+   "source": "Boulware-Deser",
+   "method": "7 couplings, relative",
+   "passed": true,
+   "value": 1.0751354645111607e-13,
+   "tolerance": 1e-08,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the static entropy reproduces the Boulware-Deser closed form at finite coupling",
+   "source": "Boulware-Deser",
+   "method": "7 couplings, relative",
+   "passed": true,
+   "value": 1e-16,
+   "tolerance": 1e-08,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the static potential reproduces the Boulware-Deser closed form at finite coupling",
+   "source": "Boulware-Deser",
+   "method": "7 couplings, relative",
+   "passed": true,
+   "value": 2.600711493375529e-09,
+   "tolerance": 1e-08,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the alpha=0 response reproduces the published perturbative potential",
+   "source": "arXiv:2405.04576 eq. (33), mapped by manuscript eq. (17)",
+   "method": "11 spins, relative; 8+ significant digits at 9",
+   "passed": true,
+   "value": 2.858404339079331e-08,
+   "tolerance": 1e-06,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "our near-horizon solution satisfies published eq. (4.11) as printed",
+   "source": "arXiv:1010.0860 eq. (4.11)",
+   "method": "7 couplings, residual in the paper variables",
+   "passed": true,
+   "value": 9.170763651918363e-14,
+   "tolerance": 1e-10,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "our near-horizon solution satisfies published eq. (4.12) as printed",
+   "source": "arXiv:1010.0860 eq. (4.12)",
+   "method": "7 couplings, relative in J",
+   "passed": true,
+   "value": 6.661338147750939e-16,
+   "tolerance": 1e-10,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the near-horizon branch gives S_ext = 2 pi J at alpha=0, the extremal Myers-Perry value",
+   "source": "Myers-Perry; arXiv:1010.0860 eq. (4.13) after k_paper = k/2",
+   "method": "sigma against 2 pi, relative",
+   "passed": true,
+   "value": 1.1052780913050329e-12,
+   "tolerance": 1e-10,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the extrapolated bulk entropy reproduces the near-horizon curve at finite coupling",
+   "source": "arXiv:1010.0860 sec. 4.2",
+   "method": "13 couplings, relative in sigma = S/J",
+   "passed": true,
+   "value": 4.059499604590323e-06,
+   "tolerance": 0.0001,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the extrapolated mu(0) reproduces the published (3/2) pi^(1/3)",
+   "source": "arXiv:2009.00015",
+   "method": "absolute",
+   "passed": true,
+   "value": 4.5566661555085375e-11,
+   "tolerance": 1e-08,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the extrapolated Psi_ext(0) reproduces the published pi",
+   "source": "arXiv:2009.00015",
+   "method": "absolute",
+   "passed": true,
+   "value": 1.193194565374256e-07,
+   "tolerance": 1e-05,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the vacuum extremal state returns the normalisation value j = 1",
+   "source": "arXiv:2303.12471 scaled spin",
+   "method": "absolute; tests mass and spin extraction with the T->0 fit",
+   "passed": true,
+   "value": 3.111222390828061e-11,
+   "tolerance": 1e-06,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the Smarr relation closes on every accepted rotating solution",
+   "source": "manuscript eq. (8)",
+   "method": "356 states, relative",
+   "passed": true,
+   "value": 1.6368815335859564e-07,
+   "tolerance": 1e-06,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the first law closes in the spin direction at fixed coupling",
+   "source": "manuscript eq. (2)",
+   "method": "10 states, relative to the largest term",
+   "passed": true,
+   "value": 1.3472277983328692e-08,
+   "tolerance": 1e-06,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "every accepted state satisfies G + alpha H = 0 off the solver grid",
+   "source": "Einstein-Gauss-Bonnet field equations",
+   "method": "independent curvature evaluator at 51 off-grid points, relative",
+   "passed": true,
+   "value": 9.761271138970825e-09,
+   "tolerance": 1e-08,
+   "detail": ""
+  },
+  {
+   "kind": "numerical",
+   "claim": "the extremal intercept survives two coarser radial resolutions at every coupling",
+   "source": "this work, resolution study",
+   "method": "26 sequences, |dPsi| as a fraction of the fit sensitivity",
+   "passed": true,
+   "value": 0.0014997567497686216,
+   "tolerance": 1.0,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source action carries alpha/4 on L_GB, so alpha_paper = 4 alpha",
+   "source": "arXiv:1010.0860 eq. (2.1)",
+   "method": "eq. (2.1) reads I = (1/16piG) int d^5x sqrt(-g) [R + (alpha/4) L_GB]",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source charges are E = -3 V_3 U/16 pi G and J = V_3 W/8 pi G with V_3 = 2 pi^2",
+   "source": "arXiv:1010.0860 eq. (3.6)",
+   "method": "eq. (3.6) and the line defining V_3; gives our -3 pi U/8 and pi W/4",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source J is the momentum in each plane, not the total",
+   "source": "arXiv:1010.0860 sec. 3.2",
+   "method": "the sentence introducing eq. (3.6)",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source near-horizon metric carries 2k, so our k is twice theirs",
+   "source": "arXiv:1010.0860 eq. (4.6)",
+   "method": "eq. (4.6); with J = dE/dk this is why J_paper = 2 J",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source entropy has an Einstein piece and a GB piece of the printed form",
+   "source": "arXiv:1010.0860 eq. (3.10)",
+   "method": "eq. (3.10); its ratio to the Einstein term fixes alpha_paper = 4 alpha",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source quotes an outer ergosurface radius at the coupling we compare with",
+   "source": "arXiv:1010.0860 sec. 4.1",
+   "method": "the value our reconstruction does not reproduce; see the manuscript discussion",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the published extremal mass is M = (3/2) pi^(1/3) J^(2/3) + pi alpha + O(alpha^2)",
+   "source": "arXiv:2009.00015",
+   "method": "the extremality result this work anchors mu(0) and Psi_ext(0) against",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source uses the same 1/16 pi action normalisation, with G = 1",
+   "source": "arXiv:2405.04576 eq. (25)",
+   "method": "eq. (25): Delta I = (alpha/16 pi) int sqrt(g) R_abcd R^abcd; required for its Gibbs-potential coefficient to be our Psi_0",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "their Delta M = (D-4) Delta G at D=5 with equal spins is exactly our eq. (17)",
+   "source": "arXiv:2405.04576 eq. (33)",
+   "method": "specialised symbolically from the published general-D formula, then mapped by u = a^2/r_+^2; not copied from the paper",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "transcription",
+   "claim": "the source treats a general quadratic-curvature correction on a Ricci-flat background",
+   "source": "arXiv:2405.04576",
+   "method": "why only the Riemann-squared term survives and its coefficient is our alpha",
+   "passed": true,
+   "value": null,
+   "tolerance": null,
+   "detail": ""
+  },
+  {
+   "kind": "called",
+   "claim": "The Myers-Perry solution itself",
+   "source": "Myers & Perry, Annals Phys. 172 (1986) 304",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Its closed forms are used as an oracle and every one of them is checked against our solver, but the solution is not rederived here. Not on arXiv, so no PDF is in papers/."
+  },
+  {
+   "kind": "called",
+   "claim": "The Boulware-Deser solution itself",
+   "source": "Boulware & Deser, PRL 55 (1985) 2656",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Same status: the closed forms for M, T and S are the oracle for the static limit, and we differentiate them to get Psi, but the solution is not rederived. Not on arXiv."
+  },
+  {
+   "kind": "called",
+   "claim": "Lovelock's theorem",
+   "source": "Lovelock, J. Math. Phys. 12 (1971) 498",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Cited for the field equations being second order. Not reproduced. Not on arXiv."
+  },
+  {
+   "kind": "called",
+   "claim": "The Wald entropy formula",
+   "source": "arXiv:gr-qc/9307038, arXiv:gr-qc/9403028",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "The Noether-charge form is cited, not derived. Its value on this horizon is checked against the independent derivation in arXiv:1010.0860."
+  },
+  {
+   "kind": "called",
+   "claim": "The Jacobson-Myers form for Lovelock horizons",
+   "source": "arXiv:hep-th/9305016",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Cited as the form Wald entropy takes here; the resulting entropy is then verified numerically against the published near-horizon branch."
+  },
+  {
+   "kind": "called",
+   "claim": "Sen's entropy function formalism",
+   "source": "arXiv:0708.1270",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "The formalism is cited. Our use of it is rederived symbolically and its solution checked against the full field equations component by component, but the formalism itself is not re-justified."
+  },
+  {
+   "kind": "called",
+   "claim": "The domain bounds x < 1 and j <= 1",
+   "source": "arXiv:2303.12471",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Quoted and compared against, not rederived. Our samples lie inside them."
+  },
+  {
+   "kind": "called",
+   "claim": "The Goon-Penco universality argument",
+   "source": "arXiv:1909.05254",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Only the first-law identity is used, and that is rederived here. The universality claim itself is cited and not tested."
+  },
+  {
+   "kind": "called",
+   "claim": "Causality constraints on higher-curvature couplings",
+   "source": "arXiv:1407.5597",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Cited in the discussion as a reason to separate the classical truncation from an ultraviolet completion. Nothing is computed from it."
+  },
+  {
+   "kind": "called",
+   "claim": "The extended first law for Lovelock couplings",
+   "source": "arXiv:1005.5053, arXiv:2404.16981",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Cited as the source of the Psi dalpha term. The term is then used and its consequences checked internally, but the covariant-phase-space derivation is not repeated."
+  },
+  {
+   "kind": "called",
+   "claim": "The outer ergosurface radius 1.104 at alpha = 1/2",
+   "source": "arXiv:1010.0860",
+   "method": "",
+   "passed": null,
+   "value": null,
+   "tolerance": null,
+   "detail": "Compared against and does NOT reproduce: our reconstruction gives 1.102101. Unresolved; recorded in the manuscript discussion as an open point."
+  }
+ ],
+ "papers": [
+  {
+   "name": "0708.1270-sen-entropy-function-attractors.pdf",
+   "sha256": "6b8ee9468f56400c06af88a26b5194ea10d2e478c36ba9634ab80d8599f92617",
+   "bytes": 1879694
+  },
+  {
+   "name": "1005.5053-kastor-ray-traschen-smarr-lovelock.pdf",
+   "sha256": "bcccbeb0b06a5d86c8a86db349e88ad8422b98d4baae751d373235a3662a7602",
+   "bytes": 269213
+  },
+  {
+   "name": "1010.0860-brihaye-kleihaus-kunz-radu-equal-spin-egb-d5.pdf",
+   "sha256": "1113f30b163b3f87f9c808150d241c05e4e480d8223ed774a97d33c4331c939e",
+   "bytes": 406139
+  },
+  {
+   "name": "1306.2517-kunduri-lucietti-near-horizon-classification.pdf",
+   "sha256": "3fe350979df7178f4cb87b0ce90cf135a894439b67d1400d7fc77a7239141a74",
+   "bytes": 904646
+  },
+  {
+   "name": "1407.5597-camanho-edelstein-maldacena-zhiboedov-causality.pdf",
+   "sha256": "438de2669b885155f1c6ceeaaae0ed0e97845f848b1309b1b71ee143c2e13724",
+   "bytes": 723614
+  },
+  {
+   "name": "1901.11535-reall-santos-higher-derivative-kerr-thermodynamics.pdf",
+   "sha256": "9fd52330f599590a3fe7e3733c89602f8964c69507152e7f7a788bfc0046e853",
+   "bytes": 485892
+  },
+  {
+   "name": "1909.05254-goon-penco-entropy-extremality-relation.pdf",
+   "sha256": "0ebfb7412f32cc93224c5e7e595a9a5a68b124dca7c33cddb1cce4573bfea5cb",
+   "bytes": 175360
+  },
+  {
+   "name": "2009.00015-ma-li-lu-d5-egb-mass-angular-momentum-extremality.pdf",
+   "sha256": "1c72a046374fbeb288b9306605defb97dae314a48120f3bcc8fc614faf375473",
+   "bytes": 288325
+  },
+  {
+   "name": "2303.12471-kleihaus-kunz-radu-phases-rotating-d5-egb.pdf",
+   "sha256": "376ec165710b14d97eb5e22aaf9a0f57ca59c102b5ff57265d26a8082b60b524",
+   "bytes": 308305
+  },
+  {
+   "name": "2404.16981-neri-liberati-covariant-phase-space-lanczos-lovelock.pdf",
+   "sha256": "de73427db782e5c2c0f7daea3a235939dafdbd064a5db3f5636342d3c248fc96",
+   "bytes": 898275
+  },
+  {
+   "name": "2405.04576-wu-lu-quadratic-curvature-rotating-thermodynamics.pdf",
+   "sha256": "aced1e9c73189e4fbc2f3f0d131b5fc0a028c550e8f48a7e5500a0403cd28783",
+   "bytes": 308533
+  },
+  {
+   "name": "2512.23797-ma-lu-quadratic-curvature-correction-5d-myers-perry.pdf",
+   "sha256": "9a86706f8f6d92e50b9c8ccd24ecd12d2d2d3e39d848126eed7ee3e315f9a647",
+   "bytes": 251056
+  },
+  {
+   "name": "gr-qc-9307038-wald-black-hole-entropy-noether-charge.pdf",
+   "sha256": "6e204ef911df78f240109dde914a6fe6ef9f6168518a01089bfbe59979beefc5",
+   "bytes": 145538
+  },
+  {
+   "name": "gr-qc-9403028-iyer-wald-noether-charge-dynamical-entropy.pdf",
+   "sha256": "eecd25f574d73e7db0e89961db003feccf8de4e413d715a0670f426d4b5b7e7c",
+   "bytes": 314892
+  },
+  {
+   "name": "hep-th-0601001-arkani-hamed-motl-nicolis-vafa-weak-gravity.pdf",
+   "sha256": "b76dc07e0a021855cac69db0df8b6d836c1ba678929680374c08b8ef4e3943c4",
+   "bytes": 218890
+  },
+  {
+   "name": "hep-th-0606100-kats-motl-padi-higher-order-extremal-mass-charge.pdf",
+   "sha256": "f1f7ba31aacea3884f205eb0b7cada9d2ed0197217ace077c6d4c47116db9a9b",
+   "bytes": 178938
+  },
+  {
+   "name": "hep-th-9305016-jacobson-myers-entropy-higher-curvature.pdf",
+   "sha256": "2cacfc2342d125e6618762e4147f647916f7ced1f25205e6b2003bdb70085db6",
+   "bytes": 137341
+  }
+ ],
+ "versions": {
+  "python": "3.12.3",
+  "numpy": "1.26.4",
+  "sympy": "1.12",
+  "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39"
+ }
+}

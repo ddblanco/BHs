@@ -3,21 +3,22 @@
 Mirrors vacuum_bvp.py's `_spectral` architecture exactly (Chebyshev-Lobatto
 nodes, damped Newton with a complex-step Jacobian and line search) over the
 compact amplitude variables B,F,H,W (b=(1-z^2)B, f=(1-z^2)F,
-h=(1+z^4 H)/z^2, w=z^4 W, z=1/r, x=1-z -- x=0 is r->infinity, x=1 is the
-horizon r=r_H=1).
+h=(1+z^4 H)/z^2, w=z^4 W, z=1/r, x=1-z -- x=0 is the horizon r=r_H=1 and
+x=1 is r->infinity; note that `_cheb` returns its nodes in descending order,
+so index 0 of an amplitude array is infinity and index -1 is the horizon).
 
 Interior collocation uses `_egb_rotating_compact_generated.rhs` (verified
 in derive_egb_rotating.py to reproduce `_vacuum_generated.rhs` exactly at
-alpha_gb=0). The horizon (x=1) is singular for generic data in that
+alpha_gb=0). The horizon (x=0) is singular for generic data in that
 formula -- not a bug, the coefficient matrix of the underlying [f',b'',h'',
 w''] system degenerates there (docs/egb-rotating.md) -- so that row uses
 `_egb_rotating_horizon_generated.horizon` instead, four relations derived
 directly in these compact variables and verified against the exact
-Myers-Perry closed form. Infinity (x=0) uses B=1,F=1,Hx=0,Wx=0, the same
+Myers-Perry closed form. Infinity (x=1) uses B=1,F=1,Hx=0,Wx=0, the same
 four conditions vacuum_bvp.py's own spectral solver imposes there (checked
 in derive_egb_rotating.py to also hold for this system's leading
 asymptotic order; alpha_gb does not enter until 1/r^6, past what these four
-probe). W(x=1)=omega_h (the horizon angular velocity) replaces what would
+probe). W(x=0)=omega_h (the horizon angular velocity) replaces what would
 otherwise be a fourth, non-independent horizon relation -- confirmed
 empirically: using this in place of the raw 'w' relation reproduces
 Myers-Perry to the solver's tolerance at alpha_gb=0, and the raw 'w'

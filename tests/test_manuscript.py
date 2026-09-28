@@ -17,7 +17,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def regenerated(tmp_path_factory):
     root = tmp_path_factory.mktemp('paper')
     for name in ('manuscript/make_figures.py', 'manuscript/reanalysis.py',
-                 'results/egb-extremality.json'):
+                 'results/egb-extremality.json',
+                 'results/egb-rotating-profiles.json',
+                 'results/egb-rotating-resolution-study.json'):
         target = root/name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT/name, target)
@@ -72,8 +74,10 @@ def test_current_paper_preserves_external_anchors_and_limitation():
 
 
 def test_current_pdf_and_generated_figures_are_present(regenerated):
-    for name in ('main.pdf', 'figures/fig-potential.pdf',
-                 'figures/fig-shift.pdf', 'figures/fig-entropy.pdf'):
+    for name in ('main.pdf', 'figures/fig-profiles.pdf',
+                 'figures/fig-potential.pdf', 'figures/fig-shift.pdf',
+                 'figures/fig-entropy.pdf', 'figures/fig-extrapolation.pdf',
+                 'figures/fig-resolution.pdf'):
         data = (ROOT/'manuscript'/name).read_bytes()
         assert data.startswith(b'%PDF-') and len(data) > 10_000
         if name.startswith('figures/'):

@@ -1,0 +1,169 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\setlist[itemize]{leftmargin=1.45em,itemsep=0.35em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.65em,itemsep=0.7em,topsep=0.35em}
+\setlength{\emergencystretch}{2em}
+\definecolor{critical}{HTML}{8B1E1E}
+\definecolor{caution}{HTML}{8A5200}
+\definecolor{good}{HTML}{176B45}
+\definecolor{blue}{HTML}{244A75}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Critical referee report}
+\rhead{27 September 2026}
+\cfoot{\thepage\ of \pageref{LastPage}}
+\newcommand{\issue}[1]{\textcolor{critical}{\textbf{#1}}}
+\newcommand{\suggestion}[1]{\par\smallskip\noindent\textcolor{blue}{\textbf{Suggested revision.}} #1}
+
+\title{Critical referee report\\[0.35em]
+\large \emph{Extremality shift of rotating black holes at finite Gauss--Bonnet coupling}}
+\author{Codex review}
+\date{27 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{critical}{red!3}{\parbox{0.88\textwidth}{
+\textbf{Recommendation: major revision.}
+The central numerical pattern is interesting and probably real, but the paper is not yet ready to make a precise finite-coupling claim.  The main missing pieces are stronger convergence tests, firmer control of the zero-temperature extrapolation, and a clean, frozen release in which the source, PDF, data and tests agree.
+}}
+\end{center}
+
+\section*{Bottom line}
+
+The paper asks a clear question: how does the extremal mass of a five-dimensional equal-spin rotating black hole change as the Gauss--Bonnet coupling is increased?  Its proposed answer is that the extremal mass continues to rise, but its slope first falls from the perturbative value $\pi$, reaches a broad low region, and then rises again.
+
+The saved numerical data do show that pattern.  All 13 quoted central values of $\Psi_{\rm ext}$ are positive.  The lowest is about $1.07$, compared with $\pi$ at zero coupling, and the last rises to about $1.44$.  The fall and subsequent rise are much larger than the paper's stated fit-sensitivity bands.  The basic thermodynamic algebra also checks out.
+
+The difficulty is not the visible trend; it is how precisely the paper can claim it.  Every extremal value is inferred by extrapolating positive-temperature solutions.  The reported bands measure only sensitivity to selected fitting choices, not the full numerical error.  Resolution comparisons are available at only three couplings, and the main observable is reconstructed from quantities that share the same numerical solution and extraction pipeline.  I therefore find the qualitative result plausible, but the quantitative curve provisional.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.48\textwidth}@{}}
+\toprule
+\textcolor{good}{\textbf{What holds up}} & \textcolor{caution}{\textbf{What remains uncertain}} \\
+\midrule
+The printed first-law and Smarr algebra & Continuum error at all 13 extremal endpoints \\
+The analytic static check & The functional form of the $T\to0$ limit \\
+The perturbative formula's endpoints and zero & Independence of the finite-coupling validation \\
+Positivity of the 13 saved central slopes & Error propagation for $y$, $\mu$, $j$ and $\sigma$ \\
+The broad decrease-and-rise in the saved table & Whether this branch gives a global minimum mass \\
+The restrained EFT and weak-gravity discussion & Reproducibility of the current working-tree release \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Main revisions needed}
+
+\begin{enumerate}
+\item \issue{Freeze one authoritative version of the paper.}
+
+The current \texttt{main.pdf} and \texttt{main.tex} are not the same version.  The PDF is an older 15-page build with three figures; the source contains a fourth figure and several substantive clarifications.  A reader cannot tell which paper is being reviewed or reproduced.  The source tree is also already modified, and several provenance tests disagree about a changed solver file.
+
+\suggestion{Rebuild the PDF from the final source, publish the exact source and data that produced it, and attach an immutable commit or archive identifier.  Run every check from that clean release.  Do not whitelist a source-hash mismatch in one verifier while other integrity tests reject it.}
+
+\item \issue{Narrow the headline claim from a global minimum to the branch actually computed.}
+
+The abstract speaks of the ``minimum mass'' at fixed angular momentum.  What is actually computed is the zero-temperature endpoint of the equal-spin branch connected to Myers--Perry.  The paper does not prove that this branch is unique, stable, or globally lowest in mass.  It correctly admits these limitations later, but the headline wording remains too strong.
+
+\suggestion{Use ``the extremal-branch mass at fixed individual angular momentum'' rather than ``minimum mass.''  Similarly, replace ``the mass remains increasing at fixed spin'' with ``the central extrapolated $M_{\rm ext}$ remains increasing at fixed $J$.''  The symbols $q$, $j$ and $J$ should not all be called simply ``spin'' when the held-fixed quantity matters.}
+
+\item \issue{Show that the result survives radial-resolution changes at the important couplings.}
+
+Production runs use mostly $N=64$, with refinement to $N=96$ when required, but the paper quotes comparison-resolution walks at only three couplings.  This is too sparse for a 13-point curve whose main claim concerns a change in slope.  Small field-equation residuals do not by themselves bound errors in $M$, $J$, $S$ or $\Psi$.  The quoted Jacobian condition number is also based on only ten selected states and is hard to interpret without a stated norm and scaling.
+
+\suggestion{Repeat the complete cold sequence and the $T=0$ extrapolation at several resolutions near both endpoints and around the valley, especially the samples near $y\simeq0.118$, $0.175$ and $0.229$.  Ideally do this at all 13 couplings.  Tabulate the convergence of $M$, $J$, $S$, $\Psi$, $y$ and the final intercept separately.  State the matrix norm and variable scaling used for the condition number.}
+
+\item \issue{Treat the extremal extrapolation as the central modelling issue.}
+
+No bulk solution at exactly $T=0$ is constructed.  Instead, a cubic fit through the six coldest points supplies the central value.  The coldest scaled temperature varies by more than three orders of magnitude across the table, so the extrapolation is much harder at some couplings than at others.  Testing linear, quadratic, cubic, square-root and logarithmic fits is useful, but this list does not prove the true near-extremal form or rule out a bias common to every fit.
+
+\suggestion{For each coupling, show the actual $\Psi(T)$ points, the fitted interval, residuals and competing intercepts.  Derive the expected leading near-extremal powers if possible and use that as the central model.  Test stability when individual cold and warm points are removed.  A direct construction of extremal bulk solutions would be the strongest resolution.  Until then, call the quoted values ``central extrapolants,'' not measurements at extremality.}
+
+\item \issue{Add a genuinely independent check of the coupling conjugate $\Psi$.}
+
+The implicit-response method is a good idea, but $\Psi$ is ultimately obtained by subtracting the entropy and angular-momentum contributions from the mass response.  Several checks then reuse the same solutions, charges or thermodynamic relations.  The mass-curve integral comparison is informative, but it shares $M$, $J$, the endpoint selection and the zero-temperature extrapolation.  The near-horizon calculation checks entropy, not mass or $\Psi$.
+
+\suggestion{Evaluate the Lovelock/Iyer--Wald coupling conjugate directly on the numerical geometry, or repeat selected points with an independent solver or gauge.  At moderate coupling, explicitly compare the response result with the Smarr-derived value.  Also report the actual final errors, step sizes and locations in the real finite-difference convergence test, rather than only the observed factor-of-four scaling.}
+
+\item \issue{Present a complete and readable uncertainty budget.}
+
+The table gives a sensitivity only for $\Psi_{\rm ext}$, although $y$, $\mu$, $j$ and $\sigma$ also come from extrapolated quantities.  The mass-curve check depends directly on $y$ and $\mu$.  Some spreads exist in the data files but are not shown to the reader.  The current bands do not include every important systematic effect and should not look like rigorous error bars.
+
+\suggestion{Separate the contributions from fit model/window, radial resolution, asymptotic tail extraction, nonlinear tolerance, the response solve and interpolation.  Show uncertainties for $y$ and $\mu$ and propagate their correlations into the mass-curve check.  If a combined bound cannot be justified, report named variation ranges and reduce the number of displayed digits.}
+\end{enumerate}
+
+\section*{Smaller changes that would help}
+
+\begin{itemize}
+\item The text says the integral discrepancy ``across the full range'' is $4.38\times10^{-4}$.  That is the largest \emph{running} discrepancy, reached before the final endpoint.  The final full-range discrepancy is $3.81\times10^{-4}$.  Label the quantity correctly.
+\item In the potential figure, add markers to the body curves or say explicitly that the lines connect discrete solutions.  The present plot hides the sampling density.
+\item The profile plot uses 13 shades but identifies only the first and last.  Add a colour bar if intermediate couplings are intended to be readable.
+\item Call the entropy curve a rederived near-horizon solution checked against published equations, rather than simply ``published.''
+\item Print the two endpoints of each sign-change bracket.  The present central interpolant has more digits than the bracket width supports.
+\item Replace ``non-perturbative dependence'' with ``finite-coupling, nonlinear-in-$\alpha$ dependence within classical EGB.''  This avoids confusion with EFT control.
+\item Move the unresolved ergosurface-radius discrepancy into the limitations discussion and state clearly which numerical pipeline it does and does not test.
+\item Put all convention conversions in one early table: individual versus total angular momentum, $q$, $j$, the two radial coordinates, and the factor relating the paper's Gauss--Bonnet coupling to cited conventions.
+\end{itemize}
+
+\section*{A formulation that matches the present evidence}
+
+The main conclusion could be stated more defensibly as follows:
+
+\begin{quote}
+For the equal-spin branch continuously connected to five-dimensional Myers--Perry, our positive-temperature solutions and zero-temperature extrapolations indicate that $\partial M_{\rm ext}/\partial\alpha|_J$ remains positive over the sampled range.  Its central value decreases from the perturbative result $\pi$ to a broad low region near $1.07$ and then rises to about $1.44$.  This qualitative trend is stable under the fitting variations tested, but the displayed ranges are fit sensitivities rather than complete numerical error bounds.
+\end{quote}
+
+This preserves the interesting result while making the branch restriction, extrapolation and error status visible at the point of the claim.
+
+\section*{What I checked}
+
+I independently derived or recomputed the following rather than relying on recall:
+
+\begin{itemize}
+\item the static formula for $\Psi$;
+\item the differentiated Smarr constraint after using the first law;
+\item the two endpoints and physical sign zero of the printed perturbative formula;
+\item positivity of all 13 saved central $\Psi_{\rm ext}$ values and monotonicity of the saved central $\mu$ values;
+\item the size of the decrease and rise after applying the stated fit sensitivities adversarially;
+\item the integral comparison, including the distinction between its endpoint and maximum running discrepancies;
+\item the source/PDF mismatch, file hashes, installation procedure and test outcomes.
+\end{itemize}
+
+The lightweight audit script printed, in part:
+
+\begin{verbatim}
+PASS symbolic static-potential identity
+PASS symbolic differentiated-Smarr constraint
+PASS saved table: 13 ordered y values, all Psi>0, all mu increasing
+PASS saved-table non-monotonic trend survives stated sensitivities:
+     fall gap=2.057093330, rise gap=0.369966342
+CHECK cubic-route discrepancy: endpoint=0.000380737432,
+      maximum=0.000437510799
+NOT CHECKED continuum BVP solve or cited literature
+\end{verbatim}
+
+The full test run, performed with a \texttt{PYTHONPATH} workaround because the documented editable install fails on Python 3.12, ended with 474 passes, 12 failures, 2 skips and 4 errors.  Eleven failures came from one known source-hash mismatch, one from the dirty distribution, and the errors from the relative workaround path in temporary directories.  Re-running the manuscript subset with an absolute path left only an exact-JSON comparison that differed at the last floating-point bit.
+
+\section*{What I did not check}
+
+I did not rerun the long production boundary-value walks, construct extremal bulk solutions, derive and solve the full rotating EGB equations independently, prove uniqueness or stability, or reproduce figures from external papers.  The repository contains no \texttt{papers/} source PDFs, so I also did not verify the literature attributions or convention transcriptions.  Those parts remain hypotheses supported by the authors' saved evidence, not independently reproduced results of this review.
+
+\section*{Recommendation}
+
+The paper has a worthwhile result and a generally careful discussion of its limitations.  I recommend another scientific review after the authors provide a clean source/PDF release, narrow the global wording, demonstrate endpoint convergence around the valley, strengthen the $T\to0$ analysis, and add an independent check of $\Psi$.  These revisions may well leave the qualitative result unchanged; their purpose is to establish how much quantitative weight it can carry.
+
+\end{document}

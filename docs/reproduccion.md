@@ -55,8 +55,12 @@ python manuscript/check_manuscript.py
 powershell -NoProfile -ExecutionPolicy Bypass -File manuscript/build-local.ps1
 ```
 
-El primer comando regenera `numbers.tex`, tres figuras PDF, el CSV de soluciones
-y la auditoría de sensibilidad. No modifica `results/egb-extremality.json`.
+El primer comando regenera `numbers.tex`, cuatro figuras PDF, el CSV de soluciones
+y la auditoría de sensibilidad. Lee `results/egb-extremality.json` y
+`results/egb-rotating-profiles.json`, y no modifica ninguno de los dos. El atlas
+de perfiles se regenera, cuando hace falta, con
+`python experiments/egb_rotating_profile_atlas.py`; esa corrida sí resuelve el
+problema no lineal en las trece constantes de acoplamiento y tarda.
 El script de compilación ejecuta tres pasadas de LaTeX y produce
 `manuscript/main.pdf`, con instalación automática desactivada. No se
 incluye la versión anterior del paper. `jhepstyle.sty` es el estilo local.

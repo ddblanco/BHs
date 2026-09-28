@@ -2,10 +2,1982 @@
   "central_method": "cubic in T, six coldest states; production values retained",
   "envelope_method": "max deviation across models, T/tau, six/up-to-twelve states, and original degree spread",
   "interpretation": "fit sensitivity, not confidence intervals or rigorous error bounds",
+  "resolution_study": [
+    {
+      "alpha_gb": 0.0,
+      "E": {
+        "fine": 2.356194490239496,
+        "coarse": 2.3561944902135803,
+        "absolute": 2.5915714019220104e-11,
+        "relative": 1.099897063955272e-11
+      },
+      "J": {
+        "fine": 1.1107207345383756,
+        "coarse": 1.1107207345392123,
+        "absolute": 8.36664071357518e-13,
+        "relative": 7.532623145864313e-13
+      },
+      "S": {
+        "fine": 6.978864199638953,
+        "coarse": 6.97886419963883,
+        "absolute": 1.234568003383174e-13,
+        "relative": 1.7690099249202235e-14
+      },
+      "psi_gb": {
+        "fine": 3.1415925342703366,
+        "coarse": 3.1415897572681817,
+        "absolute": 2.777002154896735e-06,
+        "relative": 8.839472734301359e-07
+      },
+      "y": {
+        "fine": 0.0,
+        "coarse": 0.0,
+        "absolute": 0.0,
+        "relative": null
+      },
+      "mu": {
+        "fine": 2.1968878313878513,
+        "coarse": 2.1968878313625844,
+        "absolute": 2.5266899683629163e-11,
+        "relative": 1.150122428766296e-11
+      },
+      "sigma": {
+        "fine": 6.283185307186531,
+        "coarse": 6.283185307181687,
+        "absolute": 4.844125101044483e-12,
+        "relative": 7.709664547859043e-13
+      },
+      "j": {
+        "fine": 0.9999999999688878,
+        "coarse": 0.9999999999861395,
+        "absolute": 1.7251755579650307e-11,
+        "relative": 1.7251755580187048e-11
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 14,
+      "coarse_coldest_temperature": 1.078231965137831e-05,
+      "fine_coldest_temperature": 1.0782319578517278e-05,
+      "coarse_census": {
+        "48": 12
+      },
+      "fine_census": {
+        "64": 11,
+        "96": 1
+      },
+      "worst_relative_tensor_residual": 1.2413253145851795e-09,
+      "worst_smarr": 1.3859896745841222e-11,
+      "matched": {
+        "floor": 1.078231965137831e-05,
+        "fine": 3.1415904011933975,
+        "coarse": 3.1415897572681812,
+        "absolute": 6.439252162593334e-07
+      },
+      "envelope": 0.011527682533043482,
+      "below_envelope": true,
+      "escalated_on_both": false
+    },
+    {
+      "alpha_gb": 0.005,
+      "E": {
+        "fine": 2.308572340544098,
+        "coarse": 2.30852201928151,
+        "absolute": 5.0321262587971205e-05,
+        "relative": 2.179756800521624e-05
+      },
+      "J": {
+        "fine": 1.0665015393855986,
+        "coarse": 1.0664681420342361,
+        "absolute": 3.339735136242972e-05,
+        "relative": 3.1314864657082084e-05
+      },
+      "S": {
+        "fine": 7.112052731320798,
+        "coarse": 7.111853738775066,
+        "absolute": 0.00019899254573196856,
+        "relative": 2.797962181236712e-05
+      },
+      "psi_gb": {
+        "fine": 2.990943410234766,
+        "coarse": 2.9909321535632554,
+        "absolute": 1.1256671510473382e-05,
+        "relative": 3.763585587060579e-06
+      },
+      "y": {
+        "fine": 0.004789928307613898,
+        "coarse": 0.00479002830752792,
+        "absolute": 9.999991402217384e-08,
+        "relative": 2.087712124275797e-05
+      },
+      "mu": {
+        "fine": 2.2115792008293296,
+        "coarse": 2.2115771641819895,
+        "absolute": 2.036647340108999e-06,
+        "relative": 9.209018331087885e-07
+      },
+      "sigma": {
+        "fine": 6.668581777592167,
+        "coarse": 6.668604019628332,
+        "absolute": 2.224203616485454e-05,
+        "relative": 3.335347290722661e-06
+      },
+      "j": {
+        "fine": 0.9900521690833182,
+        "coarse": 0.9900535366961786,
+        "absolute": 1.3676128604034332e-06,
+        "relative": 1.3813543398119068e-06
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 9,
+      "coarse_coldest_temperature": 0.005408126708881036,
+      "fine_coldest_temperature": 0.0024008413970853025,
+      "coarse_census": {
+        "48": 7,
+        "96": 2
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 2
+      },
+      "worst_relative_tensor_residual": 8.001833465632304e-09,
+      "worst_smarr": 1.571100019654968e-10,
+      "matched": {
+        "floor": 0.005408126708881036,
+        "fine": 2.990958776709557,
+        "coarse": 2.9909321535632545,
+        "absolute": 2.6623146302640066e-05
+      },
+      "envelope": 0.11244627529872542,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.01,
+      "E": {
+        "fine": 2.26141175490025,
+        "coarse": 2.2612845755945217,
+        "absolute": 0.00012717930572847536,
+        "relative": 5.623889831336141e-05
+      },
+      "J": {
+        "fine": 1.0237646927716173,
+        "coarse": 1.0236814845966893,
+        "absolute": 8.32081749280178e-05,
+        "relative": 8.127666007190578e-05
+      },
+      "S": {
+        "fine": 7.236511524753516,
+        "coarse": 7.235998408156177,
+        "absolute": 0.0005131165973395468,
+        "relative": 7.090662338951007e-05
+      },
+      "psi_gb": {
+        "fine": 2.824557559062115,
+        "coarse": 2.8244886963687024,
+        "absolute": 6.886269341244144e-05,
+        "relative": 2.4379992962617154e-05
+      },
+      "y": {
+        "fine": 0.009844641408041158,
+        "coarse": 0.009845174870555197,
+        "absolute": 5.334625140396981e-07,
+        "relative": 5.418811025498227e-05
+      },
+      "mu": {
+        "fine": 2.2262787802922026,
+        "coarse": 2.226274207881726,
+        "absolute": 4.572410476466615e-06,
+        "relative": 2.053835538003232e-06
+      },
+      "sigma": {
+        "fine": 7.068530079077308,
+        "coarse": 7.068603385951657,
+        "absolute": 7.330687434858874e-05,
+        "relative": 1.0370879592855585e-05
+      },
+      "j": {
+        "fine": 0.9802627610161166,
+        "coarse": 0.9802657809716125,
+        "absolute": 3.0199554958976194e-06,
+        "relative": 3.0807612162755285e-06
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 9,
+      "coarse_coldest_temperature": 0.006787259465909091,
+      "fine_coldest_temperature": 0.0012068293970363116,
+      "coarse_census": {
+        "48": 7,
+        "96": 2
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 3
+      },
+      "worst_relative_tensor_residual": 9.497404335942133e-09,
+      "worst_smarr": 2.2196119343741224e-10,
+      "matched": {
+        "floor": 0.006787259465909091,
+        "fine": 2.824434409479228,
+        "coarse": 2.824488696368683,
+        "absolute": 5.42868894548576e-05
+      },
+      "envelope": 0.08810329843332632,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.02,
+      "E": {
+        "fine": 2.1767014684738784,
+        "coarse": 2.176671596456282,
+        "absolute": 2.987201759641067e-05,
+        "relative": 1.3723525264745855e-05
+      },
+      "J": {
+        "fine": 0.94833498501553,
+        "coarse": 0.9483196844608129,
+        "absolute": 1.5300554717101456e-05,
+        "relative": 1.61341245012182e-05
+      },
+      "S": {
+        "fine": 7.485518799642987,
+        "coarse": 7.485392155513874,
+        "absolute": 0.00012664412911345124,
+        "relative": 1.6918550671396533e-05
+      },
+      "psi_gb": {
+        "fine": 2.4728268500518986,
+        "coarse": 2.4727984248007906,
+        "absolute": 2.8425251108021854e-05,
+        "relative": 1.149504305464221e-05
+      },
+      "y": {
+        "fine": 0.02071995529550169,
+        "coarse": 0.020720178164057117,
+        "absolute": 2.2286855542660855e-07,
+        "relative": 1.0756227619612354e-05
+      },
+      "mu": {
+        "fine": 2.2550578559215824,
+        "coarse": 2.25505116416084,
+        "absolute": 6.691760742416619e-06,
+        "relative": 2.96744525859709e-06
+      },
+      "sigma": {
+        "fine": 7.893327693188925,
+        "coarse": 7.893321501356213,
+        "absolute": 6.191832712332257e-06,
+        "relative": 7.844388264375656e-07
+      },
+      "j": {
+        "fine": 0.9615575715456631,
+        "coarse": 0.961561851615724,
+        "absolute": 4.280070060924679e-06,
+        "relative": 4.451184398709114e-06
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 10,
+      "coarse_coldest_temperature": 0.0066397190813875335,
+      "fine_coldest_temperature": 0.004732378502406094,
+      "coarse_census": {
+        "48": 9,
+        "96": 1
+      },
+      "fine_census": {
+        "64": 9,
+        "96": 3
+      },
+      "worst_relative_tensor_residual": 5.048572292155064e-09,
+      "worst_smarr": 2.912248821568065e-10,
+      "matched": {
+        "floor": 0.0066397190813875335,
+        "fine": 2.472764678012621,
+        "coarse": 2.472798424800779,
+        "absolute": 3.374678815815102e-05
+      },
+      "envelope": 0.16022366983714864,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.035,
+      "E": {
+        "fine": 2.08981008942558,
+        "coarse": 2.089810100779489,
+        "absolute": 1.1353908924149891e-08,
+        "relative": 5.432985983559255e-09
+      },
+      "J": {
+        "fine": 0.8692521067637974,
+        "coarse": 0.8692616834782502,
+        "absolute": 9.57671445278585e-06,
+        "relative": 1.1017188659386407e-05
+      },
+      "S": {
+        "fine": 7.928685028784844,
+        "coarse": 7.928679762080375,
+        "absolute": 5.266704468986916e-06,
+        "relative": 6.642595146441446e-07
+      },
+      "psi_gb": {
+        "fine": 2.0006600423227705,
+        "coarse": 2.0006678725534477,
+        "absolute": 7.830230677186023e-06,
+        "relative": 3.913823693952076e-06
+      },
+      "y": {
+        "fine": 0.03842709402838684,
+        "coarse": 0.03842681179194836,
+        "absolute": 2.8223643848412916e-07,
+        "relative": 7.344725007715535e-06
+      },
+      "mu": {
+        "fine": 2.294437965937951,
+        "coarse": 2.2944211263876015,
+        "absolute": 1.6839550349256882e-05,
+        "relative": 7.339292061606463e-06
+      },
+      "sigma": {
+        "fine": 9.121272145434457,
+        "coarse": 9.121165596940473,
+        "absolute": 0.00010654849398328281,
+        "relative": 1.1681319478732403e-05
+      },
+      "j": {
+        "fine": 0.9369088568900835,
+        "coarse": 0.9369191713563135,
+        "absolute": 1.031446623001031e-05,
+        "relative": 1.1009039090790008e-05
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 10,
+      "coarse_coldest_temperature": 0.006011477055481852,
+      "fine_coldest_temperature": 0.003964674504404278,
+      "coarse_census": {
+        "48": 10
+      },
+      "fine_census": {
+        "64": 11
+      },
+      "worst_relative_tensor_residual": 6.449700566395416e-09,
+      "worst_smarr": 3.187670130974158e-10,
+      "matched": {
+        "floor": 0.006011477055481852,
+        "fine": 2.000690090640031,
+        "coarse": 2.000667872553447,
+        "absolute": 2.2218086584313568e-05
+      },
+      "envelope": 0.13185014149330998,
+      "below_envelope": true,
+      "escalated_on_both": false
+    },
+    {
+      "alpha_gb": 0.05,
+      "E": {
+        "fine": 2.0460886611731435,
+        "coarse": 2.046088257043656,
+        "absolute": 4.041294876522272e-07,
+        "relative": 1.9751318470261985e-07
+      },
+      "J": {
+        "fine": 0.8239623967418752,
+        "coarse": 0.8239621422473983,
+        "absolute": 2.5449447693670635e-07,
+        "relative": 3.088666156890561e-07
+      },
+      "S": {
+        "fine": 8.468731891396885,
+        "coarse": 8.468729826311426,
+        "absolute": 2.0650854590797962e-06,
+        "relative": 2.438482509025526e-07
+      },
+      "psi_gb": {
+        "fine": 1.6590799897525172,
+        "coarse": 1.6590800926205636,
+        "absolute": 1.0286804630332824e-07,
+        "relative": 6.200306612020131e-08
+      },
+      "y": {
+        "fine": 0.05688945101924448,
+        "coarse": 0.056889462733415636,
+        "absolute": 1.1714171153920372e-08,
+        "relative": 2.059111301664296e-07
+      },
+      "mu": {
+        "fine": 2.328017213416821,
+        "coarse": 2.328017232967288,
+        "absolute": 1.9550467023066176e-08,
+        "relative": 8.397904839531679e-09
+      },
+      "sigma": {
+        "fine": 10.278056286165576,
+        "coarse": 10.278056954428196,
+        "absolute": 6.682626203513564e-07,
+        "relative": 6.501838496942738e-08
+      },
+      "j": {
+        "fine": 0.9167112142608949,
+        "coarse": 0.9167112027132148,
+        "absolute": 1.1547680034418306e-08,
+        "relative": 1.2596856954268535e-08
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 15,
+      "coarse_coldest_temperature": 0.00047968008387015216,
+      "fine_coldest_temperature": 0.0004796803161307463,
+      "coarse_census": {
+        "48": 7,
+        "96": 5
+      },
+      "fine_census": {
+        "64": 7,
+        "96": 5
+      },
+      "worst_relative_tensor_residual": 9.666767711459387e-09,
+      "worst_smarr": 1.902945607198252e-08,
+      "matched": {
+        "floor": 0.0004796803161307463,
+        "fine": 1.659079989752519,
+        "coarse": 1.6590782609216999,
+        "absolute": 1.7288308191698576e-06
+      },
+      "envelope": 0.018584375556884414,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.075,
+      "E": {
+        "fine": 2.028610082417168,
+        "coarse": 2.0286070939500274,
+        "absolute": 2.9884671404190044e-06,
+        "relative": 1.4731599563274032e-06
+      },
+      "J": {
+        "fine": 0.7901669906113592,
+        "coarse": 0.7901651728805927,
+        "absolute": 1.817730766462411e-06,
+        "relative": 2.300438752897051e-06
+      },
+      "S": {
+        "fine": 9.503132552809198,
+        "coarse": 9.503116674181518,
+        "absolute": 1.5878627680265822e-05,
+        "relative": 1.6708835315121411e-06
+      },
+      "psi_gb": {
+        "fine": 1.325969623077474,
+        "coarse": 1.325968169591373,
+        "absolute": 1.453486101032908e-06,
+        "relative": 1.0961684760616748e-06
+      },
+      "y": {
+        "fine": 0.08775031309978797,
+        "coarse": 0.08775044767619318,
+        "absolute": 1.3457640521408187e-07,
+        "relative": 1.533628775330342e-06
+      },
+      "mu": {
+        "fine": 2.373482265193242,
+        "coarse": 2.373482408709549,
+        "absolute": 1.4351630683862027e-07,
+        "relative": 6.046655959611124e-08
+      },
+      "sigma": {
+        "fine": 12.026739493960056,
+        "coarse": 12.026747065474119,
+        "absolute": 7.571514062831852e-06,
+        "relative": 6.295566696721368e-07
+      },
+      "j": {
+        "fine": 0.8904977745334944,
+        "coarse": 0.8904976937654953,
+        "absolute": 8.076799917766664e-08,
+        "relative": 9.069983270871015e-08
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 15,
+      "coarse_coldest_temperature": 0.0004244089467379458,
+      "fine_coldest_temperature": 0.0004745624300555341,
+      "coarse_census": {
+        "48": 8,
+        "96": 4
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 9.491634765790545e-09,
+      "worst_smarr": 1.0953607114418586e-08,
+      "matched": {
+        "floor": 0.0004745624300555341,
+        "fine": 1.3259696230774756,
+        "coarse": 1.3259647687675205,
+        "absolute": 4.85430995511571e-06
+      },
+      "envelope": 0.021959275493977026,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.1,
+      "E": {
+        "fine": 2.04517946109659,
+        "coarse": 2.0451823512685072,
+        "absolute": 2.890171917346862e-06,
+        "relative": 1.413162987563547e-06
+      },
+      "J": {
+        "fine": 0.7814021983376411,
+        "coarse": 0.781403949740211,
+        "absolute": 1.7514025698606162e-06,
+        "relative": 2.2413586416656604e-06
+      },
+      "S": {
+        "fine": 10.621008298332198,
+        "coarse": 10.621024940063164,
+        "absolute": 1.6641730965716306e-05,
+        "relative": 1.5668692178999177e-06
+      },
+      "psi_gb": {
+        "fine": 1.1662136981771747,
+        "coarse": 1.1662149411451184,
+        "absolute": 1.2429679436820606e-06,
+        "relative": 1.065814906500288e-06
+      },
+      "y": {
+        "fine": 0.1178736994989637,
+        "coarse": 0.11787352336780267,
+        "absolute": 1.7613116103099014e-07,
+        "relative": 1.4942363036000122e-06
+      },
+      "mu": {
+        "fine": 2.4107286921875195,
+        "coarse": 2.41072849673666,
+        "absolute": 1.9545085949701502e-07,
+        "relative": 8.107542757939341e-08
+      },
+      "sigma": {
+        "fine": 13.592242664440136,
+        "coarse": 13.59223349663676,
+        "absolute": 9.167803375120798e-06,
+        "relative": 6.744879120724865e-07
+      },
+      "j": {
+        "fine": 0.8699400389385158,
+        "coarse": 0.8699401447346673,
+        "absolute": 1.057961515060768e-07,
+        "relative": 1.216131535170714e-07
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 17,
+      "coarse_coldest_temperature": 0.00031537223958989216,
+      "fine_coldest_temperature": 0.0004170735348348295,
+      "coarse_census": {
+        "48": 6,
+        "96": 6
+      },
+      "fine_census": {
+        "64": 9,
+        "96": 3
+      },
+      "worst_relative_tensor_residual": 9.406521946367503e-09,
+      "worst_smarr": 1.7914548790821197e-08,
+      "matched": {
+        "floor": 0.0004170735348348295,
+        "fine": 1.1662136981771754,
+        "coarse": 1.166213856629119,
+        "absolute": 1.58451943566007e-07
+      },
+      "envelope": 0.020984827099231218,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.15,
+      "E": {
+        "fine": 2.11813306812178,
+        "coarse": 2.1181267462184064,
+        "absolute": 6.3219033736849894e-06,
+        "relative": 2.9846582676181125e-06
+      },
+      "J": {
+        "fine": 0.7921950238337123,
+        "coarse": 0.7921912292852972,
+        "absolute": 3.7945484151480358e-06,
+        "relative": 4.789917004003474e-06
+      },
+      "S": {
+        "fine": 12.947349848613426,
+        "coarse": 12.9473088226742,
+        "absolute": 4.1025939225391994e-05,
+        "relative": 3.168674648100715e-06
+      },
+      "psi_gb": {
+        "fine": 1.0714924054569415,
+        "coarse": 1.0714916364909013,
+        "absolute": 7.689660401766218e-07,
+        "relative": 7.176588805113311e-07
+      },
+      "y": {
+        "fine": 0.17520097512585278,
+        "coarse": 0.17520153459350588,
+        "absolute": 5.594676530940035e-07,
+        "relative": 3.1932907490504486e-06
+      },
+      "mu": {
+        "fine": 2.4739931932083348,
+        "coarse": 2.4739937093400943,
+        "absolute": 5.16131759553673e-07,
+        "relative": 2.0862295052814625e-07
+      },
+      "sigma": {
+        "fine": 16.34363945630031,
+        "coarse": 16.343665953427767,
+        "absolute": 2.649712745750321e-05,
+        "relative": 1.6212501216972719e-06
+      },
+      "j": {
+        "fine": 0.8367853618219677,
+        "coarse": 0.8367850999630893,
+        "absolute": 2.618588784697451e-07,
+        "relative": 3.129343442380359e-07
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 15,
+      "coarse_coldest_temperature": 0.00027789812695927865,
+      "fine_coldest_temperature": 0.0002778981266191605,
+      "coarse_census": {
+        "48": 9,
+        "96": 3
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 7.457408639568732e-09,
+      "worst_smarr": 1.1931285332646603e-08,
+      "matched": {
+        "floor": 0.00027789812695927865,
+        "fine": 1.0714920368132412,
+        "coarse": 1.0714916364909026,
+        "absolute": 4.0032233861175825e-07
+      },
+      "envelope": 0.012990894901454109,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.2,
+      "E": {
+        "fine": 2.2107160964628236,
+        "coarse": 2.210715128272974,
+        "absolute": 9.681898496260999e-07,
+        "relative": 4.379530466056754e-07
+      },
+      "J": {
+        "fine": 0.8158687673537476,
+        "coarse": 0.8158681716078862,
+        "absolute": 5.957458614203048e-07,
+        "relative": 7.30198146146216e-07
+      },
+      "S": {
+        "fine": 15.30381412395098,
+        "coarse": 15.303806763283703,
+        "absolute": 7.360667277467314e-06,
+        "relative": 4.809694640728565e-07
+      },
+      "psi_gb": {
+        "fine": 1.090070314606538,
+        "coarse": 1.09007098288359,
+        "absolute": 6.682770519184089e-07,
+        "relative": 6.130586650821917e-07
+      },
+      "y": {
+        "fine": 0.22906028161275768,
+        "coarse": 0.22906039311908755,
+        "absolute": 1.1150632986400844e-07,
+        "relative": 4.867990603998193e-07
+      },
+      "mu": {
+        "fine": 2.5319362581081535,
+        "coarse": 2.5319363817826073,
+        "absolute": 1.2367445378913544e-07,
+        "relative": 4.884580067649262e-08
+      },
+      "sigma": {
+        "fine": 18.757690864412623,
+        "coarse": 18.757695539370612,
+        "absolute": 4.674957988726192e-06,
+        "relative": 2.492288641772849e-07
+      },
+      "j": {
+        "fine": 0.8082257312842764,
+        "coarse": 0.8082256720666307,
+        "absolute": 5.9217645786979745e-08,
+        "relative": 7.326869647280653e-08
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 16,
+      "coarse_coldest_temperature": 0.00022307881053252124,
+      "fine_coldest_temperature": 0.00015464028528080367,
+      "coarse_census": {
+        "48": 7,
+        "96": 5
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 7.875777535761983e-09,
+      "worst_smarr": 2.6740478038973253e-08,
+      "matched": {
+        "floor": 0.00022307881053252124,
+        "fine": 1.0900710215041842,
+        "coarse": 1.090070982883591,
+        "absolute": 3.8620593167948414e-08
+      },
+      "envelope": 0.011151885871318656,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.3,
+      "E": {
+        "fine": 2.4117407127989003,
+        "coarse": 2.411740765129888,
+        "absolute": 5.233098754331422e-08,
+        "relative": 2.169843021084239e-08
+      },
+      "J": {
+        "fine": 0.8698970849469948,
+        "coarse": 0.8698971183745714,
+        "absolute": 3.342757659563489e-08,
+        "relative": 3.8427047491108355e-08
+      },
+      "S": {
+        "fine": 19.98458947947551,
+        "coarse": 19.984589980398873,
+        "absolute": 5.009233632335963e-07,
+        "relative": 2.5065481767741718e-08
+      },
+      "psi_gb": {
+        "fine": 1.207813009516353,
+        "coarse": 1.2078129624526857,
+        "absolute": 4.706366740769852e-08,
+        "relative": 3.896602126064557e-08
+      },
+      "y": {
+        "fine": 0.32921226320822583,
+        "coarse": 0.3292122547744559,
+        "absolute": 8.43376990466993e-09,
+        "relative": 2.5618030818419404e-08
+      },
+      "mu": {
+        "fine": 2.646582061106486,
+        "coarse": 2.6465820507329396,
+        "absolute": 1.037354646626909e-08,
+        "relative": 3.919601292065021e-09
+      },
+      "sigma": {
+        "fine": 22.973510114352464,
+        "coarse": 22.97350980739041,
+        "absolute": 3.069620539974949e-07,
+        "relative": 1.3361565231850377e-08
+      },
+      "j": {
+        "fine": 0.7562820247335933,
+        "coarse": 0.7562820291800791,
+        "absolute": 4.4464858461878976e-09,
+        "relative": 5.87940173211734e-09
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 17,
+      "coarse_coldest_temperature": 0.00011128984470399495,
+      "fine_coldest_temperature": 0.00011128984446523523,
+      "coarse_census": {
+        "48": 5,
+        "96": 7
+      },
+      "fine_census": {
+        "64": 7,
+        "96": 5
+      },
+      "worst_relative_tensor_residual": 8.9823508017265e-09,
+      "worst_smarr": 1.346137305600811e-07,
+      "matched": {
+        "floor": 0.00011128984470399495,
+        "fine": 1.2078142871742952,
+        "coarse": 1.207812962452684,
+        "absolute": 1.3247216110734428e-06
+      },
+      "envelope": 0.006161542336110326,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.4,
+      "E": {
+        "fine": 2.617853820917906,
+        "coarse": 2.617854001129856,
+        "absolute": 1.8021195025141878e-07,
+        "relative": 6.883957721834541e-08
+      },
+      "J": {
+        "fine": 0.9211557299369676,
+        "coarse": 0.9211558489657335,
+        "absolute": 1.1902876595470957e-07,
+        "relative": 1.292167676825442e-07
+      },
+      "S": {
+        "fine": 24.577067955193492,
+        "coarse": 24.5770702693252,
+        "absolute": 2.314131709368894e-06,
+        "relative": 9.41581686467968e-08
+      },
+      "psi_gb": {
+        "fine": 1.3338419120710365,
+        "coarse": 1.3338417917505272,
+        "absolute": 1.2032050933363792e-07,
+        "relative": 9.020597436979472e-08
+      },
+      "y": {
+        "fine": 0.4225109343308667,
+        "coarse": 0.4225108979338725,
+        "absolute": 3.639699425184162e-08,
+        "relative": 8.614450253100259e-08
+      },
+      "mu": {
+        "fine": 2.7651796595441347,
+        "coarse": 2.7651796116928904,
+        "absolute": 4.7851244300289864e-08,
+        "relative": 1.7304931393925622e-08
+      },
+      "sigma": {
+        "fine": 26.680687267586382,
+        "coarse": 26.680686332198988,
+        "absolute": 9.353873942075097e-07,
+        "relative": 3.505859443672898e-08
+      },
+      "j": {
+        "fine": 0.7081525030477346,
+        "coarse": 0.7081525214295306,
+        "absolute": 1.838179597424272e-08,
+        "relative": 2.5957397446357193e-08
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 14,
+      "coarse_coldest_temperature": 2.7617733291664996e-05,
+      "fine_coldest_temperature": 5.197085600375012e-05,
+      "coarse_census": {
+        "48": 6,
+        "96": 6
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 8.219609249939381e-09,
+      "worst_smarr": 1.7256548275409116e-07,
+      "matched": {
+        "floor": 5.197085600375012e-05,
+        "fine": 1.3338419120710363,
+        "coarse": 1.33384232900521,
+        "absolute": 4.169341736304233e-07
+      },
+      "envelope": 0.006961734645672735,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.5,
+      "E": {
+        "fine": 2.8250067520007733,
+        "coarse": 2.8250067489316106,
+        "absolute": 3.0691627017631617e-09,
+        "relative": 1.0864266783042086e-09
+      },
+      "J": {
+        "fine": 0.9671922694365945,
+        "coarse": 0.9671922673627271,
+        "absolute": 2.0738674111342448e-09,
+        "relative": 2.1442142133149047e-09
+      },
+      "S": {
+        "fine": 29.07456578800897,
+        "coarse": 29.07456572927547,
+        "absolute": 5.873350161778035e-08,
+        "relative": 2.020099011831276e-09
+      },
+      "psi_gb": {
+        "fine": 1.444398271088261,
+        "coarse": 1.4443982319129929,
+        "absolute": 3.917526814056771e-08,
+        "relative": 2.712220647498537e-08
+      },
+      "y": {
+        "fine": 0.5112438851580207,
+        "coarse": 0.5112438858888316,
+        "absolute": 7.30810967297657e-10,
+        "relative": 1.4294762020904568e-09
+      },
+      "mu": {
+        "fine": 2.888534854981033,
+        "coarse": 2.888534855971943,
+        "absolute": 9.9091002070395e-10,
+        "relative": 3.430493556258149e-10
+      },
+      "sigma": {
+        "fine": 30.060792157639334,
+        "coarse": 30.060792161370337,
+        "absolute": 3.731003062057425e-09,
+        "relative": 1.2411526091834102e-10
+      },
+      "j": {
+        "fine": 0.6632777155325503,
+        "coarse": 0.6632777151912448,
+        "absolute": 3.4130553938638286e-10,
+        "relative": 5.14574108844206e-10
+      },
+      "resolution": 48,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 13,
+      "coarse_coldest_temperature": 3.380878343961209e-06,
+      "fine_coldest_temperature": 3.3808786427170476e-06,
+      "coarse_census": {
+        "48": 7,
+        "96": 5
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 8.969899715745034e-09,
+      "worst_smarr": 7.8629021823044e-08,
+      "matched": {
+        "floor": 3.3808786427170476e-06,
+        "fine": 1.4443982710882606,
+        "coarse": 1.4443979531110842,
+        "absolute": 3.1797717636727896e-07
+      },
+      "envelope": 0.0013893339190238496,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.0,
+      "E": {
+        "fine": 2.356194490239496,
+        "coarse": 2.356194490173053,
+        "absolute": 6.644285122092697e-11,
+        "relative": 2.8199221879248756e-11
+      },
+      "J": {
+        "fine": 1.1107207345383756,
+        "coarse": 1.1107207345378662,
+        "absolute": 5.093703236980218e-13,
+        "relative": 4.585944133920577e-13
+      },
+      "S": {
+        "fine": 6.978864199638953,
+        "coarse": 6.978864199638527,
+        "absolute": 4.263256414560601e-13,
+        "relative": 6.108811251523074e-14
+      },
+      "psi_gb": {
+        "fine": 3.1415925342703366,
+        "coarse": 3.1415872924533867,
+        "absolute": 5.24181694983028e-06,
+        "relative": 1.668522220068154e-06
+      },
+      "y": {
+        "fine": 0.0,
+        "coarse": 0.0,
+        "absolute": 0.0,
+        "relative": null
+      },
+      "mu": {
+        "fine": 2.1968878313878513,
+        "coarse": 2.1968878313265727,
+        "absolute": 6.127853779958059e-11,
+        "relative": 2.789333935218203e-11
+      },
+      "sigma": {
+        "fine": 6.283185307186531,
+        "coarse": 6.2831853071890285,
+        "absolute": 2.497557716196752e-12,
+        "relative": 3.9749865618957886e-13
+      },
+      "j": {
+        "fine": 0.9999999999688878,
+        "coarse": 1.000000000010728,
+        "absolute": 4.18403089952335e-11,
+        "relative": 4.184030899653524e-11
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 14,
+      "coarse_coldest_temperature": 1.0782319516032762e-05,
+      "fine_coldest_temperature": 1.0782319578517278e-05,
+      "coarse_census": {
+        "56": 12
+      },
+      "fine_census": {
+        "64": 11,
+        "96": 1
+      },
+      "worst_relative_tensor_residual": 1.2701902173208148e-09,
+      "worst_smarr": 1.3224290514470876e-11,
+      "matched": {
+        "floor": 1.0782319578517278e-05,
+        "fine": 3.141592534270337,
+        "coarse": 3.1415819941741883,
+        "absolute": 1.0540096148758948e-05
+      },
+      "envelope": 0.011527682533043482,
+      "below_envelope": true,
+      "escalated_on_both": false
+    },
+    {
+      "alpha_gb": 0.005,
+      "E": {
+        "fine": 2.308572340544098,
+        "coarse": 2.308522019197605,
+        "absolute": 5.0321346493298336e-05,
+        "relative": 2.179760435033121e-05
+      },
+      "J": {
+        "fine": 1.0665015393855986,
+        "coarse": 1.0664681420195499,
+        "absolute": 3.339736604868193e-05,
+        "relative": 3.13148784275753e-05
+      },
+      "S": {
+        "fine": 7.112052731320798,
+        "coarse": 7.111853738713041,
+        "absolute": 0.00019899260775702032,
+        "relative": 2.7979630533485217e-05
+      },
+      "psi_gb": {
+        "fine": 2.990943410234766,
+        "coarse": 2.990931958713448,
+        "absolute": 1.1451521317873414e-05,
+        "relative": 3.8287321915510795e-06
+      },
+      "y": {
+        "fine": 0.004789928307613898,
+        "coarse": 0.004790028307571895,
+        "absolute": 9.999995799741396e-08,
+        "relative": 2.087713042353006e-05
+      },
+      "mu": {
+        "fine": 2.2115792008293296,
+        "coarse": 2.2115771641219113,
+        "absolute": 2.0367074182736644e-06,
+        "relative": 9.209289983871755e-07
+      },
+      "sigma": {
+        "fine": 6.668581777592167,
+        "coarse": 6.6686040196620056,
+        "absolute": 2.2242069838362966e-05,
+        "relative": 3.3353523402983498e-06
+      },
+      "j": {
+        "fine": 0.9900521690833182,
+        "coarse": 0.9900535367365212,
+        "absolute": 1.3676532030215682e-06,
+        "relative": 1.381395087783978e-06
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 9,
+      "coarse_coldest_temperature": 0.005408126709792418,
+      "fine_coldest_temperature": 0.0024008413970853025,
+      "coarse_census": {
+        "56": 9
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 2
+      },
+      "worst_relative_tensor_residual": 9.064145874253282e-09,
+      "worst_smarr": 5.865315727094843e-11,
+      "matched": {
+        "floor": 0.005408126709792418,
+        "fine": 2.990958776709557,
+        "coarse": 2.990931958713447,
+        "absolute": 2.68179961100401e-05
+      },
+      "envelope": 0.11244627529872542,
+      "below_envelope": true,
+      "escalated_on_both": false
+    },
+    {
+      "alpha_gb": 0.01,
+      "E": {
+        "fine": 2.26141175490025,
+        "coarse": 2.2613561860255507,
+        "absolute": 5.556887469948535e-05,
+        "relative": 2.4572647851092676e-05
+      },
+      "J": {
+        "fine": 1.0237646927716173,
+        "coarse": 1.0237267158910257,
+        "absolute": 3.7976880591594764e-05,
+        "relative": 3.709532166886975e-05
+      },
+      "S": {
+        "fine": 7.236511524753516,
+        "coarse": 7.236281185651438,
+        "absolute": 0.00023033910207814756,
+        "relative": 3.18301299307325e-05
+      },
+      "psi_gb": {
+        "fine": 2.824557559062115,
+        "coarse": 2.8245314078045833,
+        "absolute": 2.6151257531470407e-05,
+        "relative": 9.258532348745567e-06
+      },
+      "y": {
+        "fine": 0.009844641408041158,
+        "coarse": 0.009844884875660594,
+        "absolute": 2.434676194366936e-07,
+        "relative": 2.4730978950419452e-05
+      },
+      "mu": {
+        "fine": 2.2262787802922026,
+        "coarse": 2.226279131428447,
+        "absolute": 3.5113624452520753e-07,
+        "relative": 1.5772339368887142e-07
+      },
+      "sigma": {
+        "fine": 7.068530079077308,
+        "coarse": 7.068567297624115,
+        "absolute": 3.7218546807160635e-05,
+        "relative": 5.2653870593727404e-06
+      },
+      "j": {
+        "fine": 0.9802627610161166,
+        "coarse": 0.9802625291006083,
+        "absolute": 2.319155083529978e-07,
+        "relative": 2.3658504390455453e-07
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 10,
+      "coarse_coldest_temperature": 0.004721721654076993,
+      "fine_coldest_temperature": 0.0012068293970363116,
+      "coarse_census": {
+        "56": 8,
+        "96": 2
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 3
+      },
+      "worst_relative_tensor_residual": 4.8276347939179615e-09,
+      "worst_smarr": 5.826142486323751e-10,
+      "matched": {
+        "floor": 0.004721721654076993,
+        "fine": 2.824488939620752,
+        "coarse": 2.8245314078045833,
+        "absolute": 4.2468183831356754e-05
+      },
+      "envelope": 0.08810329843332632,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.02,
+      "E": {
+        "fine": 2.1767014684738784,
+        "coarse": 2.1767000667195977,
+        "absolute": 1.401754280649925e-06,
+        "relative": 6.439809505125746e-07
+      },
+      "J": {
+        "fine": 0.94833498501553,
+        "coarse": 0.9483341269580835,
+        "absolute": 8.580574465399948e-07,
+        "relative": 9.048041674070931e-07
+      },
+      "S": {
+        "fine": 7.485518799642987,
+        "coarse": 7.485512783426971,
+        "absolute": 6.016216016035969e-06,
+        "relative": 8.03713967871259e-07
+      },
+      "psi_gb": {
+        "fine": 2.4728268500518986,
+        "coarse": 2.472826060358667,
+        "absolute": 7.896932316953098e-07,
+        "relative": 3.193483731700568e-07
+      },
+      "y": {
+        "fine": 0.02071995529550169,
+        "coarse": 0.020719967793845717,
+        "absolute": 1.2498344026390384e-08,
+        "relative": 6.032032332185475e-07
+      },
+      "mu": {
+        "fine": 2.2550578559215824,
+        "coarse": 2.255057763964594,
+        "absolute": 9.195698824626675e-08,
+        "relative": 4.077810598286684e-08
+      },
+      "sigma": {
+        "fine": 7.893327693188925,
+        "coarse": 7.893328491127718,
+        "absolute": 7.979387932621762e-07,
+        "relative": 1.0109029097457968e-07
+      },
+      "j": {
+        "fine": 0.9615575715456631,
+        "coarse": 0.9615576303614107,
+        "absolute": 5.8815747605578395e-08,
+        "relative": 6.116716184870197e-08
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 11,
+      "coarse_coldest_temperature": 0.005017114995712361,
+      "fine_coldest_temperature": 0.004732378502406094,
+      "coarse_census": {
+        "56": 11
+      },
+      "fine_census": {
+        "64": 9,
+        "96": 3
+      },
+      "worst_relative_tensor_residual": 9.511205036873616e-09,
+      "worst_smarr": 9.446644166021128e-10,
+      "matched": {
+        "floor": 0.005017114995712361,
+        "fine": 2.4728011292036713,
+        "coarse": 2.4728260603586687,
+        "absolute": 2.49311549973541e-05
+      },
+      "envelope": 0.16022366983714864,
+      "below_envelope": true,
+      "escalated_on_both": false
+    },
+    {
+      "alpha_gb": 0.035,
+      "E": {
+        "fine": 2.08981008942558,
+        "coarse": 2.0898103823774625,
+        "absolute": 2.929518823080457e-07,
+        "relative": 1.401811024793016e-07
+      },
+      "J": {
+        "fine": 0.8692521067637974,
+        "coarse": 0.8692494888599442,
+        "absolute": 2.6179038531415344e-06,
+        "relative": 3.011673866270996e-06
+      },
+      "S": {
+        "fine": 7.928685028784844,
+        "coarse": 7.928688176820455,
+        "absolute": 3.148035611744149e-06,
+        "relative": 3.970438477900565e-07
+      },
+      "psi_gb": {
+        "fine": 2.0006600423227705,
+        "coarse": 2.0006575602992123,
+        "absolute": 2.48202355823679e-06,
+        "relative": 1.2406023540886813e-06
+      },
+      "y": {
+        "fine": 0.03842709402838684,
+        "coarse": 0.03842717118183037,
+        "absolute": 7.715344352982045e-08,
+        "relative": 2.0077876165401864e-06
+      },
+      "mu": {
+        "fine": 2.294437965937951,
+        "coarse": 2.2944428943195754,
+        "absolute": 4.928381624580425e-06,
+        "relative": 2.1479690005764595e-06
+      },
+      "sigma": {
+        "fine": 9.121272145434457,
+        "coarse": 9.121303237370032,
+        "absolute": 3.109193557548906e-05,
+        "relative": 3.408727980016664e-06
+      },
+      "j": {
+        "fine": 0.9369088568900835,
+        "coarse": 0.9369058382214174,
+        "absolute": 3.0186686661437534e-06,
+        "relative": 3.221944849751696e-06
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 12,
+      "coarse_coldest_temperature": 0.003191402132578949,
+      "fine_coldest_temperature": 0.003964674504404278,
+      "coarse_census": {
+        "56": 11,
+        "96": 1
+      },
+      "fine_census": {
+        "64": 11
+      },
+      "worst_relative_tensor_residual": 9.245880497103853e-09,
+      "worst_smarr": 3.6785397476646753e-10,
+      "matched": {
+        "floor": 0.003964674504404278,
+        "fine": 2.000660042322771,
+        "coarse": 2.000660582954952,
+        "absolute": 5.406321812451154e-07
+      },
+      "envelope": 0.13185014149330998,
+      "below_envelope": true,
+      "escalated_on_both": false
+    },
+    {
+      "alpha_gb": 0.05,
+      "E": {
+        "fine": 2.0460886611731435,
+        "coarse": 2.0460875434002785,
+        "absolute": 1.1177728649336416e-06,
+        "relative": 5.462973751551687e-07
+      },
+      "J": {
+        "fine": 0.8239623967418752,
+        "coarse": 0.8239616978375275,
+        "absolute": 6.989043477290124e-07,
+        "relative": 8.482235967231402e-07
+      },
+      "S": {
+        "fine": 8.468731891396885,
+        "coarse": 8.468726297189,
+        "absolute": 5.5942078844850585e-06,
+        "relative": 6.605720851982617e-07
+      },
+      "psi_gb": {
+        "fine": 1.6590799897525172,
+        "coarse": 1.659078774491821,
+        "absolute": 1.2152606962967383e-06,
+        "relative": 7.324907200393738e-07
+      },
+      "y": {
+        "fine": 0.05688945101924448,
+        "coarse": 0.0568894831892504,
+        "absolute": 3.2170005916098976e-08,
+        "relative": 5.654827975966326e-07
+      },
+      "mu": {
+        "fine": 2.328017213416821,
+        "coarse": 2.3280172580800955,
+        "absolute": 4.4663274412215515e-08,
+        "relative": 1.918511347545554e-08
+      },
+      "sigma": {
+        "fine": 10.278056286165576,
+        "coarse": 10.27805821486001,
+        "absolute": 1.92869443438326e-06,
+        "relative": 1.8765167077157506e-07
+      },
+      "j": {
+        "fine": 0.9167112142608949,
+        "coarse": 0.9167111878800825,
+        "absolute": 2.6380812312432056e-08,
+        "relative": 2.8777669457989317e-08
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 15,
+      "coarse_coldest_temperature": 0.0007975909098531407,
+      "fine_coldest_temperature": 0.0004796803161307463,
+      "coarse_census": {
+        "56": 7,
+        "96": 5
+      },
+      "fine_census": {
+        "64": 7,
+        "96": 5
+      },
+      "worst_relative_tensor_residual": 7.168674962425998e-09,
+      "worst_smarr": 6.246758613943994e-10,
+      "matched": {
+        "floor": 0.0007975909098531407,
+        "fine": 1.659078088989167,
+        "coarse": 1.6590787744918203,
+        "absolute": 6.855026533081343e-07
+      },
+      "envelope": 0.018584375556884414,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.075,
+      "E": {
+        "fine": 2.028610082417168,
+        "coarse": 2.028610082349961,
+        "absolute": 6.720668466186908e-11,
+        "relative": 3.3129424547564953e-11
+      },
+      "J": {
+        "fine": 0.7901669906113592,
+        "coarse": 0.7901669906129527,
+        "absolute": 1.5935031072444872e-12,
+        "relative": 2.016666256852339e-12
+      },
+      "S": {
+        "fine": 9.503132552809198,
+        "coarse": 9.503132552808015,
+        "absolute": 1.1830536550405668e-12,
+        "relative": 1.244909137556802e-13
+      },
+      "psi_gb": {
+        "fine": 1.325969623077474,
+        "coarse": 1.3259697145459475,
+        "absolute": 9.146847346208631e-08,
+        "relative": 6.89823295120404e-08
+      },
+      "y": {
+        "fine": 0.08775031309978797,
+        "coarse": 0.08775031309966999,
+        "absolute": 1.179750741542307e-13,
+        "relative": 1.344440492423904e-12
+      },
+      "mu": {
+        "fine": 2.373482265193242,
+        "coarse": 2.373482265111419,
+        "absolute": 8.182299282566419e-11,
+        "relative": 3.447381681573357e-11
+      },
+      "sigma": {
+        "fine": 12.026739493960056,
+        "coarse": 12.026739493934304,
+        "absolute": 2.575184510078543e-11,
+        "relative": 2.1412158393983885e-12
+      },
+      "j": {
+        "fine": 0.8904977745334944,
+        "coarse": 0.8904977745795427,
+        "absolute": 4.604827630316777e-11,
+        "relative": 5.171071463630676e-11
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 16,
+      "coarse_coldest_temperature": 0.00047456243021281404,
+      "fine_coldest_temperature": 0.0004745624300555341,
+      "coarse_census": {
+        "56": 7,
+        "96": 5
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 9.932787803964955e-09,
+      "worst_smarr": 7.445398641088124e-09,
+      "matched": {
+        "floor": 0.00047456243021281404,
+        "fine": 1.3259675558626758,
+        "coarse": 1.3259697145459486,
+        "absolute": 2.1586832728015537e-06
+      },
+      "envelope": 0.021959275493977026,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.1,
+      "E": {
+        "fine": 2.04517946109659,
+        "coarse": 2.045179941630865,
+        "absolute": 4.805342750380248e-07,
+        "relative": 2.3495946648142587e-07
+      },
+      "J": {
+        "fine": 0.7814021983376411,
+        "coarse": 0.7814024890855136,
+        "absolute": 2.9074787244454114e-07,
+        "relative": 3.7208478945040034e-07
+      },
+      "S": {
+        "fine": 10.621008298332198,
+        "coarse": 10.621011051386976,
+        "absolute": 2.7530547779264225e-06,
+        "relative": 2.59208419821942e-07
+      },
+      "psi_gb": {
+        "fine": 1.1662136981771747,
+        "coarse": 1.1662138707814889,
+        "absolute": 1.726043141747624e-07,
+        "relative": 1.4800401885567617e-07
+      },
+      "y": {
+        "fine": 0.1178736994989637,
+        "coarse": 0.11787367025963233,
+        "absolute": 2.923933137277679e-08,
+        "relative": 2.480564493781231e-07
+      },
+      "mu": {
+        "fine": 2.4107286921875195,
+        "coarse": 2.4107286606141063,
+        "absolute": 3.157341321724516e-08,
+        "relative": 1.3097041288621793e-08
+      },
+      "sigma": {
+        "fine": 13.592242664440136,
+        "coarse": 13.5922411301977,
+        "absolute": 1.534242436207478e-06,
+        "relative": 1.1287632762923994e-07
+      },
+      "j": {
+        "fine": 0.8699400389385158,
+        "coarse": 0.8699400560289768,
+        "absolute": 1.7090461046365135e-08,
+        "relative": 1.9645562086346306e-08
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 16,
+      "coarse_coldest_temperature": 0.0004170735350157217,
+      "fine_coldest_temperature": 0.0004170735348348295,
+      "coarse_census": {
+        "56": 8,
+        "96": 4
+      },
+      "fine_census": {
+        "64": 9,
+        "96": 3
+      },
+      "worst_relative_tensor_residual": 8.072851219746478e-09,
+      "worst_smarr": 5.420673076618373e-09,
+      "matched": {
+        "floor": 0.0004170735350157217,
+        "fine": 1.1662123372419744,
+        "coarse": 1.1662138707814884,
+        "absolute": 1.533539514042559e-06
+      },
+      "envelope": 0.020984827099231218,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.15,
+      "E": {
+        "fine": 2.11813306812178,
+        "coarse": 2.118126746326177,
+        "absolute": 6.3217956030037215e-06,
+        "relative": 2.9846073875847047e-06
+      },
+      "J": {
+        "fine": 0.7921950238337123,
+        "coarse": 0.7921912292727112,
+        "absolute": 3.794561001080332e-06,
+        "relative": 4.789932891419978e-06
+      },
+      "S": {
+        "fine": 12.947349848613426,
+        "coarse": 12.947308822703809,
+        "absolute": 4.1025909617076195e-05,
+        "relative": 3.1686723612762956e-06
+      },
+      "psi_gb": {
+        "fine": 1.0714924054569415,
+        "coarse": 1.071491644745758,
+        "absolute": 7.607111833785041e-07,
+        "relative": 7.099548064963618e-07
+      },
+      "y": {
+        "fine": 0.17520097512585278,
+        "coarse": 0.17520153459536153,
+        "absolute": 5.594695087485224e-07,
+        "relative": 3.1933013406268804e-06
+      },
+      "mu": {
+        "fine": 2.4739931932083348,
+        "coarse": 2.4739937094921753,
+        "absolute": 5.162838405681214e-07,
+        "relative": 2.0868442240885548e-07
+      },
+      "sigma": {
+        "fine": 16.34363945630031,
+        "coarse": 16.343665953724802,
+        "absolute": 2.649742449278847e-05,
+        "relative": 1.6212682960632723e-06
+      },
+      "j": {
+        "fine": 0.8367853618219677,
+        "coarse": 0.8367850998859312,
+        "absolute": 2.619360365274659e-07,
+        "relative": 3.130265519429518e-07
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 15,
+      "coarse_coldest_temperature": 0.00027789812688450784,
+      "fine_coldest_temperature": 0.0002778981266191605,
+      "coarse_census": {
+        "56": 9,
+        "96": 3
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 6.701579763804503e-09,
+      "worst_smarr": 1.156551649418849e-08,
+      "matched": {
+        "floor": 0.00027789812688450784,
+        "fine": 1.0714920368132412,
+        "coarse": 1.0714916447457594,
+        "absolute": 3.920674818136405e-07
+      },
+      "envelope": 0.012990894901454109,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.2,
+      "E": {
+        "fine": 2.2107160964628236,
+        "coarse": 2.2107158063312915,
+        "absolute": 2.901315321324205e-07,
+        "relative": 1.3123871156347709e-07
+      },
+      "J": {
+        "fine": 0.8158687673537476,
+        "coarse": 0.8158685884658718,
+        "absolute": 1.7888787573472342e-07,
+        "relative": 2.1926060034745823e-07
+      },
+      "S": {
+        "fine": 15.30381412395098,
+        "coarse": 15.30381176489787,
+        "absolute": 2.3590531093020672e-06,
+        "relative": 1.5414805029617228e-07
+      },
+      "psi_gb": {
+        "fine": 1.090070314606538,
+        "coarse": 1.0900707872031603,
+        "absolute": 4.7259662228071875e-07,
+        "relative": 4.335469152293198e-07
+      },
+      "y": {
+        "fine": 0.22906028161275768,
+        "coarse": 0.22906031509536037,
+        "absolute": 3.348260269042669e-08,
+        "relative": 1.4617376026382154e-07
+      },
+      "mu": {
+        "fine": 2.5319362581081535,
+        "coarse": 2.5319362959226965,
+        "absolute": 3.7814543052405725e-08,
+        "relative": 1.4935029636433465e-08
+      },
+      "sigma": {
+        "fine": 18.757690864412623,
+        "coarse": 18.75769208577398,
+        "absolute": 1.2213613551637081e-06,
+        "relative": 6.511256444048204e-08
+      },
+      "j": {
+        "fine": 0.8082257312842764,
+        "coarse": 0.8082257131779639,
+        "absolute": 1.8106312560384197e-08,
+        "relative": 2.240254406601623e-08
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 16,
+      "coarse_coldest_temperature": 0.0002230788138854933,
+      "fine_coldest_temperature": 0.00015464028528080367,
+      "coarse_census": {
+        "56": 8,
+        "96": 4
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 7.896240754794006e-09,
+      "worst_smarr": 3.613579050263696e-08,
+      "matched": {
+        "floor": 0.0002230788138854933,
+        "fine": 1.0900711901871776,
+        "coarse": 1.0900707872031596,
+        "absolute": 4.029840179331501e-07
+      },
+      "envelope": 0.011151885871318656,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.3,
+      "E": {
+        "fine": 2.4117407127989003,
+        "coarse": 2.4117407127944586,
+        "absolute": 4.441780276920326e-12,
+        "relative": 1.8417320955557872e-12
+      },
+      "J": {
+        "fine": 0.8698970849469948,
+        "coarse": 0.8698970849446166,
+        "absolute": 2.378208741049548e-12,
+        "relative": 2.733896666861987e-12
+      },
+      "S": {
+        "fine": 19.98458947947551,
+        "coarse": 19.984589479474472,
+        "absolute": 1.0373923942097463e-12,
+        "relative": 5.190961742172211e-14
+      },
+      "psi_gb": {
+        "fine": 1.207813009516353,
+        "coarse": 1.2078130164724328,
+        "absolute": 6.956079712239216e-09,
+        "relative": 5.7592356245812025e-09
+      },
+      "y": {
+        "fine": 0.32921226320822583,
+        "coarse": 0.32921226320882585,
+        "absolute": 6.000200336586659e-13,
+        "relative": 1.822593204188007e-12
+      },
+      "mu": {
+        "fine": 2.646582061106486,
+        "coarse": 2.6465820611064355,
+        "absolute": 5.062616992290714e-14,
+        "relative": 1.912888727952055e-14
+      },
+      "sigma": {
+        "fine": 22.973510114352464,
+        "coarse": 22.97351011441408,
+        "absolute": 6.161471333143709e-11,
+        "relative": 2.681989518569212e-12
+      },
+      "j": {
+        "fine": 0.7562820247335933,
+        "coarse": 0.7562820247336149,
+        "absolute": 2.1649348980190553e-14,
+        "relative": 2.8626026101594464e-14
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 16,
+      "coarse_coldest_temperature": 0.00011128984441932602,
+      "fine_coldest_temperature": 0.00011128984446523523,
+      "coarse_census": {
+        "56": 7,
+        "96": 5
+      },
+      "fine_census": {
+        "64": 7,
+        "96": 5
+      },
+      "worst_relative_tensor_residual": 9.086204100676672e-09,
+      "worst_smarr": 1.3472990906408093e-07,
+      "matched": {
+        "floor": 0.00011128984446523523,
+        "fine": 1.207813009516353,
+        "coarse": 1.2078142540488317,
+        "absolute": 1.244532478628102e-06
+      },
+      "envelope": 0.006161542336110326,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.4,
+      "E": {
+        "fine": 2.617853820917906,
+        "coarse": 2.617853820876336,
+        "absolute": 4.156985866643481e-11,
+        "relative": 1.5879365889062152e-11
+      },
+      "J": {
+        "fine": 0.9211557299369676,
+        "coarse": 0.9211557299350245,
+        "absolute": 1.943112337698949e-12,
+        "relative": 2.1094287041257522e-12
+      },
+      "S": {
+        "fine": 24.577067955193492,
+        "coarse": 24.57706795521024,
+        "absolute": 1.674749228186556e-11,
+        "relative": 6.814275939016791e-13
+      },
+      "psi_gb": {
+        "fine": 1.3338419120710365,
+        "coarse": 1.3338419099789203,
+        "absolute": 2.092116258012311e-09,
+        "relative": 1.5684889184235581e-09
+      },
+      "y": {
+        "fine": 0.4225109343308667,
+        "coarse": 0.4225109343314609,
+        "absolute": 5.941913627793838e-13,
+        "relative": 1.4063336933999316e-12
+      },
+      "mu": {
+        "fine": 2.7651796595441347,
+        "coarse": 2.765179659504114,
+        "absolute": 4.002087550247779e-11,
+        "relative": 1.4473155610104409e-11
+      },
+      "sigma": {
+        "fine": 26.680687267586382,
+        "coarse": 26.680687267660844,
+        "absolute": 7.44613259939797e-11,
+        "relative": 2.790832381759546e-12
+      },
+      "j": {
+        "fine": 0.7081525030477346,
+        "coarse": 0.7081525030631082,
+        "absolute": 1.537359128889193e-11,
+        "relative": 2.1709435782161798e-11
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 13,
+      "coarse_coldest_temperature": 5.1970855210338126e-05,
+      "fine_coldest_temperature": 5.197085600375012e-05,
+      "coarse_census": {
+        "56": 8,
+        "96": 4
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 9.097010288503351e-09,
+      "worst_smarr": 1.6397174843220242e-07,
+      "matched": {
+        "floor": 5.197085600375012e-05,
+        "fine": 1.3338419120710363,
+        "coarse": 1.3338427617807156,
+        "absolute": 8.497096792847714e-07
+      },
+      "envelope": 0.006961734645672735,
+      "below_envelope": true,
+      "escalated_on_both": true
+    },
+    {
+      "alpha_gb": 0.5,
+      "E": {
+        "fine": 2.8250067520007733,
+        "coarse": 2.8250067551558233,
+        "absolute": 3.1550499990373737e-09,
+        "relative": 1.1168291887454258e-09
+      },
+      "J": {
+        "fine": 0.9671922694365945,
+        "coarse": 0.9671922715911015,
+        "absolute": 2.154507017237961e-09,
+        "relative": 2.2275891622800056e-09
+      },
+      "S": {
+        "fine": 29.07456578800897,
+        "coarse": 29.07456539480394,
+        "absolute": 3.9320503120165995e-07,
+        "relative": 1.3524020756445032e-08
+      },
+      "psi_gb": {
+        "fine": 1.444398271088261,
+        "coarse": 1.4443976782729195,
+        "absolute": 5.928153414824777e-07,
+        "relative": 4.104237407012607e-07
+      },
+      "y": {
+        "fine": 0.5112438851580207,
+        "coarse": 0.5112438843987931,
+        "absolute": 7.592275697021478e-10,
+        "relative": 1.4850594632882068e-09
+      },
+      "mu": {
+        "fine": 2.888534854981033,
+        "coarse": 2.8885348539173865,
+        "absolute": 1.0636465042068721e-09,
+        "relative": 3.682304550948049e-10
+      },
+      "sigma": {
+        "fine": 30.060792157639334,
+        "coarse": 30.060791684133463,
+        "absolute": 4.735058709570694e-07,
+        "relative": 1.5751609886858473e-08
+      },
+      "j": {
+        "fine": 0.6632777155325503,
+        "coarse": 0.6632777158989088,
+        "absolute": 3.6635849909316676e-10,
+        "relative": 5.523455567914188e-10
+      },
+      "resolution": 56,
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_states": 14,
+      "coarse_coldest_temperature": 3.5670847456711e-05,
+      "fine_coldest_temperature": 3.3808786427170476e-06,
+      "coarse_census": {
+        "56": 7,
+        "96": 5
+      },
+      "fine_census": {
+        "64": 8,
+        "96": 4
+      },
+      "worst_relative_tensor_residual": 5.597256507748362e-09,
+      "worst_smarr": 8.614018211007633e-08,
+      "matched": {
+        "floor": 3.5670847456711e-05,
+        "fine": 1.4443979127272735,
+        "coarse": 1.4443976782729204,
+        "absolute": 2.344543530430343e-07
+      },
+      "envelope": 0.0013893339190238496,
+      "below_envelope": true,
+      "escalated_on_both": true
+    }
+  ],
   "source_sha256": {
-    "results\\egb-extremality.json": "9db08930fca98c24eceef878f55c6f6cdbea3c05c3b558627d245330f2e175c2",
-    "manuscript\\reanalysis.py": "4000b494833770b9f52dea71ca8f455a2ef37a9fe51ce364274ffe24bc790a9c",
-    "manuscript\\make_figures.py": "08b728e345b6f919bd2f2a4d036937d2e33866df1a7d9e207c1bbcce521c831a"
+    "results/egb-extremality.json": "9db08930fca98c24eceef878f55c6f6cdbea3c05c3b558627d245330f2e175c2",
+    "results/egb-rotating-resolution-study.json": "07ae19a15ecc282045fc9b08a0ab91936de4d92bbb1da042443f75c523cade34",
+    "manuscript/reanalysis.py": "f29f4458623c27a09dfc9ea7850d5e3ad063fdbfd78d2280673e171cdd36ab87",
+    "manuscript/make_figures.py": "aad0a04b1635608c74480c43058d7eaad8c4a8fe51c2cce43d3604145c2ce98f"
   },
   "fits": [
     {
@@ -18,9 +1990,9 @@
         "T_sqrt_6": 3.141618235424525,
         "T_log_6": 3.1415927244273605,
         "T_linear_12": 3.130064851737293,
-        "T_quadratic_12": 3.141612441609035,
-        "T_cubic_12": 3.14159568660943,
-        "T_sqrt_12": 3.152281310026621,
+        "T_quadratic_12": 3.141612441609036,
+        "T_cubic_12": 3.1415956866094303,
+        "T_sqrt_12": 3.1522813100266207,
         "T_log_12": 3.141590998104434,
         "tau_linear_6": 3.141598478846885,
         "tau_quadratic_6": 3.141591294003205,
@@ -36,7 +2008,63 @@
       "envelope": 0.011527682533043482,
       "alpha_gb": 0.0,
       "temperature_min": 1.0782319578517278e-05,
-      "temperature_range": 3919.2406285957622
+      "temperature_range": 3919.2406285957622,
+      "production": {
+        "temperature": [
+          1.0782319578517278e-05,
+          2.321489109331176e-05,
+          4.807694378339953e-05,
+          0.0001474839748703487,
+          0.0005444544928247095,
+          0.0013352540309303365
+        ],
+        "values": [
+          3.140690139730637,
+          3.139647086090214,
+          3.137564770510682,
+          3.129241278482315,
+          3.0960333158951236,
+          3.0299911679747176
+        ],
+        "fitted": [
+          3.1406892420763053,
+          3.1396477583142492,
+          3.1375652366546043,
+          3.1292410174820353,
+          3.096033337306467,
+          3.0299911668500434
+        ],
+        "residuals": [
+          8.976543317551489e-07,
+          -6.722240351031417e-07,
+          -4.661439221287367e-07,
+          2.6100027961106775e-07,
+          -2.14113433649743e-08,
+          1.1246741316028874e-09
+        ],
+        "coefficients": [
+          3.141592534270337,
+          -0.1118642716840626,
+          0.00036587243172626904,
+          -0.00010296816795719457
+        ],
+        "scale": 0.0013352540309303365,
+        "intercept": 3.141592534270337,
+        "worst_residual": 8.976543317551489e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          -9.423526550200734e-07,
+          4.614112110168378e-07,
+          1.6219692344776604e-07,
+          8.247940841421553e-07,
+          1.0517208286486834e-06,
+          1.100128936837308e-06
+        ],
+        "worst": 1.100128936837308e-06,
+        "coldest_dropped": -9.423526550200734e-07,
+        "warmest_dropped": 1.100128936837308e-06
+      }
     },
     {
       "points": 10,
@@ -47,36 +2075,92 @@
         "T_cubic_6": 2.990943410234769,
         "T_sqrt_6": 3.0302365111378666,
         "T_log_6": 2.9909747069713153,
-        "T_linear_10": 2.9399050884624365,
-        "T_quadratic_10": 2.9904041715323717,
-        "T_cubic_10": 2.990944333507958,
-        "T_sqrt_10": 3.103389685533494,
-        "T_log_10": 2.9911353629990947,
+        "T_linear_10": 2.939905088462435,
+        "T_quadratic_10": 2.990404171532371,
+        "T_cubic_10": 2.9909443335079557,
+        "T_sqrt_10": 3.1033896855334913,
+        "T_log_10": 2.991135362999093,
         "tau_linear_6": 2.996478300648748,
         "tau_quadratic_6": 2.9904948673980183,
-        "tau_cubic_6": 2.9909877327303844,
+        "tau_cubic_6": 2.990987732730384,
         "tau_sqrt_6": 2.973447492590479,
         "tau_log_6": 2.9911760819054107,
-        "tau_linear_10": 3.0161279283552265,
-        "tau_quadratic_10": 2.986407383832287,
-        "tau_cubic_10": 2.99191891148226,
-        "tau_sqrt_10": 2.9220479106758543,
-        "tau_log_10": 2.993822033913608
+        "tau_linear_10": 3.016127928355228,
+        "tau_quadratic_10": 2.9864073838322884,
+        "tau_cubic_10": 2.9919189114822617,
+        "tau_sqrt_10": 2.9220479106758557,
+        "tau_log_10": 2.9938220339136095
       },
-      "envelope": 0.11244627529872808,
+      "envelope": 0.11244627529872542,
       "alpha_gb": 0.005,
       "temperature_min": 0.0024008413970853025,
-      "temperature_range": 23.875925635252397
+      "temperature_range": 23.875925635252397,
+      "production": {
+        "temperature": [
+          0.0024008413970853025,
+          0.003147362554459023,
+          0.00412089037925271,
+          0.009909366292522778,
+          0.015466055902632267,
+          0.025955717597939066
+        ],
+        "values": [
+          2.7940426461622287,
+          2.733128762232216,
+          2.653919726564297,
+          2.1881570154119245,
+          1.7493651120427067,
+          0.9429913822907352
+        ],
+        "fitted": [
+          2.7940408769814913,
+          2.7331301113632134,
+          2.653920790007406,
+          2.188155915922854,
+          1.7493656195963472,
+          0.9429913308328062
+        ],
+        "residuals": [
+          1.7691807374653479e-06,
+          -1.3491309975854904e-06,
+          -1.0634431091283147e-06,
+          1.0994890704552063e-06,
+          -5.075536404497427e-07,
+          5.145792902894186e-08
+        ],
+        "coefficients": [
+          2.990943410234769,
+          -2.137084409743025,
+          0.0904243068949248,
+          -0.0012919765538624286
+        ],
+        "scale": 0.025955717597939066,
+        "intercept": 2.990943410234769,
+        "worst_residual": 1.7691807374653479e-06
+      },
+      "leave_one_out": {
+        "shifts": [
+          -5.885455757415059e-06,
+          1.1783011704125101e-06,
+          -4.617790994032589e-07,
+          7.271350534132637e-06,
+          9.36771787962698e-06,
+          1.0861980352938616e-05
+        ],
+        "worst": 1.0861980352938616e-05,
+        "coldest_dropped": -5.885455757415059e-06,
+        "warmest_dropped": 1.0861980352938616e-05
+      }
     },
     {
       "points": 11,
       "central": 2.824557559062115,
       "intercepts": {
-        "T_linear_6": 2.815256750683186,
-        "T_quadratic_6": 2.8244939640737354,
-        "T_cubic_6": 2.8245575590621144,
+        "T_linear_6": 2.8152567506831856,
+        "T_quadratic_6": 2.824493964073735,
+        "T_cubic_6": 2.824557559062115,
         "T_sqrt_6": 2.8407699438706895,
-        "T_log_6": 2.8245794988255746,
+        "T_log_6": 2.824579498825575,
         "T_linear_11": 2.76678643775762,
         "T_quadratic_11": 2.823544357404114,
         "T_cubic_11": 2.8245127005035604,
@@ -89,14 +2173,70 @@
         "tau_log_6": 2.8246369587105113,
         "tau_linear_11": 2.8510539765403258,
         "tau_quadratic_11": 2.8191861227017045,
-        "tau_cubic_11": 2.82546128064728,
+        "tau_cubic_11": 2.8254612806472803,
         "tau_sqrt_11": 2.7745264623415262,
         "tau_log_11": 2.8269226122687523
       },
       "envelope": 0.08810329843332632,
       "alpha_gb": 0.01,
       "temperature_min": 0.0012068293970363116,
-      "temperature_range": 48.55864121215413
+      "temperature_range": 48.55864121215413,
+      "production": {
+        "temperature": [
+          0.0012068293970363116,
+          0.004026180475403057,
+          0.006787259465902033,
+          0.009494108063070016,
+          0.014755815162924695,
+          0.01982836976210878
+        ],
+        "values": [
+          2.7279533316661677,
+          2.5037920198033667,
+          2.2863230748628283,
+          2.075080731062446,
+          1.6699268179054148,
+          1.286082390010023
+        ],
+        "fitted": [
+          2.7279526820939797,
+          2.503793561712234,
+          2.2863228213739935,
+          2.0750794216203783,
+          1.6699277185151098,
+          1.2860821599945544
+        ],
+        "residuals": [
+          6.495721880384053e-07,
+          -1.5419088672530279e-06,
+          2.5348883481157714e-07,
+          1.3094420676651453e-06,
+          -9.006096950425757e-07,
+          2.300154684498068e-07
+        ],
+        "coefficients": [
+          2.824557559062115,
+          -1.590461862864139,
+          0.05315184650262776,
+          -0.0011653827060491265
+        ],
+        "scale": 0.01982836976210878,
+        "intercept": 2.824557559062115,
+        "worst_residual": 1.5419088672530279e-06
+      },
+      "leave_one_out": {
+        "shifts": [
+          -1.0788761437563466e-05,
+          4.5644853674531305e-08,
+          1.8864639050875098e-07,
+          5.979331270111743e-07,
+          2.2276001638843468e-06,
+          2.7924703935866546e-06
+        ],
+        "worst": 1.0788761437563466e-05,
+        "coldest_dropped": -1.0788761437563466e-05,
+        "warmest_dropped": 2.7924703935866546e-06
+      }
     },
     {
       "points": 12,
@@ -107,11 +2247,11 @@
         "T_cubic_6": 2.4728268500518995,
         "T_sqrt_6": 2.5243168860252925,
         "T_log_6": 2.472924479907692,
-        "T_linear_12": 2.402993229754737,
-        "T_quadratic_12": 2.471190312283905,
-        "T_cubic_12": 2.4727465598752074,
-        "T_sqrt_12": 2.6330505198890504,
-        "T_log_12": 2.47334023406507,
+        "T_linear_12": 2.4029932297547365,
+        "T_quadratic_12": 2.471190312283904,
+        "T_cubic_12": 2.472746559875207,
+        "T_sqrt_12": 2.6330505198890473,
+        "T_log_12": 2.4733402340650694,
         "tau_linear_6": 2.4800855559224293,
         "tau_quadratic_6": 2.471711769586172,
         "tau_cubic_6": 2.4729395489431187,
@@ -119,14 +2259,70 @@
         "tau_log_6": 2.47340943395112,
         "tau_linear_12": 2.5138211049176267,
         "tau_quadratic_12": 2.4603788236632544,
-        "tau_cubic_12": 2.4761861135944305,
+        "tau_cubic_12": 2.4761861135944336,
         "tau_sqrt_12": 2.3403529665575658,
         "tau_log_12": 2.481799306406226
       },
-      "envelope": 0.16022366983715175,
+      "envelope": 0.16022366983714864,
       "alpha_gb": 0.02,
       "temperature_min": 0.004732378502406094,
-      "temperature_range": 13.422312697853389
+      "temperature_range": 13.422312697853389,
+      "production": {
+        "temperature": [
+          0.004732378502406094,
+          0.006245043073153939,
+          0.008635488473389597,
+          0.013310339975337525,
+          0.017849941754275702,
+          0.026547517933852283
+        ],
+        "values": [
+          2.1229484030111987,
+          2.012160165034942,
+          1.8381112661933603,
+          1.5013370682589233,
+          1.1788112470171654,
+          0.5730492013816093
+        ],
+        "fitted": [
+          2.122947935274576,
+          2.0121607078157036,
+          1.8381115832163042,
+          1.5013362967710664,
+          1.178811674463218,
+          0.5730491533563284
+        ],
+        "residuals": [
+          4.6773662276677896e-07,
+          -5.427807616698033e-07,
+          -3.1702294389646113e-07,
+          7.714878569320405e-07,
+          -4.2744605255329304e-07,
+          4.802528086322866e-08
+        ],
+        "coefficients": [
+          2.4728268500518995,
+          -1.976771405212365,
+          0.07910282714984632,
+          -0.0021091186330521507
+        ],
+        "scale": 0.026547517933852283,
+        "intercept": 2.4728268500518995,
+        "worst_residual": 7.714878569320405e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          -6.592710564579107e-06,
+          1.6279578396449779e-07,
+          -1.5910182455947108e-06,
+          2.427816784056347e-06,
+          5.60347097300351e-06,
+          8.499456622956814e-06
+        ],
+        "worst": 8.499456622956814e-06,
+        "coldest_dropped": -6.592710564579107e-06,
+        "warmest_dropped": 8.499456622956814e-06
+      }
     },
     {
       "points": 11,
@@ -141,22 +2337,78 @@
         "T_quadratic_11": 2.0004931040139127,
         "T_cubic_11": 2.0006865687859756,
         "T_sqrt_11": 2.0909424014529394,
-        "T_log_11": 2.00075683776627,
+        "T_log_11": 2.0007568377662697,
         "tau_linear_6": 2.012545007571471,
         "tau_quadratic_6": 1.9990037977731472,
         "tau_cubic_6": 2.0008638910169347,
         "tau_sqrt_6": 1.963589041216427,
-        "tau_log_6": 2.001575999765262,
+        "tau_log_6": 2.0015759997652625,
         "tau_linear_11": 2.046563334552424,
         "tau_quadratic_11": 1.9902087159320527,
-        "tau_cubic_11": 2.003510130452757,
+        "tau_cubic_11": 2.0035101304527556,
         "tau_sqrt_11": 1.8688099008294605,
         "tau_log_11": 2.0082742209141053
       },
       "envelope": 0.13185014149330998,
       "alpha_gb": 0.035,
       "temperature_min": 0.003964674504404278,
-      "temperature_range": 15.3796276148741
+      "temperature_range": 15.3796276148741,
+      "production": {
+        "temperature": [
+          0.003964674504404278,
+          0.006011477053573934,
+          0.010039294224003202,
+          0.017837926857319164,
+          0.025304979027591615,
+          0.03245305373040038
+        ],
+        "values": [
+          1.7416382859680848,
+          1.6087277387181338,
+          1.3487884805361725,
+          0.8515571410892706,
+          0.38294195560196354,
+          -0.05882731963147858
+        ],
+        "fitted": [
+          1.741638581349545,
+          1.6087274349975984,
+          1.3487882336106372,
+          0.8515576895469805,
+          0.38294155474736624,
+          -0.05882721196997709
+        ],
+        "residuals": [
+          -2.9538146018026623e-07,
+          3.037205353884076e-07,
+          2.4692553535210493e-07,
+          -5.484577099146293e-07,
+          4.0085459729333195e-07,
+          -1.0766150149166265e-07
+        ],
+        "coefficients": [
+          2.000660042322771,
+          -2.128723823759925,
+          0.0695304048136066,
+          -0.00029383534642927225
+        ],
+        "scale": 0.03245305373040038,
+        "intercept": 2.000660042322771,
+        "worst_residual": 5.484577099146293e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          2.3750269151356918e-06,
+          -1.5060161295821217e-07,
+          8.231315091755675e-07,
+          -7.031509321464569e-07,
+          -1.709381700187862e-06,
+          -2.2126253185206224e-06
+        ],
+        "worst": 2.3750269151356918e-06,
+        "coldest_dropped": 2.3750269151356918e-06,
+        "warmest_dropped": -2.2126253185206224e-06
+      }
     },
     {
       "points": 12,
@@ -167,26 +2419,82 @@
         "T_cubic_6": 1.659079989752519,
         "T_sqrt_6": 1.659387797857766,
         "T_log_6": 1.6590801995985203,
-        "T_linear_12": 1.6547449403762664,
-        "T_quadratic_12": 1.6590812833746142,
-        "T_cubic_12": 1.6590758172540874,
+        "T_linear_12": 1.6547449403762666,
+        "T_quadratic_12": 1.659081283374615,
+        "T_cubic_12": 1.6590758172540878,
         "T_sqrt_12": 1.6676974818942765,
-        "T_log_12": 1.6590744656126952,
+        "T_log_12": 1.6590744656126954,
         "tau_linear_6": 1.6593252071134412,
         "tau_quadratic_6": 1.6590775680716596,
         "tau_cubic_6": 1.659080014796631,
         "tau_sqrt_6": 1.6585995349161737,
         "tau_log_6": 1.6590807259625862,
         "tau_linear_12": 1.6674608967171913,
-        "tau_quadratic_12": 1.6582681332093145,
-        "tau_cubic_12": 1.6591738728508316,
+        "tau_quadratic_12": 1.658268133209315,
+        "tau_cubic_12": 1.6591738728508314,
         "tau_sqrt_12": 1.6404956141956328,
         "tau_log_12": 1.6594391290713364
       },
       "envelope": 0.018584375556884414,
       "alpha_gb": 0.05,
       "temperature_min": 0.0004796803161307463,
-      "temperature_range": 85.72474814492263
+      "temperature_range": 85.72474814492263,
+      "production": {
+        "temperature": [
+          0.0004796803161307463,
+          0.0006314770984802567,
+          0.0008264653863205132,
+          0.0010861395961453283,
+          0.001546916185296791,
+          0.005194244551267711
+        ],
+        "values": [
+          1.6308317180876308,
+          1.6218959952345573,
+          1.6104205934854416,
+          1.5951425519829803,
+          1.568045304739048,
+          1.354111464814351
+        ],
+        "fitted": [
+          1.6308316881231044,
+          1.6218960691218167,
+          1.6104205336614363,
+          1.5951425680418623,
+          1.5680453045925873,
+          1.354111464803212
+        ],
+        "residuals": [
+          2.996452641568226e-08,
+          -7.388725942192309e-08,
+          5.982400530513132e-08,
+          -1.605888200195693e-08,
+          1.4646062140855065e-10,
+          1.113908965066912e-11
+        ],
+        "coefficients": [
+          1.659079989752519,
+          -0.3059839445323733,
+          0.0010379940123933559,
+          -2.2574429327177e-05
+        ],
+        "scale": 0.005194244551267711,
+        "intercept": 1.659079989752519,
+        "worst_residual": 7.388725942192309e-08
+      },
+      "leave_one_out": {
+        "shifts": [
+          -3.984145358071345e-07,
+          4.842921952352697e-08,
+          1.5630578809044948e-07,
+          -7.266190249488602e-08,
+          -6.091121163009916e-09,
+          1.8294343506752853e-07
+        ],
+        "worst": 3.984145358071345e-07,
+        "coldest_dropped": -3.984145358071345e-07,
+        "warmest_dropped": 1.8294343506752853e-07
+      }
     },
     {
       "points": 12,
@@ -194,9 +2502,9 @@
       "intercepts": {
         "T_linear_6": 1.3258813526209472,
         "T_quadratic_6": 1.325965777432887,
-        "T_cubic_6": 1.3259696230774753,
+        "T_cubic_6": 1.3259696230774756,
         "T_sqrt_6": 1.3262416418623229,
-        "T_log_6": 1.3259703819853836,
+        "T_log_6": 1.3259703819853839,
         "T_linear_12": 1.3244889328259462,
         "T_quadratic_12": 1.325894237288651,
         "T_cubic_12": 1.325957996793046,
@@ -209,14 +2517,70 @@
         "tau_log_6": 1.3259723424595138,
         "tau_linear_12": 1.337322324079205,
         "tau_quadratic_12": 1.3249136748033945,
-        "tau_cubic_12": 1.3260890180945903,
+        "tau_cubic_12": 1.32608901809459,
         "tau_sqrt_12": 1.304010347583497,
         "tau_log_12": 1.3264004545271113
       },
       "envelope": 0.021959275493977026,
       "alpha_gb": 0.075,
       "temperature_min": 0.0004745624300555341,
-      "temperature_range": 86.48252972751871
+      "temperature_range": 86.48252972751871,
+      "production": {
+        "temperature": [
+          0.0004745624300555341,
+          0.0006249296087798925,
+          0.0008252049812938107,
+          0.0012250387792373495,
+          0.0043913217444926005,
+          0.007503056545603215
+        ],
+        "values": [
+          1.3013577924734618,
+          1.2935607384503052,
+          1.2831769791577834,
+          1.2624504485189822,
+          1.0984798514921958,
+          0.937594659662726
+        ],
+        "fitted": [
+          1.3013577228882025,
+          1.2935607862638978,
+          1.2831770520753776,
+          1.262450395218899,
+          1.098479854030221,
+          0.9375946592788633
+        ],
+        "residuals": [
+          6.958525933242754e-08,
+          -4.7813592640721936e-08,
+          -7.291759418492916e-08,
+          5.330008323589652e-08,
+          -2.538025123399734e-09,
+          3.838627193886168e-10
+        ],
+        "coefficients": [
+          1.3259696230774756,
+          -0.3891811756861052,
+          0.0008804238832924937,
+          -7.42119957995099e-05
+        ],
+        "scale": 0.007503056545603215,
+        "intercept": 1.3259696230774756,
+        "worst_residual": 7.291759418492916e-08
+      },
+      "leave_one_out": {
+        "shifts": [
+          -2.54542597444285e-07,
+          5.231191146926051e-08,
+          -3.6178759987848252e-09,
+          3.1060790339765276e-07,
+          7.295905144477643e-07,
+          7.926820442261118e-07
+        ],
+        "worst": 7.926820442261118e-07,
+        "coldest_dropped": -2.54542597444285e-07,
+        "warmest_dropped": 7.926820442261118e-07
+      }
     },
     {
       "points": 12,
@@ -227,11 +2591,11 @@
         "T_cubic_6": 1.1662136981771754,
         "T_sqrt_6": 1.1662303726218644,
         "T_log_6": 1.1662163383670994,
-        "T_linear_12": 1.1666547654971173,
-        "T_quadratic_12": 1.166059345711185,
-        "T_cubic_12": 1.166203411948033,
+        "T_linear_12": 1.1666547654971178,
+        "T_quadratic_12": 1.1660593457111856,
+        "T_cubic_12": 1.1662034119480333,
         "T_sqrt_12": 1.1653746322516636,
-        "T_log_12": 1.1662383440561184,
+        "T_log_12": 1.1662383440561186,
         "tau_linear_6": 1.1668601052477274,
         "tau_quadratic_6": 1.1661958534937111,
         "tau_cubic_6": 1.16621462358164,
@@ -239,14 +2603,70 @@
         "tau_log_6": 1.1662239390506206,
         "tau_linear_12": 1.179835381380244,
         "tau_quadratic_12": 1.1649813674353446,
-        "tau_cubic_12": 1.1663363920367185,
-        "tau_sqrt_12": 1.1452288710779432,
-        "tau_log_12": 1.166630859882856
+        "tau_cubic_12": 1.1663363920367187,
+        "tau_sqrt_12": 1.1452288710779435,
+        "tau_log_12": 1.1666308598828556
       },
-      "envelope": 0.02098482709923144,
+      "envelope": 0.020984827099231218,
       "alpha_gb": 0.1,
       "temperature_min": 0.0004170735348348295,
-      "temperature_range": 93.90007083049197
+      "temperature_range": 93.90007083049197,
+      "production": {
+        "temperature": [
+          0.0004170735348348295,
+          0.0005976968199518539,
+          0.0007780968771739787,
+          0.003636677834477127,
+          0.006446691291042963,
+          0.009210911897122125
+        ],
+        "values": [
+          1.1463396012437235,
+          1.1377324849971107,
+          1.129136359780813,
+          0.992949776875919,
+          0.859098850409335,
+          0.7274272868023886
+        ],
+        "fitted": [
+          1.146339284072974,
+          1.1377325596285075,
+          1.1291366724097278,
+          0.9929496564263272,
+          0.8590989160352362,
+          0.7274272715365208
+        ],
+        "residuals": [
+          3.171707494420417e-07,
+          -7.463139684027453e-08,
+          -3.1262891475591914e-07,
+          1.204495918560866e-07,
+          -6.562590126879542e-08,
+          1.5265867792102483e-08
+        ],
+        "coefficients": [
+          1.1662136981771754,
+          -0.43893174004351926,
+          0.0002890047317595413,
+          -0.000143691328894963
+        ],
+        "scale": 0.009210911897122125,
+        "intercept": 1.1662136981771754,
+        "worst_residual": 3.171707494420417e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          -3.866791222773003e-07,
+          4.954368892917671e-08,
+          1.0854622267686409e-07,
+          1.196258668123562e-06,
+          1.307339989375933e-06,
+          1.3501068598653632e-06
+        ],
+        "worst": 1.3501068598653632e-06,
+        "coldest_dropped": -3.866791222773003e-07,
+        "warmest_dropped": 1.3501068598653632e-06
+      }
     },
     {
       "points": 12,
@@ -257,14 +2677,14 @@
         "T_cubic_6": 1.071492405456942,
         "T_sqrt_6": 1.0713528507426988,
         "T_log_6": 1.0714928321092765,
-        "T_linear_12": 1.0728810735211392,
-        "T_quadratic_12": 1.0713825201200609,
-        "T_cubic_12": 1.0714887892175602,
+        "T_linear_12": 1.072881073521139,
+        "T_quadratic_12": 1.071382520120061,
+        "T_cubic_12": 1.07148878921756,
         "T_sqrt_12": 1.069167613633714,
-        "T_log_12": 1.0715167946196626,
+        "T_log_12": 1.0715167946196629,
         "tau_linear_6": 1.071791731877885,
         "tau_quadratic_6": 1.0714858061617996,
-        "tau_cubic_6": 1.0714924926039493,
+        "tau_cubic_6": 1.071492492603949,
         "tau_sqrt_6": 1.0705665550326557,
         "tau_log_6": 1.071493664245704,
         "tau_linear_12": 1.0792018985249443,
@@ -276,7 +2696,63 @@
       "envelope": 0.012990894901454109,
       "alpha_gb": 0.15,
       "temperature_min": 0.0002778981266191605,
-      "temperature_range": 107.3918274993422
+      "temperature_range": 107.3918274993422,
+      "production": {
+        "temperature": [
+          0.0002778981266191605,
+          0.0004323793759081541,
+          0.000586667445819053,
+          0.0008946855021307471,
+          0.0033343413252787586,
+          0.005733826819227315
+        ],
+        "values": [
+          1.0595833587066728,
+          1.0529625616821834,
+          1.0463494106289553,
+          1.0331453946756364,
+          0.9284805265046205,
+          0.8253783397544135
+        ],
+        "fitted": [
+          1.0595833916722193,
+          1.0529625237429538,
+          1.046349394737963,
+          1.0331454165882556,
+          0.9284805252670111,
+          0.8253783399440806
+        ],
+        "residuals": [
+          -3.296554651477379e-08,
+          3.793922953576612e-08,
+          1.5890992299816276e-08,
+          -2.1912619274644385e-08,
+          1.2376094593591347e-09,
+          -1.896670598355854e-10
+        ],
+        "coefficients": [
+          1.071492405456942,
+          -0.24569913175224486,
+          -0.0003607491240388117,
+          -5.41846365776647e-05
+        ],
+        "scale": 0.005733826819227315,
+        "intercept": 1.071492405456942,
+        "worst_residual": 3.793922953576612e-08
+      },
+      "leave_one_out": {
+        "shifts": [
+          1.2540443550257407e-07,
+          -3.13408985430641e-08,
+          2.5934343561573314e-10,
+          -8.100699155910718e-08,
+          -1.9053046895756154e-07,
+          -2.060647572577068e-07
+        ],
+        "worst": 2.060647572577068e-07,
+        "coldest_dropped": 1.2540443550257407e-07,
+        "warmest_dropped": -2.060647572577068e-07
+      }
     },
     {
       "points": 12,
@@ -286,17 +2762,17 @@
         "T_quadratic_6": 1.0900695598894505,
         "T_cubic_6": 1.0900703146065376,
         "T_sqrt_6": 1.0899201252797506,
-        "T_log_6": 1.09007044605237,
+        "T_log_6": 1.0900704460523707,
         "T_linear_12": 1.092035217893295,
         "T_quadratic_12": 1.089958263189427,
-        "T_cubic_12": 1.0900713047145114,
+        "T_cubic_12": 1.0900713047145116,
         "T_sqrt_12": 1.0872343219120844,
         "T_log_12": 1.0900975976087801,
         "tau_linear_6": 1.0902988764987827,
         "tau_quadratic_6": 1.0900669830069998,
         "tau_cubic_6": 1.09007037385051,
         "tau_sqrt_6": 1.089452116348677,
-        "tau_log_6": 1.0900710576563624,
+        "tau_log_6": 1.0900710576563626,
         "tau_linear_12": 1.0975811432240956,
         "tau_quadratic_12": 1.0895184892658478,
         "tau_cubic_12": 1.0901241201799374,
@@ -306,7 +2782,63 @@
       "envelope": 0.011151885871318656,
       "alpha_gb": 0.2,
       "temperature_min": 0.00015464028528080367,
-      "temperature_range": 183.3951024062568
+      "temperature_range": 183.3951024062568,
+      "production": {
+        "temperature": [
+          0.00015464028528080367,
+          0.0002230788134988187,
+          0.0003598283459687919,
+          0.0009052111632879601,
+          0.0030634088473106154,
+          0.005187232523924963
+        ],
+        "values": [
+          1.0838672420712239,
+          1.0811223019709353,
+          1.0756359622635352,
+          1.0537452963319662,
+          0.9669776742253107,
+          0.8813603875843137
+        ],
+        "fitted": [
+          1.0838676059407213,
+          1.0811221328226854,
+          1.0756356291477895,
+          1.0537454484716495,
+          0.9669776577880085,
+          0.8813603902764298
+        ],
+        "residuals": [
+          -3.638694974217316e-07,
+          1.6914824985114763e-07,
+          3.33115745654311e-07,
+          -1.5213968329597094e-07,
+          1.643730218603423e-08,
+          -2.6921160856119286e-09
+        ],
+        "coefficients": [
+          1.0900703146065376,
+          -0.20804364526594496,
+          -0.000642102239621246,
+          -2.417682454160172e-05
+        ],
+        "scale": 0.005187232523924963,
+        "intercept": 1.0900703146065376,
+        "worst_residual": 3.638694974217316e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          4.858524591533353e-07,
+          -1.3787589958624835e-07,
+          -1.0917830595147393e-07,
+          -8.346157840399826e-07,
+          -1.153892790206612e-06,
+          -1.2074253348259845e-06
+        ],
+        "worst": 1.2074253348259845e-06,
+        "coldest_dropped": 4.858524591533353e-07,
+        "warmest_dropped": -1.2074253348259845e-06
+      }
     },
     {
       "points": 12,
@@ -315,7 +2847,7 @@
         "T_linear_6": 1.2078522605360085,
         "T_quadratic_6": 1.2078137722714646,
         "T_cubic_6": 1.207813009516353,
-        "T_sqrt_6": 1.207739805850165,
+        "T_sqrt_6": 1.2077398058501652,
         "T_log_6": 1.2078127832932561,
         "T_linear_12": 1.2091853885592103,
         "T_quadratic_12": 1.2077663324703216,
@@ -323,20 +2855,76 @@
         "T_sqrt_12": 1.2057094411160765,
         "T_log_12": 1.2078298189106262,
         "tau_linear_6": 1.2079218344412077,
-        "tau_quadratic_6": 1.2078134157342786,
+        "tau_quadratic_6": 1.2078134157342784,
         "tau_cubic_6": 1.2078130142986985,
         "tau_sqrt_6": 1.2076054261054374,
-        "tau_log_6": 1.2078128751001609,
+        "tau_log_6": 1.2078128751001613,
         "tau_linear_12": 1.2117079527611445,
-        "tau_quadratic_12": 1.20759757868672,
-        "tau_cubic_12": 1.2078334312896093,
-        "tau_sqrt_12": 1.2016514671802423,
-        "tau_log_12": 1.2078949932182907
+        "tau_quadratic_12": 1.2075975786867204,
+        "tau_cubic_12": 1.2078334312896095,
+        "tau_sqrt_12": 1.2016514671802427,
+        "tau_log_12": 1.2078949932182905
       },
-      "envelope": 0.00616154233611077,
+      "envelope": 0.006161542336110326,
       "alpha_gb": 0.3,
       "temperature_min": 0.00011128984446523523,
-      "temperature_range": 172.68655198624847
+      "temperature_range": 172.68655198624847,
+      "production": {
+        "temperature": [
+          0.00011128984446523523,
+          0.00016782132266433863,
+          0.0002807907774565291,
+          0.0005063651899033443,
+          0.0009561179591637739,
+          0.0027377213455023613
+        ],
+        "values": [
+          1.2037025676769033,
+          1.2016146579210065,
+          1.1974404487272927,
+          1.1891013030020134,
+          1.172460700323791,
+          1.1063634789945462
+        ],
+        "fitted": [
+          1.2037027992629248,
+          1.201614462336976,
+          1.1974402647058722,
+          1.1891014900309977,
+          1.1724606605765373,
+          1.1063634797322444
+        ],
+        "residuals": [
+          -2.3158602147077545e-07,
+          1.955840305267742e-07,
+          1.8402142054618764e-07,
+          -1.8702898429978632e-07,
+          3.974725371058696e-08,
+          -7.376981248086167e-10
+        ],
+        "coefficients": [
+          1.207813009516353,
+          -0.10109505064990067,
+          -0.00039001331353938237,
+          3.5534179331306494e-05
+        ],
+        "scale": 0.0027377213455023613,
+        "intercept": 1.207813009516353,
+        "worst_residual": 2.3158602147077545e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          6.693260758972031e-07,
+          -1.8077101593405587e-07,
+          3.96119557155572e-08,
+          -5.091015065072924e-07,
+          -8.495321062174099e-07,
+          -1.0860953787439342e-06
+        ],
+        "worst": 1.0860953787439342e-06,
+        "coldest_dropped": 6.693260758972031e-07,
+        "warmest_dropped": -1.0860953787439342e-06
+      }
     },
     {
       "points": 12,
@@ -349,7 +2937,7 @@
         "T_log_6": 1.3338418735965738,
         "T_linear_12": 1.3361505230346342,
         "T_quadratic_12": 1.3337534799068853,
-        "T_cubic_12": 1.3338473181344188,
+        "T_cubic_12": 1.3338473181344186,
         "T_sqrt_12": 1.3311322256052944,
         "T_log_12": 1.3338662362162812,
         "tau_linear_6": 1.3339968245109406,
@@ -366,7 +2954,63 @@
       "envelope": 0.006961734645672735,
       "alpha_gb": 0.4,
       "temperature_min": 5.197085600375012e-05,
-      "temperature_range": 392.1359298004433
+      "temperature_range": 392.1359298004433,
+      "production": {
+        "temperature": [
+          5.197085600375012e-05,
+          7.631824304190484e-05,
+          0.0002708864928677628,
+          0.0006589233399790812,
+          0.002197180546709108,
+          0.003714122632048631
+        ],
+        "values": [
+          1.3320200068241375,
+          1.3311666844571508,
+          1.3243434131176444,
+          1.310719261833025,
+          1.2565218880791802,
+          1.2027775072013849
+        ],
+        "fitted": [
+          1.332020234325212,
+          1.3311666914415015,
+          1.3243429794348551,
+          1.3107194821304269,
+          1.2565218628103372,
+          1.2027775113701922
+        ],
+        "residuals": [
+          -2.2750107464553082e-07,
+          -6.984350653382876e-09,
+          4.3368278923594517e-07,
+          -2.202974018761239e-07,
+          2.5268843018011466e-08,
+          -4.168807299365085e-09
+        ],
+        "coefficients": [
+          1.3338419120710363,
+          -0.13017457433942825,
+          -0.0008945536282133356,
+          4.727266797479484e-06
+        ],
+        "scale": 0.003714122632048631,
+        "intercept": 1.3338419120710363,
+        "worst_residual": 4.3368278923594517e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          2.440082795818199e-07,
+          6.057557344618658e-09,
+          -9.951501400706775e-08,
+          -3.362528169237322e-07,
+          -4.505698598666896e-07,
+          -4.703770006830865e-07
+        ],
+        "worst": 4.703770006830865e-07,
+        "coldest_dropped": 2.440082795818199e-07,
+        "warmest_dropped": -4.703770006830865e-07
+      }
     },
     {
       "points": 12,
@@ -383,20 +3027,76 @@
         "T_sqrt_12": 1.4437804870438535,
         "T_log_12": 1.4444012412325806,
         "tau_linear_6": 1.4444261925908506,
-        "tau_quadratic_6": 1.444398154727275,
+        "tau_quadratic_6": 1.4443981547272753,
         "tau_cubic_6": 1.4443982716182178,
         "tau_sqrt_6": 1.444371024253354,
         "tau_log_6": 1.444398309306391,
         "tau_linear_12": 1.4457876050072849,
-        "tau_quadratic_12": 1.4443506094478407,
+        "tau_quadratic_12": 1.4443506094478409,
         "tau_cubic_12": 1.4444007179989933,
-        "tau_sqrt_12": 1.4430136660519481,
-        "tau_log_12": 1.4444106635482479
+        "tau_sqrt_12": 1.4430136660519484,
+        "tau_log_12": 1.4444106635482477
       },
       "envelope": 0.0013893339190238496,
       "alpha_gb": 0.5,
       "temperature_min": 3.3808786427170476e-06,
-      "temperature_range": 2899.6453299730683
+      "temperature_range": 2899.6453299730683,
+      "production": {
+        "temperature": [
+          3.3808786427170476e-06,
+          4.643191227135372e-05,
+          0.00013247904353874215,
+          0.0003043523972626378,
+          0.0006472281489962174,
+          0.001329559170357214
+        ],
+        "values": [
+          1.4442844200140497,
+          1.4428300750105245,
+          1.439924117566689,
+          1.4341155012642364,
+          1.4225132771227447,
+          1.3993682251016877
+        ],
+        "fitted": [
+          1.4442841243635167,
+          1.4428304596270582,
+          1.4399241128901248,
+          1.4341153841285048,
+          1.4225133126772398,
+          1.3993682223934947
+        ],
+        "residuals": [
+          2.9565053294433596e-07,
+          -3.846165337328955e-07,
+          4.6765642469637214e-09,
+          1.1713573155880397e-07,
+          -3.555449512582243e-08,
+          2.7081930031869206e-09
+        ],
+        "coefficients": [
+          1.4443982710882606,
+          -0.044888814613558224,
+          -0.00013841472297433926,
+          -2.8193582333702695e-06
+        ],
+        "scale": 0.001329559170357214,
+        "intercept": 1.4443982710882606,
+        "worst_residual": 3.846165337328955e-07
+      },
+      "leave_one_out": {
+        "shifts": [
+          -5.275165224638556e-07,
+          2.501332303506132e-07,
+          -6.395426410676919e-10,
+          8.220495462119004e-08,
+          1.2440564867155501e-07,
+          1.4221571298378421e-07
+        ],
+        "worst": 5.275165224638556e-07,
+        "coldest_dropped": -5.275165224638556e-07,
+        "warmest_dropped": 1.4221571298378421e-07
+      }
     }
   ]
 }

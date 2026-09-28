@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Critical referee report — Extremality shift of rotating black holes</title>
+  <style>
+    :root { --ink:#202124; --muted:#60646c; --line:#d7d9dd; --paper:#fff; --bg:#f1f2f4;
+      --critical:#8b1e1e; --warn:#8a5200; --good:#176b45; --blue:#244a75; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.62 Georgia,serif; }
+    main { max-width:980px; margin:32px auto; padding:54px 68px 70px; background:var(--paper);
+      box-shadow:0 3px 22px rgba(0,0,0,.09); }
+    h1,h2,h3 { font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.2; color:#17202a; }
+    h1 { margin:0; font-size:2.05rem; }
+    h1 span { display:block; margin-top:.4rem; font:italic 1.12rem/1.4 Georgia,serif; color:var(--muted); }
+    h2 { margin:2.25rem 0 .75rem; padding-bottom:.35rem; border-bottom:1px solid var(--line); font-size:1.35rem; }
+    h3 { margin:0 0 .45rem; font-size:1.06rem; color:var(--critical); }
+    p { margin:.65rem 0; }
+    .meta { margin:.65rem 0 1.4rem; color:var(--muted); font-family:system-ui,sans-serif; }
+    .verdict { border:2px solid var(--critical); background:#fff7f7; padding:16px 18px; margin:1.4rem 0; }
+    .verdict strong { color:var(--critical); }
+    nav { border:1px solid var(--line); background:#fafafa; padding:11px 15px; margin:1.4rem 0; }
+    nav a { color:var(--blue); text-decoration:none; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:1.15rem 0; }
+    .panel { border:1px solid var(--line); padding:14px 16px; background:#fafafa; }
+    .panel.good { border-top:4px solid var(--good); }
+    .panel.warn { border-top:4px solid var(--warn); }
+    .panel h3 { color:inherit; }
+    .panel ul { margin:.2rem 0; }
+    .issue { border-left:4px solid var(--critical); padding:3px 0 5px 18px; margin:1.5rem 0; }
+    .suggest { background:#f5f8fb; border-left:3px solid var(--blue); padding:10px 13px; margin:.8rem 0 0; }
+    blockquote { margin:1rem 1.2rem; padding:.5rem 1rem; border-left:4px solid var(--blue); color:#313942; background:#f8fafc; }
+    code,pre { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+    code { font-size:.88em; overflow-wrap:anywhere; }
+    pre { margin:1rem 0; padding:14px; overflow:auto; background:#f6f7f8; border:1px solid var(--line); font-size:.82rem; line-height:1.45; }
+    li { margin:.38rem 0; }
+    .small { color:var(--muted); font-size:.92rem; }
+    @media (max-width:720px) { main{margin:0;padding:28px 22px} .two-col{grid-template-columns:1fr} }
+    @media print { body{background:#fff} main{box-shadow:none;margin:0;max-width:none;padding:18mm} nav{display:none} }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Critical referee report
+    <span>Extremality shift of rotating black holes at finite Gauss–Bonnet coupling</span>
+  </h1>
+  <div class="meta">Codex review · 27 September 2026</div>
+
+  <div class="verdict"><strong>Recommendation: major revision.</strong>
+    The central numerical pattern is interesting and probably real, but the paper is not yet ready to make a precise finite-coupling claim. The main missing pieces are stronger convergence tests, firmer control of the zero-temperature extrapolation, and a clean, frozen release in which the source, PDF, data and tests agree.</div>
+
+  <nav><strong>Contents:</strong>
+    <a href="#bottom">bottom line</a> · <a href="#revisions">main revisions</a> ·
+    <a href="#smaller">smaller changes</a> · <a href="#wording">suggested wording</a> ·
+    <a href="#checked">what I checked</a>
+  </nav>
+
+  <h2 id="bottom">Bottom line</h2>
+  <p>The paper asks a clear question: how does the extremal mass of a five-dimensional equal-spin rotating black hole change as the Gauss–Bonnet coupling is increased? Its proposed answer is that the extremal mass continues to rise, but its slope first falls from the perturbative value π, reaches a broad low region, and then rises again.</p>
+  <p>The saved numerical data do show that pattern. All 13 quoted central values of Ψ<sub>ext</sub> are positive. The lowest is about 1.07, compared with π at zero coupling, and the last rises to about 1.44. The fall and subsequent rise are much larger than the paper’s stated fit-sensitivity bands. The basic thermodynamic algebra also checks out.</p>
+  <p>The difficulty is not the visible trend; it is how precisely the paper can claim it. Every extremal value is inferred by extrapolating positive-temperature solutions. The reported bands measure only sensitivity to selected fitting choices, not the full numerical error. Resolution comparisons are available at only three couplings, and the main observable is reconstructed from quantities that share the same numerical solution and extraction pipeline. I therefore find the qualitative result plausible, but the quantitative curve provisional.</p>
+
+  <div class="two-col">
+    <section class="panel good"><h3>What holds up</h3><ul>
+      <li>The printed first-law and Smarr algebra</li>
+      <li>The analytic static check</li>
+      <li>The perturbative formula’s endpoints and zero</li>
+      <li>Positivity of all 13 saved central slopes</li>
+      <li>The broad decrease-and-rise in the saved table</li>
+      <li>The restrained EFT and weak-gravity discussion</li>
+    </ul></section>
+    <section class="panel warn"><h3>What remains uncertain</h3><ul>
+      <li>Continuum error at all 13 extremal endpoints</li>
+      <li>The true functional form of the T→0 limit</li>
+      <li>Independence of the finite-coupling validation</li>
+      <li>Error propagation for y, μ, j and σ</li>
+      <li>Whether this branch gives a global minimum mass</li>
+      <li>Reproducibility of the current release</li>
+    </ul></section>
+  </div>
+
+  <h2 id="revisions">Main revisions needed</h2>
+
+  <section class="issue"><h3>1. Freeze one authoritative version of the paper</h3>
+    <p>The current <code>main.pdf</code> and <code>main.tex</code> are not the same version. The PDF is an older 15-page build with three figures; the source has a fourth figure and several substantive clarifications. A reader cannot tell which paper is being reviewed or reproduced. Several provenance tests also disagree about a changed solver file.</p>
+    <p class="suggest"><strong>Suggested revision.</strong> Rebuild the PDF from the final source, publish the exact source and data that produced it, attach an immutable commit or archive identifier, and run every check from that clean release. Do not whitelist a source-hash mismatch in one verifier while other integrity tests reject it.</p>
+  </section>
+
+  <section class="issue"><h3>2. Narrow the claim from a global minimum to the branch actually computed</h3>
+    <p>The abstract speaks of the “minimum mass” at fixed angular momentum. What is actually computed is the zero-temperature endpoint of the equal-spin branch connected to Myers–Perry. The paper does not prove that this branch is unique, stable, or globally lowest in mass.</p>
+    <p class="suggest"><strong>Suggested revision.</strong> Use “the extremal-branch mass at fixed individual angular momentum.” Replace “the mass remains increasing at fixed spin” with “the central extrapolated M<sub>ext</sub> remains increasing at fixed J.” Do not use “spin” interchangeably for q, j and J when the constraint matters.</p>
+  </section>
+
+  <section class="issue"><h3>3. Show that the result survives radial-resolution changes</h3>
+    <p>Production runs use mostly N=64, with refinement to N=96 when required, but comparison-resolution walks are quoted at only three couplings. This is too sparse for a 13-point curve whose claim concerns a change in slope. Small equation residuals do not by themselves bound errors in M, J, S or Ψ. The reported condition number is also difficult to interpret without its norm and variable scaling.</p>
+    <p class="suggest"><strong>Suggested revision.</strong> Repeat the complete cold sequence and T=0 extrapolation at several resolutions near both endpoints and around the valley, especially near y≈0.118, 0.175 and 0.229. Ideally do this at all 13 couplings. Tabulate convergence of M, J, S, Ψ, y and the final intercept separately, and define the conditioning diagnostic precisely.</p>
+  </section>
+
+  <section class="issue"><h3>4. Treat the extremal extrapolation as the central modelling issue</h3>
+    <p>No bulk solution at exactly T=0 is constructed. A cubic fit through the six coldest points supplies the central value, while the coldest scaled temperature varies by more than three orders of magnitude across the table. Trying several polynomial and non-polynomial forms is useful, but it does not prove the true near-extremal form or exclude a bias shared by every fit.</p>
+    <p class="suggest"><strong>Suggested revision.</strong> For each coupling, show the actual Ψ(T) points, fitted interval, residuals and competing intercepts. Derive the expected leading near-extremal powers if possible. Test point deletion. A direct extremal construction would be strongest. Until then, call the values “central extrapolants,” not measurements at extremality.</p>
+  </section>
+
+  <section class="issue"><h3>5. Add a genuinely independent check of Ψ</h3>
+    <p>The implicit-response method is a good idea, but Ψ is obtained by subtracting entropy and angular-momentum contributions from the mass response. Several checks then reuse the same solutions, charges or thermodynamic identities. The mass-curve comparison is informative but correlated; the near-horizon calculation checks entropy, not mass or Ψ.</p>
+    <p class="suggest"><strong>Suggested revision.</strong> Evaluate the Lovelock/Iyer–Wald coupling conjugate directly, or repeat selected points with an independent solver or gauge. At moderate coupling, compare explicitly with the Smarr-derived value. Report the actual final errors, step sizes and locations in the real finite-difference convergence test.</p>
+  </section>
+
+  <section class="issue"><h3>6. Present a complete and readable uncertainty budget</h3>
+    <p>The table gives sensitivity only for Ψ<sub>ext</sub>, although y, μ, j and σ also come from extrapolated quantities. The mass-curve check depends directly on y and μ. Some spreads exist in the data files but are not shown. The current bands do not include all important systematic effects and should not look like rigorous error bars.</p>
+    <p class="suggest"><strong>Suggested revision.</strong> Separate fit, radial-resolution, asymptotic-tail, solver and interpolation effects. Show uncertainty for y and μ and propagate correlations into the mass-curve check. If no combined bound can be justified, use named variation ranges and fewer digits.</p>
+  </section>
+
+  <h2 id="smaller">Smaller changes that would help</h2>
+  <ul>
+    <li>The quoted 4.38×10<sup>−4</sup> “across the full range” is the maximum <em>running</em> integral discrepancy before the last endpoint. The final full-range discrepancy is 3.81×10<sup>−4</sup>. Label it correctly.</li>
+    <li>Add markers to the potential curves, or state that lines connect discrete solutions. The current plot hides sampling density.</li>
+    <li>Add a colour bar to the 13-shade profile plot if intermediate couplings are intended to be readable.</li>
+    <li>Call the entropy curve a rederived near-horizon solution checked against published equations, rather than simply “published.”</li>
+    <li>Print the endpoints of each sign-change bracket; the interpolated central value has more digits than its bracket supports.</li>
+    <li>Replace “non-perturbative dependence” with “finite-coupling, nonlinear-in-α dependence within classical EGB.”</li>
+    <li>Move the unresolved ergosurface discrepancy to the limitations section and say exactly which pipeline it does and does not test.</li>
+    <li>Put every convention conversion in one early table: individual versus total angular momentum, q, j, the two radial coordinates, and coupling normalisations.</li>
+  </ul>
+
+  <h2 id="wording">A formulation that matches the present evidence</h2>
+  <p>The main conclusion could be stated more defensibly as follows:</p>
+  <blockquote>For the equal-spin branch continuously connected to five-dimensional Myers–Perry, our positive-temperature solutions and zero-temperature extrapolations indicate that ∂M<sub>ext</sub>/∂α|<sub>J</sub> remains positive over the sampled range. Its central value decreases from the perturbative result π to a broad low region near 1.07 and then rises to about 1.44. This qualitative trend is stable under the fitting variations tested, but the displayed ranges are fit sensitivities rather than complete numerical error bounds.</blockquote>
+  <p>This preserves the interesting result while making the branch restriction, extrapolation and error status visible at the point of the claim.</p>
+
+  <h2 id="checked">What I checked</h2>
+  <p>I independently derived or recomputed:</p>
+  <ul>
+    <li>the static formula for Ψ and the differentiated Smarr constraint;</li>
+    <li>the endpoints and physical sign zero of the printed perturbative formula;</li>
+    <li>positivity of all 13 saved central Ψ values and monotonicity of the saved central μ values;</li>
+    <li>the size of the decrease and rise under the paper’s own fit sensitivities;</li>
+    <li>the distinction between the endpoint and maximum running integral discrepancies;</li>
+    <li>the source/PDF mismatch, file hashes, installation procedure and test outcomes.</li>
+  </ul>
+  <pre>PASS symbolic static-potential identity
+PASS symbolic differentiated-Smarr constraint
+PASS saved table: 13 ordered y values, all Psi&gt;0, all mu increasing
+PASS saved-table non-monotonic trend survives stated sensitivities:
+     fall gap=2.057093330, rise gap=0.369966342
+CHECK cubic-route discrepancy: endpoint=0.000380737432,
+      maximum=0.000437510799
+NOT CHECKED continuum BVP solve or cited literature</pre>
+  <p>The full test run, performed with a <code>PYTHONPATH</code> workaround because the documented editable install fails on Python 3.12, ended with 474 passes, 12 failures, 2 skips and 4 errors. Eleven failures came from one known source-hash mismatch, one from the dirty distribution, and the errors from the relative workaround path in temporary directories. Re-running the manuscript subset with an absolute path left only an exact-JSON comparison differing at the last floating-point bit.</p>
+
+  <h2>What I did not check</h2>
+  <p>I did not rerun the long production boundary-value walks, construct extremal bulk solutions, derive and solve the full rotating EGB equations independently, prove uniqueness or stability, or reproduce figures from external papers. The repository has no <code>papers/</code> source PDFs, so I did not verify literature attributions or convention transcriptions. Those parts remain hypotheses supported by the authors’ saved evidence, not independently reproduced results of this review.</p>
+
+  <h2>Recommendation</h2>
+  <p>The paper has a worthwhile result and a generally careful discussion of its limitations. I recommend another scientific review after the authors provide a clean source/PDF release, narrow the global wording, demonstrate endpoint convergence around the valley, strengthen the T→0 analysis, and add an independent check of Ψ. These revisions may leave the qualitative result unchanged; their purpose is to establish how much quantitative weight it can carry.</p>
+
+  <p class="small">Review object: working-tree <code>manuscript/main.tex</code> and <code>manuscript/main.pdf</code> as inspected on 27 September 2026. The manuscript and scientific results were not modified.</p>
+</main>
+</body>
+</html>
