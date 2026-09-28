@@ -2391,5 +2391,67 @@
     ],
     "status": "verified",
     "sha256": "5d9da444ed37dad0cd60f61c410a44656923183a2db44429932a1cc8d54f7edc"
+  },
+  {
+    "id": "egb-onshell-potential",
+    "kind": "result",
+    "path": "results/egb-onshell-potential.json",
+    "command": "python experiments/egb_onshell_potential.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_onshell_potential.py",
+      "src/rotating_bh/einstein.py",
+      "src/rotating_bh/egb_rotating_saved.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/gb_response.py",
+      "results/egb-rotating-family.json"
+    ],
+    "parameters": {
+      "nodes": 80,
+      "ladder": [
+        40,
+        60,
+        80,
+        120,
+        160
+      ],
+      "theta": 0.6,
+      "source_sha256": {
+        "experiments/egb_onshell_potential.py": "76ff83c9466515351aa34bfc7c11a3f3a107e1afa2a2afe66ec5202bc914aaf1",
+        "src/rotating_bh/einstein.py": "98dbe68ef9f95bd76e52035cd896fc0cc52714724aea73602654a2fa0ebd2c09",
+        "src/rotating_bh/egb_rotating_saved.py": "7f52254618dc520d7c0bd8490b1a0d04046bc9b0d187d6019dd2a268ca947505",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/gb_response.py": "d547ad98706cb83e15f1b2ae1bd333cd1222762d3c05d504b56f82e8854e869a",
+        "results/egb-rotating-family.json": "afb72dd82422132930aab72c28b3d8632584abb8a33c8917bc4520f94b168463"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [
+      "prompts.txt"
+    ],
+    "decisions": [
+      "Read Psi as an on-shell action integral and test it against the implicit response without using the asymptotic charge extraction"
+    ],
+    "checks": [
+      {
+        "name": "identity_holds",
+        "passed": true
+      },
+      {
+        "name": "signs_agree",
+        "passed": true
+      },
+      {
+        "name": "angular_factorisation",
+        "passed": true
+      },
+      {
+        "name": "states_pass_tensor_gate",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "5c9c6eb2d13c60fe6ca98cb41380d3f708f40b24ca62c0e1d544e4434d655432"
   }
 ]

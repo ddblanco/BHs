@@ -1,15 +1,17 @@
 # Manuscript
 
 El documento vigente es [main.pdf](main.pdf), cuya fuente es
-[main.tex](main.tex). Incluye las cifras de `numbers.tex`, seis figuras y los
+[main.tex](main.tex). Incluye las cifras de `numbers.tex`, siete figuras y los
 suplementos generados desde `results/egb-extremality.json`,
-`results/egb-rotating-profiles.json` y
-`results/egb-rotating-resolution-study.json`.
+`results/egb-rotating-profiles.json`,
+`results/egb-rotating-resolution-study.json` y
+`results/egb-onshell-potential.json`.
 
 La compilación de referencia en Linux usa Tectonic:
 
 ```bash
 PYTHONPATH=src python3 experiments/egb_rotating_resolution_study.py  # solo si falta el estudio de resolucion
+PYTHONPATH=src python3 experiments/egb_onshell_potential.py          # solo si falta la integral on-shell
 PYTHONPATH=src python3 manuscript/make_figures.py
 python3 manuscript/check_manuscript.py
 tectonic -X compile manuscript/main.tex

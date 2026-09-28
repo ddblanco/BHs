@@ -40,6 +40,7 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE.parent/'results/egb-extremality.json'
 PROFILES = HERE.parent/'results/egb-rotating-profiles.json'
 RESOLUTION_STUDY = HERE.parent/'results/egb-rotating-resolution-study.json'
+ONSHELL = HERE.parent/'results/egb-onshell-potential.json'
 FIGURES = HERE/'figures'
 NUMBERS = HERE/'numbers.tex'
 
@@ -98,6 +99,10 @@ def main():
         raise SystemExit(f'missing {RESOLUTION_STUDY.name}; run '
                          'experiments/egb_rotating_resolution_study.py first')
     study = json.loads(RESOLUTION_STUDY.read_text(encoding='utf-8'))
+    if not ONSHELL.exists():
+        raise SystemExit(f'missing {ONSHELL.name}; run '
+                         'experiments/egb_onshell_potential.py first')
+    onshell = json.loads(ONSHELL.read_text(encoding='utf-8'))
     walks = {float(k): v for k, v in data['walks'].items()}
     extremals = sorted(data['extremals'], key=lambda r: r['y'])
     fit_audit = []
@@ -158,6 +163,24 @@ def main():
     atlas_rows = sorted(atlas['rows'], key=lambda r: r['alpha_gb'])
     wide = {k: v for k, v in sorted(walks.items()) if len(v) >= 25}
     lowest = min(extremals, key=lambda r: r['psi_gb']['value'])
+
+    # ------------------------------------ the extremal horizon angular velocity
+    # The discussion reads the slope through omega = Omega_H J^(1/3), which the
+    # Smarr relation at T=0 ties to the mass and the slope by 3 omega = mu - y
+    # mu'. Extrapolating omega on its own, with the production model, turns that
+    # tie into something testable instead of a rearrangement: the fitted omega
+    # never enters the right-hand side.
+    for group in walks.values():
+        for state in group:
+            state['omega_scaled'] = state['omega_h']*state['J']**(1/3)
+    omega_rows = []
+    for record in extremals:
+        fitted = production_fit(walks[record['alpha_gb']], 'omega_scaled')
+        implied = (record['mu']-record['y']*record['psi_gb']['value'])/3
+        omega_rows.append(dict(y=record['y'], alpha_gb=record['alpha_gb'],
+                               omega=fitted['intercept'], implied=implied,
+                               difference=abs(fitted['intercept']-implied)))
+    omega_peak = max(omega_rows, key=lambda r: r['omega'])
 
     # --------------------------------------------------- figure 1: the profiles
     # One colour family per metric function, one shade per coupling, so that the
@@ -385,6 +408,52 @@ def main():
     figure.savefig(FIGURES/'fig-resolution.pdf')
     plt.close(figure)
 
+    # ---------------------------------------------------------------- figure 7
+    # The extremal mass itself, which the slope figure only describes through
+    # its derivative, and the same branch in the domain-of-existence plane the
+    # published bounds are stated in.
+    figure, (left, right) = plt.subplots(1, 2, figsize=(5.9, 2.85))
+    ys = np.array([r['y'] for r in extremals])
+    mus = np.array([r['mu'] for r in extremals])
+    grid = np.linspace(0., ys[-1]*1.04, 200)
+    left.plot(grid, curve['mass_coefficient']+np.pi*grid, '--',
+              color=MUTED, linewidth=1.,
+              label=r'$\frac{3}{2}\pi^{1/3}+\pi y$  (linear order)')
+    left.plot(ys, mus, 'o-', markersize=3.4, color=INK, linewidth=1.05,
+              label=r'$\mu(y)$  (this work)')
+    left.set_xlabel(r'$y=\alpha/J^{2/3}$')
+    left.set_ylabel(r'$\mu=M_{\rm ext}/J^{2/3}$')
+    left.set_xlim(-.012, ys[-1]*1.06)
+    style(left)
+    left.legend(frameon=False, loc='upper left', handlelength=1.6)
+
+    # The same states in the (x, j) plane, where the published domain of
+    # existence is bounded by x < 1 and j <= 1 and the extremal set is
+    # conjectured to end at (1, 0).
+    right.plot([s['x'] for s in states], [s['j'] for s in states], '.',
+               markersize=1.4, color='#c3ccd3', zorder=1,
+               label='sampled solutions')
+    extremal_x = [scaled[r['alpha_gb']]['x'] for r in extremals]
+    extremal_j = [scaled[r['alpha_gb']]['j'] for r in extremals]
+    right.plot(extremal_x, extremal_j, 'o-', markersize=3.4, color=ACCENT,
+               linewidth=1.05, zorder=3, label='extremal branch')
+    right.plot([extremal_x[-1], 1.], [extremal_j[-1], 0.], ':', linewidth=1.,
+               color=ACCENT, zorder=2)
+    right.axhline(1., color=MUTED, linewidth=.8, linestyle=(0, (5, 3)))
+    right.axvline(1., color=MUTED, linewidth=.8, linestyle=(0, (5, 3)))
+    right.plot([1.], [0.], '*', markersize=8, color='#2f6f3e', zorder=4,
+               clip_on=False, label='conjectured endpoint')
+    right.set_xlabel(r'$x=3\pi\alpha/(4M)$')
+    right.set_ylabel(r'$j$')
+    right.set_xlim(-.03, 1.07)
+    right.set_ylim(-.05, 1.12)
+    style(right)
+    right.legend(frameon=False, loc='upper right', handlelength=1.4,
+                 markerscale=1.6, borderaxespad=.6)
+    figure.tight_layout(pad=.4, w_pad=1.6)
+    figure.savefig(FIGURES/'fig-massext.pdf')
+    plt.close(figure)
+
     # ---------------------------------------------------------------- numbers
     ratios = [r for row in refinement for r in row['ratios']]
     oracle_worst = max(r['relative_deviation'] for r in perturbative)
@@ -443,8 +512,33 @@ def main():
     half = next(r for r in extremals if r['psi_gb']['value'] < np.pi/2)
     macro('halfpsi', fixed(half['psi_gb']['value'], 4))
     macro('halfx', fixed(scaled[half['alpha_gb']]['x'], 4))
+    macro('psiminshort', fixed(lowest['psi_gb']['value'], 2))
+    macro('psilastshort', fixed(extremals[-1]['psi_gb']['value'], 2))
+    macro('yminshort', fixed(lowest['y'], 3))
+    macro('ylastshort', fixed(extremals[-1]['y'], 3))
     macro('suppression', fixed(np.pi/lowest['psi_gb']['value'], 2))
     macro('griderror', latex_float(lowest['psi_uncertainty']))
+
+    # The extremal mass itself, and how far the linear-order expression is from
+    # it at the largest coupling sampled: the two statements figure 7 makes.
+    macro('mugrowth', fixed(100*(extremals[-1]['mu']/extremals[0]['mu']-1), 0))
+    macro('linearratio', fixed(
+        (curve['mass_coefficient']+np.pi*extremals[-1]['y'])/extremals[-1]['mu'], 2))
+    # The slope the published mass bound forces the branch towards if the
+    # endpoint conjecture of arXiv:2303.12471 holds.
+    macro('slopeasymptote', fixed(3*np.pi/4, 3))
+    # The extremal horizon angular velocity, extrapolated on its own.
+    macro('omegapeak', fixed(omega_peak['omega'], 3))
+    macro('omegapeaky', fixed(omega_peak['y'], 3))
+    macro('omegaworst', latex_float(max(r['difference'] for r in omega_rows)))
+    macro('omegazero', fixed(omega_rows[0]['omega'], 6))
+    macro('omegazerodev',
+          latex_float(abs(omega_rows[0]['omega']-np.pi**(1/3)/2)))
+    # Scale invariance fixes j on the extremal branch once mu is known; the
+    # deviation measures the two extrapolations against each other.
+    macro('jrelationworst', latex_float(max(
+        abs(scaled[r['alpha_gb']]['j']-(extremals[0]['mu']/r['mu'])**1.5)
+        for r in extremals)))
 
     macro('oracledigits', '8')
     macro('oraclegood', str(oracle_good))
@@ -555,6 +649,15 @@ def main():
         central = record['psi_gb']['value']
         smarr_rows.append((record['alpha_gb'], central, intercept,
                            abs(intercept-central)/abs(central)))
+    # A third route to Psi, sharing neither the response solve nor the
+    # asymptotic charge extraction: the on-shell Gauss-Bonnet action.
+    macro('onshellstates', str(onshell['states']))
+    macro('onshellworst', latex_float(onshell['worst_relative']))
+    macro('onshellabsolute', latex_float(onshell['worst_absolute']))
+    macro('onshellalphahigh', f"{onshell['alpha_range'][1]:g}")
+    macro('onshellspinhigh', f"{onshell['q_range'][1]:g}")
+    macro('onshellnodes', str(onshell['nodes']))
+
     macro('smarrstates', str(smarr_states))
     macro('smarrpsiworst', latex_float(smarr_worst))
     macro('smarrpsiabsolute', latex_float(smarr_absolute))

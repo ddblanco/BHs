@@ -20,7 +20,8 @@ def regenerated(tmp_path_factory):
     for name in ('manuscript/make_figures.py', 'manuscript/reanalysis.py',
                  'results/egb-extremality.json',
                  'results/egb-rotating-profiles.json',
-                 'results/egb-rotating-resolution-study.json'):
+                 'results/egb-rotating-resolution-study.json',
+                 'results/egb-onshell-potential.json'):
         target = root/name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT/name, target)

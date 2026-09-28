@@ -16,3 +16,65 @@ Re write the paper main.tex and compile the pdf. Make an html report with the ch
 Using all what you have done in reproducing the results from 1010.0860 and checking with known analytic solutions (Myers-Perry and Boulware-Deser) please make a report in html and latex/pdf explaining what you have done including figures with asserts detailing what you have redone (analytically or numerically) and which results you just called.
 Leave a html file for the report, and a tex file and pdf file for the latex report.
 Download the most relevant references in pdf.
+
+202609281655
+You are revising manuscript/main.tex (JHEP style), "Extremality shift of rotating black holes at finite
+Gauss–Bonnet coupling". Goals: pedagogy and an explicit novelty statement. Do not change any existing number,
+fit or precision claim; numbers stay as macros from numbers.tex.
+
+Take into account the following concerns (in Spanish):
+1) En la referencia [11] (2303.12471) supuestamente estudian agujeros negros extremales en EGB. Deben calcular la masa. Si es así, qué es lo nuevo en lo nuestro? Que tenemos muchos más alfas para poder calcular la derivada? 
+
+2) Falta pedagogía en la escritura, en todo el paper pero sobre todo en abstract e intro. Falta background (qué se sabe de agujeros negros rotantes en EGB) y señalar claramente qué aportamos nosotros. Entiendo que en EGB no hay soluciones exactas de agujero negro rotante, sólo perturbativas por un lado y numéricas por otro, y ahora también el resultado de PINNs de Garraffo et al. Entiendo que nosotros usamos el método de [9] (1010.0860) para encontrar soluciones numéricas de BH rotante para muchos alfas, y de ahí obtenemos la derivada de la masa extremal respecto a alfa. Bueno, el paper debería decir esto (o la versión correcta de esto, si me equivoqué en algo) claramente. Creo que estaría bueno darle ejemplos de papers bien escritos, pero no estoy familiarizado con la literatura de este tema. Quizá el paper de Gaston y Garraffo ("The Lovelock black holes") o el review de Emparan y Reall ("Black holes in higher dimensions", creo que es sólo en GR) sean posibles ejemplos.
+
+3) Esto me lleva a otra pregunta: cuál es el interés de calcular la derivada de M_ext respecto a alfa, en lugar de calcular M_ext directamente? En todo caso, integrando la derivada obtenemos M_ext(alfa), estaría bueno un plot de eso.
+
+4) Estaría bueno una discusión interpretando el resultado de que el slope sea siempre positivo, es decir que la masa extremal siempre aumente con alfa. I también discutir qué pasa en el mínimo del slope (punto de inflexión de la masa). Qué alfa es ése, es algún punto especial del espacio de parámetros?
+
+After that, consider the following:
+
+Audience: hep-th/gr-qc readers who know black-hole thermodynamics but not EGB numerics. After abstract + intro
+they must be able to say (i) what was known, (ii) what is new, (iii) how it was obtained, (iv) how far to trust it.
+
+Abstract (≤180 words, one paragraph, ≤3 significant digits, no list of caveats):
+1. Context: higher-curvature terms shift extremality bounds; for 5D EGB with equal spins the extremal mass is
+   known to O(alpha) [8]; extremal solutions at finite coupling were constructed numerically in [11], but
+   M_ext(J, alpha) and its slope were not extracted.
+2. What we do: the family, the potential Psi conjugate to alpha, T->0 limit giving dM_ext/dalpha|_J.
+3. Result: slope positive, falls from pi to ~1.07 near y~0.2, then rises; M_ext increases; one-sentence reading.
+4. One sentence on validation.
+
+Introduction (~1.5 pages), in this order: why extremality shifts matter (Kerr-type bound, WGC context,
+entropy-extremality relation) -> EGB in 5D and rotating solutions: [9], [11] (say explicitly that [11] built
+extremal solutions directly and mapped the domain of existence), perturbative results [6-8] -> the gap ->
+what we do and the main result, pointing to the new M_ext(alpha) figure -> explicit "new vs reproduced" list
+-> outline.
+
+Style rules, whole paper:
+- Each caveat once, where it matters, plus one "Limitations" paragraph in the Discussion.
+- No meta-commentary about the text ("we call it one", "the honest part of this table", ...). No sentences
+  whose only purpose is to pre-empt a referee.
+- Captions: what is plotted, <=4 sentences; interpretation goes in the text.
+- 3 significant digits in prose unless a comparison needs more; full precision only in tables.
+- Define each symbol where first needed; keep table 1 as reference.
+- Move method minutiae (complex step, conditioning, software versions, drop-one) to Appendix A.
+
+New content:
+- Figure: M_ext/J^(2/3) vs y with the O(alpha) line, and the same branch in the (x, j) plane of [11];
+  compare with the extremal boundary of [11].
+- Discussion subsection "Interpretation": (a) positivity <=> j_ext<1 and <=> M_ext > 3 Omega_H J at T=0;
+  reading of the sign in [8]; (b) Psi = -(1/16pi) Int_Sigma sqrt(-g) L_GB d^4x (on-shell action) and what its
+  sign means; (c) 3 omega = mu - y mu', so the slope minimum is the maximum of Omega_H J^(1/3) on the extremal
+  branch; (d) the bound M > 3 pi alpha/4 of [11] forces the slope to rise again, towards 3pi/4 if the endpoint
+  conjecture of [11] holds.
+
+Models (imitate structure and tone, not content):
+- Reall & Santos, arXiv:1901.11535: intro that states method and result on page 1.
+- Cheung, Liu & Remmen, arXiv:1801.08546: motivation -> claim -> assumptions, each stated once.
+- Goon & Penco, arXiv:1909.05254: short self-contained abstract.
+- Horowitz, Kolanowski, Remmen & Santos, arXiv:2303.07358: framing an extremal-rotating-BH result broadly.
+- Dias, Santos & Way, arXiv:1510.02804: describing a numerical method and its error control concisely.
+- Emparan & Reall, arXiv:0801.3471: background on Myers-Perry and 5D rotating black holes.
+
+Deliver: revised main.tex, a list of every deleted or moved paragraph, and confirmation that no existing
+macro in numbers.tex changed.
