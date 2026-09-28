@@ -124,10 +124,13 @@ literal decimals and citations. See [[latex-checks-that-do-not-fire]].
     1 failed, 494 passed, 2 skipped in 485.84s
     FAILED tests/test_distribution.py::test_published_distribution_is_intact
 
-The one failure is `artifacts/distribution-sha256.json`, a *release snapshot* that
+That failure was `artifacts/distribution-sha256.json`, the release snapshot that
 `checks/verify_distribution.py` deliberately never updates. It was already failing before
 this work: `prompts.txt` was modified in the working tree, and its hash alone breaks the
-inventory. Refreshing the snapshot is a release step, not part of a revision.
+inventory. Refreshed afterwards, on request, in a separate commit — see
+[[refreshing-the-distribution-snapshot]]. The audit then reports 237 files and 0
+failures, and the full suite 495 passed, 2 skipped, 0 failed.
+
 `tests/test_manuscript.py` needed one edit: its fixture copies a fixed list of inputs into
 a temp tree before running `make_figures.py`, and the new `results/egb-onshell-potential.json`
 had to be added to that list.
