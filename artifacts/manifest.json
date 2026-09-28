@@ -2249,5 +2249,147 @@
     ],
     "status": "verified",
     "sha256": "81c70275a566ac97bccb33935546a42d24bc3468a5c60d7d177f0e35a8162071"
+  },
+  {
+    "id": "egb-rotating-resolution-study",
+    "kind": "result",
+    "path": "results/egb-rotating-resolution-study.json",
+    "command": "python experiments/egb_rotating_resolution_study.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_resolution_study.py",
+      "src/rotating_bh/extremality.py",
+      "src/rotating_bh/gb_response.py",
+      "src/rotating_bh/egb_rotating_predictor.py",
+      "src/rotating_bh/egb_rotating_bvp.py",
+      "src/rotating_bh/egb_rotating_observables.py",
+      "environment/requirements-lock.txt",
+      "src/rotating_bh/_egb_rotating_compact_generated.py",
+      "src/rotating_bh/_egb_rotating_equations_generated.py",
+      "src/rotating_bh/_egb_rotating_generated.py",
+      "src/rotating_bh/_egb_rotating_horizon_generated.py"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "experiments/egb_rotating_resolution_study.py": "bd4eb134d4b85dbd78901597a83bc9f1d4ea4bf9b9279638a9ca96cd97e6500f",
+        "src/rotating_bh/extremality.py": "fc3f11a6a1dd545cd105d7c87d46b706d60881c98971ed569c7422930cf12b62",
+        "src/rotating_bh/gb_response.py": "d547ad98706cb83e15f1b2ae1bd333cd1222762d3c05d504b56f82e8854e869a",
+        "src/rotating_bh/egb_rotating_predictor.py": "1c087314ed473bb36bd9d50dfd444148a5a4c81d0a867a203e7a2eab4038975c",
+        "src/rotating_bh/egb_rotating_bvp.py": "3cf475762255b14bcfe922ff311028fa33bc6248109c24ba72e920c2a272c49c",
+        "src/rotating_bh/egb_rotating_observables.py": "5456abf30c6e2a485757db79d43d825f48cb6745349d069c20e0afe6654e4371",
+        "environment/requirements-lock.txt": "6bf2cac849c629ceffc18cad20bd7b36e4d1c8b5e47e6ca09aee4105dc5d33d6",
+        "src/rotating_bh/_egb_rotating_compact_generated.py": "211ca4acd342bba1122f85d54ed0a91d71cbe0b5df0ad3c063341531a9c84337",
+        "src/rotating_bh/_egb_rotating_equations_generated.py": "18a2be11e2d372344c2d20022bb7ddf3d1ce71c93cf75f2184a7ffd22e312435",
+        "src/rotating_bh/_egb_rotating_generated.py": "a78283acf958684dbc72a657215862258961eda8f990528c4c60583084785ea7",
+        "src/rotating_bh/_egb_rotating_horizon_generated.py": "2311496802e58afa7f858d790fbab85150a60bd130c9f58aa217585cc882a311"
+      },
+      "production_resolution": 64,
+      "refined_resolution": 96,
+      "coarse_resolutions": [
+        48,
+        56
+      ],
+      "start_spin": 0.6,
+      "coupling_step": 0.005,
+      "extremal_couplings": [
+        0.0,
+        0.005,
+        0.01,
+        0.02,
+        0.035,
+        0.05,
+        0.075,
+        0.1,
+        0.15,
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ]
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "The production resolution is re-solved, not reused, so agreement is evidence and not bookkeeping",
+      "Two coarser grids bracket the production one, so a drift has a direction",
+      "The environment control re-solves three couplings to separate resolution from library drift",
+      "Monotone shrinking is recorded as a gate even though it fails, rather than softened into a remark"
+    ],
+    "checks": [
+      {
+        "name": "production_states_reproduced",
+        "passed": true,
+        "detail": "re-solving at n=64 reproduces the shipped states to 1.421e-14"
+      },
+      {
+        "name": "refinement_shift_bounded",
+        "passed": true,
+        "detail": "n=64 to n=96 moves Psi by at most 6.886e-05 and mu by at most 1.684e-05"
+      },
+      {
+        "name": "environment_control_difference_bounded",
+        "passed": true,
+        "detail": "re-solving couplings [0.02, 0.15, 0.5] under this environment differs from the shipped values by at most 1.132e-05 (shipped: {'python': '3.11.9', 'numpy': '2.4.6', 'scipy': '1.17.1'})"
+      },
+      {
+        "name": "refinement_differences_shrink_for_every_coupling",
+        "passed": false,
+        "detail": "differences fall from the coarse to the fine pair in only 8/13 couplings for E, 9/13 couplings for J, 9/13 couplings for S, 8/13 couplings for j, 8/13 couplings for mu, 9/13 couplings for psi_gb, 9/13 couplings for sigma, 9/13 couplings for y; the remainder are dominated by the T=0 extrapolation rather than by the radial grid"
+      }
+    ],
+    "status": "candidate",
+    "sha256": "07ae19a15ecc282045fc9b08a0ab91936de4d92bbb1da042443f75c523cade34"
+  },
+  {
+    "id": "verification-ledger",
+    "kind": "result",
+    "path": "results/verification-ledger.json",
+    "command": "python work/verification_suite.py",
+    "commit": "working-tree",
+    "inputs": [
+      "work/verification_suite.py",
+      "results/egb-extremality.json",
+      "results/egb-rotating-profiles.json",
+      "results/egb-rotating-resolution-study.json"
+    ],
+    "parameters": {
+      "source_sha256": {
+        "work/verification_suite.py": "6571b137d79ae192bf40ef6560ff9abb076aef07b0bbcf143f55eef7663f2611",
+        "results/egb-extremality.json": "9db08930fca98c24eceef878f55c6f6cdbea3c05c3b558627d245330f2e175c2",
+        "results/egb-rotating-profiles.json": "81c70275a566ac97bccb33935546a42d24bc3468a5c60d7d177f0e35a8162071",
+        "results/egb-rotating-resolution-study.json": "07ae19a15ecc282045fc9b08a0ab91936de4d92bbb1da042443f75c523cade34"
+      },
+      "entries": 58,
+      "checked": 47,
+      "called": 11
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [],
+    "decisions": [
+      "A claim re-derived here and a claim taken from a paper are different kinds and are counted separately",
+      "A cited result is recorded as 'called' with passed=null rather than as a pass",
+      "Every checked entry has to name its method and its source, or it does not count as checked"
+    ],
+    "checks": [
+      {
+        "name": "no_checked_claim_failed",
+        "passed": true,
+        "detail": "47 of 47 checked claims pass; analytic: 19/19, numerical: 18/18, transcription: 10/10"
+      },
+      {
+        "name": "every_checked_claim_names_method_and_source",
+        "passed": true,
+        "detail": "all 47 checked entries carry a non-empty method and source"
+      },
+      {
+        "name": "called_claims_are_labelled_not_reproduced",
+        "passed": true,
+        "detail": "11 of 58 claims are cited from the literature and were NOT re-derived here; they carry passed=null and are excluded from every pass count"
+      }
+    ],
+    "status": "verified",
+    "sha256": "5d9da444ed37dad0cd60f61c410a44656923183a2db44429932a1cc8d54f7edc"
   }
 ]

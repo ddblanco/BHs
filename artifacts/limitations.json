@@ -1,6 +1,27 @@
 [
-  {"artifact": "egb-rotating-family", "check": "external_agreement", "reason": "At alpha_paper=2, the computed ergosurface radius 1.102101 disagrees with the published approximate value 1.104 at the fixed tolerance. Other external contrasts do not remove this failure."},
-  {"artifact": "egb-rotating-family-figure", "check": "external_agreement", "reason": "The figure inherits the same unresolved ergosurface-radius comparison as the family; it is not an additional independent disagreement."},
-  {"artifact": "egb-rotating-family-failed-continuation", "check": "newton_converged", "reason": "The attempted continuation did not converge. The rejected result and its exact source snapshot are retained as negative evidence."},
-  {"artifact": "egb-rotating-external-contrasts", "check": "published_ergosurface_radii", "reason": "The independent contrast still rejects the published approximate ergosurface radius at alpha_paper=2. No tolerance has been enlarged."}
+  {
+    "artifact": "egb-rotating-family",
+    "check": "external_agreement",
+    "reason": "At alpha_paper=2, the computed ergosurface radius 1.102101 disagrees with the published approximate value 1.104 at the fixed tolerance. Other external contrasts do not remove this failure."
+  },
+  {
+    "artifact": "egb-rotating-family-figure",
+    "check": "external_agreement",
+    "reason": "The figure inherits the same unresolved ergosurface-radius comparison as the family; it is not an additional independent disagreement."
+  },
+  {
+    "artifact": "egb-rotating-family-failed-continuation",
+    "check": "newton_converged",
+    "reason": "The attempted continuation did not converge. The rejected result and its exact source snapshot are retained as negative evidence."
+  },
+  {
+    "artifact": "egb-rotating-external-contrasts",
+    "check": "published_ergosurface_radii",
+    "reason": "The independent contrast still rejects the published approximate ergosurface radius at alpha_paper=2. No tolerance has been enlarged."
+  },
+  {
+    "artifact": "egb-rotating-resolution-study",
+    "check": "refinement_differences_shrink_for_every_coupling",
+    "reason": "Going from the coarse pair to the fine pair reduces the observable differences in only 8 to 9 of the 13 couplings, depending on the observable, so the radial refinement is not monotone across the family. The residual movement is bounded (Psi by 6.886e-05, mu by 1.684e-05) and is dominated by the T=0 extrapolation rather than by the radial grid, but no convergence order is claimed from these data and none should be read into them."
+  }
 ]
