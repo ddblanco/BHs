@@ -19,6 +19,7 @@ paper describen sensibilidad a los ajustes, no intervalos de confianza.
 - `manuscript/`: paper, figuras, cifras generadas y suplementos.
 - `docs/`, `references/`: convenciones, método y referencias bibliográficas.
 - `reports/`: dos conjuntos de validación científica, su script y la fuente de una corrida rechazada.
+- `prompts/`: registro cronológico de los prompts humanos y el uso de tiempo y de tokens del proyecto.
 
 ## Instalación y verificación
 
