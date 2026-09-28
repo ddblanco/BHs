@@ -2,6 +2,7 @@
 import csv
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 import shutil
@@ -52,11 +53,35 @@ def test_solution_table_contains_the_actual_observables(regenerated):
             assert float(value) == state[key]
 
 
+def equal_apart_from_float_noise(saved, rebuilt, tol=1e-9, floor=1e-12):
+    """Compare two audit records exactly, except for last-bits float drift.
+
+    Bit-exact float equality is not a property of this audit, it is a property
+    of the BLAS the run happened to link: another LAPACK build reorders the
+    same reductions and moves the last bits, so re-running the audit in a
+    different environment fails `==` while reproducing every number. Structure,
+    keys, lengths, strings and digests still have to match exactly; only the
+    floats are allowed to drift, and only by `tol` relatively or `floor`
+    absolutely, far below anything the paper quotes.
+    """
+    if isinstance(saved, dict):
+        return (isinstance(rebuilt, dict) and saved.keys() == rebuilt.keys()
+                and all(equal_apart_from_float_noise(saved[k], rebuilt[k], tol, floor)
+                        for k in saved))
+    if isinstance(saved, list):
+        return (isinstance(rebuilt, list) and len(saved) == len(rebuilt)
+                and all(equal_apart_from_float_noise(a, b, tol, floor)
+                        for a, b in zip(saved, rebuilt)))
+    if isinstance(saved, float) and isinstance(rebuilt, (int, float)):
+        return math.isclose(saved, rebuilt, rel_tol=tol, abs_tol=floor)
+    return saved == rebuilt
+
+
 def test_sensitivity_audit_regenerates_and_encloses_alternatives(regenerated):
     path = 'supplementary/extrapolation-sensitivity.json'
     saved = json.loads((ROOT/'manuscript'/path).read_text())
     rebuilt = json.loads((regenerated/path).read_text())
-    assert saved == rebuilt
+    assert equal_apart_from_float_noise(saved, rebuilt)
     for name, expected in saved['source_sha256'].items():
         assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == expected
     for fit in saved['fits']:
