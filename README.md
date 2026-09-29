@@ -5,8 +5,7 @@ at finite Gauss–Bonnet coupling**.
 La pregunta es cómo cambia la masa extrema a momento angular fijo en gravedad
 de Einstein–Gauss–Bonnet, en cinco dimensiones y con dos momentos angulares iguales.
 
-El [manuscrito](manuscript/main.pdf), su [fuente LaTeX](manuscript/main.tex)
-y la [explicación en español](manuscript/explicacion-en-espanol.md) son los puntos de entrada.
+El [manuscrito](manuscript/main.pdf), su [fuente LaTeX](manuscript/main.tex), la [explicación en español](manuscript/explicacion-en-espanol.md) y el [resumen en inglés](https://github.com/ddblanco/BHs/blob/main/short-summary/summary.pdf) son los puntos de entrada.
 Las estimaciones del límite extremo son extrapolaciones numéricas; las barras del
 paper describen sensibilidad a los ajustes, no intervalos de confianza.
 
