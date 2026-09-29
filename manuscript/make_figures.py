@@ -285,7 +285,7 @@ def main():
             label=r'$\Delta\mu/\Delta y$  (mass-curve secants)')
     ax.plot([0.], [curve['published_shift']], '*', markersize=10,
             color='#2f6f3e', zorder=6, clip_on=False,
-            label=r'$\pi$, published linear order')
+            label=r'$\pi$, perturbative linear order')
     ax.set_xlabel(r'$y=\alpha/J^{2/3}$')
     ax.set_ylabel(r'$\partial M_{\rm ext}/\partial\alpha\,|_J$')
     ax.set_xlim(-.012, .53)
@@ -298,7 +298,7 @@ def main():
     # ---------------------------------------------------------------- figure 4
     figure, ax = plt.subplots(figsize=(5.4, 2.9))
     ax.plot([r['y'] for r in horizon], [r['near_horizon'] for r in horizon],
-            '-', color=ACCENT, label='published near-horizon entropy function')
+            '-', color=ACCENT, label='rederived near-horizon entropy function')
     ax.plot([r['y'] for r in horizon], [r['sigma'] for r in horizon], 'o',
             markersize=3.8, markerfacecolor='white', markeredgewidth=.9,
             color=INK, label=r'$T\to0$ limit of the bulk solutions')

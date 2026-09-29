@@ -25,6 +25,7 @@ ALLOWED = {
     '2,1',        # the SO(2,1) of the near-horizon isometry group
     '4.11', '4.12',   # equation numbers of arXiv:1010.0860v1
     '4.2',            # its section number
+    '3.2',            # the section number of arXiv:2303.12471
     '1.102101', '1.104',  # the ergosurface discrepancy, quoted verbatim
 }
 

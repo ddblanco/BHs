@@ -19,24 +19,26 @@
 % \emailAdd{}
 
 \abstract{%
-Higher-curvature terms move the extremality bound of a black hole. In five
-dimensions with two equal angular momenta, the
-Gauss--Bonnet shift of the extremal mass is known only to first order in the
-coupling $\alpha$ \cite{Ma:2020xwi}; extremal solutions at finite coupling were
-built numerically in \cite{Kleihaus:2023zzs}, which mapped the domain of
-existence but not $M_\ext(J,\alpha)$ or its slope. We
-construct the equal-spin family at finite coupling, obtain the thermodynamic
-potential $\Psi$ conjugate to $\alpha$ by differentiating the discretised field
-equations implicitly, and take the zero-temperature limit that the extended
-first law identifies with $\partial M_\ext/\partial\alpha|_J$. On the branch
-connected to Myers--Perry the slope stays positive for $y=\alpha/J^{2/3}$ up to
-$\Nylastshort$: it falls from its perturbative value $\pi$ to $\Npsiminshort$
-near $y=\Nyminshort$, then rises to $\Npsilastshort$. The extremal mass
-therefore increases throughout, by $\Nmugrowth\%$ of its Einstein value, so the
-bound tightens; the first-order formula overshoots it by a factor
-$\Nlinearratio$ at the largest coupling. The calculation reproduces the static
-solution in closed form, the published perturbative potential, the Smarr
-relation, the on-shell Gauss--Bonnet action and the extremal near-horizon
+Higher-curvature terms move the extremality bound of a black hole, and how far
+they move it once the coupling is no longer small is not something first-order
+perturbation theory can say. In five dimensions with two equal angular momenta,
+the Gauss--Bonnet shift of the extremal mass is known only to that first order
+in the coupling $\alpha$ \cite{Ma:2020xwi}; the extremal solutions built
+numerically at finite coupling \cite{Kleihaus:2023zzs} map the domain of
+existence, not $M_\ext(J,\alpha)$ or its slope. We construct the equal-spin
+family at finite coupling and measure the thermodynamic potential $\Psi$
+conjugate to $\alpha$ on each solution, by differentiating the discretised field
+equations implicitly; in the zero-temperature limit the extended first law
+identifies it with $\partial M_\ext/\partial\alpha|_J$. On the branch connected
+to Myers--Perry that slope never changes sign. It falls from its perturbative
+value $\pi$ to a minimum of $\Npsiminshort$ at intermediate coupling, then turns
+around and rises again, and it is still positive at the largest coupling we
+reach, $y=\alpha/J^{2/3}=\Nylastshort$. The extremal mass therefore grows
+throughout, ending some $\Nmugrowth\%$ above its Einstein value, so the bound
+tightens rather than relaxes; by that point the first-order formula overshoots
+the shift by a factor of $\Nlinearratio$. Our calculation reproduces the static
+solution in closed form, the perturbative potential found in the literature, the
+Smarr relation, the on-shell Gauss--Bonnet action and the extremal near-horizon
 entropy.}
 
 \keywords{Black Holes, Classical Theories of Gravity, Higher Curvature Gravity}
@@ -106,15 +108,20 @@ solutions they mapped the domain of existence of the family: the Einstein bound
 $j\le1$ on the scaled spin survives at finite coupling, the static mass bound
 $M>3\pi\alpha/4$ holds for the rotating solutions as well, and the extremal set
 is conjectured to terminate at the nakedly singular static configuration with
-$M=3\pi\alpha/4$ and $J=S=0$.
+$M=3\pi\alpha/4$ and $J=S=0$. The last of these is a conjecture rather than a
+numerical result: section 3.2 of \cite{Kleihaus:2023zzs} records that the limit could not be reached, extrapolates the extremal curves of
+its figure 1 to the point $M=\tfrac34\pi\alpha$, $J=A_H=S=0$ by hand (the dotted
+line there), and supports the extrapolation with the exact rotating squashed
+$\mathrm{AdS}_2\times S^3$ near-horizon solution of \cite{Brihaye:2010wp} rather
+than with solutions constructed at the endpoint.
 
 What that leaves open is the function the perturbative result
 \eqref{eq:published} is an expansion of. Scale invariance makes the extremal
 branch a single curve in the reduced variables of \cite{Kleihaus:2023zzs}, and
 that curve already fixes $M_\ext(J,\alpha)$: with $\mu=M_\ext/J^{2/3}$ and
 $y=\alpha/J^{2/3}$, the definitions in section~\ref{sec:invariants} give
-$\mu=\mu(0)\,j^{-2/3}$ and $y=4x\mu/(3\pi)$, so the published domain of
-existence contains the extremal mass at fixed angular momentum. What it does
+$\mu=\mu(0)\,j^{-2/3}$ and $y=4x\mu/(3\pi)$, so the domain of existence
+reported there contains the extremal mass at fixed angular momentum. What it does
 not contain is the derivative. That function is not reported, and a slope read
 off a plotted domain boundary is not a quantity one would set beside the
 coefficient $\pi$ of \eqref{eq:published}; nor is differencing the masses of
@@ -145,8 +152,8 @@ resulting extremal mass, together with the first-order line \eqref{eq:published}
 it departs from and the same branch drawn in the domain-of-existence plane of
 \cite{Kleihaus:2023zzs}. Section~\ref{sec:interpretation} reads the three
 features --- the positive sign, the minimum of the slope and the subsequent
-rise --- in terms of the scaled spin, the horizon angular velocity and the
-published mass bound.
+rise --- in terms of the scaled spin, the horizon angular velocity and the mass
+bound of \cite{Kleihaus:2023zzs}.
 
 It is worth separating what is new here from what is recovered. New: the
 Gauss--Bonnet potential $\Psi$ measured on rotating solutions at finite
@@ -164,8 +171,9 @@ potential implied by \cite{Wu:2024xnb} and the first-order extremal mass $\pi$
 of \cite{Ma:2020xwi}; the near-horizon extremal entropy of
 \cite{Brihaye:2010wp}; and the extremal branch itself, which
 \cite{Kleihaus:2023zzs} constructs directly and we reach by extrapolation in
-temperature, together with its bounds $j\le1$ and $x<1$. One published quantity
-we do not reproduce, an ergosurface radius of \cite{Brihaye:2010wp}, is
+temperature, together with its bounds $j\le1$ and $x<1$. One quantity from the
+literature that we do not reproduce, an ergosurface radius of
+\cite{Brihaye:2010wp}, is
 reported in section~\ref{sec:discussion}.
 
 Throughout, ``the extremal branch'' means the zero-temperature endpoint of the
@@ -646,7 +654,7 @@ counterpart at the same $q$.
 
 The dataset reaches $x=\Nxlast$ on the sampled family and $x=\Nxextlast$
 on the extrapolated extremal branch. These are subsets of the allowed
-domain, whose published bound is $x<1$ \cite{Kleihaus:2023zzs}.
+domain, whose bound $x<1$ is reported in \cite{Kleihaus:2023zzs}.
 We follow the branch continuously connected to Myers--Perry.
 Continuation and regularity checks identify the branch sampled here;
 they do not establish global uniqueness or exhaust its domain.
@@ -705,13 +713,13 @@ coupling. The potential changes sign at $\bar\alpha=3/4$, or $x=3/5$,
 on the static branch. That result alone does not fix the sign on
 all rotating solutions beyond the range sampled here.
 
-\subsection{The published perturbative potential}
+\subsection{The perturbative potential from the literature}
 \label{sec:perturbative}
 
 The $\alpha=0$ potential is known in closed form at every spin, and
 \eqref{eq:psizero} below is neither a guess of ours nor a fit to our data: it
-is transcribed from a published perturbative free energy, with the two steps
-of that transcription spelled out here.
+is transcribed from a perturbative free energy in the literature, with the two
+steps of that transcription spelled out here.
 
 The source is Wu and L\"u \cite{Wu:2024xnb}, who compute the
 $\mathcal O(\alpha)$ correction to the thermodynamics of Myers--Perry black
@@ -967,7 +975,7 @@ expression \eqref{eq:published} runs above it and overshoots by a factor
 $\Nlinearratio$ at the largest coupling. The fall of the slope below $\pi$ is a
 fall in the rate: the extremal mass grows more slowly than linear order
 predicts, not more slowly than at $\alpha=0$. The right-hand panel places the
-same branch in the $(x,j)$ plane of \cite{Kleihaus:2023zzs}, whose published
+same branch in the $(x,j)$ plane of \cite{Kleihaus:2023zzs}, whose reported
 domain of existence is bounded by $x<1$ and $j\le1$; our branch stays inside
 both. Scale invariance ties the two panels, since $M_\ext=J^{2/3}\mu(y)$ gives
 \begin{equation}
@@ -986,7 +994,7 @@ increase of $\mu$ re-expressed, and not an independent measurement.
  $\mu=M_\ext/J^{2/3}$ against $y=\alpha/J^{2/3}$, with the first-order line
  \eqref{eq:published} dashed. Right: the same branch in the $(x,j)$ plane of
  \cite{Kleihaus:2023zzs}, with every accepted non-extremal solution in grey,
- the published bounds $x<1$ and $j\le1$ dashed, and the endpoint conjectured
+ the bounds $x<1$ and $j\le1$ reported there dashed, and the endpoint conjectured
  there as a star; the dotted segment joins our last sampled point to that
  endpoint and is not computed. Every plotted extremal point is a $T=0$
  intercept of a fit and not a constructed solution.}
@@ -1031,7 +1039,7 @@ absolute mass-accuracy estimate or a calibration of the sensitivity bars.
  with its fit-sensitivity envelope; open squares show secants of $\mu(y)$ at
  interval midpoints. A secant is an interval average rather than a pointwise
  derivative, and the two estimates share numerical inputs. The star is the
- published perturbative value $\pi$ \cite{Ma:2020xwi}, which is not imposed in
+ perturbative value $\pi$ of \cite{Ma:2020xwi}, which is not imposed in
  the response calculation.}
  \label{fig:shift}
 \end{figure}
@@ -1046,7 +1054,7 @@ but still relies on the thermodynamic extraction and extremal extrapolation.
 \label{sec:checks}
 
 The analytic static and perturbative checks were described above.
-Here we compare the extremal mass and entropy with published results
+Here we compare the extremal mass and entropy with results from the literature
 and distinguish those comparisons from internal consistency tests.
 
 \paragraph{Einstein and perturbative extremal limits.}
@@ -1089,8 +1097,8 @@ $\Nsmarrextcouplings$ finite couplings, well below every fit sensitivity in
 table~\ref{tab:extremal}. The division by
 $\alpha$ in \eqref{eq:psismarr} is ill-conditioned as $\alpha\to0$, which is
 why no row appears at $\alpha=0$ and why this route cannot replace the response
-calculation; at $\alpha=0$ the corresponding test is the published
-perturbative potential of section~\ref{sec:perturbative}.
+calculation; at $\alpha=0$ the corresponding test is the perturbative
+potential of section~\ref{sec:perturbative}.
 
 \begin{table}[t]
  \centering\small
@@ -1145,7 +1153,7 @@ extremal end.
 The near-horizon entropy function determines $S_\ext/J$ as a function of $y$
 without integrating the radial equations. We rederived it rather than
 transcribing it, as summarised in appendix~\ref{app:nearhorizon}, and checked
-the rederivation against the equations published in \cite{Brihaye:2010wp};
+the rederivation against the equations of \cite{Brihaye:2010wp};
 the curve in figure~\ref{fig:entropy} is that rederived solution and not a
 quotation. Solving its algebraic equations numerically at finite coupling gives
 the comparison shown there; the worst relative difference
@@ -1297,7 +1305,7 @@ increasing, which the first law permits when the negative entropy contribution
 exceeds the rotational one; the parity of $S(q)$ and $J(q)$ does not determine
 the sign of $\partial_qM$. We therefore do not read a mass below the static
 value at the same $r_H$ as an error, nor use that static value as a lower bound
-on the rotating family. The published bounds $x<1$ and $j\le1$
+on the rotating family. The bounds $x<1$ and $j\le1$ of
 \cite{Kleihaus:2023zzs} are different statements: our largest scaled spin is
 $\Nworstj$, and the extremal value falls to $\Njlast$ at the largest sampled
 coupling.
@@ -1776,126 +1784,106 @@ diagram is noted as an open problem.
 
 %======================================================================
 \begin{thebibliography}{99}
-
-\bibitem{ArkaniHamed:2006dz}
-  N.~Arkani-Hamed, L.~Motl, A.~Nicolis and C.~Vafa,
-  \emph{The string landscape, black holes and gravity as the weakest force},
-  JHEP \textbf{06} (2007) 060 [\href{https://arxiv.org/abs/hep-th/0601001}{hep-th/0601001}].
-
-\bibitem{Kats:2006xp}
-  Y.~Kats, L.~Motl and M.~Padi,
-  \emph{Higher-order corrections to mass-charge relation of extremal black holes},
-  JHEP \textbf{12} (2007) 068 [\href{https://arxiv.org/abs/hep-th/0606100}{hep-th/0606100}].
-
-\bibitem{Goon:2019faz}
-  G.~Goon and R.~Penco,
-  \emph{Universal relation between corrections to entropy and extremality},
-  Phys.\ Rev.\ Lett.\ \textbf{124} (2020) 101103
-  [\href{https://arxiv.org/abs/1909.05254}{arXiv:1909.05254}].
-
-\bibitem{Reall:2019sah}
-  H.~S.~Reall and J.~E.~Santos,
-  \emph{Higher derivative corrections to Kerr black hole thermodynamics},
-  JHEP \textbf{04} (2019) 021
-  [\href{https://arxiv.org/abs/1901.11535}{arXiv:1901.11535}].
-
-\bibitem{Myers:1986un}
-  R.~C.~Myers and M.~J.~Perry,
-  \emph{Black holes in higher dimensional space-times},
-  Annals Phys.\ \textbf{172} (1986) 304.
-
-\bibitem{Wu:2024xnb}
-  P.-Y.~Wu and H.~L\"u,
-  \emph{Quadratic curvature correction and its breakdown to thermodynamics of
-  rotating black holes},
-  Phys.\ Rev.\ D \textbf{111} (2025) 104026
-  [\href{https://arxiv.org/abs/2405.04576}{arXiv:2405.04576}].
-
-\bibitem{Ma:2025qcf}
-  L.~Ma and H.~L\"u,
-  \emph{Quadratic curvature correction to 5D Myers-Perry metric},
-  JHEP \textbf{05} (2026) 081
-  [\href{https://arxiv.org/abs/2512.23797}{arXiv:2512.23797}].
-
 \bibitem{Ma:2020xwi}
   L.~Ma, Y.-Z.~Li and H.~L\"u,
   \emph{$D=5$ rotating black holes in Einstein-Gauss-Bonnet gravity: mass and
   angular momentum in extremality},
   JHEP \textbf{01} (2021) 201
   [\href{https://arxiv.org/abs/2009.00015}{arXiv:2009.00015}].
-
+\bibitem{Kleihaus:2023zzs}
+  B.~Kleihaus, J.~Kunz and E.~Radu,
+  \emph{Phases of rotating black objects in $d=5$ Einstein-Gauss-Bonnet theory},
+  Universe \textbf{9} (2023) 156
+  [\href{https://arxiv.org/abs/2303.12471}{arXiv:2303.12471}].
+\bibitem{Myers:1986un}
+  R.~C.~Myers and M.~J.~Perry,
+  \emph{Black holes in higher dimensional space-times},
+  Annals Phys.\ \textbf{172} (1986) 304.
+\bibitem{ArkaniHamed:2006dz}
+  N.~Arkani-Hamed, L.~Motl, A.~Nicolis and C.~Vafa,
+  \emph{The string landscape, black holes and gravity as the weakest force},
+  JHEP \textbf{06} (2007) 060 [\href{https://arxiv.org/abs/hep-th/0601001}{hep-th/0601001}].
+\bibitem{Kats:2006xp}
+  Y.~Kats, L.~Motl and M.~Padi,
+  \emph{Higher-order corrections to mass-charge relation of extremal black holes},
+  JHEP \textbf{12} (2007) 068 [\href{https://arxiv.org/abs/hep-th/0606100}{hep-th/0606100}].
+\bibitem{Goon:2019faz}
+  G.~Goon and R.~Penco,
+  \emph{Universal relation between corrections to entropy and extremality},
+  Phys.\ Rev.\ Lett.\ \textbf{124} (2020) 101103
+  [\href{https://arxiv.org/abs/1909.05254}{arXiv:1909.05254}].
+\bibitem{Lovelock:1971yv}
+  D.~Lovelock,
+  \emph{The Einstein tensor and its generalizations},
+  J.\ Math.\ Phys.\ \textbf{12} (1971) 498.
+\bibitem{Reall:2019sah}
+  H.~S.~Reall and J.~E.~Santos,
+  \emph{Higher derivative corrections to Kerr black hole thermodynamics},
+  JHEP \textbf{04} (2019) 021
+  [\href{https://arxiv.org/abs/1901.11535}{arXiv:1901.11535}].
+\bibitem{Wu:2024xnb}
+  P.-Y.~Wu and H.~L\"u,
+  \emph{Quadratic curvature correction and its breakdown to thermodynamics of
+  rotating black holes},
+  Phys.\ Rev.\ D \textbf{111} (2025) 104026
+  [\href{https://arxiv.org/abs/2405.04576}{arXiv:2405.04576}].
+\bibitem{Ma:2025qcf}
+  L.~Ma and H.~L\"u,
+  \emph{Quadratic curvature correction to 5D Myers-Perry metric},
+  JHEP \textbf{05} (2026) 081
+  [\href{https://arxiv.org/abs/2512.23797}{arXiv:2512.23797}].
 \bibitem{Brihaye:2010wp}
   Y.~Brihaye, B.~Kleihaus, J.~Kunz and E.~Radu,
   \emph{Rotating black holes with equal-magnitude angular momenta in $d=5$
   Einstein-Gauss-Bonnet theory},
   JHEP \textbf{11} (2010) 098
   [\href{https://arxiv.org/abs/1010.0860}{arXiv:1010.0860}].
-
 \bibitem{Sen:2007qy}
   A.~Sen,
   \emph{Black hole entropy function, attractors and precision counting of
   microstates},
   Gen.\ Rel.\ Grav.\ \textbf{40} (2008) 2249
   [\href{https://arxiv.org/abs/0708.1270}{arXiv:0708.1270}].
-
-\bibitem{Kleihaus:2023zzs}
-  B.~Kleihaus, J.~Kunz and E.~Radu,
-  \emph{Phases of rotating black objects in $d=5$ Einstein-Gauss-Bonnet theory},
-  Universe \textbf{9} (2023) 156
-  [\href{https://arxiv.org/abs/2303.12471}{arXiv:2303.12471}].
-
 \bibitem{Kastor:2010gq}
   D.~Kastor, S.~Ray and J.~Traschen,
   \emph{Smarr formula and an extended first law for Lovelock gravity},
   Class.\ Quant.\ Grav.\ \textbf{27} (2010) 235014
   [\href{https://arxiv.org/abs/1005.5053}{arXiv:1005.5053}].
-
-\bibitem{Boulware:1985wk}
-  D.~G.~Boulware and S.~Deser,
-  \emph{String generated gravity models},
-  Phys.\ Rev.\ Lett.\ \textbf{55} (1985) 2656.
-
-\bibitem{Lovelock:1971yv}
-  D.~Lovelock,
-  \emph{The Einstein tensor and its generalizations},
-  J.\ Math.\ Phys.\ \textbf{12} (1971) 498.
-
+\bibitem{Neri:2024}
+  G.~Neri and S.~Liberati,
+  \emph{Covariant phase space analysis of Lanczos--Lovelock gravity with boundaries},
+  [\href{https://arxiv.org/abs/2404.16981}{arXiv:2404.16981}].
 \bibitem{Wald:1993nt}
   R.~M.~Wald,
   \emph{Black hole entropy is the Noether charge},
   Phys.\ Rev.\ D \textbf{48} (1993) R3427
   [\href{https://arxiv.org/abs/gr-qc/9307038}{gr-qc/9307038}].
-
 \bibitem{Iyer:1994ys}
   V.~Iyer and R.~M.~Wald,
   \emph{Some properties of Noether charge and a proposal for dynamical black
   hole entropy},
   Phys.\ Rev.\ D \textbf{50} (1994) 846
   [\href{https://arxiv.org/abs/gr-qc/9403028}{gr-qc/9403028}].
-
 \bibitem{Jacobson:1993xs}
   T.~Jacobson and R.~C.~Myers,
   \emph{Black hole entropy and higher curvature interactions},
   Phys.\ Rev.\ Lett.\ \textbf{70} (1993) 3684
   [\href{https://arxiv.org/abs/hep-th/9305016}{hep-th/9305016}].
-
-\bibitem{Kunduri:2013gce}
-  H.~K.~Kunduri and J.~Lucietti,
-  \emph{Classification of near-horizon geometries of extremal black holes},
-  Living Rev.\ Rel.\ \textbf{16} (2013) 8
-  [\href{https://arxiv.org/abs/1306.2517}{arXiv:1306.2517}].
-
+\bibitem{Boulware:1985wk}
+  D.~G.~Boulware and S.~Deser,
+  \emph{String generated gravity models},
+  Phys.\ Rev.\ Lett.\ \textbf{55} (1985) 2656.
 \bibitem{Camanho:2014apa}
   X.~O.~Camanho, J.~D.~Edelstein, J.~Maldacena and A.~Zhiboedov,
   \emph{Causality constraints on corrections to the graviton three-point
   coupling},
   JHEP \textbf{02} (2016) 020
   [\href{https://arxiv.org/abs/1407.5597}{arXiv:1407.5597}].
-
-\bibitem{Neri:2024}
-  G.~Neri and S.~Liberati,
-  \emph{Covariant phase space analysis of Lanczos--Lovelock gravity with boundaries},
-  [\href{https://arxiv.org/abs/2404.16981}{arXiv:2404.16981}].
+\bibitem{Kunduri:2013gce}
+  H.~K.~Kunduri and J.~Lucietti,
+  \emph{Classification of near-horizon geometries of extremal black holes},
+  Living Rev.\ Rel.\ \textbf{16} (2013) 8
+  [\href{https://arxiv.org/abs/1306.2517}{arXiv:1306.2517}].
 
 \end{thebibliography}
 
