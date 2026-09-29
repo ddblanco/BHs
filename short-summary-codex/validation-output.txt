@@ -1,3 +1,0 @@
-PASS restored English summary: 5 pages, 3 original figures
-PASS added reproduction section and comparison figure removed
-PASS LaTeX: no warnings or layout errors
