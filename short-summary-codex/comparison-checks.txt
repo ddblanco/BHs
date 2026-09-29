@@ -1,0 +1,6 @@
+PASS reference-image SHA-256 matches archived input
+PASS parameters: r_H=1, Omega_H=0.33, alpha_paper=4*alpha
+PASS 10/10 separated digitised values within archived pixel tolerances
+PASS re-extraction agrees with archived comparison to 1e-12
+NOT CHECKED: new BVP solves; quantitative digitisation of alpha_paper=0.01
+OPEN: separate ergosurface-radius discrepancy at alpha_paper=2

@@ -1,0 +1,45 @@
+PASS  eq.(15) Psi_static equals (3pi/4)(4a-3)/(1+4a)
+PASS  eq.(15) -> -9pi/4 as alpha -> 0
+PASS  eq.(15) changes sign at alpha/r_H^2 = 3/4
+PASS  static t_H = sqrt(1+2a)/(1+4a) matches eq.(10) on eq.(14)
+PASS  eq.(8) Smarr closes on the static solution at J=0
+PASS  Euler on the listed weights gives 2M = 3TS + 3*sum(Omega_i J_i) + 2*alpha*Psi
+PASS  eq.(8) 2M = 3TS + 6*Omega_H*J + 2*alpha*Psi is its equal-spin case
+PASS  differentiated Smarr minus twice the first law gives the printed constraint
+PASS  eq.(17) Psi_0(u=0) = -9pi/4, the static limit of eq.(15)
+PASS  eq.(17) Psi_0(u=1) = pi, the published linear-order slope
+PASS  eq.(17) sign change at the q the paper prints   derived 0.634935846 vs printed 0.634936
+PASS  eq.(9) q = a/r_H follows from Omega_H = a/(r_+^2+a^2) and r_H^2 = r_+^2+a^2
+PASS  eq.(9) u = q^2/(1-q^2) equals a^2/r_+^2
+PASS  equal-spin Myers-Perry is extremal at r_+ = a
+PASS  extremality therefore sits at q = 1/sqrt(2)
+PASS  appendix mass formula M = 3pi r_H^2/[8(1-q^2)] is 3pi mu/8
+PASS  13 couplings were walked, as the paper says   [0.0, 0.005, 0.01, 0.02, 0.035, 0.05, 0.075, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]
+PASS  every walked state is a solve of the radial problem, not a rescaling   356 states, resolutions [64, 96]
+PASS  the state count in the paper matches the dataset   356
+PASS  every coupling carries rotating states, not only the static member
+PASS  figure 2 plots rotating solutions: each curve has >= 25 spins
+PASS  the independent tensor residual passes the gate the paper quotes   worst 9.761e-09
+PASS  all 13 central Psi_ext are positive
+PASS  the lowest central Psi_ext is the one printed
+PASS  the last central Psi_ext is the one printed
+PASS  mu is strictly increasing across the sampled couplings
+PASS  the suppression factor pi/Psi_min is the one printed
+PASS  the total change in mu is the one printed
+PASS  the fall and the rise both exceed every quoted sensitivity band   fall 2.0701, rise 0.3729, worst band 0.1603
+PASS  the endpoint and the largest running discrepancy are told apart   endpoint 3.807e-04, maximum running 4.375e-04
+PASS  every interval discrepancy lies within the two routes' combined spread   worst ratio 0.90
+PASS  Smarr-derived Psi reproduces the response Psi at every finite-coupling state   313 states, worst relative 1.454e-06, worst absolute 3.297e-06
+PASS  y, mu and sigma carry recorded spreads that the paper does not display   worst mu spread 1.605e-03
+PASS  the Smarr route reproduces the printed worst relative agreement   1.590e-06
+PASS  the Smarr route agrees far inside every fit sensitivity
+PASS  the fit residual and the drop-one shift are below every sensitivity   smallest band 6.183e-04
+PASS  the study covers every coupling at every coarse resolution   26 sequences over 13 couplings at N=[48, 56]
+PASS  the production side was reproduced from the shipped states, not re-solved   1.42e-14 absolute
+PASS  the resolution difference is below the fit sensitivity everywhere   worst ratio 1.50e-03
+PASS  the resolution difference is far below the fall and the rise   6.89e-05 against a fall of 2.070
+PASS  the printed worst-case study numbers match the artifact
+PASS  the environment alone accounts for less than the resolution change   environment 1.13e-05 vs resolution+environment 6.89e-05
+PASS  the shipped measurement carries its own same-environment comparison   at alpha = [0.02, 0.1, 0.5]
+
+43 passed, 0 failed
