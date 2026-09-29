@@ -1,0 +1,346 @@
+{
+  "findings": [
+    {
+      "id": "R01",
+      "level": "Major",
+      "title": "Mass uncertainty is not carried through the principal comparison",
+      "where": "pp. 7-9, Table 2, Eq. (17); Appendix A",
+      "evidence": "The table explicitly limits its sensitivity column to Psi. Applying the SAME T/tau, 6/12-point, polynomial/square-root/logarithmic alternatives jointly to M and J gives a maximum change in mu of 0.02141 at alpha=0.035, and 0.01819 at alpha=0.02. At alpha=0.035 the corresponding maximum change in y is 0.000638. These are model-sensitivity shifts, not measured errors. They are much larger than the reported central integral discrepancy 0.000164, so that small discrepancy cannot establish the precision of the mass curve. The manuscript already acknowledges correlations, but does not quantify this missing sensitivity.",
+      "fix": "Export the joint alternative mass and spin fits, report sensitivities in y and mu, and redo the integral comparison and initial-slope estimate for each matched fit choice. Preserve correlations; do not add these envelopes as independent Gaussian errors."
+    },
+    {
+      "id": "R02",
+      "level": "Major",
+      "title": "The residual gate leaves the most important horizon region unsampled",
+      "where": "p. 11, Appendix A, acceptance; src/rotating_bh/egb_rotating_validation.py:check_points",
+      "evidence": "The 51 points are midpoints in chi between 0.02 and 0.98. Thus the innermost point is chi=0.0294118, or r/r_H=1.030303, and the outermost is r/r_H=34. Boundary relations are tested separately, but these samples do not test the open layer 1<r/r_H<1.0303 or the far tail. This is especially consequential when a near-extremal boundary layer could narrow below that interval. A small residual on this grid is not a uniform residual bound.",
+      "fix": "State the actual interval. Add logarithmically clustered horizon checks, far-tail checks, and resolution/precision comparisons of the coldest states. Record where the maximum occurs and distinguish cancellation noise from truncation error."
+    },
+    {
+      "id": "R03",
+      "level": "Major",
+      "title": "Regular extremality is assumed, not established by the entropy match",
+      "where": "Abstract; p. 4 Eq. (12); pp. 9-11",
+      "evidence": "The chain-rule identity is correct under the stated regularity conditions. Matching S/J to a near-horizon algebraic solution does not prove uniform convergence of the exterior, bounded curvature at the limiting horizon, or vanishing T times the constrained entropy derivative. The appendix correctly warns that near-horizon data need not determine a global solution. Calling the endpoint the minimum mass requires branch information in addition to T=0.",
+      "fix": "Keep the conditional language in the abstract and conclusions. Add a test of horizon invariants and entropy derivatives along the limiting sequence, or a direct extremal construction. Use \"extrapolated extremal branch mass\" rather than an unrestricted minimum over black holes."
+    },
+    {
+      "id": "R04",
+      "level": "Major",
+      "title": "Finite sampling supports positivity but not continuous monotonicity as a theorem",
+      "where": "Abstract; pp. 7-8 and 10",
+      "evidence": "All 13 sampled Psi values remain positive even after subtracting the stated fit envelope; the minimum lower endpoint is 1.05850. All central mass increments are positive. This is strong sampled evidence. It does not exclude an unsampled feature or a shared extrapolation bias, so \"the mass itself remains increasing\" and \"increases monotonically\" are stronger than what was directly checked.",
+      "fix": "Replace those sentences with \"the sampled extrapolated branch is consistent with a monotonically increasing mass at fixed J.\" State explicitly that positivity between sampled couplings is inferred by smooth interpolation."
+    },
+    {
+      "id": "R05",
+      "level": "Moderate",
+      "title": "The minimum and the first upturn are not equally well resolved",
+      "where": "p. 7, Table 2 and Fig. 2",
+      "evidence": "The alpha=0.15 estimate is 1.071492 with envelope 0.012991; alpha=0.2 gives 1.090070 with envelope 0.011155. Their envelopes overlap. The later rise to 1.444398 at alpha=0.5 is much larger and survives these variations. Thus the broad dip and recovery are better supported than the location or first interval of the upturn. The manuscript appropriately avoids a precise continuous minimum.",
+      "fix": "Explicitly note the overlap and identify 0.15 as the lowest sampled CENTRAL value. Sample more densely near the turning region before resolving its position or curvature."
+    },
+    {
+      "id": "R06",
+      "level": "Major",
+      "title": "No asymptotic justification selects the production cubic fit",
+      "where": "pp. 7 and 12-13, Appendix A",
+      "evidence": "The production fit has four coefficients and six samples. Alternative square-root and logarithmic terms are sensible probes but do not derive the near-extremal expansion. The coldest T varies from 3.38e-6 to 4.73e-3, so coupling points have very different extrapolation leverage. For alpha=0.02 the potential envelope is 0.1602, about 6.5 percent of its central value. Small least-squares residuals would not establish the intercept.",
+      "fix": "Give per-coupling fit ranges for both production and extended windows, design-matrix conditioning, leave-one-out intercepts, and a cold-window convergence sequence. Derive the expected powers if possible. Until then call the intercepts model-dependent estimates."
+    },
+    {
+      "id": "R07",
+      "level": "Moderate",
+      "title": "The response needs its own numerical error diagnostics",
+      "where": "pp. 5 and 11-12; Eq. (13)",
+      "evidence": "A small nonlinear field residual does not bound the error of the inverse-Jacobian response. The selected maximum condition number 5.4e7 excludes many cold endpoints and depends on scaling of equations and variables. The finite-difference comparison is at four moderate states; it is not a near-extremal response convergence study. Agreement of two complex-step Jacobians checks assembly, but shares a differentiation mechanism.",
+      "fix": "Report the response linear-system backward residual, scaled conditioning and cancellation in dM-T dS-2 Omega dJ for each cold sequence. Compare responses at matched physical states across N and selected higher precision or independent derivative calculations."
+    },
+    {
+      "id": "R08",
+      "level": "Moderate",
+      "title": "The three resolution contrasts do not cover the curve uniformly",
+      "where": "p. 13, Appendix A; results/egb-extremality.json:resolution_contrast",
+      "evidence": "The compared couplings are 0.02, 0.1 and 0.5. Entire continuation walks are compared, so changes can combine resolution effects with different available temperature windows. They do not isolate fixed-state spectral convergence or directly test the minimum at alpha=0.15 and the difficult small-coupling endpoints. The existing qualification in the text is correct.",
+      "fix": "Name the three couplings and temperature overlaps in the paper. Add fixed-state convergence tables and matched-window endpoint fits, particularly at 0.005, 0.035 and 0.15."
+    },
+    {
+      "id": "R09",
+      "level": "Moderate",
+      "title": "The residual normalization is coordinate dependent and globally scaled",
+      "where": "p. 11, Appendix A; src/rotating_bh/egb_rotating_scale.py",
+      "evidence": "Tensor components are divided by outer([1,1,r,r,r],[1,1,r,r,r]); this is not an orthonormal-frame norm. The reported ratio is max(residual)/max(reference scale), rather than the maximum local ratio. A large reference scale at one radius can reduce the reported relative importance of an error elsewhere. The manuscript describes the max/max operation accurately but omits the frame convention. The saved set contains 29 states above the old absolute 1e-6 gate; the largest absolute residual is 1.46e-5. This is not itself a failed relative gate.",
+      "fix": "Write the precise component normalization and report both max/max and max of local ratios in a regular frame. Explain why the chosen sampling and normalization resolve the cold horizon region."
+    },
+    {
+      "id": "R10",
+      "level": "Moderate",
+      "title": "The sign-change table omits valid brackets and incompletely specifies the interpolation",
+      "where": "pp. 6-7, Table 1; manuscript/make_figures.py",
+      "evidence": "The generator retains only bracketed AND fully-covered families. The JSON also contains valid sign brackets at alpha=0.005, 0.01, 0.035, 0.075 and 0.15. A local zero does not require the entire static-to-extremal family. Omitting these points obscures information near the temperature turning region. Table 1 supplies a width, but not both bracket endpoints or the variable in which the zero is linearly interpolated.",
+      "fix": "List all available brackets, distinguish global family coverage in a separate column, and give both endpoints and the interpolation rule. Refer to the lowest listed interpolant, not an established continuous minimum at alpha=0.1."
+    },
+    {
+      "id": "R11",
+      "level": "Explanation",
+      "title": "Fixed radius is not a fixed invariant coupling across a spin curve",
+      "where": "pp. 3-4; Fig. 1; Table 1",
+      "evidence": "The curve labels alpha actually denote alpha/r_H^2 with r_H=1. Along each curve J changes, so y=alpha/J^(2/3) is not fixed; nor is x fixed. The text explains this, but the stand-alone figure and table labels do not. Consequently a zero in Fig. 1 is not a zero traced at fixed physical J and fixed y.",
+      "fix": "Label the plotted parameter alpha/r_H^2 or explicitly repeat the fixed-radius convention in each caption. Reserve fixed-J conclusions for the rescaled extremal branch."
+    },
+    {
+      "id": "R12",
+      "level": "Explanation",
+      "title": "The near-horizon charge convention needs an explicit coordinate map",
+      "where": "pp. 13-14, Eqs. (18)-(19)",
+      "evidence": "The formula J=df/dk is consistent with the manuscript convention, but the factor of two cannot be checked from unspecified SU(2) one-forms. The local source 1010.0860 uses (sigma_3+2 k_ref r dt) and a Legendre charge equal to the sum of the two spins. The project code implements k=2 k_ref, v3=v2_ref v3_ref and J_ref=2J. Only alpha_ref=4 alpha is explained in the manuscript.",
+      "fix": "Define the one-forms, angular periods and transformation from the two azimuths. Include the full parameter/charge map. Do not change the factor in J=df/dk without changing k: the present normalization passes the vacuum check."
+    },
+    {
+      "id": "R13",
+      "level": "Explanation",
+      "title": "Appendix B promises an explicit polynomial system without displaying it",
+      "where": "pp. 13-14; src/rotating_bh/_near_horizon_generated.py",
+      "evidence": "The appendix describes a symbolic rederivation but does not give R, L_GB, or the algebraic stationarity equations. The supplied code contains them, so this is missing exposition rather than missing implementation. As written, a reader cannot reproduce the finite-coupling algebra from the appendix alone.",
+      "fix": "Print the two compact curvature scalars and either the three stationarity equations or a stable source locator. Specify the positive root and continuation range, and separate analytic identities from numerical root residuals."
+    },
+    {
+      "id": "R14",
+      "level": "Explanation",
+      "title": "The reduced boundary-value problem is not fully specified in the paper",
+      "where": "pp. 3 and 11, Appendix A",
+      "evidence": "The action and ansatz determine equations in principle, but the four solved radial equations and three horizon relations are only described as generated symbolically. Which equation is a constraint, how redundant equations are monitored, the prime coordinate in the compact system, and the Newton tolerances are not fully specified in the manuscript.",
+      "fix": "Include the reduced equations or exact versioned code locators, define derivatives with respect to chi, and tabulate boundary/solver tolerances and regularity conditions. This makes branch selection and equation counting reviewable."
+    },
+    {
+      "id": "R15",
+      "level": "Moderate",
+      "title": "The entropy check is conditional on a numerically inferred horizontal coordinate",
+      "where": "p. 9; Fig. 3",
+      "evidence": "I independently reevaluated the near-horizon algebraic branch at each tabulated y and recovered the maximum relative entropy discrepancy 4.06e-6. This is a valuable comparison. However, both the plotted bulk S/J and y=alpha/J^(2/3) use the same bulk J, so a correlated J error shifts both coordinates. The line merely joins the computed near-horizon values, as the caption correctly says.",
+      "fix": "Call this agreement of the entropy relation evaluated at the inferred y. Add a residual panel and propagate joint S,J sensitivity; avoid reading 4.06e-6 as an unconditional accuracy bound on S alone."
+    },
+    {
+      "id": "R16",
+      "level": "Moderate",
+      "title": "The ergosurface discrepancy remains a real unresolved external comparison",
+      "where": "p. 9 footnote; local paper 1010.0860, numerical examples",
+      "evidence": "The quoted radii 1.102101 and 1.104 differ by 0.001899, about 0.172 percent. The manuscript correctly declines to call this an erratum. The footnote gives alpha but omits the angular velocity, horizon-radius convention and extraction uncertainty needed to identify the state completely. This review did not reproduce the source figure or resolve the discrepancy.",
+      "fix": "Give the full matched parameter tuple and the error sources in the quoted source value. Retain it as an unresolved comparison, separately from the successfully checked entropy relation."
+    },
+    {
+      "id": "R17",
+      "level": "Explanation",
+      "title": "EFT and stability limitations are mostly correct but should be sharper",
+      "where": "pp. 10-11, Discussion",
+      "evidence": "The manuscript properly restricts itself to classical EGB, makes no electric-charge identification, and does not claim stability or a UV completion. The phrase that omitted terms contribute \"at the same order as the higher powers of alpha\" needs a power-counting convention: alpha is one Wilson coefficient, and independent higher-curvature coefficients need not be its powers. Small x or y alone does not bound alpha times local curvature.",
+      "fix": "State the assumed derivative expansion and distinguish resummed powers of the EGB coefficient from independent higher-order operators. If an EFT-sized domain is mentioned, estimate a local curvature expansion parameter. No additional stability claim is warranted by the current checks."
+    },
+    {
+      "id": "R18",
+      "level": "Confirmed error",
+      "title": "Project documentation still makes false exactness and independence claims",
+      "where": "src/rotating_bh/extremality.py module docstring; experiments/egb_extremality.py module docstring",
+      "evidence": "The source says the potential is \"exact at every point\", the derivative has \"no step at all\", the two routes are independent and share only the solver, and that every coupling reaches temperatures of order 1e-5. The implementation uses a complex step, finite collocation and charge fits; both routes use the same temperature-selected extrapolated M,J; several recorded Tmin values are of order 1e-3. These statements contradict the revised manuscript and the data.",
+      "fix": "Update the source documentation to the manuscript's qualified terminology and actual per-coupling temperature range. Remove stale claims of independence, exactness and uniform approach to extremality. Preserve provenance when updating recorded source files."
+    },
+    {
+      "id": "R19",
+      "level": "Confirmed error",
+      "title": "One near-horizon derivative test is too weak to test stationarity accurately",
+      "where": "tests/test_near_horizon.py:test_the_stationarity_conditions_are_the_derivative_of_f",
+      "evidence": "The threshold is 1e-6*max(1,abs(f_minus)/step), with step=1e-6, so it is usually about abs(f), not a 1e-6 relative derivative test. Perturbing v2 by one percent still passes all three derivative inequalities at alpha_tilde=0.05, 0.3 and 0.7. For 0.3, one derivative is -0.05874 while the allowed threshold is 3.380. Other polynomial and published-equation tests remain meaningful; this defect does not invalidate their results.",
+      "fix": "Compare df/dv against the generated stationarity expressions with the known prefactors at arbitrary off-shell states, and include a deliberately perturbed root that must fail the on-shell tolerance."
+    },
+    {
+      "id": "R20",
+      "level": "Confirmed error",
+      "title": "Some test descriptions promise stronger checks than they execute",
+      "where": "tests/test_near_horizon.py:test_the_scalars_are_constant_on_the_geometry; tests/test_manuscript.py:test_current_pdf_and_generated_figures_are_present",
+      "evidence": "The scalar test checks finiteness and the definition of f, not coordinate independence of curvature evaluated at different points. The PDF test checks a PDF header and file size, not that main.pdf corresponds to the current source or that figure curves match regenerated data. These tests are useful smoke checks, but their existence cannot substantiate the stronger physical or visual claims.",
+      "fix": "Rename smoke tests and add coordinate-sampled curvature checks and a source-to-PDF build verification where those claims are needed. Keep figure data comparison distinct from merely checking file existence."
+    },
+    {
+      "id": "R21",
+      "level": "Reproducibility",
+      "title": "The available environment is not the declared production environment",
+      "where": "pyproject.toml; environment/requirements-lock.txt; review run receipts",
+      "evidence": "The supplied .venv runs Python 3.10.12 although the package declares Python >=3.11. NumPy/SciPy are 2.2.6/1.15.3 rather than locked 2.4.6/1.17.1. A plain .venv/bin/python -m pytest fails collection with 29 import errors because the package is not installed in this environment; PYTHONPATH=src permits the review checks to run. This is a local environment mismatch, not evidence that the documented installation procedure is impossible.",
+      "fix": "Provide a tested per-exercise environment matching the declared version range and record its lock and BLAS configuration. Distinguish the review's numerical reproduction in this available environment from exact production-environment reproduction."
+    },
+    {
+      "id": "R22",
+      "level": "Reproducibility",
+      "title": "Distribution integrity and scientific validity must be reported separately",
+      "where": "checks/verify_distribution.py; checks/verify_recorded_digests.py",
+      "evidence": "The recorded-digest checker verifies 238 entries with documented exceptions for an unavailable external image and edited prose. The distribution checker fails on the already modified .gitignore and unlisted local/review files. New review outputs necessarily add inventory failures. This is an expected mismatch with a frozen distribution manifest, not proof that the physical calculation is wrong. Image-dependent tests are skipped.",
+      "fix": "Run release-integrity checks on a clean distribution and scientific tests on the working tree, reporting both outcomes. Do not rewrite the release manifest merely to make a scientific review pass."
+    },
+    {
+      "id": "R23",
+      "level": "Reproducibility",
+      "title": "The local source archive is incomplete under the working agreement",
+      "where": "pp. 14-15, bibliography; papers/",
+      "evidence": "Only three of the manuscript's twenty bibliography entries have a corresponding local source PDF: 1010.0860, 2009.00015 and 2405.04576. The fourth local paper, 2607.07418, is not cited by the manuscript. Thus seventeen cited sources cannot be fully audited against the required local archive. Metadata lookups are not a substitute for reading a source, and absence is not evidence that a citation is false.",
+      "fix": "Archive the exact cited versions lawfully in papers/ and pin version identifiers. Prioritize the source for the stationary extended first law and the 2023 domain-of-existence bounds. Audit the 2026 local numerical-method paper for relevant overlap without assuming it reproduces this thermodynamic response."
+    },
+    {
+      "id": "R24",
+      "level": "Reproducibility",
+      "title": "Existing review artifacts record incomplete reconstruction of the stored states",
+      "where": "work/review/out2/walk-*.json; work/review/out/near_miss.json",
+      "evidence": "These files predate this review. They contain 356 attempted rows, 335 reconstructed profiles and 21 failed rows. They must not be described as a successful reproduction of all 356 solutions. A stored near-miss example at alpha=0.005, q=0.710000 reports a changed relative tensor residual of 5.85e-8 at N=64, despite extremely small observable changes. I inspected these records but did not rerun their entire continuation campaign; their historical claims remain unverified in this session.",
+      "fix": "Preserve failure logs, environment and exact commands. Revisit the cold-state failures with higher precision and matched sampling. Separate stable observables from environment-sensitive acceptance outcomes; do not replace missing profiles with smooth interpolation."
+    },
+    {
+      "id": "R25",
+      "level": "Explanation",
+      "title": "The figure presentation hides some distinctions relevant to the claims",
+      "where": "pp. 7, 9 and 10, Figs. 1-3",
+      "evidence": "Fig. 1 uses the same red symbol for all extrapolated endpoints, making family assignment difficult without the table; lines connect samples without showing their density. Fig. 3 overlays two curves so closely that the quoted 4e-6 discrepancy is invisible. Fig. 2 correctly labels secants as averages and its caption acknowledges shared data; those qualifications should remain.",
+      "fix": "Match endpoint colors to their families, mark representative samples, and add a relative entropy-residual panel. Keep the distinction between fit-sensitivity envelopes and confidence intervals visible in legends/captions."
+    }
+  ],
+  "coverage": [
+    [
+      "Abstract and introduction",
+      "Conditional / revise R03-R04",
+      "The finite-coupling response question, equal-spin restriction, local nature of the derivative and absence of a dynamical alpha evolution are consistent. The continuous monotonicity and unrestricted minimum language need qualification."
+    ],
+    [
+      "Eq. (1), perturbative extremal mass",
+      "Checked against local source and algebra",
+      "The local 2009.00015 PDF states the same per-plane-J normalization and +pi alpha coefficient. The zeroth-order MP mass normalization was asserted symbolically. Higher-order terms were not derived."
+    ],
+    [
+      "Eqs. (2), (8), extended first law and Smarr",
+      "Derived consistency; underlying variational theorem not rederived",
+      "Euler scaling gives 2M=3TS+6 Omega J+2 alpha Psi. The static specialization is a symbolic identity. The complete stationary EGB covariant-phase-space proof and its boundary ambiguities were not independently reconstructed."
+    ],
+    [
+      "Eq. (3), EGB action and linearization",
+      "Standard structure inspected; not a fresh tensor derivation",
+      "The stated Lanczos tensor is quadratic in curvature, so its linear term about flat space vanishes. The action and alpha_ref=4 alpha agree with local 1010.0860. Second-order field equations do not establish stability; the manuscript correctly says so."
+    ],
+    [
+      "Eq. (4), ansatz and boundary conditions",
+      "Compared with local source and implementation",
+      "The four-function cohomogeneity-one ansatz, angular ranges, b=f=0 and w_H=Omega_H are consistent. Reduction assumes the enhanced equal-spin symmetry class; equality of two charges alone is not a proof that all possible solutions have that symmetry. Clarify this scope if claiming completeness."
+    ],
+    [
+      "Eq. (5), q and vacuum endpoint",
+      "Checked through analytic MP convention",
+      "q=r_H Omega_H=a/r_H for the MP background, with extremal q=1/sqrt(2). At finite coupling q is a label, not a physical angular-momentum normalization."
+    ],
+    [
+      "Eq. (6), asymptotic charges",
+      "Compared with local source and code",
+      "M=-3 pi U/8 and each J=pi W/4 match the ansatz conventions. A fresh derivation of asymptotic Hamiltonian charges was not performed. Tail bias remains R01/R07."
+    ],
+    [
+      "Eq. (7), temperature and Wald/JM entropy",
+      "Formula consistency checked",
+      "The horizon area and intrinsic-curvature formula reduce to the quoted static S and to the MP area law. The general Noether-charge theorem is recalled, not newly proved; its source PDFs are absent. The formula is used only for stationary horizons."
+    ],
+    [
+      "Eqs. (9)-(10), scaling invariants",
+      "Symbolic normalization and implementation checks",
+      "The fixed-J derivative of J^(2/3) mu(alpha/J^(2/3)) is mu prime. Vacuum j=1 and static t_H=1 follow from the stated mass and temperature; the finite-alpha static temperature is correct. Restrict fractional-spin powers to J>0 or use absolute values for reversed orientation."
+    ],
+    [
+      "Eq. (11), extraction of Psi",
+      "Derived from the differential first law",
+      "The subtraction at fixed r_H,Omega_H is correct. No S dT or J dOmega term belongs in this evaluation. Entropy has an explicit alpha derivative; the implementation retains it."
+    ],
+    [
+      "Eq. (12) and entropy-extremality identity",
+      "Conditional identity; R03",
+      "The chain rule is valid on a regular branch. At positive T, fixed M,J gives S_alpha=-Psi/T. Interchanging the extremal limit and differentiation is an additional hypothesis, not a consequence of matching a finite entropy value."
+    ],
+    [
+      "Eq. (13), complex step and implicit response",
+      "Implementation inspected and exercised",
+      "A u_alpha=-R_alpha is the correct implicit derivative for an invertible Jacobian. Complex step avoids subtractive cancellation but still has truncation and floating-point errors. Existing Jacobian and response tests exercise the discrete implementation."
+    ],
+    [
+      "Response finite-difference ratios",
+      "Saved-data and suite check",
+      "The four-point/five-step study is consistent with second-order central differences over those steps. It does not prove exact derivatives or endpoint convergence; R07/R18."
+    ],
+    [
+      "Eqs. (14)-(15), static solution and potential",
+      "New symbolic assertions passed",
+      "The radial first law, constrained Psi, zero at alpha/r_H^2=3/4, static Smarr and scaled temperature were independently simplified to zero. The negative alpha=0 potential is correct, not a sign error."
+    ],
+    [
+      "Eq. (16), perturbative potential",
+      "Local-source transcription and new symbolic specialization",
+      "Eq. (33) of local 2405.04576 reduces to -pi(u^2-14u+9)/4. Its endpoints -9pi/4 and pi are asserted. The distinction between a Gibbs coefficient at fixed T,Omega and a mass derivative at fixed S,J is justified by the Legendre differential."
+    ],
+    [
+      "Fig. 1 and Table 1, sign changes",
+      "Saved brackets inspected; R10-R11/R25",
+      "The displayed crossings are bracketed; the analytic q zero is approximately 0.634936. The interpolation discrepancy is not a numerical-solver error. Full-family coverage is available only for six plotted couplings."
+    ],
+    [
+      "Table 2, central extrapolated states",
+      "Recomputed from stored raw walks",
+      "All four central intercepts at all thirteen couplings match the saved values within 1e-10. This reproduces post-processing, not the entire original solution campaign. Positivity and increasing sampled mu are asserted."
+    ],
+    [
+      "Eq. (17), integral comparison and mass slope",
+      "Correct analytic identity; correlated numerical test",
+      "The central discrepancies and secants are meaningful internal diagnostics, but shared fits and horizontal-coordinate errors need propagation. The initial mass-slope fit is not independent of temperature-based extrapolation."
+    ],
+    [
+      "Einstein extremal anchor",
+      "Checked analytically and through saved-data fits",
+      "mu=(3/2)pi^(1/3), Psi=pi and sigma=2pi have the stated normalization. The tiny zero-coupling mass error cannot be transferred to finite coupling."
+    ],
+    [
+      "Near-horizon entropy / Fig. 3",
+      "Algebraic branch recomputed",
+      "The maximum relative discrepancy 4.0595e-6 was recovered at the supplied y values. R12-R15 describe the normalization, exposition and correlated-coordinate limits."
+    ],
+    [
+      "Selected spin first law / Goon-Penco checks",
+      "Internal identities; scope limited",
+      "Fresh spin-direction checks passed at three finite-coupling states. The constrained entropy identity reuses the same responses and scale law; it is correctly described as internal in the paper."
+    ],
+    [
+      "Discussion: decreasing mass at fixed radius",
+      "Compatible with first law; historical small-spin campaign not rerun",
+      "A fixed-radius path can change S, so the static mass is not a lower bound along that path. The parity argument does not determine the sign of the quadratic mass change. No contradiction was found, but the stored detailed small-spin run was not repeated here."
+    ],
+    [
+      "Published x<1 and j<=1 domain",
+      "Recorded values checked; theorem status unverified",
+      "The project tests finite samples. The main 2023 source PDF is absent locally. Neither the supplied samples nor its abstract prove universal inequalities; phrase these as published bounds for the studied family, with exact assumptions."
+    ],
+    [
+      "Discussion: WGC, EFT, uniqueness and stability",
+      "Interpretive limitations largely sound",
+      "No electric-charge identification, no universal EFT prediction, and no proof of global uniqueness or dynamical stability is claimed. Preserve these restrictions; sharpen the power counting as in R17."
+    ],
+    [
+      "Appendix A, construction and acceptance",
+      "Code inspected, fresh sample exercised; R02/R06-R09/R14",
+      "The Chebyshev factors, chain-rule complex-step implementation and predictor are present. Exact endpoint convergence, all-state conditioning and a globally controlled error budget were not established."
+    ],
+    [
+      "Appendix A, model envelopes / Table 3",
+      "Recomputed from saved states",
+      "The 20 coordinate/window/model combinations and production degree spread yield the displayed potential envelope. These are sensitivity probes, without statistical coverage. Broader mass sensitivity was added only in this review."
+    ],
+    [
+      "Appendix B, entropy-function system",
+      "Local-source comparison and algebraic branch checks",
+      "The k and per-plane-J conventions work but must be written explicitly. Homogeneity and the near-horizon curvature generation are supported by code; the full symbolic Riemann derivation was not rerun in this review."
+    ],
+    [
+      "Bibliography, provenance and publication readiness",
+      "Incomplete local source verification; R21-R24",
+      "References resolve syntactically, not necessarily substantively. No public archival DOI is claimed. Authorship fields remain intentionally empty; complete them before submission, and archive source versions and executable evidence."
+    ]
+  ]
+}

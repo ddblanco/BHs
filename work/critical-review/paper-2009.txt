@@ -1,0 +1,1614 @@
+                                          D = 5 Rotating Black Holes in Einstein-Gauss-Bonnet Gravity:
+                                                  Mass and Angular Momentum in Extremality
+
+                                                                     Liang Ma 1 , Yue-Zhou Li 1,2 and H. Lü 1
+
+                                                         1 Center for Joint Quantum Studies and Department of Physics,
+
+                                                          School of Science, Tianjin University, Tianjin 300350, China
+arXiv:2009.00015v3 [hep-th] 31 Oct 2023
+
+
+
+
+                                            2 Department of Physics, McGill University, 3600 Rue University, Montréal, QC Canada
+
+
+
+
+                                                                                         ABSTRACT
+
+                                             We consider perturbative solutions in Einstein gravity with higher-derivative extensions and
+                                          address some subtle issues of taking extremal limit. As a concrete new result, we construct the
+                                          perturbative rotating black hole in five dimensions with equal angular momenta J and general
+                                          mass M in Einstein-Gauss-Bonnet gravity, up to and including the linear order of the standard
+                                          Gauss-Bonnet coupling constant α. We obtain the near horizon structure of the near extremal
+                                          solution, with the blackening factor of the order α. In the extremal limit, the mass-angular
+                                                                                     1    2
+                                          momentum relation reduces to M = 23 π 3 J 3 + πα. The positive sign of the α-correction implies
+                                          that the centrifugal repulsion associated with rotations becomes weaker than the gravitational
+                                          attraction under the unitary requirement for the Gauss-Bonnet term.
+
+
+
+
+                                             liangma@tju.edu.cn   liyuezhou@physics.mcgill.ca   mrhonglu@gmail.com
+Contents
+
+1 Introduction                                                                                   3
+
+2 Einstein-Maxwell gravity with four-derivative extensions                                       4
+  2.1   Einstein-Maxwell-Gauss-Bonnet gravity . . . . . . . . . . . . . . . . . . . . . .         6
+  2.2   General four-derivative corrections . . . . . . . . . . . . . . . . . . . . . . . . .    11
+
+3 Rotating black holes in pure quadratically extended gravity                                    14
+  3.1   D = 5 rotating black hole with equal angular momenta . . . . . . . . . . . . . .         15
+  3.2   Higher-order corrections . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   16
+  3.3   Gravitation, centrifugal and electrostatic forces . . . . . . . . . . . . . . . . . .    19
+
+4 Conclusion                                                                                     21
+
+A The general perturbative solution                                                              23
+
+B Thermodynamic instability of RN and Kerr black holes                                           25
+
+
+
+
+                                                2
+1    Introduction
+
+It is natural to extend Einstein gravity with higher-order curvature invariants. There are
+two philosophy regarding these extensions. One is to treat them as part of a classical theory
+and consequently the propagators are modified. It was shown that Einstein gravity with
+the quadratic extension are renormalizable owing to the higher derivative propagator [1]. The
+price is that the massive spin-2 mode that is responsible to renormalizability is ghostlike. There
+exist special combinations, such as the Gauss-Bonnet or the more general Lovelock series [2],
+for which the equations of motion remain two derivatives at most on each metric component.
+Although they provide no resolution for renormalisability, they could be alternative contenders
+to Einstein gravity. However, these terms are nontrivial only in higher than four spacetime
+dimensions. Furthermore, causality analysis from amplitudes put strong constraints on these
+coupling constants [3].
+    The alternative view is to treat all the high-derivative terms as part of the low-energy
+effective action of a quantum theory of gravity. In this case, the coupling constants should
+be sufficiently small and the terms should be treated perturbatively; otherwise, further higher
+order corrections would have to be all included. In this approach, the Minkowski spacetime
+vacuum of Einstein gravity will not be modified by the perturbative correction; furthermore,
+propagators are unchanged, since all the massive modes are decoupled. Nevertheless, one
+can learn many important general quantum properties by studying the classical black hole
+solutions, perturbed by these higher order terms. It was recently shown [4] that the mass
+change of the extremal Reissner-Nordström (RN) black hole under the higher order correction
+is opposite in sign to the change of entropy, therefore providing a strong evidence of the Weak
+Gravity Conjecture (WGC) [5]. Many interesting works follow, e.g., [6–12].
+    In Einstein-Maxwell gravity, the extremal RN black hole symbolizes the balance between
+gravity and electrostatic repulsion, and appropriate higher order corrections in a UV completed
+theory are expected to make gravity weaker, under the WGC. Introducing the Maxwell field
+makes the higher derivative corrections enormously completed. The independent constraints
+on causality and unitarity, etc., are yet to be comprehensive, although there are already many
+works in literature [6, 10, 13, 14].
+    In this paper, we would like to focus on the higher-order corrections in pure gravity. The
+theory is much simpler and may nevertheless be self contained since we expect all the matter
+fields be consistently truncated. In static configurations, there is no force that can balance
+gravity and hence no extremal static black hole exists. However, rotating black holes can be ex-
+tremal, in which case, the centrifugal repulsion balances the gravitational attraction. It is thus
+
+
+
+                                                3
+natural to ask whether higher-order corrections make gravity stronger or weaker, comparing
+to the centrifugal force. We would also like to know how the entropy of the extremal rotating
+black hole change under the higher order correction. From the Kaluza-Klein perspective, the
+distortions of the foliating sphere by rotations give rise to the scalar fields in lower dimen-
+sions, and the angular momenta become the electric charges. For example, electrically-charged
+static AdS black holes in gauged supergravities can be lifted to become rotating M-branes or
+D-branes [15].
+    One technique issue immediately arises. Rotating solutions have much less isometry and
+the metric depends not only the on radial coordinate, but also the latitude angular coordinates.
+This makes it difficult to construct these solutions. In this paper, we consider five dimensional
+black holes with two equal angular momenta J, such that the metric is of cohomogeneity one,
+depending only on the radial coordinate. In five dimensions, the Riemann tensor squared is
+irreducible and thus for our purpose we only need to consider the quadratic curvature extension.
+We construct the perturbative rotating black hole for general mass and J and study the effect
+of the quadratic curvature invariants on the (M, J) relation in the extremal limit.
+    We are particularly interested in the geometric and thermodynamic properties of the ro-
+tating black holes in the near extremal region where the non-extremal factor is of the same
+order of the higher-order coupling constants. To understand this subtle limit better, we re-
+view in section 2 the RN black hole perturbed by the four-derivative invariants. These include
+the Einstein-Maxwell-Gauss-Bonnet (EMGB) gravity that admits exact charged static black
+holes. The existence of the exact solution can guide one to take any subtle limit. In sec-
+tion 3, we present the five-dimensional rotating black holes with equal angular momenta in
+Einstein-Gauss-Bonnet gravity, up to and including the linear order of the standard Gauss-
+Bonnet coupling constant. We study the geometric and thermodynamic properties in the near
+extremal region. We conclude the paper in section 4. In appendix A, we give the general
+perturbative rotating solution with all six integration constants. In appendix B, we discuss
+the thermodynamic instability of the RN and Kerr black holes in parallel.
+
+
+2    Einstein-Maxwell gravity with four-derivative extensions
+
+In this section, we digress from our main theme and consider Einstein-Maxwell gravity extended
+with the general four-derivative invariants built from the Riemann tensor and the Maxwell field
+strength, for the purpose to understand better the relations of mass, charge and entropy in the
+extremal limit, in the presence of the higher order corrections. The most general Lagrangian,
+
+
+
+
+                                               4
+up to total derivative terms, is given by
+                     √
+               L=        −g(R − 14 F 2 + ∆L) ,
+
+             ∆L = c1 R2 + c2 Rµν Rµν + c3 Rµνρσ Rµνρσ + c4 RF 2 + c5 Rµν Fµρ Fν ρ
+
+                     +c6 Rµνρσ Fµν Fρσ + c7 (F 2 )2 + c8 F µ ν F ν ρ F ρ σ F σ µ + c9 ∇µ F µρ ∇ν Fνρ .    (1)
+
+(We shall not consider the dimension specific topological structures such as A∧F ∧F , A∧R∧R,
+etc.) In this paper, we consider the case where the coupling constants of the higher-order terms
+are much smaller than the curvature or field strength invariants of the same dimension so that
+these term can be treated perturbatively. This implies that the massive modes are all decoupled
+and the theory is equivalent under the field redefition1
+
+        gµν → gµν + λ1 Rµν + λ2 Rgµν + λ3 Fµρ Fν ρ + λ4 F 2 gµν ,                 Aµ → Aµ + λ5 ∇ν Fνµ ,   (2)
+
+where λi are small, of the same order of ci . Under this redefinition, the coupling constants
+transform as
+
+                 c1 → c1 + 12 λ1 + 21 (D − 2) λ2 ,          c2 → c2 − λ1 ,          c3 → c3 ,
+
+                 c4 → c4 − 18 λ1 − 81 (D − 4) λ2 + 21 λ3 + 12 (D − 2) λ4 ,
+
+                 c5 → c5 + 21 λ1 − λ3 ,       c6 → c6 ,
+
+                 c7 → c7 − 81 λ3 − 81 (D − 4) λ4 ,          c8 → c8 + 12 λ3 , ,       c9 → c9 + λ5 .      (3)
+
+Although there is no invariant structure in the Lagrangian, four special combinations of the
+coefficients are unmodified by the transformation, and they are [4]
+                                                                          
+                 d0 = 21 (D − 3) (D − 4)2 c1 + 21 (D − 3) 2D 2 − 11D + 16 c2
+                                                    
+                      + 2D 3 − 16D 2 + 45D − 44 c3 + 2 (D − 2) (D − 3) (D − 4) c4
+                                                                                    
+                      +2 (D − 2) (D − 3)2 (c5 + c6 ) + 8 (D − 2)2 (D − 3) c7 + 12 c8 ,
+
+                 d1 = c3 ,       d2 = c6 ,       d3 = c2 + 2c5 + 4c8 .                                    (4)
+
+One can thus use the field redefinition to simplify the four-derivative structures, leaving four
+inequivalent classes. We would like to choose these four classes as follows
+
+                                  ∆L = αLGB + βLH + γ(F 2 )2 + γ̃Lqt ,                                    (5)
+  1
+      We are grateful to Jun-Bao Wu for pointing out the λ5 redefinition. See also [16–18].
+
+
+
+
+                                                        5
+where LGB , LH and Lqt are the Gauss-Bonnet, Horndeski [19] and quasi-topological electro-
+magnetism combinations [20], given by
+
+                          LGB = R2 − 4Rµν Rµν + Rµνρσ Rµνρσ ,
+
+                              LH = RF 2 − 4Rµν Fµρ Fν ρ + Rµνρσ Fµν Fρσ ,
+
+                              Lqt = (F 2 )2 − 2F µ ν F ν ρ F ρ σ F σ µ .                       (6)
+
+(The advantage of these combinations is that ghost excitations can be avoided if one would
+like to promote these as the starting classical theories, and sometime exact solutions can be
+constructed, e.g., [23–26].) In terms of these combinations, we have
+                                                                                
+       d0 = − 12 (D − 2) (D − 4)(3D − 7)α + 4(D − 3)(2D − 5)β − 16(D − 3)(D − 2)γ ,
+
+          d1 = α ,   d2 = β ,         d3 = −4(α + 2β + 2γ̃) .                                  (7)
+
+
+2.1       Einstein-Maxwell-Gauss-Bonnet gravity
+
+In general, as a low energy effective theory involving the Maxwell field, all terms in (1), up to
+the field redefinition (2), should be a priori included, and the coupling constants are constrained
+by the UV unitarity and analyticity [21], etc. Nevertheless, for simplicity, we consider EMGB
+gravity as a toy example to gain some insights into the properties of black holes. The advantage
+of EMGB gravity is that it admits exact solutions of static black holes [23–25]. The Lagrangian
+is
+                          √                                                 
+                     L=       −g R − 41 F 2 + α(R2 − 4Rµν Rµν + Rµνρσ Rµνρσ ) .                (8)
+
+For simplicity, we shall consider only D = 5 dimensions, where the Gauss-Bonnet term is
+nontrivial. The most general ansatz for the spherically-symmetric and static charged black
+hole is
+                                                dr 2
+                       ds25 = −h(r)dt2 +              + r 2 dΩ23 ,         A = a(r)dt .        (9)
+                                                f (r)
+If α = 0, this leads to the standard RN black hole in five dimensions:
+                                                           √
+                                       2µ q 2                3q
+                                f =1− 2 + 4 ,         a= 2 .                                  (10)
+                                       r     r              r
+The solution is asymptotic to the flat Minkowski spacetime. The mass M and the electric
+charge Q are defined by
+                                                              Z            √
+                                  3π                  1                      3π
+                               M=    µ,           Q=              ∗F =          q.            (11)
+                                   4                 16π                     4
+The solution describes a black hole when µ ≥ q, with outer and inner horizon radii
+                                        q     p
+                                    r± = µ ± µ2 − q 2 .                                       (12)
+
+                                                        6
+The first law of black hole thermodynamics dM = T dS + ΦdQ can be easily established with
+                                                           √
+                              1 2 3         f ′ (r+ )        3q
+                         S = 2 π r+ ,   T =           , Φ= 2 .                       (13)
+                                               4π           r+
+
+The extremal limit (µ = q) gives the mass-charge relation
+                                                         √
+                                              M ext =        3Q .                                       (14)
+
+Further relevant thermodynamic properties are presented in the appendix B. Since (M, Q) are
+linearly proportional to (µ, q) respectively, with fixed numerical coefficients, we shall simply
+use (µ, q) to denote the mass and charge, unless when we need to obtain the precise first law
+of black hole thermodynamics in the standard form.
+   We now consider α 6= 0, in which case, a(r) remains unchanged, but the metric functions
+become [25]                                          r
+                                   r2                           16αµ 8αq 2 
+                          h =f =1+     1−                  1+        − 6 .
+                                   4α                             r4   r
+Here we chose the branch of the solution that continues to be asymptotically flat. The mass
+and charge remain the same forms, given by (11). The inner and outer horizons are now
+modified by the Gauss-Bonnet coupling:
+                                q        p
+                           r± = (µ − α) ± (µ − α)2 − q 2 .                                              (15)
+
+The reality condition requires that
+                                               µ ≥ q +α.                                                (16)
+
+The temperature, entropy and chemical potential are now given by
+                      4 − q2
+                                                                                           √
+                     r+                                                                       3q
+              T =    3 (r 2 + 4α) ,           S = 21 π 2      3
+                                                             r+ + 12αr+       ,    Φ=       2       .   (17)
+                  2πr+   +                                                                 r+
+
+In the extremal limit T ext = 0, we have
+
+                                     √                       √                         3        √
+         µext = q + α ,      ext
+                            r+   =       q,      Φext =          3,   S ext = 21 π 2 q 2 + 6απ 2 q .    (18)
+
+One important physical quantity that attracts attention is how the mass-charge relation
+changes in the extremal limit, which, as we can see above, is particularly simple in this toy
+model. Note that the Gauss-Bonnet correction has the effect of turning the linear mass-charge
+relation (14) to subadditivity or superadditivity depending on the sign of α:
+
+                     M (Q1 + Q2 ) < M (Q1 ) + M (Q2 ) ,               for         α > 0,
+
+                     M (Q1 + Q2 ) = M (Q1 ) + M (Q2 ) ,               for         α = 0,
+
+                     M (Q1 + Q2 ) > M (Q1 ) + M (Q2 ) ,               for         α < 0.                (19)
+
+                                                     7
+The subadditivity arising from α > 0 indicates that charged black holes are energetically
+favoured for them to join together, a sign of gravity becoming stronger under the Gauss-
+Bonnet perturbation. The situation goes opposite when α < 0. Thus if we treat EGB gravity
+as some effective field theory, the WGC would necessarily select α < 0, which is opposite in
+sign typically discussed in literature.
+       The above discussion prompts us to study another important physical quantity, the entropy
+difference due to the higher-order correction. This quantity is more subtle when the charged
+black hole is close to extremal, but for general mass and charges, we have
+
+                                      ∆S = S(µ, q, α) − S(µ, q, α = 0)                                    (20)
+                                              ∞
+                                            3 X bk (ξ)
+                                                         α k
+                                         =q 2       √          ,                                          (21)
+                                                 k=0
+                                                      ξ ξq
+
+where ξ is a dimensionless quantity defined by
+                                                       µ
+                                                  ξ=     − 1,                                             (22)
+                                                       q
+and the coefficients bk are non-singular function of ξ. We give two leading order coefficients
+                       p     √ √                   √ √           
+                   3π 2 ξ + ξ ξ + 2 + 1 −ξ + 7 ξ ξ + 2 − 1
+            b1 =                        √                          ,
+                                      4 ξ+2
+                       p     √ √                                   √ √          
+                   3π 2 ξ + ξ ξ + 2 + 1 −15ξ 2 − 30ξ + (ξ + 1) ξ ξ + 2 − 2
+            b2 =                                                                  .         (23)
+                                            16(ξ + 2)3/2
+       For general higher-order corrections, there is no luxury of obtaining the exact solution.
+In fact, when higher-order terms are treated as the low energy effective corrections, it is
+unwarranted to obtain the full solution since the higher-order α corrections are likely modified
+by even higher-order curvature terms. At the leading α correction, we have
+                      q    p          p             
+                    2
+                 3π µ + µ2 − q 2 7 µ2 − q 2 − µ
+          ∆S =                  p                      α + O(α2 )
+                               4 µ2 − q 2
+                       p    √ √                   √ √           √
+                 3π 2 α ξ + ξ ξ + 2 + 1 −ξ + 7 ξ ξ + 2 − 1 q              α2 
+               =                      √ √                            + O 3/2 .                            (24)
+                                     4 ξ ξ+2                               ξ
+In fact, at this linear α order, ∆S can be obtained without solving the equations of motion,
+but by simply computing the Euclidean action of the higher order curvature terms using the
+background solution [7], based on the quantum static relation (QSR) [27].2 Since the Euclidean
+action involves β, or the inverse of temperature, the statement becomes more subtle and the
+refinement can be found in [11].
+   2
+       We would like to cautiously remark that it was shown [28] that in some black holes of Horndeski gravity,
+entropy obtained from QSR are not the same as the one obtained from the Wald entropy formula [29]. The
+criteria that these two approaches yield the same result remain murky at this stage.
+
+
+                                                        8
+   In the parameter region
+                                           α
+                                             ≪ ξ ≪ 1,                                         (25)
+                                           q
+the α expansion remains valid, and furthermore, we can perform small ξ expansion, and this
+leads to                      √
+                          3π 2 q   1  13    p              α2 
+                  ∆SCLR =       α −√ +    + 3 2ξ + · · · + O 3 .                              (26)
+                             4      2ξ 2                      ξ2
+Thus one sees that the sign of leading ∆SCLR is opposite to that of ∆µext = α. In other
+words, we have ∆µext ∆SCLR < 0. This turns out to be rather universal for higher-order
+derivative corrections [4,11]. Consequently the WGC requirement ∆µext < 0 is always followed
+consistently by ∆SCLR > 0.
+   It is worth noting that the positive condition ∆S > 0 established in [4] for thermodynam-
+ically stable black hole then implies α < 0. However, Gauss-Bonnet coupling α is expected to
+be positive from some unitary consideration, e.g., [22]. This contradiction implies that EMGB
+on its own is not an appropriate effective field theory, and further corrections in (1) of the same
+order should be included. By including all the terms [4], we have sufficiently enough coupling
+parameters such that WGC can be restored. As we shall see later, this provides necessarily
+constraints on a well-defined effective field theory. From an effective field theory analysis, (25)
+is equivalent to [4]
+                                         m3heav
+                                                ≪ ξ ≪ 1,                                      (27)
+                                           κ
+where mheav is the mass of heavy-particle that is integrated out in a low energy effective theory,
+and we restore the Newton constant κ ≫ 1 which is defined by
+                                            √
+                                       L = κ −gR + · · · .                                    (28)
+
+   In this paper, we would like to probe the extremality or the near extremal region further,
+by taking ξ to be in the region of the order α/q. In this case, the naive α expansion (24) is
+no longer valid. In fact, we see that µ → q limit is singular in (24). This singularity is clearly
+an artifact of the α expansion while holding µ ≫ q fixed, since ∆S defined in (20) is clearly
+regular in the µ → q limit. Furthermore, when µ − q ∼ α, every term in (21) becomes of the
+same order, and the expansion scheme becomes invalid and a new perturbative parameter is
+called for.
+   As we saw earlier, in the extremal limit, µext = q + α. This implies that for given mass
+and charge (µ, q), the RN and the α-corrected solutions cannot be simultaneously extremal.
+We thus need to define ∆S properly in the region of extremality. In one definition, we may
+simply hold the charge fixed, and obtain the extremal solutions for both α = 0 and α 6= 0 and
+
+
+
+                                                9
+then compare the difference, namely
+
+                               ∆0 S = S ext (q, α) − S ext (q, α = 0) .                      (29)
+
+In this definition, the mass of the two extremal solutions are in general not the same; exceptions
+exist in supersymmetric theories [30]. If we insist on the entropy difference for the same mass
+and charge, two situations can arise. For α > 0, we have µext = q + α > q, it follows that when
+we can take extremal limit for the α-corrected solution, the original RN black hole of the same
+mass and charge becomes near extremal, whose blackening factor is of the order α. We can
+thus define
+                ∆+ S = S ext (q, α) − S(µ = q + α, q, α = 0) ,        for    α > 0.          (30)
+
+When α < 0, the RN black hole of mass and charge (µext = q + α, q) ceases to be a black hole.
+It is thus more natural to define the entropy difference by
+
+                  ∆− S = S(µ = q, q, α) − S ext (q, α = 0) ,        for     α < 0.           (31)
+
+Using the thermodynamic quantities of general α obtained earlier, we find
+                                     √
+                        ∆0 S = 6π 2 α q ,
+                                      √
+                                 3π 2 ±αq 39 2 √           3
+                        ∆± S = ∓      √   + π α q + O((±α) 2 ) .                             (32)
+                                     2 2   8
+This is the furthest way that we can push towards extremality, and we shall discuss the near
+extremal region of the α’th order presently. Incidentally, the sign of the leading order of ∆± S
+coincides with the one of ∆SCLR given in (26). However, now we have
+                                            √
+                                      √       3            3
+                             ∆M = − ±α          ∆± S + O(α 2 ) .                             (33)
+                                            8Q
+We see that the condition ∆M ∆± S < 0 continues to hold in the furthest limit to the ex-
+tremality. It should be emphasized however while the positive condition ∆S > 0 was shown
+successfully in the region (27) by the effective field theory arguments, there is no analogous
+demonstration that this must be true when probing further into the extremality, since as ξ
+goes beyond the regime (27), the effective field theory power-counted by α is no longer valid,
+and the assumptions that the positive condition was built upon in [4] breaks down. Neverthe-
+less, the fact ∆M ∆± S < 0, together with the WGC, provides the circumstance evidence that
+∆S > 0 continues to be true and ∆− S should thus be selected. Indeed this branch was chosen
+in [6] where the more general four-derivative theory was studied.
+   We now show that these results can be obtained from the perturbative solution
+                                                           2
+                                 2µ q 2      2 q 2 − 2µr 2
+                   h =f =1− 2 + 4 +α                          + O(α2 ) .                     (34)
+                                 r    r            r 10
+
+                                                 10
+For mass and charge satisfying µ − q ≫ α, we have
+                           q     p                       
+                                                  α
+                     r+ = µ + µ 2 − q 2 1 − p               + O(α2 ) .                     (35)
+                                               2 µ2 − q 2
+This α expansion however is no longer valid as µ − q ∼ α and there is a one-parameter family
+of α-corrected extremal (µ = q) RN black hole at the linear α order, with the mass and charge
+relation
+                                      µ = q + (η + 1)α ,                                   (36)
+
+where η is a dimensionless order one parameter, satisfying ηα ≥ 0, so that we have µ ≥ q + α,
+a condition for the solution to be a black hole after the α correction. Thus η can be viewed as
+a blackening parameter of the near-extremal solutions whose deviation from extremality is of
+the order α, as can be see in (36). The horizon radius expansion now involves in general not
+            √
+only α, but α as the leading order, given by
+                                       q
+                                 √               αη
+                            r+ = q + 12 αη + √ + O((ηα)2 ) .                            (37)
+                                                4 q
+Note that we cannot obtain higher order corrections, using the linear perturbative solution
+(34). The extremal limit is uniquely determined by setting η = 0, and the horizon radius
+            √
+remains r+ = q, unmodified by the higher derivative terms at the linear order. On the other
+hand, the extremal µ = q RN black hole, corresponding to η = −1, remains a black hole only
+                                                                  √
+when α < 0 and the leading shift of the horizon radius is of order α. With these, it is then
+straightforward to obtain all the ∆S given in (32). We find that the relation
+                                                p
+                                      ∆M ∝ −        |α|∆S                                  (38)
+
+holds for the general near extremal solutions, where ∆S is understood to be analogous to ∆± S,
+depending on whether α is positive or negative. It should be pointed out that the result (38) is
+consistent with the statement ∆M ∝ −T ∆S of [11] for the near extremal solutions; our result
+                                               p
+takes the near extremal region further with T ∼ |α|.
+
+
+2.2   General four-derivative corrections
+
+In this subsection, we present the full perturbative solution in general D dimensions for the
+Lagrangian (1). We shall concentrate only on the purely electric solution. It follows that the
+quasi-topological electromagnetism structure Lqt in (6) does not contribute to the equations
+of motion [20]. Since ∇µ F µν vanishes at the leading order, ∇µ F µρ ∇ν Fνρ does not contribute
+either [4]. The general ansatz takes the same form as (9), but with dΩ23 replaced by dΩ2D−2 ,
+the metric for the unit round S D−2 . The solution is given by
+
+                      h = f0 + ∆h ,      f = f0 + ∆f ,      a = a0 + ∆a ,                  (39)
+
+                                              11
+where                                                                      q
+                                       2µ           q2                         2(D−2) q
+                        f0 = 1 −       D−3
+                                           +       2(D−3)
+                                                          ,         a0 =        D−3 r D−3 ,    (40)
+                                   r           r
+and
+
+              2(D − 3)                                                                    
+                                                   2         2
+      ∆h =          2(D−2)
+                               2(D  − 4)(D   − 2)µ   c3  + q    2(D − 4)c1 − D 2 − 6D + 10 c2
+           (D − 2)r
+                                  
+           −2 2D 2 − 11D + 16 !     c3 + 4(D − 2)c4 − (D − 4)(D − 2)c5
+                                         4(D − 3)µq 2 
+           −2(D − 3)(D − 2)c6         −                     (D − 4)(D − 1)c1 − c2 − Dc3
+                                         (D − 2)r 3D−7
+                                                                        
+           +2(D − 2)(D − 1)c4 + (D − 2)c5 − (D − 3)(D − 2)c6
+                     (D − 3)q 4                                          
+                                                            2
+           +                               (D  −  4)   11D     − 45D  + 44  c1
+             (D − 2)(3D − 7)r 2(2D−5)
+                                                                                
+           + 4D 3 − 33D 2 + 83D − 64 c2 + 2 4D 3 − 34D 2 + 87D − 68 c3
+                                                                           
+           +4(D − 2) 5D 2 − 19D + 16 c4 + 2(D − 2) D 2 − D − 4 c5
+                                                                                     
+           −4(D − 2)(D − 3)2 c6 − 16(D − 2)2 (D − 3)c7 − 8(D − 2)2 (D − 3)c8 ,
+                  4(D − 3)q 2 f0                                  2
+                                                                              
+      ∆f = ∆h −                      (D −  4)(2D   −   3)c1 +    D   − 5D +  5  c2
+                 (D − 2)r 2(D−2)
+                                                                                       
+           + 2D 2 − 9D + 8 c3 + 2(D − 2)(2D − 3)c4 + (D − 2)(D − 1)(c5 + c6 ) ,
+            √                 √                   √
+           4 2c6 (D − 3)3/2 D − 2µq              2 2(D − 3)3/2 q 3 
+      ∆a =                                 +√                             (D − 4)(2D − 3)c1
+                      r 2(D−2)                  D − 2(3D − 7)r 3D−7
+                                                      
+           + D 2 − 5D + 5 c2 + 2D 2 − 9D + 8 c3 + 2(D + 1)(D − 2)c4
+                                                                                   
+           −(D − 5)(D − 2)c5 − (7D − 19)(D − 2)c6 − 8(D − 2)2 (2c7 − c8 ) .                   (41)
+
+In this perturbation, the mass and charge remain unchanged by the higher-order corrections,
+namely                                                          p
+                    (D − 2) ΩD−2                                    2 (D − 2) (D − 3)ΩD−2
+                 M=              µ,                      Q=                               q,   (42)
+                         8π                                                 16π
+where ΩD−2 is the volume of the round unit S D−2 . The outer horizon radius of the original
+unperturbed RN black hole, which we denote as r0 , is given by
+                                       q      p
+                                r0D−3 = µ + µ2 − q 2 .                                         (43)
+
+For fixed (µ, q) with µ − q ≫ ci q (D−5)/(D−3) , it is straightforward to derive the shifted radius
+of the outer horizon,
+                                                     p               1
+                                   r+ = (µ +             µ2 − q 2 ) D−3 + ∆r .                 (44)
+
+
+
+
+                                                           12
+One can then obtain the higher-order corrected thermodynamic variables, including the en-
+tropy
+                                                                             
+                  D−2      (2c6 + c5 + 2c4 )f ψ ′2 c3 f h′2 − 2hh′′ − hf ′ h′
+     S = 14 ΩD−2 r+   1−                           +
+                                        h                     h2
+            c2                                                     
+          − 2 f (D − 2)hh′ + 2rhh′′ − rh′2 + hf ′ (D − 2)h + rh′
+           2h r 
+            c1                                                                 
+          − 2 2 rhf ′ 2(D − 2)h + rh′ + 2h (D − 3)(D − 2)(f − 1)h + r 2 f h′′
+           h r                          !
+                                      
+          +2(D − 2)rf hh′ − r 2 f h′2
+                                              r=r+
+
+                   D−2     4c3 (D − 3)(D − 2)µ 2(D − 3)q 2 
+        = 41 ΩD−2 r+   +                      −    D−2
+                                                            (D − 4)c1
+                                    r+            r+
+                                                                              !
+                                                                             
+          +(D − 3)c2 + 2(2D − 5)c3 + 2(D − 2)c4 + (D − 2)c5 + 2(D − 2)c6          + O(c2i ). (45)
+
+The ∆SCLR was obtained in [4] and we shall not repeat here.
+   Focusing on the perturbation around the extremal µ = q solution, we find there is one-
+parameter family of near extremal solutions of order ci ,
+                       (D − 3)r0D−5
+              µ = q−                 d0 (1 + η) ,
+                     (D − 2)(3D − 7)
+                      s
+                                  2ηd0                   ηd0
+            r+ = r0 +                             −
+                        (D − 3)(D − 2)(3D − 7) (D − 3)(D − 2)(3D − 7)r0
+                          D−4
+                   +                    (D − 3)(3D − 8)c1 + (D − 3)(2D − 5)c2
+                    2(D − 3)(D − 2)r0
+                                         !
+                                             2(D − 2)
+                   +2 2D 2 − 10D + 13 c3 +             (c4 − 4c7 − 2c8 ) .                  (46)
+                                                 r0
+
+Here η is a dimensionless non-extremal parameter of order one, satisfying ηd0 ≤ 0 for the
+perturbative solution to be a black hole. The extremality saturates the inequality. The entropy
+of the near extremal black holes is
+                                      s
+                                         2(D − 2)ηd0             (D − 2)ηd0
+             S = 14 ΩD−2 r0D−2 1 +        −              2 −
+                                       (D − 3)(3D − 7)r0       (D − 3)(3D − 7)r02
+                    2(D − 3)(D − 2) (d1 − d2 (D − 3)) − d0 
+                  +                                          .                              (47)
+                                 (D − 3)r02
+We therefore obtain
+                 ΩD−2 D−4                                         
+        ∆0 S =          r0   2(D − 3)(D − 2) (d1 − d2 (D − 3)) − d0 ,
+               4(D − 3)
+                  ΩD−2 r0D−4     p
+        ∆± S =                   ∓ ∓2(D − 3)(D − 2)(3D − 7)d0 r0 − (2D − 5)d0
+               4(D − 3)(3D − 7)
+                                                         
+               +2(D − 3)(D − 2)(3D − 7) (d1 − (D − 3)d2 ) .                                 (48)
+
+                                                     13
+                        p
+The result up to the        |d0 | order was obtained in [6]. Note that when specialising the pa-
+rameters to be those of EMGB gravity, we recover (32). The relation (38) holds, but with |α|
+replaced by |d0 |. It should be understood that these quantities are correct up to and including
+the linear order of the coupling constants and we shall not always be pedantic on writing out
+all the O(α2 ) or O(c2i ) expressions.
+    As discussed earlier, the field redefinition (2) allows us to consider the simpler theory
+(5) with d0 given by (7). The requirement that ∆SCLR must be nonnegative implies that
+d0 ≥ 0 [4]. As we have seen earlier, the unitarity requirement for the Gauss-Bonnet coupling
+constant α gives negative contribution to d0 ≥ 0. Analogously the unitarity requires that the
+Horndeski coefficient β must be nonnegative [6], also giving negative contribution to d0 ≥ 0.
+This makes the γ term indispensable. The γ term involves purely matter and we can impose
+the standard energy condition. Fortunately we find that both the strong or dominant energy
+conditions require that γ ≥ 0, which is also consistent with the unitarity [6]. Thus the matter
+contribution to the higher-order correction is crucial and it should be sufficiently large in order
+to make it possible to satisfy the constraint d0 ≥ 0.
+    Our analysis suggests that the unitary higher-derivative perturbations involving curvature
+tensor tend to make gravity stronger whilst the pure matter sector tends to make gravity
+weaker. We would like to keep this observation in mind in discussing rotating black holes in
+pure gravity in the next section.
+
+
+3    Rotating black holes in pure quadratically extended gravity
+
+As we have seen in the previous section, even though Einstein-Maxwell gravity is a fairly
+simple theory, its next order correction is already quite complicated involving four different
+inequivalent combinations of 9 invariant structures. One may naively drop out some higher
+derivative terms involving the Maxwell field, for example, to keep only the Gauss-Bonnet term
+as we discussed in the previous section; however, such simplification is illegal in the context
+of effective field theory and may lead to contradictions with unitarity. Nevertheless, in this
+section, we would like to consider the simpler theory, by decoupling all the matter fields. The
+theory is Einstein gravity extended by the Riemann tensor quadratics
+                               √                                      
+                         L=        −g R + αRabcd Rabcd + βRab Rab + γR2 .                     (49)
+
+In this approach, we made an assumption that matter fields can be consistently truncated.
+Such an assumption is a necessary starting point before we have a compete theory of quantum
+gravity; in fact, in Einstein-Maxwell gravity discussed in the previous section, we also assumed
+
+
+                                                 14
+for example that the scalar fields are all decoupled. As a pure gravity theory with all matter
+fields decoupled, (49) enumerates all invariant structures with fourth derivatives and is thus
+legal as an effective field theory. The issue is then whether this theory is relevant for the
+discussion on the WGC. There is no static extremal solution since there is no repulsion in
+the static spacetime. However, rotating black holes can be extremal, where the centrifugal
+force, analogous to the electrostatic repulsion, balances the gravitational attraction. In fact
+from the Kaluza-Klein perspective, the angular momentum can be viewed as electric charges
+in the lower dimensions. For example, rotating M-branes or D3-branes are directly related to
+the R-charged black holes in gauged supergravities [15]. The Kaluza-Klein reduction of the
+Gauss-Bonnet term keeping both the scalar and U (1) vector field was given in the appendix
+of [31].
+    In Einstein gravity, the rotating black hole is described by the Kerr metric, constructed
+in 1963 [32]. The cosmological constant was later introduced [33]. Motivated by the string
+development in 80s, the asymptotically flat Kerr black hole was later generalized to all higher
+dimensions [34]. After the AdS/CFT correspondence was proposed, Kerr-AdS black hole in five
+dimensions was quickly constructed [35], and it was later generalized to all higher dimensions
+[36, 37], followed by the general higher-dimensional Kerr-AdS-NUT Plebanski metrics [38].
+Higher-dimensional Diemnieski-Plebanski metrics have so far been elusive except in D = 5
+and it is asymptotic flat [39], which interestingly contains the famous black ring solution [40].
+    Typically rotating black holes are of higher-cohomogeneity, depending on not only the
+radial coordinate, but also the latitude angle coordinates. This makes it difficult to construct
+these metrics, even in Einstein gravity, let alone higher order gravities. Many constructions in
+literature use the numerical approach or take the slow rotation approximation, e.g., [41–48],
+which is of no use for our purpose of comparing the centrifugal and gravitational forces in the
+extremal limit.
+
+
+3.1    D = 5 rotating black hole with equal angular momenta
+
+In this section, we consider D = 5, where the quadratic extensions are nontrivial for the
+Ricci-flat backgrounds. Furthermore, in five dimensions, there are two perpendicular rotations
+and the metric reduces to cohomogeneity one when the two rotations are equal. The foliating
+S 3 becomes squashed, preserving U (1) ⋉ SU (2) isometry. We follow [49] and write the most
+general metric ansatz, involving four functions
+
+            dr 2   h(r) 2 1 2
+   ds25 =        −      dt + 4 r W (r)(dψ + cos θdφ + ω(r)dt)2 + 41 r 2 (dθ 2 + sin2 θdφ2 ) .   (50)
+            f (r) W (r)
+
+
+
+                                                 15
+The general five dimensional Kerr metric [34] reduces to the one with equal angular momenta,
+with
+                                                                                                 √
+                            2µ ν 2                                        ν2                    2 2µ ν
+         h = f = f0 ≡ 1 −      + 4,          W = W0 ≡ 1 +                    ,       ω = ω0 ≡           .   (51)
+                            r2  r                                         r4                     r 4 W0
+
+The parameter (µ, ν) parameterized the mass and angular momentum
+                                                                    p
+                                M = 34 πµ ,              J = 14 π        2µ ν .                             (52)
+
+The reason to cast the Kerr metric in this form in [49] is that when the mass is negative (µ < 0
+and ν 2 < 0), the metric describes a smooth time machine with the velocity of light surface
+located at W0 = 0. In this paper, we focus on positive mass with (µ, ν) both positive. The
+solution describes a rotating black hole provided that µ ≥ ν, with the inner and outer horizons
+                                     p                              p
+                               0
+                              r± =       µ ± ν̃ ,            ν̃ =       µ2 − ν 2 .                          (53)
+
+The temperature, entropy and angular velocity associated with the outer horizon are
+                                          q                     √
+                    ν̃(µ − ν̃)          2   1                     2(µ − ν̃)
+               T = √         2
+                               ,  S=π       2 µ(µ + ν̃) ,   Ω=     √                                        (54)
+                    π 2µν                                            µν
+
+It is easy to verify that the first law dM = T dS + ΩdJ is satisfied. The solution becomes
+extremal with T = 0 when µ = ν, or ν̃ = 0, implying
+
+                                             1      2
+                               M ext = 32 π 3 J 3 ,            S ext = 2πJ .                                (55)
+
+It is of interest to note that the entropy at the extremality is linearly proportional to the
+angular momentum. The mass-charge relation however satisfies subadditivity
+
+                                M (J1 + J2 ) ≤ M (J1 ) + M (J2 ) .                                          (56)
+
+By contrast, the mass-charge relation for the extremal RN black is linear and the entropy is
+a superadditive function of the charge. This implies that the centrifugal repulsion associated
+with the spin of the black holes is weaker than gravity and two extremal rotating black holes
+are energetically favoured to join together. We would like to exam next how the quantum
+effects would modify this. In appendix B, we discuss the thermodynamic instability of the
+rotating black hole, in parallel to the RN black hole.
+
+
+3.2    Higher-order corrections
+
+We are now in the position to consider higher-order corrections to the solution. The non-
+perturbative solution was constructed numerically in [41]. For our purpose, we would like to
+
+                                                        16
+construct perturbative analytic solutions. Since the leading Kerr metric is Ricci-flat, the R2
+and Rab Rab terms will not contribute to the equations of motion at the linear order, thus
+the perturbed solution is also for the Einstein-Gauss-Bonnet gravity with the Gauss-Bonnet
+coupling α. We therefore consider
+
+     h = f0 + α∆h ,           f = f0 + α∆f ,           W = W0 + α∆W ,              ω = ω0 + α∆ω .            (57)
+
+We find that the linear perturbative equations can be fully solved for general (µ, ν), involving
+six integration constants. We present the full solutions in appendix A. Choosing the parameters
+appropriately, we find
+                                                                                              
+           64µ 2µ2 + ν 2 (µ − ν̃) 32µ 8µ2 − 6µν̃ + ν 2                         8 9µ2 + 4ν 2         32µν 2
+      ∆h =                                −                                 +                     +
+                     3ν 4 r 2                           3ν 2 r 4                       3r 6          3r 8 
+             16ν 4      64µ                                                                    µ − ν̃
+           − 10 − 4 4 2µr 2 µ2 + 2ν 2 − 2µ2 + ν 2 ν 2 + r 4 log 1 −                                          ,
+             3r        3ν r                                                                            r2
+                                                            
+           64µ2 (µ − ν̃) 32µ2 2µ2 − 2µν̃ + ν 2                      64µ3       40µ2 64µν 2 16ν 4
+      ∆f =                  −                                   +           +          +          − 10
+                 ν4                        ν 4r2                  3ν 2 r 4     3r 6       3r 8       r
+              64µ2 r 2 128µ3                                                        
+                                        64µ2 2µ2 + ν 2                       µ − ν̃
+           +            −            +                            log 1 −                ,
+                 ν4            ν4              3ν 4 r 2                         r2
+                                                                                                  
+             32µ2 (µ − ν̃) 16µ2 4 16µ4 + 15µ2 ν 2 − 6ν 4 − 8µν̃ 2µ2 + ν 2
+     ∆W = −                    + 2 2 +
+                   ν4             ν r                                3µν 2 r 4
+                              
+             16 µ2 + 3ν 2          16µν 2 16ν 4
+           −                    −           + 10
+                   3r 6              3r 8      3r           
+                  µr 2 µ2                                                           
+                                      µ        µ2 + 2ν 2                    µ − ν̃
+           −32µ         − 4− 2 2+                                log 1 −                ,
+                    ν4       ν      ν r          3ν 2 r 4                      r2
+              √ √                                                                                   
+           16 2 µ −6µr 6 r 2 − µ (µ − ν̃) + 2ν 6 − 2µν 4 r 2 + µν 2 r 4 3r 2 − 2µ
+      ∆ω =
+                                              3ν 3 r 6 (ν 2 + r 4 )
+                √ 3/2                                                          
+             32 2µ         2µ2 + ν 2 + 3r 4 − 6µr 2                      µ − ν̃
+           −                                               log 1 −                  .                          (58)
+                           3ν 3 (ν 2 + r 4 )                                r2
+
+Assuming that there exists a horizon r+ , the Wald entropy formula [29] gives
+                           q               2 α r 8 ∆W (r ) + 48µr 4 − 16µν 2
+                                                                             
+                    1 2            4
+                                         π      +        +          +
+               S = π r+ ν 2 + r+ +                       q                     .                             (59)
+                    2                                4r 3 ν 2 + r 4
+                                                                 +           +
+
+   We now consider the perturbation that the mass and angular momentum are fixed, in which
+case, the horizon is shifted by
+                   p                      α          
+            r+ =       µ + ν̃ +                    7  µ(32µ6 − 72µ4 ν 2 + 51µ2 ν 4 − 14ν 6 )
+                                  3µν 2 ν̃(µ + ν̃) 2
+                                                                     
+                              +ν̃(32µ6 − 56µ4 ν 2 + 27µ2 ν 4 − 6ν 6 )
+                                                                                        
+                       16αµν̃ 2  4         2 2      4             2   2
+                                                                                   2ν̃
+                   +               7 8µ − 8µ ν + ν + 4µν̃ 2µ − ν            log            .                 (60)
+                     3ν 4 (µ + ν̃) 2                                              ν̃ + µ
+
+
+                                                        17
+Note that we only present the outer horizon. The situation for the inner horizon is more
+complicated, since the spacetime singularity is not only located at r = 0, but also at r = r0− ,
+the inner horizon of the unperturbed solution. This makes the solution very different from
+the previous example. (The solution whose singularity is located at r = r0+ is presented in
+appendix A.) The sign choice of this divergent term is crucial for the singularity structure.
+Furthermore, for r− to be the inner horizon, the functions f (r− ) and h(r− ) need to vanish
+simultaneously. This is difficult to satisfy once we made it so for the outer horizon. For α < 0,
+both h and f diverges negatively at the original inner horizon r0− and the roots of h and f are
+all shifted to be bigger than the unperturbed inner and outer horizons. The divergence at r0−
+splits the smaller roots of h and f that are just outside r0− , but they become closer and closer
+towards extremality. When α > 0, both h and f diverges positively and therefore the smaller
+roots of h or f do not exist at all if ν̃ ≫ α. As ν̃ approaches α, two roots develops just outside
+r0− , it follows that h and f each can have a total of three real roots and black holes with two
+horizons can exist at the linear α order. We shall give presently the near-horizon geometry of
+the near-extremal solution.
+   The mass, entropy and angular velocity for the general non-extremal solutions far away
+from extremality become
+                                                                                   
+                   2α ν̃ 14µ5 − 25µ3 ν 2 + 14µν 4 − 14µ6 + 32µ4 ν 2 − 27µ2 ν 4 + 6ν 6 
+      T = T0 1 +                                                                        ,
+                                                3µν 4 ν̃ 2
+                                                                                 
+                   2α ν̃ 8µ5 − 19µ3 ν 2 + 14µν 4 − 8µ6 + 23µ4 ν 2 − 21µ2 ν 4 + 6ν 6 
+      Ω = Ω0 1 +                                                                      ,
+                                               3µν 4 ν̃ 2
+      S = S0 + ∆S ,                                                                          (61)
+
+where
+                                 √                                     
+                            π 2 α µ 9 (ν̃ + µ)4 − 14ν 2 (ν̃ + µ)2 + ν 4
+                       ∆S =                √                              .                  (62)
+                                          2 2ν̃ (ν̃ + µ)3
+                                                                                   √
+Thus it is clear that in the limit where |α| ≪ ν̃ ≪ µ, the leading order of ∆S is − 2π 2 α/ν̃
+which is positive only when α is negative, which violates unitarity [22]. We shall comment on
+this at the end of this section.
+   We are interested in taking extremal or near extremal limits of the order α. When α = 0,
+the extremal solution occurs at µ = ν = r02 , where r0 is the double horizon. For α 6= 0, we
+would like to construct near extremal solutions with the angular momentum J held fixed. This
+implies the following corrections to µ and ν parameters
+
+                         µ = r02 + 34 (1 + η)α ,        ν = r02 − 32 (1 + η)α ,              (63)
+
+such that
+                                                                   πr 3
+                           M = 34 π r02 + 34 α(η + 1) ,          J = √0 .                    (64)
+                                                                    2 2
+
+                                                   18
+In other words, here r0 is simply a parameter for the angular momentum J and the near ex-
+tremal factor is of the order α, namely δM ∼ ηα. As remarked earlier, the solution sufficiently
+far away from the extremality do not have two horizons. However, when δM ∼ α, the two
+horizon solution exists, and the inner and outer horizons of the near-extremal solution are
+                                                   √     α(16 + η)
+                                  r± = r0 ±         αη +           .                      (65)
+                                                            6r0
+The near horizon geometry of the near-extremal black hole is given by
+                                            
+                           12r 16 74αη
+                   h= − 3 + 2 +                 (r − r− )(r − r+ ) ,
+                            r0     r0   3r04
+                                                      
+                           12r 16 2α(37η + 64)
+                   f = − 3 + 2 +                         (r − r+ )(r − r− ) ,
+                            r0     r0        3r04
+                            2α(13η − 8) 4r
+                  W = 6+                −     ,
+                                 3r02      r0
+                        √                 √        √
+                          2α(5η + 16) 3 2 2 2r
+                   ω =                +       −         .                                 (66)
+                             3r03         r0       r02
+The remaining thermodynamic quantities in this near extremal region are
+                      √       √                   √      √         √
+                        2αη 2 2αη                   2 2 2αη 4 2αη
+               T± = ±       −        ,     Ω± =       ∓         +        ,
+                       πr02    πr03               r0      r02       3r03
+                       r3   p          √             
+              S± = π 2 √0 ± 2αηr02 + 2α(6 + η)r0 .                                        (67)
+                          2
+It is easy to verify that the first law holds, up to and including the α’th order. Thus we see
+that the near extremal blackening parameter η must satisfy αη ≥ 0, with the extremal solution
+saturates the bound, in which case, the inner and outer thermodynamic variables coalesce.
+Note that we have
+                                  S+ S− = 4π 2 J 2 + 48π 8/3 αJ 4/3 .                     (68)
+
+Thus we see that at the α order, S+ S− is independent of the non-extremal parameter η and
+hence is also quantized by the angular momentum, generalizing the results in two-derivative
+supergravities [50, 51].
+
+
+3.3    Gravitation, centrifugal and electrostatic forces
+
+For the extremal solution, we have
+                                   1   2                                       5   1
+                       M ext = 32 π 3 J 3 + πα ,           S ext = 2πJ + 12απ 3 J 3 .     (69)
+
+We therefore obtain
+                                           5   1
+                           ∆0 S = 12απ 3 J 3 + O(α2 ) ,
+                                    √ 4√         2      5  1
+                           ∆± S = ∓2 2π 3 ±αJ 3 + 10π 3 αJ 3 + O(α2 ).                    (70)
+
+                                                      19
+Under the unitarity of Gauss-Bonnet gravity α > 0, ∆+ S is selected, and in addition
+
+                                     ∆0 S > 0 ,         ∆+ S < 0 .                         (71)
+
+Furthermore, the subadditivity (56) is further strengthened. Compared to the RN result, it ap-
+pears to be universal that the Gauss-Bonnet term with positive α strengthen the mass-charge
+relation towards subadditivity. This reaffirms the earlier observation that the unitary combi-
+nations of higher-order terms involving the curvature tensor tend to make gravity stronger.
+   The above inequalities suggest that the validity of the WGC requires to exclude the cen-
+trifugal force. Since electric charges can arise from the angular momenta in higher dimensions
+in the Kaluza-Klein perspective, this strong statement clearly deserves future investigation
+from point of view of effective field theory. Furthermore, the thermodynamical properties ap-
+pear to be very similar between the RN and rotating black holes and we therefore would like
+to make a comparison. In appendix B, we review the thermodynamic instability analysis for
+both the RN and Kerr black holes in five dimensions. For both black holes, one can consider
+grand canonical ensemble whose Gibb’s free energy depends on temperature T and Φ (or Ω).
+For both solutions, the specific heat CΦ or CΩ at fixed electric potential Φ or angular veloc-
+ity Ω are negative for the whole black hole parameter space, indicating both black holes are
+thermodynamically unstable in the grand canonical ensemble.
+   For the canonical ensemble whose Helmholtz free energy depends on temperature T and
+Q (or J). There is a critical mass M crit (Q) or M crit (J) such that when M ext ≤ M < M crit ,
+the specific heat CQ or CJ are both positive, and they change sign to become negative when
+M > M crit . However this does not imply that the system is thermodynamically stable when
+                                          eT and “angular momentum capacitance” C
+M < M crit , since the charge capacitance C                                       bT both
+have the opposite sign to the relevant specific heat, namely [53, 54]
+
+                      RN :         eT < 0 ;
+                                CQ C                         Kerr :        bT < 0 .
+                                                                        CJ C               (72)
+
+Since the products are of the finite order, perturbative corrections can not reverse their sign.
+This implies that both RN and Kerr black holes are thermodynamically unstable in the canon-
+ical ensemble as well and their instabilities are parallel.
+   One can break this parallelity if one adopts the QSR and use the Euclidean action to
+compute the free energy. The Euclidean actions of the RN and Kerr black hole both give the
+Gibb’s free energy of grand canonical ensemble [27]. However, for the Maxwell field, one can
+add a surface term                                  Z
+                                               1
+                                ILegendre =                  dΣµ F µν Aν ,                 (73)
+                                              16π       ∂M
+
+
+
+                                                  20
+which amounts to a Legendre transformation on the thermodynamical conjugate pair (Φ, Q)
+[27]. However, there is no such a covariant term for the conjugate pair (Ω, J). This approach
+was indeed adopted in [3, 8], with the free energy given by
+
+                     F = M − T S − ΩJ ,          dF = −SdT − JdΩ + ΦdQ .                        (74)
+
+                                                        eT is still negative. In [3,8], the stability
+This in itself will not make the system stable since CQ C
+is achieved by fixing the charge Q literally such that Q ceases to be a thermodynamic variable.
+This leads to an approach that is in favour of the electric charge but discriminating against
+the angular momentum. We here shall not judge on the validity whether this does solve the
+thermodynamic instability of the RN black hole in the canonical ensemble at the quantum level,
+but remark that the same trick cannot be applied for the Kerr black hole in the Euclidean
+action approach.
+
+
+4    Conclusion
+
+In this paper we studied the RN black holes perturbed by higher-derivative invariants. We
+studied the relations among the mass, charge and entropy in the extremal limit. For fixed
+charge, extremal black holes continue to exist and the change of the mass ∆M ext due to
+the higher order correction is proportional to the coupling constants. The mass and entropy
+differences with the unperturbed extremal solution satisfy
+
+                                    ∆M ext (Q) ∝ +∆S ext (Q) .                                  (75)
+
+In order to obtain the entropy difference for fixed mass and charge, we have to move away from
+extremality since the perturbed and original black hole cannot be extremal simultaneously.
+We focus on the near extremal region with the blackening factor of the order of the coupling
+constant, namely
+                                   M = M ext + (1 + η)∆M ext .                                  (76)
+
+where η is the dimensionless non-extremal parameter of order 1. We found in this near extremal
+region that
+                                                p
+                                  ∆M ext (Q) ∝ − |α|∆S(η, Q) ,                                  (77)
+
+Here α represents the coupling constant or some certain linear combination of the coupling
+constants. Imposing causality, unitarity and analyticity, the higher-order corrections of the
+pure matter sector are not only indispensable and but also must be dominant over the sectors
+involving gravity for the WGC. Based on our observation, it seems to be sensible to conjecture
+that well-defined higher-order corrections involving curvature invariants tend to make gravity
+
+                                                 21
+stronger, whilst the higher-order pure matter sector satisfying the appropriate energy condi-
+tions tends to make gravity weaker. If this conjecture can be shown generally true, the WGC
+would imply that a UV completed quantum gravity necessarily involve matter.
+   Our main focus was to construct the five dimensional rotating black hole in pure Einstein
+gravity extended with quadratic curvature invariants, up to and including the linear order of
+the coupling constant. We expect that it is consistent to truncate out all the matter field so
+that we can focus on a smaller but self consistent effective of pure quantum gravity. Since
+the background solution is Ricci flat, it follows that R2 an Rµν Rµν terms do not contribute
+at the linear order. Therefore the solution is also for the Einstein-Gauss-Bonnet theory, with
+the standard coupling constant α. In five dimensions, the rotating black hole metric becomes
+cohomogeneity one, depending on only the radial coordinate, when the two angular momenta
+become equal. This allows us to obtain the linearly perturbed analytic solution for general
+mass and (equal) angular momenta. We analysed the geometric and thermodynamic properties
+of the black hole. The general solution has only one horizon. The inner horizon emerges when
+the solution is sufficiently close to extremality, at the order of the coupling constant. We found
+that the entropy product of the inner and outer horizons in this case depends only on the
+angular momentum, which is expected to quantized at the quantum level.
+   Our main conclusion is that for solutions close to extremality, for positive α, we have
+                                                                1   2
+∆S < 0 and furthermore in the extremal limit, M ext = 32 π 3 J 3 + πα. The positive sign of
+the α-correction implies that the centrifugal repulsion associated with rotations becomes even
+weaker than the gravitational attraction under the unitary requirement for the Gauss-Bonnet
+term. The subadditivity of M (J) is further strengthened by the Gauss-Bonnet correction. Our
+results suggest that the WGC has to exclude the consideration of the centrifugal repulsion,
+which is stronger in classical gravity and becomes even stronger in the quantum corrected
+theories. It is thus of great interest to investigate how this statement is consistent with the
+Kaluza-Klein perspective, where the angular momenta are reduced to become electric charges
+in lower dimensions.
+   Finally we observe that in the case of Einstein-Maxwell theory, the WGC suggests that
+after the quantum correction, the linear mass/charge relation is modified such that the extremal
+black holes are energetically favoured to split up. On the other hand, it is well established in
+the semi-classical limit that the RN black holes are entropically favoured to join together [52].
+These seemingly contradictory tendencies require a resolution.
+
+
+
+
+                                               22
+Acknowledgement
+
+We are grateful to Jun-Bao Wu and Yi Pang for useful and extensive discussions.                                 The
+work is supported in part by NSFC (National Natural Science Foundation of China) Grants
+No. 11875200 and No. 11935009.
+
+
+Appendix
+
+A     The general perturbative solution
+
+The linear perturbation (57) of the five dimensional rotating black hole with equal angular
+momenta can be solved exactly and the general solutions involve six integration constant ci ,
+i = 1, . . . , 6, (not to be confused with the coupling constants in section 2.) The metric functions
+are
+                                                       5                                       
+              240µν 2 − 3c3 ν̃ 5 + 32µ            ν2
+                                                         − 188µ3            2 48µ
+                                                                                         2
+         ∆f =                                                           −r                 + c2
+                                       ν̃ 4                                         ν̃ 4
+                           4(16µ6 −79µ4 ν 2 +72µ2 ν 4 )
+                c1 −                     ν 2 ν̃ 4                                16ν 4 64µν 2 40µ2
+              +                                                 +    2c 2 µ  −             +           +
+                                     r2                                          r 10         3r 8      3r 6
+                         3             2          2
+                                   2µ + ν + 3r − 6µr        4           2
+                 64µ
+              + 2 4−                                                        (P+ + P− ) ,
+                3ν r                               6ν 4 r 2
+                                                                                             64µ(µ2 +2ν 2 )
+                            2µ ν 2  3c3 ν 2 ν̃ + ν̃ 4 + ν̃ 2 −
+                                                                    12µν  4      220µν 2
+                                                                                                    3ν 2
+         ∆h = c4 1 − 2 + 4 +
+                            r        r                                           r4
+                 c3 ν̃ (5µ2 +ν 2 )        6ν 2 (µ2 +ν 2 )               2                       64µ2
+                          µ          +             ν̃ 4       + 254ν                2
+                                                                    ν̃ 2 − c2 ν − c1 − 3ν 2 + 168
+              −
+                                                                  r 2
+                16ν     4       32µν   2          8 9µ + 4ν 2
+                                                          2
+              − 10 +                       +
+                 3r               3r 8                    3r 6                    
+                (2µ + ν )(ν + r ) − 2µr 2 µ2 + 2ν 2
+                        2        2     2          4
+              −                                                                     (P+ + P− ) ,
+                                              6µν 4 r 4
+                                                                                                     
+              c5        3c3 ν 2 ν̃ 5 − c2 µν 2 ν̃ 4 − 4 8µ5 − 59µ3 ν 2 + 60µν 4
+        ∆W = 4 +
+              r                                              2ν 2 ν̃ 4                     
+                  2
+                r c2 ν̃ + 48µ 4           2            16µ 2µ4 − 4µ2 ν 2 − ν 4 − c2 ν 4 ν̃ 4
+                                                            2
+              +                                   +
+                             2ν̃ 4                                            2 4 2
+                                                                        2ν ν̃ r
+                        4              2                  2
+                                                  16 µ + 3ν         2
+                16ν             16µν
+              + 10 −                 8
+                                           −
+                 3r               3r                      3r 6
+                µ ν + 2ν + 3µr − 3µ2 r 4 − 3µν 2 r 2
+                  2     2          4              6
+              +                                                                   (P+ + P− ) ,
+                                          12µν 4 r 4
+                                           1                                                             
+         ∆ω = c6 + √                                                 3c3 ν 2 ν̃ 5 2µ2 + ν 2 + 3µr 2 r 6
+                       3 2µ3/2 ν ν̃ 4 (ν 2 + r 4 ) r 6
+                                                                                    
+              +ν̃ 4 6c5 µ2 r 6 − 64µ2 (µ2 r 4 + µν 2 r 2 − ν 4 )
+                                                                                  
+              −3µr 6 ν 2 ν̃ 4 c1 + c2 (2µr 2 − ν̃ 2 ) − 2c4 µ
+
+                                                               23
+                                                                                                     !
+                             6      4 2       2 4         6      2     4     2 2          4
+                                                                                               
+                  +4 −6µ + 9µ ν − 31µ ν + 16ν + µr                   8µ − 47µ ν + 60ν
+
+                      2µ2 + ν 2 + 3r 4 − 6µr 2
+                  +     √ √                    (P+ + P− ) ,
+                       6 2 µν 3 (ν 2 + r 4 )
+
+where
+                                                                        
+                 4µ    6     4 2     2 4     6
+                                                    4     2        µ ± ν̃
+     P± =       ± 5 16µ − 40µ ν + 87µ ν − 60ν ± 3c3 ν − 64µ log 1 −          . (78)
+                 ν̃                                                   r2
+
+In order for the solution not to generate a cosmological constant, we set
+
+                                                       48µ2
+                                              c2 = −         .                                           (79)
+                                                        ν̃ 4
+
+For the solution to be asymptotically Minkowski in the static frame with gtt = −1, we set
+c4 = 0 = c6 . We further impose that the mass and angular momentum remain fixed under the
+linear α perturbation, which implies
+                                      
+                     16µ2 2µ2 + ν 2
+               c1 =                      + 3c3 µν̃ ,
+                               ν̃ 4                                                
+                       c3 ν 2 ν̃ 2µ2 + ν 2     2 10µ6 − 58µ4 ν 2 + 29µ2 ν 4 + 16ν 6
+               c5 = −                        +                                        .                  (80)
+                                  2µ2                         µν̃ 4
+                                         0 , given by (53). We can choose the parameter c
+The general solution is singular at r = r±                                               3
+                                             0 or r 0 :
+such that the solution is regular at either r+     −
+
+
+                           c3 = C+ ,                                      0,
+                                            preserving regularity at r = r+
+
+                           c3 = C− ,                                      0,
+                                            preserving regularity at r = r−                              (81)
+
+where                                                                   
+                             64µ2 4µ 16µ6 − 40µ4 ν 2 + 87µ2 ν 4 − 60ν 6
+                       C± = ± 4 −                                         .                              (82)
+                              3ν               3ν 4 ν̃ 5
+In section 3, we gave the c3 = C+ solution, in which case, the r = r0− is the spacetime
+singularity, outer of which there can either one, two or three horizons depending on the sign
+of the coupling constant α and its relative size to the non-extremal factor ν̃. Here we present
+the c3 = C− solution:
+
+                  8  4 4                                     
+        ∆h = −    4  10
+                         µν r 4r 2 − 9µ − 4ν 6 r 2 µ + r 2 + 2ν 8 − 16µ3 r 8 (ν̃ + µ)
+                3ν r
+                                                     
+              −8µν 2 r 6 ν̃ r 2 − 3µ + µ r 2 − 4µ
+                                                                                
+                64µ (2µ2 + ν 2 )(ν 2 + r 4 ) − 2µr 2 (µ2 + 2ν 2 )          ν̃ + µ
+              +                                                    log 1 −          ,
+                                     3ν 4 r 4                                 r2
+
+
+
+
+                                                    24
+                                                                                                      
+             8 24µ2 r 8 r 2 − µ (ν̃ + µ) − 6ν 8 + 5µ2 ν 4 r 4 + 8µν 6 r 2 + 4µ2 ν 2 r 6 2µ − 3r 2
+        ∆f =                                                4 r 10
+                  2     2      2       4        2
+                                                   3ν                     
+               64µ 2µ + ν + 3r − 6µr                               ν̃ + µ
+             +                                      log 1 −                   ,
+                             3ν 4 r 2                                 r2
+                  4                                                                      
+       ∆W = −      4 10
+                         6ν 6 r 6 + 8µ4 r 6 3r 4 − 2ν 2 + µ2 ν 4 r 2 4ν 2 − 15r 4
+               3µν r
+                                                                                               
+             +4µ3 r 4 6ν̃r 6 − ν 2 r 2 4ν̃ + 3r 2 + ν 4 − 4µν 4 2ν̃r 6 + ν 4 − 3ν 2 r 4
+                                                                                         
+               32µ 2ν 4 + µ2 ν 2 − 3r 4 + 3µr 2 r 4 − ν 2                            ν̃ + µ
+             −                                                           log 1 −               ,
+                                      3ν 4 r 4                                          r2
+                 √ √                                                                               
+               16 2 µ 6µr 6 r 2 − µ (ν̃ + µ) − 2ν 6 + 2µν 4 r 2 + µν 2 r 4 2µ − 3r 2
+        ∆ω = −
+                                               3ν 3 r 6 (ν 2 + r 4 )
+                 √ 3/2                                                         
+               32 2µ        2µ2 + ν 2 + 3r 4 − 6µr 2                      ν̃ + µ
+             −                                             log 1 −                 .                      (83)
+                           3ν 3 (ν 2 + r 4 )                                 r2
+                                                                           0 . It can easily
+The curvature singularity of the perturbed solution is now located at r = r+
+                                                                                   0 . The
+established that when α > 0, there are no roots for both functions h and f at r > r+
+                                                                           0 , but they do not
+singularity is thus naked. When α < 0, both h and f can have roots at r > r+
+coincide. However, the root of f is larger than h, indicating the solution is a rotating wormhole.
+We shall not study this solution in detail, but present an example: (µ, ν, α) = (5, 3, −1/1000),
+         0 = 3 and the roots of h and f are given by
+we have r+
+
+                                    h(3.00540) ∼ 0 ,         f (3.00775) ∼ 0 .                           (84)
+
+
+B      Thermodynamic instability of RN and Kerr black holes
+
+In this section, we review the thermodynamic stability of the RN and Kerr black holes in five
+                                                                 e and “angular momentum
+dimensions, by examining the specific heat C, charge capacitance C
+             b in both canonical and grand canonical ensembles. Although these results are
+capacitance” C
+well studied in literature, e.g., [53, 54], it is nevertheless instructive to put them together to
+see the parallelity.
+    First we consider the RN black hole of mass M and charge Q, given in section 2.1. We
+have
+                         q p
+                              3
+                                   M 2 − 3Q2                      r              3/2
+                              π                             4      π p 2
+              T =       p                     3/2 ,    S=           M − 3Q2 + M      ,
+                                                            3      3
+                    2        M 2 − 3Q2 + M
+                              3Q
+              Φ= p                        .                                                              (85)
+                        M 2 − 3Q2 + M
+
+In the grand canonical ensemble of fixed T and Φ, the thermodynamic potential is Gibb’s free
+energy G(T, Φ) = M − T S − ΦQ and we can define the specific heat C and charge capacitance
+
+                                                        25
+e
+C
+                                          r                 3/2
+                                 ∂S         π p 2
+                          CΦ = T      = −4       M − 3Q2 + M      ,
+                                 ∂T Φ       3
+                                         p               
+                               ∂Q      M    M 2 − 3Q2 + M − 9Q2
+                          e
+                          CT =      =          p                .                                (86)
+                               ∂Φ T           3 M 2 − 3Q2
+
+Thus we see that the specific heat is always negative in this ensemble, indicating the solution
+is not thermodynamically stable. There is a phase transition occurring at
+                                               r
+                                                 3
+                                     M crit = 3    Q,                                            (87)
+                                                 5
+         eT vanishes. For the canonical ensemble of fixed T and Q, the corresponding thermo-
+at which C
+dynamic potential is the Helmholtz free energy F (T, Q) = M − T S. In this case, the specific
+heat at fixed charge is
+                                           p              4
+                                       8πT   M 2 − 3Q2 + M
+                              ∂S
+                       CQ = T      =−  p                      .                                (88)
+                              ∂T Q   3 M M 2 − 3Q2 + M 2 − 9Q2
+
+                                            eT is the same as in (86). Thus we see that [53]
+The charge capacitance at fixed temperature C
+                      q qp                      p                          
+            e       4
+         CQ CT = − 3 3 π         2    2               2     2
+                              M − 3Q + M 2M M − 3Q + 2M − 3Q < 0.   2     2
+                                                                                       (89)
+
+                                                                  eT change the sign. Thus
+Note that there is a phase transition at M crit where both CQ and C
+we see that the RN black hole is thermodynamically unstable in both ensembles.
+    We now consider the five dimensional rotating metric, with equal angular momenta. For
+given (M, J), we have
+                    q
+                                2
+              2M 2 16M 2 − 54πJ
+                             M + 27πJ − 8M
+                                          2    3
+        T =             √          √             ,
+                      18 6π 3/2 J 2 M
+                                              !                       q
+                q     r                                                                  2
+                                   54πJ 2                      4M −       16M 2 − 54πJ
+                                                                                    M
+              1   2
+        S = 3 3 πM       16M 2 −          + 4M ,          Ω=                                 .   (90)
+                                     M                                     6J
+
+Thus for the grand canonical ensemble with fixed (T, Ω), associated with the Gibb’s free energy,
+the specific heat is
+
+                 ∂S
+          CΩ = T
+                 ∂T Ω
+                  T       3   3
+                                   q        3 + 32M 3/2 3M 3 − 2M 3
+                                                                      
+              =−    5 16 6M − Mext    M 3 − Mext                  ext   .                        (91)
+                 9M 2
+This quantity is always negative since we must have M ≥ M ext , where M ext is given by (55).
+This is exactly parallel to the RN black hole. In the canonical ensemble with fixed (T, J),
+
+                                              26
+associated with the Helmholtz free energy, the specific heat is
+                              ∂S
+                     CJ = T
+                              ∂T J   q       3    p
+                                    4 2π        3      3
+                                        3 M Mext M − Mext
+                                             2               3
+                        =   3                                p          .                       (92)
+                                         3 ) − (5M 3 + M 3 ) M 3 − M 3
+                          M 2 (5M 3 − 2Mext              ext        ext
+
+There is a critical mass
+                                                    √        1
+                                M crit =       1
+                                                                   M ext ,
+                                                                 3
+                                               10    3 21 + 13                                  (93)
+
+below which CJ is positive, but it changes to negative when M ≥ M crit . The angular momen-
+                b at fixed T (which is called the isothermal moment of inertia in [54]) is the
+tum capacitance C
+same for both ensembles, and we have
+
+     bT = ∂J
+     C
+          ∂Ω T                                                                      
+               3
+                                                                     p
+             4Mext    M 3 − Mext
+                               3    5M 3 + 3Mext
+                                             3               3 − 5M 3
+                                                   + M 3/2 2Mext                 3
+                                                                          M 3 − Mext
+         =                5
+                                         p                                         . (94)
+                     9πM  2       3
+                              2M − Mext 3       3     3
+                                             M − Mext + 2M    3/2  3
+                                                                  Mext − M 3
+
+
+This leads to [54]
+                                             q                                    
+        bT = − 64T
+     CQ C       √    4M 3 − Mext
+                             3                             3 + M 3/2 4M 3 − 3M 3
+                                                    M 3 − Mext                ext        < 0.   (95)
+              27 M
+As in the RN case, the rotating solution is also thermodynamically unstable in both ensembles.
+However, in the Euclidean action approach, one can break this parallelity, which we discuss at
+the end of section 3.
+
+
+References
+
+ [1] K.S. Stelle, “Renormalization of higher derivative quantum gravity,” Phys. Rev. D 16,
+    953-969 (1977) doi:10.1103/PhysRevD.16.953; “Classical gravity with higher derivatives,”
+    Gen. Rel. Grav. 9, 353-371 (1978) doi:10.1007/BF00760427
+
+ [2] D. Lovelock, “The Einstein tensor and its generalizations,” J. Math. Phys. 12 (1971)
+    498–501.
+
+ [3] X.O. Camanho, J.D. Edelstein, J. Maldacena and A. Zhiboedov, “Causality constraints
+    on corrections to the graviton three-point coupling,” JHEP 02, 020 (2016) doi:10.1007/
+    JHEP02(2016)020 [arXiv:1407.5597 [hep-th]].
+
+ [4] C. Cheung, J. Liu and G.N. Remmen, “Proof of the Weak Gravity Conjecture from black
+    hole entropy,” JHEP 10, 004 (2018) doi:10.1007/JHEP10(2018)004 [arXiv:1801.08546
+    [hep-th]].
+
+                                                       27
+ [5] N. Arkani-Hamed, L. Motl, A. Nicolis and C. Vafa, “The string landscape, black holes and
+    gravity as the weakest force,” JHEP 06, 060 (2007) doi:10.1088/1126-6708/2007/06/060
+    [arXiv:hep-th/0601001 [hep-th]].
+
+ [6] Y. Hamada, T. Noumi and G. Shiu, “Weak Gravity Conjecture from unitarity and causal-
+    ity,” Phys. Rev. Lett. 123, no.5, 051601 (2019) doi:10.1103/PhysRevLett.123.051601
+    [arXiv:1810.03637 [hep-th]].
+
+ [7] H.S. Reall and J.E. Santos, “Higher derivative corrections to Kerr black hole thermody-
+    namics,” JHEP 04, 021 (2019) doi:10.1007/JHEP04(2019)021 [arXiv:1901.11535 [hep-th]].
+
+ [8] C. Cheung, J. Liu and G.N. Remmen, “Entropy bounds on effective field theory from
+    rotating dyonic black holes,” Phys. Rev. D 100, no.4, 046003 (2019) doi:10.1103/Phys
+    RevD.100.046003 [arXiv:1903.09156 [hep-th]].
+
+ [9] L. Aalsma, A. Cole and G. Shiu, “Weak Gravity Conjecture, black hole entropy, and mod-
+    ular invariance,” JHEP 08, 022 (2019) doi:10.1007/JHEP08(2019)022 [arXiv:1905.06956
+    [hep-th]].
+
+[10] G.J. Loges, T. Noumi and G. Shiu, “Thermodynamics of 4D dilatonic black holes and
+    the Weak Gravity Conjecture,” Phys. Rev. D 102, no.4, 046010 (2020) doi:10.1103/Phys
+    RevD.102.046010 [arXiv:1909.01352 [hep-th]].
+
+[11] G. Goon and R. Penco, “Universal relation between corrections to entropy and extremal-
+    ity,” Phys. Rev. Lett. 124, no.10, 101103 (2020) doi:10.1103/PhysRevLett.124.101103
+    [arXiv:1909.05254 [hep-th]].
+
+[12] S. Cremonini, C.R.T. Jones, J.T. Liu and B. McPeak, “Higher-derivative corrections to
+    entropy and the Weak Gravity Conjecture in anti-de Sitter space,” [arXiv:1912.11161 [hep-
+    th]].
+
+[13] W.M. Chen, Y.T. Huang, T. Noumi and C. Wen, “Unitarity bounds on charged/neutral
+    state mass ratios,” Phys. Rev. D 100, no.2, 025016 (2019) doi:10.1103/PhysRevD.100.
+    025016 [arXiv:1901.11480 [hep-th]].
+
+[14] B. Bellazzini, M. Lewandowski and J. Serra, “Positivity of amplitudes, Weak Gravity Con-
+    jecture, and modified gravity,” Phys. Rev. Lett. 123, no.25, 251103 (2019) doi:10.1103/
+    PhysRevLett.123.251103 [arXiv:1902.03250 [hep-th]].
+
+
+
+
+                                             28
+[15] M. Cvetič, M.J. Duff, P. Hoxha, J.T. Liu, H. Lü, J.X. Lu, R. Martinez-Acosta, C.N. Pope,
+    H. Sati and T.A. Tran, “Embedding AdS black holes in ten-dimensions and eleven-
+    dimensions,” Nucl. Phys. B 558, 96-126 (1999) doi:10.1016/S0550-3213(99)00419-8 [arXiv:
+    hep-th/9903214 [hep-th]].
+
+[16] J.T. Liu and P. Szepietowski, “Higher derivative corrections to R-charged AdS5 black holes
+    and field redefinitions,” Phys. Rev. D 79, 084042 (2009) doi:10.1103/PhysRevD.79.084042
+    [arXiv:0806.1026 [hep-th]].
+
+[17] S. Cremonini, J.T. Liu and P. Szepietowski, “Higher derivative corrections to R-charged
+    black holes: boundary counterterms and the mass-charge relation,” JHEP 03, 042 (2010)
+    doi:10.1007/JHEP03(2010)042 [arXiv:0910.5159 [hep-th]].
+
+[18] P. Bueno, P.A. Cano, J. Moreno and A. Murcia, “All higher-curvature gravities as gen-
+    eralized quasi-topological gravities,” JHEP 11, 062 (2019) doi:10.1007/JHEP11(2019)062
+    [arXiv:1906.00987 [hep-th]].
+
+[19] G.W. Horndeski, “Second-order scalar-tensor field equations in a four-dimensional space,”
+    Int. J. Theor. Phys. 10, 363 (1974).
+
+[20] H.S. Liu, Z.F. Mai, Y.Z. Li and H. Lü, “Quasi-topological electromagnetism: dark energy,
+    dyonic black holes, stable photon spheres and hidden electromagnetic duality,” Sci. China
+    Phys. Mech. Astron. 63, 240411 (2020) doi:10.1007/s11433-019-1446-1 [arXiv:1907.10876
+    [hep-th]].
+
+[21] A. Adams, N. Arkani-Hamed, S. Dubovsky, A. Nicolis and R. Rattazzi, “Causality, ana-
+    lyticity and an IR obstruction to UV completion,” JHEP 10, 014 (2006) doi:10.1088/1126-
+    6708/2006/10/014 [arXiv:hep-th/0602178 [hep-th]].
+
+[22] C. Cheung and G.N. Remmen, “Positivity of curvature-squared corrections in gravity,”
+    Phys. Rev. Lett. 118, no.5, 051601 (2017) doi:10.1103/PhysRevLett.118.051601 [arXiv:
+    1608.02942 [hep-th]].
+
+[23] D.G. Boulware and S. Deser, “String generated gravity models,” Phys. Rev. Lett. 55,
+    (1985) 2656; D.L. Wiltshire, “Spherically symmetric solutions of Einstein-maxwell theory
+    with a Gauss-Bonnet term,” Phys. Lett. B 169, (1986) 36.
+
+[24] R.G. Cai and K.S. Soh, “Topological black holes in the dimensionally continued gravity,”
+    Phys. Rev. D 59, (1999) 044013, arXiv:gr-qc/9808067 [gr-qc]; R.G. Cai, “Gauss-Bonnet
+
+
+
+                                              29
+    black holes in AdS spaces,” Phys. Rev. D 65, (2002) 084014, arXiv:hep-th/0109133 [hep-
+    th].
+
+[25] M. Cvetič, S. Nojiri and S.D. Odintsov, “Black hole thermodynamics and negative entropy
+    in de Sitter and anti-de Sitter Einstein-Gauss-Bonnet gravity,” Nucl. Phys. B 628, 295
+    (2002) doi:10.1016/S0550-3213(02)00075-5 [hep-th/0112045].
+
+[26] X.H. Feng and H. Lü, “Higher-derivative gravity with non-minimally coupled Maxwell
+    field,” Eur. Phys. J. C 76, no.4, 178 (2016) doi:10.1140/epjc/s10052-016-4007-y [arXiv:
+    1512.09153 [hep-th]].
+
+[27] G.W. Gibbons and S.W. Hawking, “Action integrals and partition functions in quantum
+    gravity,” Phys. Rev. D 15, 2752-2756 (1977).
+
+[28] X.H. Feng, H.S. Liu, H. Lü and C.N. Pope, “Black hole entropy and viscosity
+    bound in Horndeski gravity,” JHEP 11, 176 (2015) doi:10.1007/JHEP11(2015)176
+    [arXiv:1509.07142       [hep-th]];      “Thermodynamics        of   charged       black   holes   in
+    Einstein-Horndeski-Maxwell           theory,”   Phys.   Rev.   D    93,   no.4,     044030   (2016)
+    doi:10.1103/PhysRevD.93.044030 [arXiv:1512.02659 [hep-th]].
+
+[29] R.M. Wald, “Black hole entropy is the Noether charge,” Phys. Rev. D 48, no.8, 3427-3431
+    (1993) [arXiv:gr-qc/9307038 [gr-qc]]; V. Iyer and R.M. Wald, “Some properties of Noether
+    charge and a proposal for dynamical black hole entropy,” Phys. Rev. D 50, 846-864 (1994),
+    arXiv:gr-qc/9403028 [gr-qc].
+
+[30] P.A. Cano, S. Chimento, R. Linares, T. Ortin and P.F. Ramirez, “α′ corrections of
+    Reissner-Nordström black holes,” JHEP 02, 031 (2020) doi:10.1007/JHEP02(2020)031
+    [arXiv:1910.14324 [hep-th]].
+
+[31] H. Liu, H. Lü and Z.L. Wang, “f (R) theories of supergravities and pseudo-supergravities,”
+    JHEP 04, 072 (2012) doi:10.1007/JHEP04(2012)072 [arXiv:1201.2417 [hep-th]].
+
+[32] R.P. Kerr, “Gravitational field of a spinning mass as an example of algebraically special
+    metrics,” Phys. Rev. Lett. 11, 237-238 (1963) doi:10.1103/PhysRevLett.11.237
+
+[33] B. Carter, “Hamilton-Jacobi and Schrodinger separable solutions of Einstein’s equations,”
+    Commun. Math. Phys. 10, no.4, 280-310 (1968) doi:10.1007/BF03399503
+
+[34] R.C. Myers and M.J. Perry, “Black holes in higher dimensional space-times,” Annals Phys.
+    172, 304 (1986) doi:10.1016/0003-4916(86)90186-7
+
+
+                                                    30
+[35] S.W. Hawking, C.J. Hunter and M. Taylor, “Rotation and the AdS/CFT correspondence,”
+    Phys. Rev. D 59, 064005 (1999) doi:10.1103/PhysRevD.59.064005 [arXiv:hep-th/9811056
+    [hep-th]].
+
+[36] G.W. Gibbons, H. Lü, D.N. Page and C.N. Pope, “Rotating black holes in higher dimen-
+    sions with a cosmological constant,” Phys. Rev. Lett. 93, 171102 (2004) doi:10.1103/Phys
+    RevLett.93.171102 [arXiv:hep-th/0409155 [hep-th]].
+
+[37] G.W. Gibbons, H. Lü, D.N. Page and C.N. Pope, “The general Kerr-de Sitter metrics
+    in all dimensions,” J. Geom. Phys. 53, 49-73 (2005) doi:10.1016/j.geomphys.2004.05.001
+    [arXiv:hep-th/0404008 [hep-th]].
+
+[38] W. Chen, H. Lü and C. N. Pope, “General Kerr-NUT-AdS metrics in all dimen-
+    sions,” Class. Quant. Grav. 23, 5323-5340 (2006) doi:10.1088/0264-9381/23/17/013
+    [arXiv:hep-th/0604125 [hep-th]].
+
+[39] H. Lü, J. Mei and C.N. Pope, “New black holes in five dimensions,” Nucl. Phys. B 806,
+    436-455 (2009) doi:10.1016/j.nuclphysb.2008.08.005 [arXiv:0804.1152 [hep-th]].
+
+[40] R. Emparan and H.S. Reall, “A rotating black ring solution in five-dimensions,” Phys.
+    Rev. Lett. 88, 101101 (2002) doi:10.1103/PhysRevLett.88.101101 [arXiv:hep-th/0110260
+    [hep-th]].
+
+[41] Y. Brihaye and E. Radu, “Five-dimensional rotating black holes in Einstein-Gauss-Bonnet
+    theory,” Phys. Lett. B 661, 167-174 (2008) doi:10.1016/j.physletb.2008.02.005
+
+[42] Y. Brihaye, B. Kleihaus, J. Kunz and E. Radu, “Rotating black holes with equal mag-
+    nitude angular momenta in d = 5 Einstein-Gauss-Bonnet theory,” JHEP 11, 098 (2010)
+    doi:10.1007/JHEP11(2010)098 [arXiv:1010.0860 [hep-th]]. [arXiv:0801.1021 [hep-th]].
+
+[43] B. Kleihaus, J. Kunz and E. Radu, “Rotating black holes in dilatonic Einstein-
+    Gauss-Bonnet theory,” Phys. Rev. Lett. 106, 151104 (2011) doi:10.1103/PhysRevLett.
+    106.151104 [arXiv:1101.2868 [gr-qc]].
+
+[44] R.H. Yue, D.C. Zou, T.Y. Yu and Z.Y. Yang, “A new metric for rotating black holes
+    in Gauss-Bonnet gravity,” Chin. Phys. B 20, 050401 (2011) doi:10.1088/1674-1056/
+    20/5/050401 [arXiv:1107.2743 [gr-qc]].
+
+[45] M. Okounkova, “Stability of rotating black holes in Einstein dilaton Gauss-Bonnet
+    gravity,” Phys. Rev. D 100, no.12, 124054 (2019) doi:10.1103/PhysRevD.100.124054
+    [arXiv:1909.12251 [gr-qc]].
+
+                                             31
+[46] P.A. Cano and D. Pereniguez, “Extremal rotating black holes in Einsteinian cubic grav-
+    ity,” Phys. Rev. D 101, no.4, 044016 (2020) doi:10.1103/PhysRevD.101.044016 [arXiv:
+    1910.10721 [hep-th]].
+
+[47] C. Adair, P. Bueno, P.A. Cano, R.A. Hennigar and R.B. Mann, “Slowly rotating black
+    holes in Einsteinian cubic gravity,” [arXiv:2004.09598 [gr-qc]].
+
+[48] R.A. Konoplya and A. Zhidenko, “Simply rotating higher dimensional black holes in
+    Einstein-Gauss-Bonnet theory,” [arXiv:2007.10116 [gr-qc]].
+
+[49] X.H. Feng, W.J. Geng and H. Lü, “Time machines and AdS solitons with nega-
+    tive mass,” Phys. Rev. D 95, no.8, 084013 (2017) doi:10.1103/PhysRevD.95.084013
+    [arXiv:1701.00006 [hep-th]]; M.Cvetič, W.J. Geng, H. Lü and C.N. Pope, JHEP 07, 088
+    (2018) doi:10.1007/JHEP07(2018)088 [arXiv:1801.08579 [gr-qc]].
+
+[50] M. Cvetič and D. Youm, “Entropy of nonextreme charged rotating black holes in
+    string theory,” Phys. Rev. D 54, 2612-2620 (1996) doi:10.1103/PhysRevD.54.2612
+    [arXiv:hep-th/9603147 [hep-th]].
+
+[51] F. Larsen, “A string model of black hole microstates,” Phys. Rev. D 56, 1005-1008 (1997)
+    doi:10.1103/PhysRevD.56.1005 [arXiv:hep-th/9702153 [hep-th]].
+
+[52] M. Cvetič, G.W. Gibbons, H. Lü and C.N. Pope, “Killing horizons: negative tempera-
+    tures and entropy super-additivity,” Phys. Rev. D 98, no.10, 106015 (2018) doi:10.1103/
+    PhysRevD.98.106015 [arXiv:1806.11134 [hep-th]].
+
+[53] R. Monteiro and J.E. Santos, “Negative modes and the thermodynamics of Reissner-
+    Nordström black holes,” Phys. Rev. D 79, 064006 (2009) doi:10.1103/PhysRevD.79.
+    064006 [arXiv:0812.1767 [gr-qc]].
+
+[54] R. Monteiro, M.J. Perry and J.E. Santos, “Thermodynamic instability of rotating black
+    holes,” Phys. Rev. D 80, 024041 (2009) doi:10.1103/PhysRevD.80.024041 [arXiv:0903.
+    3256 [gr-qc]].
+
+
+
+
+                                              32
+

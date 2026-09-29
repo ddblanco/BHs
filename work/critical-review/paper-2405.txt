@@ -1,0 +1,1890 @@
+                                                  Quadratic Curvature Correction and Its Breakdown
+                                                     to Thermodynamics of Rotating Black Holes
+
+                                                                           Peng-Yu Wu 1 and H. Lü 1,2
+
+                                                         1 Center for Joint Quantum Studies and Department of Physics,
+
+                                                         School of Science, Tianjin University, Tianjin 300350, China
+arXiv:2405.04576v2 [hep-th] 15 May 2024
+
+
+
+
+                                                    2 Joint School of National University of Singapore and Tianjin University,
+
+                                             International Campus of Tianjin University, Binhai New City, Fuzhou 350207, China
+
+
+
+
+                                                                                  ABSTRACT
+
+                                             We adopt the Reall-Santos method to obtain the quadratic curvature corrections to the
+                                          thermodynamics of Myers-Perry rotating black holes in diverse dimensions. We consider the
+                                          corrections in canonical and grand canonical ensembles, and also for fixed mass and angular
+                                          momenta. We find that there exist inevitable divergences for generic rotation parameters so
+                                          that the perturbative approach breaks down. We present a simple and universal formula to
+                                          determine where these divergences could arise, and argue, using an explicit example, that these
+                                          divergences are artefact of perturbation and may not exist in the full nonlinear theory.
+
+
+
+
+                                             wupy2023@tju.edu.cn     mrhonglu@gmail.com
+Contents
+
+1 Introduction                                                                                      3
+
+2 Thermodynamics of the Myers-Perry black holes                                                     5
+  2.1   Thermodynamic variables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          5
+  2.2   Extremal limit and mass-angular momentum relation . . . . . . . . . . . . . . .              6
+  2.3   Singular extremal limit and an AdS3 embedding . . . . . . . . . . . . . . . . .              7
+  2.4   Thermodynamic instability . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          8
+
+3 Corrections in the grand canonical ensemble                                                       10
+  3.1   Explicit corrections . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    10
+  3.2   Extremal limit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      11
+  3.3   Perturbative breakdown of at non-zero critical temperature . . . . . . . . . . .            14
+
+4 Corrections in the canonical ensemble                                                             16
+  4.1   All equal angular momenta . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         17
+  4.2   Nearly all equal angular momenta        . . . . . . . . . . . . . . . . . . . . . . . . .   18
+  4.3   Single angular momentum . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         18
+  4.4   General case . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    19
+
+5 Corrections with fixed mass and angular momenta                                                   19
+  5.1   Corrections and zero-temperature divergence . . . . . . . . . . . . . . . . . . .           19
+  5.2   On the sign of ∆S . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       21
+
+6 Kerr black hole under cubic curvature correction                                                  23
+
+7 Divergence is a perturbative artefact: an explicit example                                        24
+
+8 Conclusions                                                                                       26
+
+A All thermodynamic quantities in grand canonical ensemble                                          28
+
+
+
+
+                                                 2
+1    Introduction
+
+Kerr metric [1] is arguably the most important vacuum solution in General Relativity, with
+both theoretical and astrophysical importance. During the heat of string theory in the 80’s,
+Myers and Perry generalized the Kerr metric to arbitrary dimensions [2]. These solutions
+were further generalized to include a cosmological constant [3, 4], extending the earlier results
+of Carter [5] and of Hawking, Hunter and Taylor [6]. The fact that the highly nonlinear
+Einstein’s field equation admits these complicated but elegant solutions is quite a wonder, but
+the miracle stops when high-derivative gravities are involved.
+    Keeping the general covariance, higher-derivative extensions in terms of curvature tensors or
+their covariant derivatives are natural ways to modify Einstein gravity. The simplest example
+is the quadratic extension, involving three structures in general dimensions
+                               √
+                                   −g αRµνρσ Rµνρσ + βRµν Rµν + γR2 .
+                                                                   
+                        ∆L =                                                                  (1)
+
+These higher-derivative terms introduce massive scalar and spin-2 modes, and the latter is
+ghostlike. The theory was demonstrated to be renormalizable [7, 8], if the ghosty spin-2 mode
+is present. The usual black hole no-hair theorem holds for the massive scalar mode [9, 10],
+but black holes with massive spin-2 hair exist and they were numerically constructed [10, 11],
+where the first law involving the Wald entropy [12] was demonstrated.
+    The alternative approach is to treat the higher-derivative gravities as the low-energy effec-
+tive theories of some ultraviolet complete quantum gravity. In this perturbative approach, the
+quadratic extension is the leading-order correction. A massive mode, whose mass is inversely
+proportional to the coupling constant, is necessarily decoupled from the spectrum. One can
+further perform field redefinitions on the metric order by order, namely
+
+                              gµν → gµν + c1 Rµν + c2 Rgµν + · · · ,                          (2)
+
+to set the coupling constants β and γ to zero, or to form any other combinations, such as the
+Gauss-Bonnet or Weyl-squared terms, while the α-term is invariant. Since we consider the
+higher-order corrections to the Myers-Perry metrics, which are Ricci flat, the R2 and Rµν Rµν
+terms give no contribution to the equation of motion. Thus the above field redefinition is not
+necessary. Only the α term will contribute and furthermore, this α could be the coupling of
+either the Gauss-Bonnet or Weyl-squared term.
+    Unfortunately, even in this perturbative approach, exact solutions of rotating black holes
+are hard to come by, since the metric depends not only on the radial coordinate, but also
+on a plethora of latitudinal coordinates. This is because in general D dimensions, there can
+be [(D − 1)/2] independent rotations along the longitudinal Killing directions. It is worth
+
+                                                3
+mentioning that in odd dimensions, the metric becomes cohomogeneity one, depending only
+on the radial coordinate, when all the angular momenta are equal. Such rotating black holes
+under the quadratic curvature perturbation at the α order were constructed in D = 5 [13]
+and D = 7 [14], and the latter showed that even the outer horizon could be destroyed by the
+perturbation.
+   Recently, Reall and Santos (RS) developed a technique of evaluating the leading-order
+correction to black hole thermodynamics without having to solve the corresponding solution
+[15]. The technique is based on the quantum statistic relation [16]. They showed that the
+corrected Euclidean action is simply given by higher-derivative bulk action, evaluated on the
+leading-order solution. Not only is there no need to calculate the corrections to the leading-
+order solution, but also it is unnecessary to deal with the Gibbons-Hawking surface terms
+associated with the higher-derivative bulk terms. This technique has been heavily employed
+in the subject of the weak gravity conjecture [17–24] in the context of effective field theory,
+and also in supergravities [25, 26] and gauged supergravities [27–29]. The RS method belongs
+to a series of sequence, where, the (n + 1)’th order correction requires only solutions up to
+and including the n’th order [30]. In this regard, the starting sequence is the usual first
+law of black hole thermodynamics, which can be derived, based on the Wald formalism [12],
+without needing even to know the full leading-order solution. When a cosmological constant
+are involved, the situation is much more subtle, the original RS method indeed gets rid of the
+need for finding the corrected solution, it still requires the knowledge of the surface terms,
+which can be intensively involved for higher-derivative gravities. Improved versions have been
+developed to remove the need of these surface terms [31, 32].
+   In this paper, we study the quadratic curvature corrections to the thermodynamics of
+Myers-Perry black holes in general dimensions. The motivation is two fold. One is that the
+results are elegant and worth presenting. The second is the observation that the perturbative
+approach breaks down at certain points in the full parameter space. By breakdown, we mean
+that the corrected thermodynamic quantities become divergent at certain temperature. Such
+breakdown was know in zero temperature limit of a system with fixed mass and charges [19], but
+we find that it can arise at nonzero temperature as well. In this paper, we shall understand how
+this divergence arises and give a universal simple formula to determine where this divergence
+could emerge.
+   The paper is organized as follows. In section 2, we review the Myers-Perry black holes
+and their thermodynamics. We also find that in odd dimensions, when one and only one of
+the angular momenta vanishes, the extremal limit leads to an interesting decoupling geometry,
+with an unusual AdS3 embedding. In section 3, we apply the RS method and obtain the ther-
+
+
+                                               4
+modynamic corrections in the grand canonical ensemble, where the thermodynamic variables
+are temperature and angular velocities. Interestingly, we find that there is no divergence when
+all angular momentum are equal, but divergence emerges for generic parameters of angular
+momenta. We give reasons why these divergences emerge and determine where they do. In
+sections 4 and 5, we study the thermodynamics in canonical ensemble, and also in fixed mass
+and angular momenta. We find that the divergence is a commonplace occurrence, typically at
+non-zero temperature. In section 6, we consider cubic curvature corrections in D = 4, since
+the quadratic correction is trivial. In section 7, we consider Einstein-Gauss-Bonnet gravity
+coupled to Maxwell field, where an exact solution of charged black hole exists. We use this
+example to illustrate that the divergence is an artefact of the perturbative approach. There is
+no such divergence at the full nonlinear level. We conclude the paper in section 8. In appendix,
+we give corrections to all the thermodynamic quantities in the grand canonical ensemble.
+
+
+2     Thermodynamics of the Myers-Perry black holes
+
+2.1   Thermodynamic variables
+
+Myers-Perry rotating black holes are described by Ricci-flat metrics that are asymptotic to
+Minkowski spacetimes in general D dimensions. They are higher-dimensional generalizations of
+the four-dimensional Kerr metric. The asymptotically-Minkowski metric was later generalizaed
+to (A)dS rotating black holes, which are themselves generalization of four-dimensional Carter
+and five-dimensional Hawking-Hunter-Taylor (A)dS rotating black holes. In this paper, we
+adopt the convention of [33], where the black hole thermodynamic quantities of Kerr-AdS
+black holes in general dimensions were obtained. We therefore shall not give explicit metrics.
+To obtain the thermodynamics of Myers-Perry black holes, we simply use those in [33], but
+set the cosmological constant to zero. In D dimensions, there can be at most N = [(D − 1)/2]
+independent orthogonal rotations; therefore, the metrics contain (N + 1) parameters, namely
+(m, a1 , a2 , . . . , aN ), parameterizing the mass and N independent angular momenta. They are
+
+                      (D − 2)ΣD−2                          ΣD−2
+              M0 =                m,             J0i =          mai ,    i = 1, 2, . . . , N ,   (3)
+                          8π                                4π
+                1 (D+1)
+           2π2
+where ΣD = Γ( 1
+                (D+1)
+                      is the volume of the round D-sphere. Note that we use subscript “0” to
+               2
+denote thermodynamic quantities in solutions of Einstein gravity. For sufficiently large mass
+M0 , there can exist an event horizon r0 . The N + 1 parameters and r0 are related by the
+horizon condition
+                                         Y
+                          m = 12 r0ǫ−2    (r02 + a2i ) ,       ǫ = D − 2N − 1 .                  (4)
+                                          i
+
+
+
+                                                      5
+It is advantageous to introduce ǫ, which is 0 or 1 for D = odd or even respectively. It is worth
+commenting here that for the rotating black hole with (N + 1) parameters (m, ai ), the above
+equation also give all possible roots associated with Killing horizons. However, there can be
+either just one positive r+ , or at most two positive roots, r− ≤ r+ . The position r+ is the
+event horizon and r− gives the inner Cauchy horizon.
+   The remaining black hole thermodynamic quantities are the temperature, entropy and the
+angular velocities conjugate to the angular momenta. They are
+
+           1  X r0             1                            ΣD−2 Y 2                                ai
+   T0 =                   −            ,          S0 =                 (r0 + a2i ) ,      Ωi0 =             .    (5)
+          2π
+               i
+                r02 + a2i   (ǫ + 1)r0                         4r01−ǫ i                             r0 + a2i
+                                                                                                    2
+
+
+The Gibbs free energy G0 and the Euclidean action I0 are
+                                                                  X                 ΣD−2 m
+                    I0 = βG0 ,         G0 ≡ M0 − T0 S0 −                Ωi0 J0i =          .                     (6)
+                                                                                      8π
+                                                                    i
+
+The Gibbs free energy is the thermodynamic potential for grand canonical ensemble with
+thermodynamic variables (T0 , Ωi0 ). Compared to (3), we have
+
+                                          M0 = (D − 2)G0 .                                                       (7)
+
+This relation is a consequence of the Smarr or Smarr-like relations associated with M0 and
+G0 . Each thermodynamic quantity scales homogeneously under r0 → λr0 and ai → λai with
+appropriate scaling dimensions
+
+             [M0 ] = [G0 ] = D − 3 ,       [T0 ] = [Ωi0 ] = −1 ,            [S0 ] = [J0i ] = D − 2 .             (8)
+
+Thus from their respective “first law” of M0 and G0 , we can deduce the two algebraic relations
+                                           X                                                   X
+          (D − 3)M0 = (D − 2)(T0 S0 +           Ωi0 J0i ) ,        (D − 3)G0 = T0 S0 +             Ωi0 J0i ,     (9)
+                                            i                                                  i
+
+which lead to (7). Finally, the Helmholtz free energy is
+
+                                          F0 ≡ M0 − T0 S0 ,                                                     (10)
+
+which is the thermodynamic potential for the canonical ensemble with thermodynamic variables
+(T0 , J0i ). Analogous Smarr-like relation can be obtained, but there is no special simple direct
+relation between the free energy and mass.
+
+
+2.2   Extremal limit and mass-angular momentum relation
+
+A particular theoretic interest is the zero temperature extremal limit, T0 = 0. When all the
+angular momentum parameters ai are nonzero, such a limit exists for some positive r0 . In the
+
+                                                      6
+extremal limit, the mass and angular momenta are no longer independent variables, but they
+are related by an algebraic relation in terms of some polynomial functions, which are in general
+too complicated to present. Here we give three lower-dimensional examples:
+                        p
+      D = 4 : Mext =         |J| ,
+                     3π 1/3 |J1 | + |J2 | 2/3
+                                        
+      D = 5 : Mext =                           ,
+                       2          2
+                      √ √     q
+                     2 8 2 4 π 8 −J16 + 33J22 J14 + 33J24 J12 − J26 + J14 + 14J22 J12 + J24 3/2
+                                                                                           
+      D = 6 : Mext =                                                                            . (11)
+                                                       35/8
+                                                J
+When all angular momenta are equal, namely Ji = N , the general dimensional mass-angular
+momentum relation in the extremal limit becomes presentable:
+                                                           1     ǫ           D−1−ǫ
+                                                       ΣD−2 D−2 2(D−2)
+                       D−3                    (D − 2) 32π      2       (ǫ + 1) 2(D−2)
+           Mext = ξJ D−2 ,           ξ=               D−5+ǫ                              D−3    .   (12)
+                                          (D − ǫ − 1) 2(D−2) (D(ǫ + 1) − ǫ(ǫ + 2) − 3) 2(D−2)
+
+For odd dimensions, corresponding to ǫ = 0, the relation was given in [14]. In the extremal
+limit, there exists decoupling limit that magnifies the horizon geometry which contains a U (1)
+bundle of AdS2 [34]. The geometry plays an important role in the Kerr/CFT proposal [35],
+which was subsequently generalized to diverse dimensions [36].
+
+
+2.3    Singular extremal limit and an AdS3 embedding
+
+Curiously, in the general D = 5, 6 examples of (11), if we set J2 = 0, the mass does not vanish
+for D = 5, but vanishes for D = 6. Indeed, for even dimensions, as long as one or more than
+one angular momentum vanishes, there can be no extremal limit. For odd dimensions, extremal
+limit is also possible if only one angular momentum vanishes. Without loss of generality, we
+set JN = 0, (i.e. aN = 0,) for which case, we have
+                                                    N −1
+                                                r0 X    1
+                                           T0 =               .                                     (13)
+                                                2π   r0 + a2i
+                                                      2
+                                                     i=1
+
+Thus the temperature goes to zero when we have r0 → 0. In this limit, the mass/angular
+momentum relation becomes
+                                    Σ     1 NY
+                                               −1
+                                                          2
+                                       D−2 D−2
+                      M = 12 (D − 2)              |Ji0 | D−2 ,             JN = 0 .                 (14)
+                                      8π
+                                                          i=1
+
+The extremal metric also allows a decoupling limit, which starts with the scaling
+
+                                                   t                 t            φN
+                    r → λr ,         φi → φi +        ,         t→     ,   φN →      ,              (15)
+                                                  λai                λ             λ
+
+
+                                                      7
+followed by sending λ → 0. The resulting D = 2N + 1 metric, with aN = 0, becomes
+                                N −1                           NX−1
+                                                       µ2                 µ2i µ2j
+                                X                
+          ds2 = µ2N ds2AdS3 +       a2i dµ2i + µ2i 1 + 2i dφ2i +     2ai aj 2 dφi dφj ,
+                                i=1
+                                                      µN         i<j
+                                                                            µN
+                                                                     N −1        N
+                  ℓ2 dr 2 r 2 2                               1    X 1           X
+      ds2AdS3 =          − 2 dt + r 2 dφ2N ,                     =       ,             µ2i = 1 .   (16)
+                    r2    ℓ                                   ℓ2     a2i
+                                                                      i=1        i=1
+
+The metric has only the curvature singularity at the “equator” µN = 0. In particular, the
+conformally scaled metric, namely ds2 /µ4N , is absent from any curvature singularity. This
+unusual AdS3 embedding is very different from the near-horizon extreme Kerr studied in [34,36].
+
+
+2.4   Thermodynamic instability
+
+The thermodynamic instability of the Myers-Perry black holes was studied in [37] and some
+low-dimensional examples were explicitly demonstrated. The method is based on studying the
+positivity of some appropriate thermodynamic metric. We find that it is worth reviewing this
+method since there is a simple and analytic way to determine the thermodynamic metric [38].
+For a given ensemble with thermodynamic potential Φ of variables Qi , satisfying the first law
+                                                        X
+                                                dΦ =              µi dQi ,                         (17)
+                                                          i
+
+the metric based on the Hessian matrix of Φ is simply given by [38]
+                                      X         ∂2Φ                X
+                            ds2Φ ≡                     dQ i
+                                                            dQ i
+                                                                 =   dµi dQi .                     (18)
+                                               ∂Qi ∂Qj
+                                       i,j                                   i
+
+This allows one to use horizon radius, charge and angular momentum parameters to write
+analytically the thermodynamic metric instead of Qi , for which, Φ generally does not have a
+close analytic expression. The whole point of introducing thermodynamic metric is precisely
+to study the “coordinate” independent properties.
+   In thermodynamics, two particular metrics are important. One is the Weinhold metric
+based on the Hessian matrix of mass M0 [39], and the other is the Ruppeiner metric based on
+the Hessian matrix of entropy S0 [40]. For the general rotating black holes, they are
+                                                X
+                     ds2M0 = dT0 dS0 +                dΩi0 dJ0i ,
+                                                  i
+                                  
+                                      1
+                                                    X  Ωi          1
+                      ds2S0 = d                dM0 −  d   0
+                                                              dJ0i = − ds2M0 .                     (19)
+                                      T0                 T0           T0
+                                                          i
+
+The thermodynamic potential associated with variables mass and angular momenta is the
+entropy, and its thermodynamic metric is conformal to that of the mass. The thermodynamic
+stability thus requires that ds2M0 must be nonnegative, or equivalent ds2S0 is non-positive. For
+
+                                                              8
+the Myers-Perry black holes in general dimensions, the thermodynamic quantities can all be
+expressed in terms of horizon r0 and rotation parameters ai ’s. Thus we can write the metric
+formally as
+                            ds2M0 = gµν dxµ dxν ,           xµ = (r0 , ai ) .               (20)
+
+For thermodynamic stability, the metric must be nonnegative for all allowed values of xµ . For
+the rotating black holes in even dimensions, we can easily show that this is not possible, since
+the trace of the metric has a simple expression
+                                       4r0 ∂ 2 (r0 M0 )
+                       tr(gµν ) = −                        ,       (for even D, )           (21)
+                                      D − 2 ∂(r02 )∂(r02 )
+which is manifestly negative. (In D = 4, it is simply zero, since r0 M0 is proportional to r02 .)
+We thus establish that the rotating black holes in even dimensions are all thermodynamically
+unstable.
+   The situations in odd dimensions are more subtle, where the relation (21) does not apply.
+Furthermore, the quantity tr(gµν ) can be both positive and negative. In odd dimensions, we
+can define k × k matrix
+
+                            Mkµν = gµν ,          µ, ν = 0, 1, . . . , k − 1 .              (22)
+
+The thermodynamics stability requires nonnegativity of the metric (20), which in turn implies
+that det(Mk ) ≥ 0 for all k. This is a very strong condition and in five dimensions, we have
+                                                         2 2        2
+                               k=3        3π 4 a21 + r02    a2 + r02
+                         det(M ) = −                                    T0 .              (23)
+                                                     32r07
+In other words it is negative for T0 > 0. When T0 = 0, we find that det(Mk=2 ) = −3π 2 /4.
+We thus conclude that the five-dimensional rotating black hole is also thermodynamically
+unstable. For even higher odd dimensions, we have to use numerical analysis, and we find that
+for any allowed parameters (such that T0 ≥ 0,) there is at least one det(Mk ) that is negative,
+indicating that Myers-Perry black holes in odd dimensions are also all thermodynamically
+unstable. Specifically, we have checked both D = 7 and D = 9. In each case, we randomly
+select a real number from 0 to 106 for each item in the (r0 , ai ) set. We find that T0 and
+all Mk ’s can each be either positive and negative, but none of the randomly selected (r0 , ai )
+values would give all positive Mk ’s simultaneously. We have explicitly checked billions of the
+(r0 , ai ) datasets using a computer program and found no exception, strongly indicating that
+the rotating black holes in odd dimensions are thermodynamically unstable.
+   As we shall demonstrate in section 5, the specific heat capacity can be positive for low
+temperature including the extremal limit. Therefore, the thermodynamic can be stable if
+we fix all the angular momenta to some specific values so that they do not involve in the
+thermodynamic process.
+
+                                                    9
+3     Corrections in the grand canonical ensemble
+
+We now study the leading-order corrections to the thermodynamic quantities of the Myers-
+Perry black holes discussed in the previous section by the quadratic curvature invariants. A
+traditional approach is to perturb the background metric ḡµν to gµν = ḡµν + δgµν . As we have
+discussed in the introduction, only the α term will contribute, so δgµν is of order α. This
+approach can be effective for spherically-symmetric and static backgrounds, where the metrics
+are of cohomogeneity one. For general D-dimensional Myers-Perry metrics, this is an almost
+impossible task, except when all the angular momenta are equal in odd spacetime dimensions,
+where the metrics become cohomogeneity one again. Indeed explicitly constructions of such
+metrics in five [13] and seven dimensions [14] were carried out.
+    However, it is not necessary to know the complete solution in order to derive the first law
+of black hole thermodynamics. The Wald formalism indicates that the first law that connects
+the data in both asymptotic infinity and horizon regions can be derived by the a few leading-
+order power series expansions in both regions. As was discussed in the introduction, it was
+recently established that the leading-order correction to the black hole thermodynamics can be
+obtained by having only to know the original uncorrected solution [15]. These are in fact two
+low-lying examples in the general series that the (n + 1)’th correction to the thermodynamics
+requires only solutions up to and including the n’th order [30].
+
+
+3.1   Explicit corrections
+
+The procedure is based on the quantum statistic relation, namely the Euclidean action of
+Einstein gravity is proportional to the Gibbs’ free energy of grand canonical ensemble, where
+temperature and the angular velocities conjugate to the angular momenta are thermodynamic
+variables [16]. For the rotating black holes, we have
+                                                             1
+                                 I = βG(T, Ωi ) ,       β=     .                          (24)
+                                                             T
+Applying the RS method to our case, the total Euclidean action is given by
+                                             α      √ µνρσ
+                                                Z
+                 Itot = I0 + ∆I ,    ∆I =             gR      Rµνρσ       .               (25)
+                                            16π M                    ḡµν
+
+The integration is over the whole space on and outside of the horizon. The Gibbs free energy
+is simply G = G0 + ∆G, with ∆G = T0 ∆I. Thus we have
+                 
+                                           N
+                 
+                       N (D − 3)ΣD−2     2
+                                           X r04 − 6a2i r02 + a4i
+                   (−1)              α m                          ,       D = odd;
+                 
+                 
+                             4π                        2 + a2 )3
+                 
+                 
+                 
+                                           i
+                                                b i (r0     i
+           ∆G =                                                                           (26)
+                                           N
+                                             r0 r02 − a2i
+                                                            
+                       N (D − 3)ΣD−2
+                                          X
+                                         2
+                 
+                 (−1)               αm                        ,         D = even,
+                 
+                 
+                              π              bi (r02 + a2i )3
+                 
+                                           i
+
+
+                                              10
+                 (a2i − a2j ). Note that the evaluation of the volume integration in (25) can be very
+             Q
+where bi =
+             j6=i
+involved as the dimensions increase. We first conjectured (26) from the explicit evaluation of
+(25) for D = 5, 6, 7 dimensions, and then verified the formulae for D = 8, 9, 10, 11 dimensions.
+   Since in the grand canonical ensemble, (T, Ωi ) are thermodynamic variables, it is natural
+to treat them as fixed under the perturbation, thus we have
+
+                    T = T0 ,       Ωi = Ωi0 ,        M = M0 + ∆M ,               J i = J0i + ∆J i .        (27)
+
+The perturbed Gibbs free energy satisfies its own first law
+                                                               X
+                                     d∆G = −∆S dT0 −               ∆J i dΩi0 .                             (28)
+                                                               i
+
+This allows us to read off the perturbed entropy ∆S and ∆J i . (See appendix A for details.)
+The perturbed mass is then
+                                          X                                            X
+             ∆M = ∆G + T0 ∆S +                   Ωi0 ∆J i ,    d∆M = T0 d∆S +                Ωi0 d∆J i .   (29)
+                                            i                                            i
+
+However, we can use the Smarr-like relations to determine the ∆M more straightforwardly.
+Owing to the fact that [α] = 2, but it does not participate in the thermodynamic variation, it
+follows ∆G has the scaling dimension of (D − 5) under constant scaling of r and ai discussed
+above (8). Similarly, the scaling dimensions of (∆S, ∆J i ) are both (D − 4). We thus have the
+Smarr-like relations
+                               X                                                 X
+  (D − 5)∆G = T0 ∆S +               Ωi0 ∆J i ,        (D − 5)∆M = (D − 4) T0 ∆S +   Ωi0 ∆J i ) .           (30)
+                               i                                                                i
+
+These lead straightforwardly to
+                                                 ∆M = (D − 4)∆G.                                           (31)
+
+This implies that in the grand canonical ensemble, both perturbed ∆G and ∆M , following
+from (26), are regular in the whole parameter space. For these two quantities, the perturbation
+theory is well defined.
+
+
+3.2     Extremal limit
+
+3.2.1    All equal and nearly all equal angular momenta
+
+The general solution has (N + 1) independent parameters (r0 , ai ). In the extremal T0 = 0
+limit, r0 is fixed as a function of ai . It follows that M and angular momenta are no longer
+independent, but a function of J i . The general case can be too complicated to present. We
+
+
+
+                                                          11
+shall first consider two special cases. The first is when the angular momenta are all equal,
+i.e. ai = a. The uncorrected thermodynamic variables are
+          (D − 2)ΣD−2 ǫ−2 2                              2N                                   a
+    M0 =               r0 (r0 + a2 )N ,    J0 = N J0i =       M0 a ,               Ω0 =            ,
+              16π                                       D−2                               r02 + a2
+           1  N r0         1                ΣD−2
+     T0 =      2    2
+                      −             ,   S0 = 1−ǫ (r02 + a2 )N .                                        (32)
+          2π r0 + a     (ǫ + 1)r0             4r0
+For odd dimensions D = 2N + 1, the leading α perturbation with fixed (T0 , Ω0 ) are given by
+                            (D − 4)(D − 3)ΣD−2 4
+                                                   a − 2(2D − 3)a2 r02 + (D − 2)2 r04 ,
+                                                                                     
+    ∆M = (D − 4)∆G = −α                       5−D
+                             16πr04 a2 + r02 2
+                                            
+                                         D−5
+            αN (D − 1)(D − 3)a a2 + r02 2 ΣD−2  6
+     ∆J = −                                          2a − 7a4 (D − 3)r02
+                    16πr04 2a2 + (D − 3)r02
+                                            
+                                                           
+          −2 D 2 − 5D + 1 a2 r04 + (D − 4) D 2 − 3D + 4 r06 ,
+                           
+
+                               D−5
+            α(D − 3) a2 + r02 2 ΣD−2  6
+     ∆S = −                                4a − a4 (7D − 11)r02
+               4r03 2a2 + (D − 3)r02
+                                     
+                                                       
+          −2(D − 3)(2D − 3)a2 r04 + (D − 5)(D − 2)2 r06 .                               (33)
+
+In even D = 2N + 2 dimensions, we have
+            α(D − 4)(D − 3)(D − 2)ΣD−2 (D − 2)r02 − 2a2
+                                                        
+     ∆M = −                             6−D              ,
+                         16πr0 a2 + r02 2
+           α(D − 4)(D − 3)(D − 2)ΣD−2 a 2a4 + a2 (D − 2)r02 − D 2 − 3D + 4 r04
+                                                                           
+      ∆J =                                                  6−D               ,
+                           16πr0 a2 + (D − 3)r02 a2 + r02 2
+                                                
+
+             α(D − 3)(D − 2)ΣD−2 −2a4 + a2 (8 − 3D)r02 + D 2 − 7D + 10 r04
+                                                                        
+      ∆S = −                                            6−D               .     (34)
+                             4 a2 + (D − 3)r02 a2 + r02 2
+                                              
+
+These quantities are well defined for all r0 > 0, implying that there is no breakdown in the
+perturbative approach for these generic thermodynamic variables. In the extremal limit, with
+T0 = 0, we have
+                                          D−3                  2
+                               Mext = ξJ D−2 (1 + ηαJ − D−2 ) ,                                        (35)
+
+where ξ is given in (12) and we find that η is
+               
+                                  3         D−1
+                                                      2
+                3D−11 (D − 1) D−2 (D − 3) D−2 ΣD−2 D−2 ,
+               
+                                                                                 D = odd;
+                  2(D−2)                          32π
+           η=        1                 D−1        4−D
+                                                            2                                        (36)
+                4 D−2 (D − 4)(D − 3) D−2 (D − 2) D−2 ΣD−2 D−2 ,
+               
+                                                                                 D = even.
+                                                        32π
+
+The odd dimensional result was obtained in [14].
+   As we have discussed, in odd dimensions, there is an additional extremal limit when one
+and only one of the angular momentum vanishes. For simplicity, we set all the non-vanishing
+angular momenta equal, namely
+
+                        aN = 0 ,     ai = a ,        i = 1, 2, . . . , N − 1 .                         (37)
+
+                                                12
+In this paper, we call this as “nearly all equal angular momenta.” In this case, we have
+         (D − 2)ΣD−2 2                                        2(N − 1)                                  a
+   M0 =                 (r0 + a2 )N −1 , J0 = (N − 1)J0i =             M0 a ,                Ω0 =             ,
+             16π                                               D−2                                   r02 + a2
+          (N − 1)r0                ΣD−2
+    T0 =     2    2   ,     S0 =         r0 (r02 + a2 )N −1 .                                                    (38)
+         2π(r0 + ai )                4
+The quadratic curvature corrected thermodynamic variables are
+                 α(D − 4)(D − 3)ΣD−2 2              D−7
+                                           a + r02 2 a4 + 2a2 r02 + (D − 2)2 r04 ,
+                                                                                  
+         ∆M = −                 2
+                          16πr0
+                  aα(N − 1)ΣD−2
+                                       (D − 7)a2 (a2 + 2r02 ) + (D − 4) D 2 − 3D + 4 r04 ,
+                                                                                     
+          ∆J = −                  7−D
+                 8πr02 a2 + r02 2
+                                
+
+                      αΣD−2         
+                                      2a6 + a4 (D − 1)r02 − 2a2 D 2 − 5D + 7 r04
+                                                                             
+          ∆S = −                7−D
+                 4r03 a2 + r02 2 
+                              
+
+                  +(D − 5)(D − 2)2 r06 .                                                                         (39)
+
+In the extremal limit T0 → 0, (r0 → 0), all the perturbed thermodynamic quantities (∆M ,
+∆J, ∆S) are divergent. The leading mass/angular momenta relation (14) therefore cannot be
+extended to the next order, in contrast to (35) for the case of all equal angular momenta. This
+breakdown of the perturbation theory may be too special since the near-horizon geometry,
+given in (16) with (N − 1) ai ’s all equal, is actually singular. After all, when all angular
+momenta are equal, we have seen no divergence at all! We thus examine further examples
+below.
+
+
+3.2.2     D=5
+
+Another example we would like to focus in this grand canonical ensemble is the five dimensional
+rotating black hole. We have ∆M = ∆G and the corrections of the remainder thermodynamic
+quantities are
+                         αa1            
+    ∆J 1 = −                              7r012 + 8a22 − 2a21 r010 − a41 + 25a21 a22 − 11a42 r08
+                                                                                                 
+                     5      2       2 2
+                       Q
+                4T0 r0 i (r0 + ai )                                                                         
+               −2a22 5a41 + 2a21 a22 − a42 r06 − a21 a22 a41 − 15a21 a22 + 5a42 r04 + 6a42 a61 r02 + a61 a62 ,
+                                                                              
+
+    ∆J 2 = ∆J 1          ,
+                     a1 ↔a2
+                     πα           
+                                   7 a21 + a22 r010 − 2 a41 − 15a22 a21 + a42 r08
+                                                                                
+        ∆S =      4
+                    Q     2  2  2
+             2T0 r0 i (r0 + ai )                                                          
+             − a21 + a22 a41 + a42 r06 − 28a41 a42 r04 − 5a41 a42 a21 + a22 r02 + 2a61 a62 .
+                                                                         
+                                                                                                                 (40)
+
+We thus see that all these thermodynamic corrections are divergent in the extremal limit
+with T0 → 0. This implies the breakdown of the perturbative approach at zero temperature,
+where we cannot even have perturbative mass/charge relation for the extremal five-dimensional
+rotating black hole with generic angular momenta. This is a counterexample to [24] that
+
+                                                        13
+suggested that there would have no breakdown for fixed zero temperature. Interestingly, when
+the two angular momenta are equal, corresponding to a1 = a2 , the numerators of the above
+quantities all have a factor that cancels the denominator T0 . We therefore have no divergence
+for all equal angular momenta, and this five dimensional case is just one of the general cases
+discussed earlier.
+   Both divergent examples considered above seem to indicate problems at zero temperature.
+When more than two angular momenta in odd dimensions, or one angular momentum in
+even dimensions vanishes, there is no extremal limit. Are these black holes immune from the
+perturbation breakdown? We examine further examples below.
+
+
+3.3    Perturbative breakdown of at non-zero critical temperature
+
+In the previous subsection, the perturbative approach breaks down at zero temperature for
+the five-dimensional rotating black hole, except when two angular momenta are equal. Such
+breakdowns in fact are a common occurrence in higher dimensions as well, although the critical
+temperature happens not be zero. We shall study this phenomenon in this subsection and
+determine the critical temperature. For simplicity, we first consider a simpler case with all
+angular momenta but one vanish. The non-vanishing thermodynamic quantities of the Ricci-
+flat rotating black hole are
+
+              (D − 2)ΣD−2 D−5 2                         2                       4π
+        M0 =               r0 (r0 + a21 ) ,    J10 =      M0 a1 ,       S0 =       M0 r0 ,
+                  16π                                 D−2                      D−2
+             (D − 3)r02 + (D − 5)a21               a1
+        T0 =            2    2       ,    Ω10 = 2       .                                    (41)
+                 4πr0 (r0 + a1 )               r0 + a21
+
+As was explained earlier, in this case, there can be no extremal limit, and the black hole must
+have non-vanishing temperature. Under the quadratic perturbation with fixed (T0 , Ω10 ), the
+leading order corrections to the thermodynamic variables are
+
+            α(D − 4)(D − 3)ΣD−2 r0D−7        2 4      2   2
+                                                                      2
+   ∆M = −                              (D − 2) r0 + 2a 1 D   − 6D + 6 r0 ,
+                   16π a21 + r02
+                                 
+                        
+           +(D − 4)2 a41 ,
+                    α(D − 3)ΣD−2 r0D−6             
+      ∆S = −                                         (D − 5)(D − 2)2 r06 − (D − 7))(D − 4)2 a61
+            4 a21 + r02 (D − 3)r02 − a21 (D − 5)
+                                               
+                                                                              
+          + D 3 − 11D 2 + 32D − 24 a21 r04 − D 3 − 13D 2 + 48D − 44 a41 r02 ,
+                                                                        
+
+               α(D − 4)(D − 3)ΣD−2 a1 r0D−7          
+   ∆J 1 = −                                            −D 2 + 3D − 4 r06
+                                                                      
+                  2    2    2                    2
+                                                  
+            8π a1 + r0 a1 (D − 5) − (D − 3)r0                                 
+          − D 2 − 5D − 4 a21 r04 + (D − 4)(D − 3)a41 r02 + (D − 5)(D − 4)a61 .
+                           
+                                                                                             (42)
+
+
+
+
+                                               14
+We see that as was understood there is no divergence in ∆M for all the parameters. However,
+both ∆S and ∆J 1 become singular when we have r = r∗ , with the critical radius
+                                        q
+                                   r∗ = D−5
+                                          D−3 a1 ,                                                        (43)
+
+for which the temperature and angular velocity given by
+                           √
+                             D − 5(D − 3)3/2
+                                                 p
+                                                   (D − 5)(D − 3) 1
+                     T∗ =                     =                  Ω0 .                                     (44)
+                              4π(D − 4)a1               2π
+Thus, we clearly see an example in all dimensions higher than 5 that the perturbative approach
+breaks down at certain specific non-zero temperature. This raises a question: how can we de-
+termine this temperature? The divergence is, in fact, already rooted in the original uncorrected
+thermodynamics. It follows from the perturbed first law (28) that
+                                        ∂∆G                               ∂∆G
+                              ∆S = −             ,            ∆J 1 = −            ,                       (45)
+                                         ∂T0 Ω10                          ∂Ω10 T0
+
+Note that ∆G = ∆G(r0 , a1 ), T0 = T0 (r0 , a1 ) and we can express a1 either as a1 = a1 (r0 , Ω10 )
+or as a1 = a1 (r0 , T0 ). Therefore, we have
+                      ∂∆G           . ∂T                              ∂∆G          . ∂Ω1      
+                                              0
+            ∆S = −                                   ,        ∆J 1 = −                        0
+                                                                                                      .   (46)
+                        ∂r0    Ω10       ∂r0 Ω0   1                         ∂r0    T0       ∂r0 T0
+We see that the divergence is already encoded in the unperturbed thermodynamics, namely
+                                                    ∂Ω1
+the zeros of the two quantities ∂T0
+                                ∂r0        1
+                                             and ∂r00          . It is straightforward to verify that we have
+                                         Ω0               T0
+
+                 ∂T0                  . ∂Ω1                    ∂Ω10                . ∂T
+                                   1                                                   0
+                         = {T0 , Ω 0 }     0
+                                               ,                      = {Ω10 , T0 }        .              (47)
+                 ∂r0 Ω10                 ∂a r0                 ∂r0 T0                ∂a r0
+Here, {f, g} is the Poisson bracket with respect to variables (r0 , a1 ). Thus the vanishing of
+
+                                                  a2 (D − 5) − (D − 3)r02
+                                {T0 , Ω10 } =                        2   ,                               (48)
+                                                      4πr02 a2 + r02
+
+corresponding to (43), is precisely where the perturbation breaks down. It is of interest to note
+that now we have a simple way to calculate ∆S and ∆J01 , given by
+
+                                       {∆G, Ω10 }                         {∆G, T0 }
+                          ∆S = −                    ,          ∆J01 = −               .                   (49)
+                                        {T0 , Ω10 }                       {Ω10 , T0 }
+   However, for general configurations of the angular momenta, we cannot adopt the above
+Poisson bracket. Nevertheless, there is still a simple way to derive the critical point, which
+corresponds to having dT0 and all dΩi0 vanish. Introducing X µ = (T0 , Ωi0 ) and xµ = (r0 , ai ),
+the critical point is located at the vanishing of the determinant of the (N + 1) × (N + 1) matrix
+Mµν , namely
+                                                                        ∂X µ
+                                 det(M µ ν ) = 0 ,             M µν ≡        .                            (50)
+                                                                        ∂xν
+
+                                                         15
+For our thermodynamic variables (5), the above condition implies that the following factor Z
+must vanish, namely
+                                                 1    X r2
+                                                            ∗
+                             det(Mµν ) ∼ Z ≡        −            = 0.                               (51)
+                                                ǫ+1    r∗2 − a2i
+                                                           i
+
+Thus the critical temperature is
+                                                   N
+                                             r0 X 2a2i
+                                        T∗ =               .                                        (52)
+                                             2π  a4i − r∗4
+                                                  i=1
+
+That the critical temperature T0∗ is positive is not obvious, and it is the indication that r∗
+is indeed the event horizon of the black hole. This is because, as we discussed earlier, for
+given (m, ai ) parameters, there can be one positive horizon r+ or at most two positive horizons
+r− ≤ r+ , with T0 (r− ) < 0 and T0 (r+ ) > 0.
+    Note that when ai ’s are all equal, then X has no real roots. This is precisely the case we
+considered earlier, with no perturbative breakdown. However, the breakdown does occur for
+other general ai configurations. We have not been able to prove that the breakdown condition
+would always lead to T∗ ≥ 0, but we have tried many randomly selected ai to confirm this
+numerically. Here, we illustrate this with a concrete example. We consider D = 7 and hence
+N = 3.
+    As an example for illustration, we choose ai = i. The condition X = 0 gives two positive
+r∗ , namely r∗ = 2.5661 and r∗ = 1.3689. Both corresponding T∗ are positive, indicating that
+r∗ = r+ , i.e. the event horizon. In table 1, we present the relevant data of the black holes for
+the two r∗ ’s. These two are perfectly well-defined rotating black holes, but do not accept the
+perturbation, which would diverge.
+
+                             r∗         T∗          m              r+            r−
+                           2.5661    0.056612    95.008    2.5661              0.5121
+                           1.3689    0.016671    48.979    1.3689              1.06294
+
+Table 1. The two perturbative breakdowns for given (a1 , a2 , a3 ) = (1, 2, 3) in D = 7. In each case, we
+have r∗ = r+ , the event horizon, which is consistent with T∗ > 0.
+
+
+
+4    Corrections in the canonical ensemble
+
+Thermodynamic potential of the canonical ensemble is the Helmholtz free energy, given by
+                                                           X
+                                    F = M − TS = G +                Ωi J i .                        (53)
+                                                               i
+
+
+
+
+                                                   16
+We cannot directly calculate this free energy using the Euclidean action approach, but can
+via the above Legendre transformation after having obtained the Gibbs free energy. The
+corresponding first law is
+                                                       X
+                                        dF = −SdT +            Ωi dJ i .                         (54)
+                                                       i
+
+Thus we should keep the thermodynamic variables (T, J i ) = (T0 , J0i ) fixed under the quadratic
+curvature correction. This can be achieved by making appropriate redefinition of the parame-
+ters (r0 , ai ) at the linear α order
+
+                               r0 → r0 + α∆r0 ,        ai → ai + α∆ai .                          (55)
+
+In the grand canonical ensemble we studied in the previous section, we have obtained T = T0
+and J i = J0i + ∆J i , both as functions of (r0 , ai ). Substituting (55) into (T, J i ) and requiring
+(T, J i ) = (T0 , J0i ) at the linear α order, we can solve for (∆r0 , ∆ai ). We thus obtain the
+remaining (corrected) thermodynamic quantities. The first law of these corrected variables is
+                                                       X
+                                   d∆F = −∆SdT0 +               ∆Ωi dJ0i .                       (56)
+                                                           i
+
+It is easy to show that the generalized Smarr relation in this ensemble is
+                                                                    X
+                             (D − 5)∆F = ∆S T0 + (D − 4)                   ∆Ωi J0i .             (57)
+                                                                      i
+
+The general expressions for all the corrected thermodynamic variables can be very complicated,
+and we present only some special cases.
+
+
+4.1    All equal angular momenta
+
+The system simplifies when all angular momenta are equal, with ai = a and J = N Ji . In odd
+dimensions, we have
+                                         D−5
+               α(D − 3)ΣD−2 a2 + r02 2                   
+∆M =                                                      2a8 (D + 2)
+     16πr04 2a4 D + a2 (D 2 − 3D + 6) r02 − (D − 3)r04
+                                                       
+
+     +a6 5D 2 − 47D + 66 r02 − a4 2D 3 − 39D 2 + 153D − 152 r04
+                                                                 
+                                                                            
+     +a2 (D − 4) D 3 − 11D 2 + 36D − 34 r06 + (D − 2)2 (D − 3) (D − 4) r08 ,
+                                           
+                                       D−3
+              α(D − 3)ΣD−2 a2 + r02 2                 
+∆S = 3                                                  − 2a6 (D + 1)
+     4r0 2a4 D + a2 (D 2 − 3D + 6) r02 − (D − 3)r04
+                                                    
+                                                                               
+     +3a4 (7D − 11)r02 + 2a2 D 3 − 7D 2 + 23D − 23 r04 + (D − 5)(D − 2)2 r06 ,
+                                                      
+                                                                                   (58)
+     α(D − 3)a 2a6 − 7a4 (D − 3)r02 − 2a2 D 2 − 5D + 1 r04 + (D − 4) D 2 − 3D + 4 r06
+                                                                                    
+∆Ω =                                                                                    .
+                  r02 a2 + r02 2 −2a4 D − a2 (D 2 − 3D + 6) r02 + (D − 3)r04
+                                                                            
+
+
+
+                                                  17
+We see that the critical divergent point r∗ is given by
+
+                         (D − 3)r∗4 − D 2 − 3D + 6 a2 r∗2 − 2Da4 = 0 .
+                                                  
+                                                                                            (59)
+
+In even dimensions, we have similar results
+
+            α(D − 4)(D − 3)(D − 2)ΣD−2 2a4 − a2 (D − 4)r02 + (D − 3)(D − 2)r04
+                                                                                   
+       ∆M =                                                                    4−D ,
+              16πr0 a4 (D − 1) + a2 (D 2 − 4D + 6) r02 − (D − 3)r04 a2 + r02 2
+                                                                    
+
+            α(D − 3)(D − 2)ΣD−2 6a4 + a2 2D 2 − 9D + 16 r02 + (D − 5)(D − 2)r04
+                                                                                      
+       ∆S =                                                                   4−D      ,
+                 4 a4 (D − 1) + a2 (D 2 − 4D + 6) r02 − (D − 3)r04  a2+ r02 2
+                                                                   
+
+            α(D − 4)(D − 3)a 2a4 + a2 (D − 2)r02 − D 2 − 3D + 4 r04
+       ∆Ω =           2                                                  .              (60)
+             a2 + r02    a4 (D − 1) + a2 (D 2 − 4D + 6) r02 − (D − 3)r04
+
+The critical divergent point r∗ is thus determined by
+
+                       (D − 3)r∗4 − D 2 − 4D + 6 a2 r∗2 − (D − 1)a4 = 0 .
+                                                
+                                                                                            (61)
+
+Both examples gives non-vanishing critical temperature T∗ = T0 (r∗ , a) > 0.
+
+
+4.2     Nearly all equal angular momenta
+
+In odd dimensions, there is a case of nearly all equal angular momenta, defined by (37). We
+find
+                                              D−7
+                    α(D − 3)ΣD−2 a2 + r02 2  6
+               ∆M =                                  3a (D − 2) + a4 (5D − 8)r02
+                      16πr02 r02 − a2 (D − 2)
+                                               
+                                                                         
+                    −a2 (D − 4) D 2 − 2D + 2 r04 − (D − 4)(D − 2)2 r06 .
+                                                 
+                                     D−5
+                    αΣD−2 a2 + r02 2  6
+               ∆S = 3 2                  2a (D − 2) + 3a4 (D − 1)r02
+                    4r0 r0 − a2 (D − 2)                                    
+                    −2a2 D 3 − 6D 2 + 11D − 9 r04 − (D − 5)(D − 2)2 r06 ,
+                                                   
+
+                    aα (D − 7) a4 + 2a2 r02 + (D − 4) D 2 − 3D + 4 r04
+                                                                        
+               ∆Ω =                                                          ,              (62)
+                                r02 a2 + r02 2 r02 − a2 (D − 2)
+                                                               
+
+The divergent critical r∗ is
+                                               √
+                                        r∗ =       D − 2a ,                                 (63)
+
+for which T0 (r∗ ) is some positive value. Note that in the grand canonical ensemble, the
+divergence occurs at zero temperature for this charge configuration.
+
+
+4.3     Single angular momentum
+
+Another simpler example is to consider single angular momentum. We have
+
+                       α(D − 3)(D − 4)ΣD−2 r0D−7                 
+   ∆M = −                                                         (D − 8)(D − 5)(D − 4)a8
+              16π(a2 + r02 )(3(D − 5)a4 − 6a2 r02 + (D − 3)r04 )
+
+                                               18
+           +2(2D 3 − 27D 2 + 106D − 114)a6 r02 + 2(3D 3 − 32D 2 + 98D − 82)a4 r04
+                                                                      
+           +2(2D 3 − 17D 2 + 46D − 38)a2 r06 + (D − 2)2 (D − 3)r08 ,
+                     α(D − 3)ΣD−2 r0D−6            
+      ∆S = −                                        (D − 11)(D − 4)2 a6 + (D − 2)2 (D − 5)r06
+             4(3(D − 5)a4 − 6a2 r02 + (D − 3)r04 )                              
+           +3(D 3 − 13D 2 + 48D − 44)a4 r02 + (3D 3 − 29D 2 + 96D − 88)a2 r04 ,
+                           α(D − 3)(D − 4)a                   
+      ∆Ω = 2 2                                                  (−D 2 + 9D − 20)a6
+           r0 (r0 + a2 )2 3(D − 5)a4 − 6a2 r02 + (D − 3)r04
+                                                            
+                                                                              
+                2             4 2      2              2 4        2          6
+           −(D − 7D + 12)a r0 + (D − 5D − 4)a r0 + (D − 3D + 4)r0 .                         (64)
+
+The critical temperature T0 (r∗ ) is determined by
+
+                                  (D − 3)r∗4 − 6a2 r∗2 + 3(D − 5)a4 = 0 .                         (65)
+
+
+4.4     General case
+
+In all above examples, we have effectively two independent parameters, (r0 , a). We can use
+the Poisson bracket method to calculate all the corrected thermodynamic quantities. For the
+general case with (r0 , ai ), the critical temperature can be determined by the (N + 1) × (N + 1)
+matrix, defined as follows. We set Y µ = (T0 , J0i ) and xµ = (r0 , ai ), and define the matrix
+
+                                                      ∂Y µ
+                                              Nµν ≡        .                                      (66)
+                                                      ∂xν
+
+The critical temperature of divergence is determined by
+                                                                 N
+                                                   D−2         X     a2i        πT0
+                det(Nµν ) = 0 ,        →                                      =     .             (67)
+                                               D − 2 − 4πr0 T0   (r0 + a2i )2
+                                                                 i
+                                                                   2             r0
+
+Thus we see that zero temperature T0 = 0 cannot be a solution of the above equation. Fur-
+thermore, if there is a real solution r0 = r∗ , then T0 (r∗ ) must be positive, indicating that
+the corresponding r∗ is indeed the outmost horizon, i.e. the event horizon. While we cannot
+prove that (67) must have a real solution for given set of ai ’s, the explicitly examples we have
+already discussed illustrate that such a real solution generally exists, giving rise the critical
+point where the linear perturbation approach breaks down.
+
+
+5      Corrections with fixed mass and angular momenta
+
+5.1     Corrections and zero-temperature divergence
+
+It is natural to consider higher-order curvature corrections to black holes with fixed conserved
+quantities, such as mass and angular momenta. The thermodynamic potential for such a
+
+
+                                                    19
+system is the entropy, with the first law
+
+                                            1      X Ωi
+                                     dS =     dM +      dJ i .                                 (68)
+                                            T        T
+                                                      i
+
+With (M, J i ) = (M0 , J0i ) fixed under the perturbation, the first law for the remainder corrected
+thermodynamic variables is
+                                                      X
+                              ∆T dS0 + T0 d∆S +           ∆Ωi dJ0i = 0 .                       (69)
+                                                      i
+
+This implies a Smarr-like relation
+                                     X        
+                      (D − 2) ∆T S0 +   ∆Ωi J0i + (D − 4)T0 ∆S = 0 .                           (70)
+                                            i
+
+The divergent critical temperature is at vanishing temperature, T∗ = 0. This can be seen from
+the theorem proved in [15] that for fixed mass and angular momenta, one has
+
+                                                          ∆G
+                                       ∆S = −∆I =            ,                                 (71)
+                                                          T0
+
+∆G, given in (26), are regular for all (r0 , ai ). Thus we see that ∆S is singular at zero T0 .
+Substituting the above into (69), we have
+                                      X                   ∆G
+                           ∆T dS0 +         ∆Ωi ∆J0i =       dT0 − d∆G .                       (72)
+                                                          T0
+                                       i
+
+This, together with (70), implies that ∆T and ∆Ωi are also singular at T0 = 0. This breakdown
+was also observed in [19, 24], where the origin was understood that for fixed mass and charge,
+zero temperature cannot be reached. It was suggested [24] that the divergence will disappear
+for fixed temperature. The fact that fixed mass and charge cannot reach zero temperature
+in itself does not necessarily imply that it has to diverge, and we had the D = 5 example in
+section 3 where the correction is divergent even for the case at fixed zero temperature.
+   As we have discussed in section 2, except for all equal angular momenta or nearly all equal
+angular momenta cases, extremal limits do not exist and hence the perturbative breakdown will
+not occur for fixed mass and angular momenta. For example, for the single angular momentum
+case, we have
+
+                         2α(D − 4)(D − 3)a                    
+    ∆Ω = −                      3                               (D − 4)(D − 5)a6
+                   2         2                            2
+                                                           
+                       2
+           (D − 2)r0 a + r0         2
+                                   a (−5 + D) + (−3 + D)r0        
+         + 10 − 11D + 2D a r0 + D(D − 3)a2 r04 − (D − 2)r06 ,
+                           2
+                              4 2
+
+                          α(D − 3)(D − 4)                  
+    ∆T = −           3   2      2 3   2                2
+                                                              (D − 8)(D − 5)(D − 4)a8
+           4(D − 2)πr0 (a + r0 ) a (D − 5) + (D − 3)r0
+         +2(−114 + D(106 + D(2D − 27)))a6 r02 + 2(−82 + D(98 + D(3D − 32)))a4 r04
+
+                                                 20
+                                                                    
+           +2(−38 + D(46 + D(2D − 17)))a2 r06 + (D − 3)(D − 2)2 r08
+              α(D − 3)ΣD−2 r0D−6             2 4                2
+                                                                    2 2          2 4
+                                                                                      
+      ∆S =                             (D − 4) a  + 2 6 − 6D + D    a r0 + (D − 2) r0 . (73)
+           4(a2 (D − 5) + (D − 3)r02 )
+For D = 4, 5, the T0 = 0 extremal limit exists, where divergence occurs, but as we expected,
+there is no divergence for D ≥ 6.
+   For all equal angular momentum, in odd dimensions, we have
+
+                            α(D − 3)                    
+                                                                   8
+      ∆T = −                      3                    2(D + 2)a
+                       3  2
+            4π(D − 2)r0 a + r0  2              2
+                                      (D − 3)r0 − 2a 2
+
+           + 5D 2 − 47D + 66 a6 r02 − 2D 3 − 39D 2 + 153D − 152 a4 r04
+                                                                   
+                                                                              
+           +(D − 4) D 3 − 11D 2 + 36D − 34 a2 r06 + (D − 4)(D − 3)(D − 2)2 r08 ,
+                                             
+
+                                    D−3
+           α(D − 3)ΣD−2 a2 + r02 2 a4 − 2(2D − 3)a2 r02 + (D − 2)2 r04
+                                                                       
+      ∆S =                                                               ,
+                               4r03 (D − 3)r02 − 2a2
+                                                      
+
+           2α(D − 3)a 2a6 + (1 − 2D)a4 r02 + 2(D − 3)(D − 1)a2 r04 + (D − 4)(D − 2)r06
+                                                                                       
+      ∆Ω =                                      3                                       .(74)
+                            (D − 2)r02 a2 + r02    (D − 3)r02 − 2a2
+                                                                    
+
+The expressions in even dimensions are simpler
+
+                     α(D − 4)(D − 3) 2a4 − (D − 4)a2 r02 + (D − 3)(D − 2)r04
+                                                                             
+              ∆T = −                                                           ,
+                                4πr0 a2 + r02 2 (D − 3)r02 − a2
+                                                               
+                                                 D
+                   α(D − 3)(D − 2)ΣD−2 a2 + r02 2 −2 (D − 2)r02 − 2a2
+                                                                      
+              ∆S =                                                      ,
+                                    4 (D − 3)r02 − a2
+                                                      
+
+                         2α(D − 4)(D − 3)ar02
+              ∆Ω =                                .                                      (75)
+                       a2 + r02 2 (D − 3)r02 − a2
+                               
+
+In both cases, as we have expected, the critical temperature for divergence is zero. For the
+nearly all equal angular momentum case, we have
+
+                              α(D − 3)       
+                                                        6             4 2
+                ∆T =                       3 3(D − 2)a + (5D − 8)a r0
+                                 3  2
+                       4π(D − 2)r0 a + r02
+                                                                         
+                       −(D − 4) D 2 − 2D + 2 a2 r04 − (D − 4)(D − 2)2 r06 ,
+                                             
+
+                       αΣD−2 2     2
+                                      D−5 4
+                                           a + 2a2 r02 + (D − 2)2 r04 ,
+                                                                     
+                ∆S =      3  a + r0
+                                        2
+                        4r0
+                       2aα a4 (2D − 5) + 2a2 (2D − 5)r02 − (D − 4)(D − 2)r04
+                                                                             
+                ∆Ω = −                                     3                  .          (76)
+                                       (D − 2)r02 a2 + r02
+
+5.2     On the sign of ∆S
+
+It was pointed out that for the system with fixed mass, angular momenta and charges, one
+should expect ∆S > 0 for stable thermodynamics [19]. We have already pointed it out ear-
+lier that Myers-Perry black holes have unstable thermodynamics for all allowed parameters,
+if we consider mass and all angular momenta as thermodynamic variables. In black hole
+
+                                                21
+thermodynamics, stability is rather rare. Even for the Reissner-Nordström (RN) black hole,
+its thermodynamics cannot be stable if both mass and charge are treated as thermodynamic
+variables, since the product of the specific heat capacity and charge capacitance is always
+negative [13]. One way to resolve this instability issue for the RN case is to fix the charge to
+a specific value so that it does not involve in the thermodynamic process, in which case, the
+specific heat capacity with fixed Q is positive for low temperature. We can follow the same
+strategy, and fix all the angular momenta to some appropriate specific values to extract them
+from the thermodynamic process. As an example, for simplicity, we consider the case with all
+equal angular momenta Ji = J/N . For odd dimensions with D = 2N + 1, we find that the
+specific heat capacity is
+                                                              D+3
+                        ∂M0        π(D − 2)ΣD−2 a2 + r02 2 T0
+                   CJ =       =                                           .                (77)
+                        ∂T0 J   2Da4 + (D 2 − 3D + 6) a2 r02 − (D − 3)r04
+We see that for low temperature, or equivalently smaller r0 , CJ is positive. The thermody-
+namics is stable when r0 lies in the range
+
+       2a2                     D 2 − 3D + 6 +
+                                                  p
+                                                       (D − 2)(D − 1) (D 2 − 3D + 18) 2
+           ≡ r†2 ≤ r02 ≤ r♯2 ≡                                                       a .   (78)
+      D−3                                                2(D − 3)
+Here r† is the radius parameter of the extremal black hole (T0 = 0). Beyond r♯ , the capacity is
+negative and the thermodynamics becomes unstable. On the other hand, it follows from (74),
+the sign of ∆S/α in the full ranges of thermodynamic stability is given by
+
+                         2a2
+                                                        p
+            ∆S                      2    2   (2D − 3) + (D − 1)(3D − 5) 2
+               <0:              ≤ r 0 < r‡ ≡                               a < r♯2 ,
+             α          D−3                            (D − 2)2
+            ∆S
+               >0:     r‡2 < r02 ≤ r♯2 .                                                   (79)
+             α
+Thus we see that ∆S cannot be always positive in the stability region regardless the sign choice
+of the coupling constant α.
+   In even D = 2N + 2 dimensions with all equal angular momenta, the story is similar. We
+have the specific heat capacity
+                                                          D +1
+                               π(D − 2)ΣD−2 r0 a2 + r02 2 T0
+                      CJ = 4                                             ,                 (80)
+                          a (D − 1) + (D 2 − 4D + 6) a2 r02 − (D − 3)r04
+which implies that the the thermodynamic is stable in the following parameter region:
+                                                              √
+              a2      2     2   2   6 − 4D + D 2 + (−2 + D) 12 − 4D + D 2 2
+                   ≡ r† ≤ r0 ≤ r♯ ≡                                         a .            (81)
+            D−3                                     2(D − 3)
+It follows from (75) that ∆S can change its sign when r0 crosses over r‡ , with
+
+                                                   2a2
+                                    r†2 < r‡2 ≡        < r♯2 .                             (82)
+                                                  D−2
+
+                                                  22
+We thus find counterexamples of [19], although it can be argued that it is much more difficult
+to fix the angular momenta than the electric charges in a thermodynamic process. A coun-
+terexample to [19] with varying angular momenta was found in the higher-derivative correction
+in supergravity [26].
+
+
+6    Kerr black hole under cubic curvature correction
+
+The quadratic curvature correction in four dimensions is trivial, we thus consider the cubic
+corrections for this special dimensions. There are two cubic Riemann tensor polynomials,
+namely
+                        √                                                    
+                 ∆L =       −g R + βRijkl Rji mn Rnmlk + γRijkl Rm i n k Rjmln .               (83)
+
+In four dimensions, however, the cubic Lovelock combination, corresponding to setting 2β =
+γ, vanishes identically. Thus, there is only one nontrivial cubic curvature invariant at the
+perturbative order in four dimensions, namely α = 2β − γ 6= 0. The cubic correction to the
+thermodynamic of the Kerr metric was studied in [15], but we here have a different emphasis.
+For the grand conical ensemble with fixed (T, Ω) under the perturbation, we have
+                                     r02 − a2                          a
+                    T = T0 =                       ,        Ω = Ω0 =   ,
+                                  4πr0 (r02 + a2 )            r02 + a2
+                       r02 + a2 α a6 − 21a4 r02 + 35a2 r04 − 7r06
+                                                                   
+                   M =          +                       3           ,
+                          2r0            14r03 a2 + r02
+                                    απ 3a6 − 21a4 r02 − 35a2 r04 + 21r06
+                                                                         
+                           2    2
+                   S = π(r0 + a ) −                          3            ,
+                                               7r02 a2 + r02
+                       r02 + a2    αa 9a4 − 14a2 r02 − 7r04
+                                                            
+                   J =          a−                  3        .                                (84)
+                          2r0          7r0 a2 + r02
+In the canonical ensemble with fixed (T0 , J0 ), the corrected thermodynamic variables are
+                          2αa 9a4 − 14a2 r02 − 7r04
+                                                      
+               ∆Ω = −             3                      ,
+                       7 a2 + r02     3a4 + 6a2 r02 − r04
+                      α 3a10 − 21a8 r02 − 42a6 r04 + 126a4 r06 − 105a2 r08 + 7r010
+                                                                                   
+              ∆M =                               3                                  ,
+                                 14r03 a2 + r02     3a4 + 6a2 r02 − r04
+                                                                        
+
+                      απ −9a8 + 90a6 r02 + 196a4 r04 − 266a2 r06 + 21r08
+                                                                          
+               ∆S =                        2                               .              (85)
+                             7r02 a2 + r02      3a4 + 6a2 r02 − r04
+                                                                    
+
+For fixed (M, J) = (M0 , J0 ), we have
+         α a9 − 38a5 r04 + 56a3 r06 − 35ar08             απ a6 − 21a4 r02 + 35a2 r04 − 7r06
+                                                                                           
+    ∆Ω =                              5       ,  ∆S =                                2      .
+            7r02 −a2 + r02 a2 + r02                          7r02 −a2 + r02 a2 + r02
+                                                                           
+
+           α 3a10 − 21a8 r02 − 42a6 r04 + 126a4 r06 − 105a2 r08 + 7r010
+                                                                        
+    ∆T = −                                            5                  .                     (86)
+                       28πr03 −a2 + r02 a2 + r02
+                                           
+
+
+                                                       23
+In all these examples, whether the corrected thermodynamic quantities are divergent or not
+depends on the original uncorrected thermodynamic variables, as was discussed in higher di-
+mensional cases. The cubic extension follows the same rule.
+    It is worth pointing out again that the specific heat capacity is
+                                          8π 2 r0 a2 + r02 3
+                                                          
+                                    CJ = 4                   .                            (87)
+                                          3a + 6a2 r02 − r04
+We therefore have stable thermodynamics for the fixed angular momentum in the following
+parameter region.
+                                                      √ 
+                                 a2 ≤ r02 ≤ r♯2 ≡ 3 + 2 3 a2 .                            (88)
+
+However ∆S is not positive definite in the stable region. ∆S charges its sign when r0 cross
+over r‡ ∼ 2.077a.
+
+
+7    Divergence is a perturbative artefact: an explicit example
+
+In the previous sections, we considered quadratic curvature corrections to thermodynamic
+quantities of Myers-Perry black holes in diverse dimensions. We found that for different ther-
+modynamic ensembles, there are all inevitable divergences for generic parameters that break
+down the perturbative approach. It is natural to ask the question: are these breakdowns real
+or the artefact of perturbation? There are plenty of examples of the linear perturbative con-
+clusions that do not survive the full nonlinear level. For example, AdS spacetime is stable
+under the linear perturbation, but unstable at the nonlinear level [41]. The horizon of higher-
+dimensional rotating black hole at the extremal limit can be destroyed perturbatively [14].
+Extremal charged black hole in Einstein-Born-Infeld gravity is superradiantly unstable no
+matter how small the Born-Infeld coupling is, although perturbatively it is stable [42]. It is
+thus necessary to examine our perturbative divergence at the full nonlinear level.
+    There exist exact solutions of spherically-symmetric and static black holes in Einstein
+gravity extended with higher-derivative corrections. A notable example is charged black hole
+in Einstein-Maxwell gravity extended with a Gauss-Bonnet term, which is nontrivial only in
+D ≥ 5. To illustrate our point, it is suffice to consider only D = 5. The generalized RN black
+hole is given by the metric profile function [43]
+                                               r            !
+                                      r2          8αµ 4αq 2
+                            f =1+          1− 1+ 4 − 6        .                           (89)
+                                      2α           r   r
+
+The solution is parametrized by integration constants (µ, q), associated with the mass and
+electric charge                                            √
+                                    3π                      3
+                                 M=    µ,           Qe =      πq .                        (90)
+                                     4                     4
+
+                                               24
+For simplicity, we shall simply call (µ, q) as the mass and charge respectively. The remainder
+of thermodynamic quantities (T, S, Φe ) are
+                                                                               √
+                        r04 − q 2             1                                  3q
+                                           S = π 2 r0 r02 + 6α ,
+                                                              
+                T =                ,                                   Φe =        ,           (91)
+                    2πr03 2α + r02            2                                 r02
+
+where horizon r0 is understood to be the largest root of its rational polynomial relation to the
+mass and charge:
+                                          1
+                                              r04 + q 2 + αr02 .
+                                                              
+                                    µ=      2                                                   (92)
+                                         2r0
+We now consider the case that the conserved quantities, the mass and charge, are fixed. We
+can express r0 , the largest root as a function of (µ, q):
+                                  r                          
+                                                 p
+                             r0 = 12 2µ − α + (2µ − α)2 − 4q 2 .                                (93)
+
+We thus have
+                            √                        √
+                           2y                     π 2 2µ − α + y(2µ + 11α + y)
+          T =    √                      ,   S=                 √               ,
+              π 2µ
+                 √ − α + y(2µ + 3α + y)                       4 2
+                2 3q             p
+         Φe =            ,    y = (2µ − α)2 − 4q 2 .                                            (94)
+              2µ − α + y
+
+The extremal limit corresponds to taking µ = µext with
+
+                                          µext = q + 12 α .                                     (95)
+
+We thus see that the thermodynamic variables are well behaved for all µ ≥ µext . Note that for
+α = 0, the extremal limit is µ0ext = q. For positive α, µ can exceed µ0ext ; for negative α, it can
+not reach µ0ext . In either cases, there is no divergence in the vicinity of µ0ext even for small α.
+   We now pretend that there is no such full nonlinear exact solution and can only study these
+thermodynamic variables perturbatively order by order in α. For fixed (µ, q), we have
+                                       p                         
+               p
+                   2    2           α   µ     µ 2 − q 2 − 7µ + 5q 2
+                 µ −q                                                         2
+                                                                                
+      T =       p         3/2
+                                +     p                 p        5/2
+                                                                       + O  α     ,
+          π µ + µ2 − q 2           4π µ2 − q 2 µ + µ2 − q 2
+                                           q       p            p             
+                                     3π 2 α   µ +     µ 2 − q 2 7 µ2 − q 2 − µ
+          1       p          3/2
+      S = π 2 µ + µ2 − q 2                                                        + O α2 ,
+                                                                                        
+                                   +                    p
+          2                                            8 µ2 − q 2
+              √                        √
+                3q                       3αq
+                                                           + O α2 .
+                                                                  
+     Φe =    p          + p             p                                                  (96)
+          µ+ µ −q2    2         2     2     2
+                          2 µ − q ( µ − q + µ)     2
+
+
+Thus we see that at the linear α’th order, the correction is divergent at the zero temperature,
+corresponding to µ0ext = q. It can be easily seen from the full nonlinear result that this
+divergence occurs at all perturbative orders of α.
+
+
+                                                 25
+    The origin of this divergence can also be understood at the level of the metric function (89),
+which is a smooth function from the asymptotic infinity to the outer horizon, given by (93).
+Now if we use the perturbative approach, for fixed (µ, q), up to and including the α order, we
+have                                                       2
+                               2µ q 2    q 2 − 2µr 2
+                          f =1− 2 + 4 +α                        + O(α2 ) .                   (97)
+                               r   r          r 10
+The outer horizon location is thus given by
+
+                                                 α
+                           q      p                             
+                      r0 = µ + µ2 − q 2 1 − p            + O(α2 ) .                          (98)
+                                              4 µ2 − q 2
+
+This clearly shows that the perturbative approach breaks down in the extremal or near extremal
+(µ − q) ∼ α region, while the full nonlinear result (93) is perfectly regular.
+    While we do not have exact solutions of rotating black holes in Einstein gravity extended
+with quadratic or more general higher-order derivative terms, we expect that the divergence
+we explored in this paper is an artefact of perturbation, indicating a breakdown only of the
+perturbative approach. The divergence may not necessarily exist in the full nonlinear level.
+
+
+8      Conclusions
+
+In this paper, we began a review of Myers-Perry rotating black holes in diverse dimensions.
+We presented a simple analytic proof that the rotating black holes in even dimensions are all
+thermodynamically unstable. Specifically, we showed that the trace of the corresponding ther-
+modynamic metric has an elegant expression (21) and it is manifestly non-positive. However,
+for odd dimensions, we have to employ numerical analysis to prove the instability. We also
+found that the specific heat capacity of fixed angular momenta was positive at low temperature,
+including the extremal limit. This implies that the thermodynamics could be stable for the
+reduced system where all the angular momenta are fixed to some appropriate specific values
+and hence extracted from the thermodynamic process. We also found that in odd dimensions
+when one and only one angular momentum vanishes, there existed an intriguing decoupling
+limit of extremal solutions whose geometry (16) has an unusual AdS3 embedding.
+    Our main focus was to carry out the derivation of the quadratic curvature corrections to the
+black hole thermodynamics of Myers-Perry solutions in general dimensions. We obtained an
+elegant result (26), which allowed us to discuss various properties of black hole thermodynamics
+under the higher-derivative correction. We focused on one particular aspect of this perturbative
+approach: when does it break down? By breakdown, we mean that the correction becomes
+divergent so that no matter how small the coupling constant α is, the results cannot be trusted.
+
+
+
+                                               26
+   Intriguingly, in the grand canonical ensemble, when the angular momenta are all equal,
+there is no such breakdown. However, for generic parameters, or in other ensembles, break-
+downs are common occurrences. We find that in this perturbative approach, the breakdowns
+are fully determined by the thermodynamics of the original uncorrected variables. Specifically,
+we assume that in a certain thermodynamic system, such as the canonical or grand canonical
+ensembles, the original uncorrected thermodynamic variables are X µ , which are functions of
+parameters xµ , (with x0 = r0 ,) we can define a matrix M µν by
+
+                                      dX µ = M µ ν dxν .                                  (99)
+
+The breakdown then could occur at det(M µ ν ) = 0, since this quantity appears in the denom-
+inator of the corrected thermodynamic quantities. This provides a convenient early warning
+of the perturbative approach. It should be emphasized that this is only a necessary condition,
+but not sufficient. As we discussed in section 3, there existed a rare example in the grand
+canonical ensemble that the numerator would cancel this zero precisely when all the angular
+momenta were nonzero and equal, thereby avoiding the breakdown. Applying this condition
+to the Myers-Perry black holes, we have the condition (51) for the grand canonical ensemble,
+and (67) for the canonical ensemble. It follows from (67) that the critical temperature T∗ can
+never be zero in the canonical ensemble, whilst breakdown always occurs at zero temperature
+for the system with fixed mass and angular momenta. For the grand canonical ensembles,
+critical temperature can be sometimes zero in some special cases, but it is nonzero in general.
+   In addition to the divergence of the α-order correction, there are points in the parameter
+space that the correction vanishes. What is intriguing is that these zeros occur at the same
+points for the corrections to different thermodynamic variables in different ensembles. For
+example, ∆J in grand canonical ensemble vanishes at the exact same point as ∆Ω in canonical
+ensemble. This can be seen from the numerator of ∆J in eqns (33), (34), (39), (42), and
+compare them to the corresponding ∆Ω in eqns (58), (60), (62), (64). The similar relation
+exists between ∆M in canonical ensemble and ∆T in system with fixed mass and angular
+momenta, as we can see from eqns (58), (60), (62), (64) and (74), (75), (76), (73). These
+phenomena can be understood from the identities of differential equations, namely
+                                                           
+                         ∂M         ∂T                 ∂M
+                                               =−                   ,
+                         ∂T α,J     ∂α M,J              ∂α T,J
+                                                          
+                          ∂J         ∂Ω                ∂J
+                                               =−                 .                      (100)
+                          ∂Ω α,T     ∂α T,J            ∂α Ω,T
+
+
+
+
+                                              27
+Setting α = 0, we have
+                                                                                   
+                                                                            ∂M0
+                    CJ0 ∆T              = −∆M                 ,    CJ 0 =             ,
+                               M0 ,J0             T0 ,J0                    ∂T0 J0
+                                                                                 
+                                                                           ∂J0
+                      IT0 ∆Ω            = −∆J             ,       IT0 =             ,
+                               T0 ,J0            T0 ,Ω0                    ∂Ω0 T0
+where CJ0 is the specific heat capacity and IT0 is the isothermal differential moment of inertia.
+    We also examined the issue of the sign of ∆S under the quadratic curvature extension.
+Since there is only one nontrivial coupling constant α, this would provide a strong condition
+on the sign choice of the α. However, for the reduce stable thermodynamic system where all
+the angular momenta are taken to be some specific values, we found that ∆S could change
+sign within the stable parameter region, therefore providing counterexamples of [19].
+    Finally, we used the exact solution of charged black hole in Einstein-Maxwell gravity ex-
+tended with the Gauss-Bonnet term to study the perturbative divergence in the context of full
+nonlinear level. We showed that the divergence was an artefact of perturbation. In the full
+nonlinear solution, there is no such divergence. In this specific example, the Gauss-Bonnet term
+is part of the classical action, with no further higher-derivative corrections. This is different
+from the effective field theory approach, where the Gauss-Bonnet term is just the leading-order
+correction of an infinite series of higher-order terms. Regardless the situations, one needs to
+be cautious not to generalize the perturbative conclusion to the full nonlinear theory.
+
+
+Acknowledgement
+
+We are grateful to Liang Ma and Yi Pang for discussions. This work is supported in part by the
+National Natural Science Foundation of China (NSFC) grants No. 11935009 and No. 12375052.
+
+
+A     All thermodynamic quantities in grand canonical ensemble
+
+In section 3, we adopted the RS method to obtain the general expression of the quadratic
+curvature tensor correction to Gibbs free energy, ∆G in (26), of the grand canonical ensem-
+ble for general Myers-Perry black holes, where the thermodynamic variables are temperature
+and angular velocities. Based on some generalized Smarr-like relations, we showed that the
+correction to the mass is proportional to ∆G, simply given by (31). In this approach, the
+thermodynamic variables (T0 , Ωi0 ) remains fixed or uncorrected. The corrections occur to the
+other thermodynamic quantities, namely the entropy and angular momenta, and they can be
+deduced from the corrections to the first law (28), namely
+                                    ∂∆G                            ∂∆G
+                          ∆S =               ,        ∆J i =                       .       (101)
+                                     ∂T0 Ωj0                       ∂Ωi0 T0 ,Ωj60=i
+
+                                                    28
+In section 3, many explicit examples of these corrections were given, but only for some specific
+cases, such as single angular momentum, or all and nearly all equal angular momenta, etc. In
+this appendix, we give these quantities in its full generality.
+    We find it is useful to introduce notations “dot” and “prime”, acting on a generic function
+X(r0 , ai ) as follows
+                                              ∂X                        ∂X
+                                    Ẋ =              ,        X′ =                    .                          (102)
+                                              ∂r0 Ωi0                   ∂r0 T0 ,Ωi60=1
+Specifically, we require that Ω̇i0 = 0, i.e.
+                                           
+                          i           ai                                                 2r0 ai
+                       dΩ0 = d 2              = 0,                     →        a˙i =             .               (103)
+                                   r0 + a2i                                             r02 − a2i
+Then the evaluation of dX becomes
+                                                                                        !
+                      ∂X        X ∂X                            ∂X X ∂X
+                 dX =     dr0 +       dai =                         + ȧi                   dr0 ≡ Ẋdr0 .         (104)
+                      ∂r0         ∂ai                           ∂r0       ∂ai
+                                          i                                 i
+
+The X ′ follows the analogous definition. With these definitions, the expressions of the correc-
+tions to the entropy and angular momenta in (101) become
+                                ˙
+                               ∆G                             ∆G′
+                    ∆S = −         ;           ∆J 1 = −           ,         ∆J j6=1 = ∆J 1               .        (105)
+                               T˙0                            Ω1′
+                                                               0                                a1 ↔aj
+
+For convenience, we rewrite the expression of ∆G of (26) as:
+                                                      4 2 2 4
+                                                       r −6ai r0 +ai
+                  (D − 3)Σ
+                                     N
+                                     X fi             0 (r2 +a
+                                                                 2 )3   ,                            D = odd;
+                           D−2
+     ∆G = (−1)N                 α m2        ,   fi =         0    i
+                                                                                                                  (106)
+                                                      4r0 (2 r0 −a i)
+                                                               2    2
+                       4π                bi
+                                                                       ,                              D = even,
+                                                     
+                                      i
+                                                        (r +a2 )3               0   i
+
+and keep in mind that bi = (a2i − a2j ). For this new expression (106), we have
+                                   Q
+                          j6=i
+
+                                                                N
+                   ˙ = (−1)N +1 (D − 3)ΣD−2 α
+                                                                X fi                        f˙i b˙i 
+                  ∆G                                                        2mṁ + m2           −      ,          (107)
+                                    4π                                 bi                    f i bi
+                                                                i
+                                                                N
+                                         (D − 3)ΣD−2            X      fi            f ′ b′ 
+                 ∆G′ = (−1)N +1                      α                      2mm′ + m2 i − i .                     (108)
+                                             4π                        bi             fi  bi
+                                                                   i
+
+It follows from the expressions for m in (4), T0 in (5) and the definition of bi , we have
+                                                     N
+                                      1              1 
+                    T˙0 = 2π                                                    ṁ = −4πr0 m T˙0 ,
+                                                X
+                           1
+                                              −             ,
+                                   (ǫ + 1)r02   i
+                                                  r02 − a2i
+                                 N
+                                                   r03
+                     b˙i = 4bi
+                                 X
+                                                                 .                                                (109)
+                                        (r02 − a2i )(r02 − a2j )
+                                 j6=i
+
+We find that the expressions of f˙i ’s are better expressed in cases of odd and even dimensions:
+                                            4    2 2      4
+                                 − 2r(r0 (r
+                                            0 +2r0 ai −7ai )
+                                          2 −a2 )(r 2 +a2 )3 , D = odd;
+                          f˙i =           0
+                                               2
+                                                i  0
+                                                     2
+                                                        i
+                                                                                          (110)
+                                 − 2 12r20 −4a
+                                                    i
+                                                            ,  D = even.
+                                       (r −a )(r 2 +a2 )2
+                                                 0   i    0    i
+
+
+
+                                                              29
+We can now obtain the expression of the entropy correction by substituting the relevant T˙0 , ṁ, b˙i
+and f˙i into (107) and finally (105).
+    Similarly, for calculating ∆J01 , we need to adopt the prime notation, which is a derivative
+with respect to r0 , with dT0 = 0 and dΩi60=1 = 0. This implies
+                                                                  N
+               1  2                             1        X     1 
+    a′1 =           ai − r02 + (r02 + a21 )2            −             ,           a′i = ȧi ,    i > 1,     (111)
+             2r0 a1                          (ǫ + 1)r02     r02 − a2j
+                                                                  j=2
+
+together with
+
+                               (r02 − a21 )a′1    2a1 r0
+                       Ω1′
+                        0 =        2     2     − 2           ,          m′ = −2a1 mΩ1′
+                                                                                    0 ,
+                                (r0 + a1 ) 2    (r0 + a21 )2
+                                     N
+                                     X ai a′i − aj a′j
+                         b′i = 2bi                       .                                                  (112)
+                                            a2i − a2j
+                                     j6=i
+
+The expression of fi′ is relatively more complicated, given by
+                       5 − 14a3 r 2 + 9a r 4 )a′ + r (9a4 − 14a2 r 2 + r 4 )
+                                                                            
+                  2 (a 1        1 0         1 0    1      0   1        1 0 0
+            −                                                                 ,                D = odd;
+            
+            
+                                             (a21 + r02 )4
+            
+       ′
+      f1 =                                                                                                  (113)
+                 16a1 r0 (a21 − 2r02 )a′1 − 4(a41 − 8a21 r02 + 3r04 )
+            −                                                         ,                        D = even;
+            
+            
+                                     (a21 + r02 )4
+      f ′ = f˙i ,
+         i          i > 1.                                                                                  (114)
+
+Similarly, we can incorporate the above equations into (108) and (105) and then obtain all
+∆J i .
+
+
+References
+
+ [1] R.P. Kerr, “Gravitational field of a spinning mass as an example of algebraically special
+     metrics,” Phys. Rev. Lett. 11, 237-238 (1963) doi:10.1103/PhysRevLett.11.237
+
+ [2] R.C. Myers and M.J. Perry, “Black holes in higher dimensional space-times,” Annals Phys.
+     172, 304 (1986) doi:10.1016/0003-4916(86)90186-7
+
+ [3] G.W. Gibbons, H. Lü, D.N. Page and C.N. Pope, “The general Kerr-de Sitter metrics
+     in all dimensions,” J. Geom. Phys. 53, 49-73 (2005) doi:10.1016/j.geomphys.2004.05.001
+     [arXiv:hep-th/0404008 [hep-th]].
+
+ [4] G.W. Gibbons, H. Lü, D.N. Page and C.N. Pope, “Rotating black holes in higher di-
+     mensions with a cosmological constant,” Phys. Rev. Lett. 93, 171102 (2004) doi:10.1103/
+     PhysRevLett.93.171102 [arXiv:hep-th/0409155 [hep-th]].
+
+
+
+                                                             30
+ [5] B. Carter, “Hamilton-Jacobi and Schrodinger separable solutions of Einstein’s equations,”
+    Commun. Math. Phys. 10, no.4, 280-310 (1968) doi:10.1007/BF03399503
+
+ [6] S.W. Hawking, C.J. Hunter and M. Taylor, “Rotation and the AdS/CFT correspondence,”
+    Phys. Rev. D 59, 064005 (1999) doi:10.1103/PhysRevD.59.064005 [arXiv:hep-th/9811056
+    [hep-th]].
+
+ [7] K.S. Stelle, “Renormalization of higher derivative quantum gravity,” Phys. Rev. D 16,
+    953-969 (1977) doi:10.1103/PhysRevD.16.953
+
+ [8] K.S. Stelle, “Classical gravity with higher derivatives,” Gen. Rel. Grav. 9, 353-371 (1978)
+    doi:10.1007/BF00760427
+
+ [9] W. Nelson, “Static solutions for 4th order gravity,” Phys. Rev. D 82, 104026 (2010)
+    doi:10.1103/PhysRevD.82.104026 [arXiv:1010.3986 [gr-qc]].
+
+[10] H. Lü, A. Perkins, C.N. Pope and K.S. Stelle, “Black holes in higher-derivative grav-
+    ity,” Phys. Rev. Lett. 114, no.17, 171601 (2015) doi:10.1103/PhysRevLett.114.171601
+    [arXiv:1502.01028 [hep-th]].
+
+[11] H. Lü, A. Perkins, C.N. Pope and K.S. Stelle, “Spherically symmetric solutions in
+    higher-derivative gravity,” Phys. Rev. D 92, no.12, 124019 (2015) doi:10.1103/Phys
+    RevD.92.124019 [arXiv:1508.00010 [hep-th]].
+
+[12] R.M. Wald, “Black hole entropy is the Noether charge,” Phys. Rev. D 48, no.8, R3427-
+    R3431 (1993) doi:10.1103/PhysRevD.48.R3427 [arXiv:gr-qc/9307038 [gr-qc]].
+
+[13] L. Ma, Y.Z. Li and H. Lü, “D = 5 rotating black holes in Einstein-Gauss-Bonnet grav-
+    ity: mass and angular momentum in extremality,” JHEP 01, 201 (2021) doi:10.1007/
+    JHEP01(2021)201 [arXiv:2009.00015 [hep-th]].
+
+[14] Q. Y. Mao, L. Ma and H. Lu, “Horizon as a natural boundary,” Phys. Rev. D 109, no.8,
+    084053 (2024) doi:10.1103/PhysRevD.109.084053 [arXiv:2307.14458 [hep-th]].
+
+[15] H.S. Reall and J.E. Santos, “Higher derivative corrections to Kerr black hole thermody-
+    namics,” JHEP 04, 021 (2019) doi:10.1007/JHEP04(2019)021 [arXiv:1901.11535 [hep-th]].
+
+[16] G.W. Gibbons, S.W. Hawking and M.J. Perry, “Path integrals and the indefiniteness of the
+    gravitational action,” Nucl. Phys. B 138, 141-150 (1978) doi:10.1016/0550-3213(78)90161-
+    X
+
+
+
+                                              31
+[17] N. Arkani-Hamed, L. Motl, A. Nicolis and C. Vafa, “The string landscape, black holes and
+    gravity as the weakest force,” JHEP 06, 060 (2007) doi:10.1088/1126-6708/2007/06/060
+    [arXiv:hep-th/0601001 [hep-th]].
+
+[18] Y. Kats, L. Motl and M. Padi, “Higher-order corrections to mass-charge relation
+    of extremal black holes,” JHEP 12, 068 (2007) doi:10.1088/1126-6708/2007/12/068
+    [arXiv:hep-th/0606100 [hep-th]].
+
+[19] C. Cheung, J. Liu and G.N. Remmen, “Proof of the weak gravity conjecture from black
+    hole entropy,” JHEP 10, 004 (2018) doi:10.1007/JHEP10(2018)004 [arXiv:1801.08546
+    [hep-th]].
+
+[20] Y. Hamada, T. Noumi and G. Shiu, “Weak gravity conjecture from unitarity and causal-
+    ity,” Phys. Rev. Lett. 123, no.5, 051601 (2019) doi:10.1103/PhysRevLett.123.051601
+    [arXiv:1810.03637 [hep-th]].
+
+[21] C. Cheung, J. Liu and G.N. Remmen, “Entropy bounds on effective field theory from
+    rotating dyonic black holes,” Phys. Rev. D 100, no.4, 046003 (2019) doi:10.1103/Phys
+    RevD.100.046003 [arXiv:1903.09156 [hep-th]].
+
+[22] N. Arkani-Hamed, Y.T. Huang, J.Y. Liu and G.N. Remmen, “Causality, unitarity,
+    and the weak gravity conjecture,” JHEP 03, 083 (2022) doi:10.1007/JHEP03(2022)083
+    [arXiv:2109.13937 [hep-th]].
+
+[23] L. Aalsma and G. Shiu, “From rotating to charged black holes and back again,” JHEP
+    11, 161 (2022) doi:10.1007/JHEP11(2022)161 [arXiv:2205.06273 [hep-th]].
+
+[24] G.T. Horowitz, M. Kolanowski, G.N. Remmen and J.E. Santos, “Sudden breakdown of
+    effective field theory near cool Kerr-Newman black holes,” [arXiv:2403.00051 [hep-th]].
+
+[25] L. Ma, Y. Pang and H. Lü, “α’-corrections to near extremal dyonic strings and weak grav-
+    ity conjecture,” JHEP 01, 157 (2022) doi:10.1007/JHEP01(2022)157 [arXiv:2110.03129
+    [hep-th]].
+
+[26] L. Ma, Y. Pang and H. Lü, “Negative corrections to black hole entropy from string theory,”
+    Sci. China Phys. Mech. Astron. 66, no.12, 121011 (2023) doi:10.1007/s11433-023-2257-6
+    [arXiv:2212.03262 [hep-th]].
+
+[27] N. Bobev, V. Dimitrov,        V. Reys and A. Vekemans, “Higher derivative cor-
+    rections and AdS5 black holes,”          Phys. Rev. D 106,        no.12,   L121903 (2022)
+    doi:10.1103/PhysRevD.106.L121903 [arXiv:2207.10671 [hep-th]].
+
+                                              32
+[28] D. Cassani, A. Ruipérez and E. Turetta, “Corrections to AdS5 black hole thermodynamics
+    from higher-derivative supergravity,” JHEP 11, 059 (2022) doi:10.1007/JHEP11(2022)059
+    [arXiv:2208.01007 [hep-th]].
+
+[29] L. Ma, P.J. Hu, Y. Pang and H. Lü, “The surprising effectiveness of Weyl gravity in
+    probing quantum corrections to AdS black holes,” [arXiv:2403.12131 [hep-th]].
+
+[30] L. Ma, Y. Pang and H. Lü, “Higher derivative contributions to black hole thermodynamics
+    at NNLO,” JHEP 06, 087 (2023) doi:10.1007/JHEP06(2023)087 [arXiv:2304.08527 [hep-
+    th]].
+
+[31] Y. Xiao and Y. Y. Liu, “First order corrections to black hole thermodynamics: a simple
+    approach enhanced,” [arXiv:2312.07127 [gr-qc]].
+
+[32] P.J. Hu, L. Ma, H. Lü and Y. Pang, “Improved Reall-Santos method for AdS black holes
+    in general 4-derivative gravities,” [arXiv:2312.11610 [hep-th]].
+
+[33] G.W. Gibbons, M.J. Perry and C.N. Pope, “The first law of thermodynamics for Kerr-
+    anti-de Sitter black holes,” Class. Quant. Grav. 22, 1503-1526 (2005) doi:10.1088/0264-
+    9381/22/9/002 [arXiv:hep-th/0408217 [hep-th]].
+
+[34] J.M. Bardeen and G.T. Horowitz, “The extreme Kerr throat geometry: a vacuum ana-
+    log of AdS2 × S 2 ,” Phys. Rev. D 60, 104030 (1999) doi:10.1103/PhysRevD.60.104030
+    [arXiv:hep-th/9905099 [hep-th]].
+
+[35] M. Guica, T. Hartman, W. Song and A. Strominger, “The Kerr/CFT correspondence,”
+    Phys. Rev. D 80, 124008 (2009) doi:10.1103/PhysRevD.80.124008 [arXiv:0809.4266 [hep-
+    th]].
+
+[36] H. Lü, J. Mei and C.N. Pope, “Kerr/CFT correspondence in diverse dimensions,” JHEP
+    04, 054 (2009) doi:10.1088/1126-6708/2009/04/054 [arXiv:0811.2225 [hep-th]].
+
+[37] R. Monteiro, M.J. Perry and J.E. Santos, “Thermodynamic instability of rotating
+    black holes,” Phys. Rev. D 80, 024041 (2009) doi:10.1103/PhysRevD.80.024041 [arXiv:
+    0903.3256 [gr-qc]].
+
+[38] H. Liu, H. Lü, M. Luo and K.N. Shao, “Thermodynamical metrics and black hole phase
+    transitions,” JHEP 12, 054 (2010) doi:10.1007/JHEP12(2010)054 [arXiv:1008.4482 [hep-
+    th]].
+
+[39] F. Weinhold, “Metric geometry of equilibrium thermodynamics,” J. Chem. Phys. 63, no.6,
+    2479 (1975) doi:10.1063/1.431689
+
+                                              33
+[40] G. Ruppeiner, “Thermodynamics: a Riemannian geometric model,” Phys. Rev. A 20,
+    no.4, 1608 (1979) doi:10.1103/PhysRevA.20.1608
+
+[41] P. Bizon and A. Rostworowski, “On weakly turbulent instability of anti-de Sitter space,”
+    Phys. Rev. Lett. 107, 031102 (2011) doi:10.1103/PhysRevLett.107.031102 [arXiv:1104.
+    3702 [gr-qc]].
+
+[42] Z.H. Wu and H. Lü, “Superradiant instability of charged extremal black holes in Einstein-
+    Born-Infeld gravity,” [arXiv:2404.02977 [hep-th]].
+
+[43] D.L. Wiltshire, “Spherically symmetric solutions of Einstein-Maxwell theory with a Gauss-
+    Bonnet term,” Phys. Lett. B 169, 36-40 (1986) doi:10.1016/0370-2693(86)90681-7
+
+
+
+
+                                              34
+

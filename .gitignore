@@ -17,3 +17,4 @@ references/data/1010.0860-src/
 !artifacts/*.png
 !manuscript/figures/*.pdf
 !manuscript/supplementary/*
+.claude/settings.local.json

@@ -1,0 +1,11 @@
+202609251058 Goya
+Review the paper "Extremality shift of rotating black holes..." and correct anything wrong. Be severe with the corrections. I have doubts whether or not the results presented in the draft corresponds to the potential \Psi of the static solutions or really corresponds to the numerical rotating black hole solutions, in particular Figure 1. Check if really the nonlinear radial boundary-value problem was solved for several values of the coupling alpha (allegedly 13 different coupling from 0 to 1/2). If that is the case, do a figure showing the functions b(r), f(r), h(r), w(r) for the different couplings using a different color with shades for each function, like in Figure 1 of 2607.07418,
+Some parts that need to be better explained for humans:
+- page 2, at the end, "without identifying angular momentum with electric charge". Why would you do that? What does it mean?
+- page 3, at the end of section 2.1, why q = 1/sqrt(2) at extremality? And if you set rh=1, isn't q=\Omega_H?
+- page 4, factors in eq (11) doesn't seem to coincide with the Smarr formula of equation (8), neither the expression of M in terms of T,S, \Omega_H and J in the last paragraph of section 3.1.
+- page 4, factors in eq (12) doesn't seem to coincide with the Smarr formula of equation (8)
+- page 5, the whole section 3.3 need to be better written for human understanding. In particular equation (13) seems to be just the chain rule applied to a function R_N. It's just that? But if it is the chain rule I think there is a wrong sign. How is thus useful, which information you obtained from this?
+- page 6, how did you obtained formula (16), is it a guess? is it obtaind from a different paper (if this is the case, cite the corresponding paper)? does it interpolate between the static solution and something else? Please clarify this.
+- page 6, first paragraph of section 4.3, it says "Figure 1 shows \Psi against tH for the couplings sampled across the spin range" but is not clear to me whether is used the tH corresponding to the static solution. Please clarify,
+- table 2, I don't understand what sensitivity means, and what definest that the values correspond to extremal states, if the temperature of those states is approximately zero, then report the value.

@@ -1,0 +1,460 @@
+                                              Neural-Spectral Discovery of Rotating Black Holes Beyond General Relativity
+                                                      Felipe Agurto-Sepúlveda,1, ∗ Marcelo Oyarzo,1, ∗ Anxo Biasi,1 Devansh Agarwal,2, 3 Ethan
+                                                      Tregidga,4 James F. Steiner,5 José D. Edelstein,1 Gaston Giribet,6 and Cecilia Garraffo5, †
+                                                      1
+                                                       Departamento de Física de Partículas & Instituto Galego de Física de Altas Enerxías (IGFAE),
+                                                              Universidade de Santiago de Compostela, E-15782 Santiago de Compostela, Spain
+                                                2
+                                                  West Virginia University, Department of Physics and Astronomy, P. O. Box 6315, Morgantown, WV, USA
+                                                                 3
+                                                                   Center for Gravitational Waves and Cosmology, West Virginia University,
+                                                                          Chestnut Ridge Research Building, Morgantown, WV, USA
+                                                         4
+                                                           Laboratoire d’Astrophysique, EPFL, Observatoire de Sauverny, 1290 Versoix, Switzerland
+                                                5
+                                                  AstroAI, Center for Astrophysics | Harvard & Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA
+                                                                     6
+                                                                       Center for Cosmology and Particle Physics Department of Physics,
+                                                                    New York University, 726 Broadway, New York City, NY10003, USA
+                                                        Finding rotating black hole solutions in higher-curvature theories of gravity is a problem of
+                                                      fundamental importance. Virtually every approach to reconcile gravity with quantum mechanics
+                                                      predicts corrections to the Einstein-Hilbert action, yet no systematic solution-generating method
+                                                      exists for the stationary sector. We close this gap with Akribeia, a novel hybrid framework that
+                                                      pairs physics-informed neural networks with a pseudo-spectral refinement step, yielding certified
+                                                      neural-field rotating black hole solutions —continuous, globally defined functions, parametric in the
+                                                      coupling constants— whose residuals against the field equations are verified to extreme precision. We
+                                                      apply the method to theories quadratic and cubic in the curvature and construct, for the first time,
+                                                      families of rotating black holes featuring multiple non-vanishing angular momenta, parametric in the
+                                                      new coupling constants. After validating against previously known five-dimensional spacetimes, we
+                                                      present new solutions in scenarios leading to a highly non-linear/non-perturbative coupled system of
+                                                      ordinary differential equations. Our method can be systematically adapted to other setups involving
+arXiv:2607.07418v1 [gr-qc] 8 Jul 2026
+
+
+
+
+                                                      partial differential equations as well.
+
+
+                                           Introduction.—Any sensible approach to quantum                    A very useful model for studying the effects of higher
+                                        gravity induces higher curvature corrections to the               curvature corrections is Lovelock theory [8, 9]. This is
+                                        gravitational action. Even in the semi-classical approach,        the most general gravitational theory with second-order
+                                        in which the quantum field theory of matter is formulated         field equations given by a symmetric and divergence-free
+                                        on a classical spacetime, higher curvature terms are              rank-2 tensor. In five and six dimensions it reduces to the
+                                        induced in the gravitational effective action. The role           quadratic Einstein-Gauss-Bonnet (EGB) gravity, while
+                                        that higher curvature terms would play in the ultraviolet         in seven dimensions and higher it also includes cubic and
+                                        regime of gravitational theory was studied early on, and          higher terms. The action of the theory takes the form
+                                        it was quickly understood that they would lead to the
+                                        improvement of its seemingly bad behavior [1]. Later,                                  [D/2]                  p
+                                                                                                                         √
+                                                                                                                 Z           X αp µ ν ···µ ν Y
+                                        string theory showed how these terms arise naturally                S=       dD x −g        δ 1 1 p p
+                                                                                                                                  p ρ1 σ1 ···ρp σp
+                                                                                                                                                       Rρr σµrr νr , (1)
+                                                                                                                                 2
+                                        [2, 3].                                                                              p=1                   r=1
+
+                                           The advent of precision strong-field gravity has               where αp are coupling constants of mass dimension 2p−D
+                                        transformed the search for departures from General                       µ...ν
+                                                                                                          and δρ...σ   is the generalized antisymmetric Kronecker
+                                        Relativity (GR) into an empirical program. The Event              delta. We set the convention α1 = (16πG)−1 . The
+                                        Horizon Telescope has resolved the horizon-scale emission         coupling α0 gives the bare cosmological constant, which
+                                        of M87* and Sgr A*, enabling direct tests of the Kerr             we set to zero. The sum over p turns out to be finite,
+                                        geometry [4], while the LIGO-Virgo-KAGRA network                  as the terms of order O(Rn ) with n > D/2 identically
+                                        now catalogs over two hundred binary coalescences                 vanish.
+                                        whose ringdown spectra probe the dynamical, highly                   Lovelock gravity has many advantages, which make
+                                        curved regime near the merger [5]. Next-generation                it tractable as a possible consistent model with higher-
+                                        facilities are forecast to tighten constraints on deviations      curvature corrections. In particular, it is free of ghosts
+                                        from Kerr by orders of magnitude [6]. Because any                 around maximally symmetric solutions [10] and does not
+                                        such deviation would most naturally arise from higher-            introduce massive degrees of freedom for the graviton
+                                        curvature corrections to the Einstein-Hilbert action, the         [11]. These properties allowed the study of several
+                                        construction and characterization of rotating black hole          aspects of these theories, such as their role in the
+                                        solutions in higher-curvature gravity is going to be              AdS/CFT correspondence [12, 13], gravitational phase
+                                        relevant for confronting these theories with observation          transition [14, 15], critical models in Anti-de Sitter (AdS)
+                                        [7].                                                              [16], among many others. Schwarzschild-like black hole
+                                        ∗ These authors contributed equally to this work.                 solutions were thoroughly investigated [17–19].
+                                        † Senior Author                                                      However, in spite of all the nice properties that
+                                                                                                                      2
+
+Lovelock theory exhibits, there is an obvious limitation.     points. PINNs can identify solution branches starting
+The field equations derived from (1) are substantially        from random initializations [32], without requiring
+more complex than those of Einstein’s theory, as they         perturbative seeds or continuation paths, and have been
+include higher powers of second derivatives of the metric     applied successfully across a range of non-linear problems
+tensor and the Kerr-Schild ansatz fails to generically        [33–35].
+lead to the stationary solution [20, 21]. Although in            The trained neural field can represent a continuous
+some systems the field equations of Lovelock theory can       family of solutions across parameter space, whereas
+be solved analytically, this is only true for cases that      classical methods must be re-run for each parameter
+exhibit very high symmetry. In fact, even the analytical      setting.      It is evaluable at arbitrary points in
+stationary solution describing a spinning black hole in       the domain, differentiable to any order and globally
+vacuum is unknown for this theory. We should recall           defined, properties that make it composable with
+that, even in General Relativity, it took 48 years for Kerr   other mathematical structure such as symmetry
+to find the axially symmetric rotating black hole solution    transformations and downstream learning over families
+[22].                                                         of solutions.
+   Finding a stationary solution, even at the quadratic          In gravitational physics, however, PINN applications
+level, has been an open problem for a long time despite       have been primarily exploratory [36–39], reflecting
+the many efforts to tackle it. In the last two decades,       their main limitation: stiffness and moderate accuracy,
+there have been partial advances in the literature. An        typically reaching residuals of order 10−2 to 10−4 .
+exact rotating solution was found for a specific value of     Conventional spectral and finite-difference solvers remain
+the coupling constant in 5 dimensions [20], a numerical       the methods of choice when high precision is required, but
+solution for a wider range of parameters was presented        they need accurate pre-existing seeds, and constructing
+[23], as well as approximate solutions to leading order       those seeds may become the limiting factor in their
+in the angular momentum parameter [24]. However, all          workflow.
+these achievements are partial, and finding an efficient         In this Letter we present: (a) new rotating black
+method to solve the field equations in the stationary case    hole solutions in Lovelock theory, and (b) Akribeia, a
+remains an open problem.                                      general hybrid neural-spectral method to unlock rotating
+   From a numerical perspective, the primary obstacle         solutions beyond General Relativity. As a proof of
+is not the solution of the stationary boundary-value          concept, we focus on cubic Lovelock theory in odd
+problem itself, but the construction of an initial            dimensions, whose co-homogeneity-1 rotating solutions
+approximation from which high-precision solvers then          are governed by a highly non-linear, non-perturbative
+converge to the desired solution [25, 26]. Existing studies   system of coupled ordinary differential equations. We
+of rotating black holes in EGB(-dilaton) gravity [23, 27–     obtain such solutions with unprecedented precision for
+30], indeed, rely on Newton-type iterative schemes, which     arbitrary values of the gravitational couplings and
+achieve excellent accuracy once initialized sufficiently      equal angular momenta, and discuss the physical
+close to the target branch.          The construction of      properties and the theoretical and phenomenological
+such initial seeds typically relies on problem-dependent      avenues —including the possible construction of template
+structures, such as perturbative regimes, continuation        catalogues for upcoming observations— that this method
+procedures from special limits, or prior physical insight.    opens.
+In their absence, generating suitable initial seeds becomes      Spectrally refined neural fields.—Let us start by
+a huge challenge, significantly limiting the discovery of     introducing in this Section our discovery-refinement
+new stationary solutions. Identifying deviations from         framework that produces certified neural-field solutions
+GR in upcoming observations requires a systematic,            to non-linear boundary-value problems: continuous,
+parametric catalogue of rotating black hole solutions         globally defined functions whose residuals are verified
+across beyond-GR theories. That is why, it is desirable       below a quantified threshold. The framework constructs
+to develop schemes with reduced or no dependence on           these solutions without perturbative seeds or parameter
+accurate pre-existing seeds.                                  continuation procedures.        A PINN first identifies
+   Physics-informed neural networks (PINNs) [31] open         an approximate continuous family of solutions across
+a third road to constructing solutions to differential        parameter space from random initialization. A pseudo-
+equations. Rather than producing values on a discrete         spectral solver with extended-precision arithmetic then
+grid, PINNs represent each unknown field as a neural field:   refines it, reaching residuals far below machine
+a continuous, differentiable function parametrized by the     precision for a given parameter configuration. This
+weights of a neural network. The network is trained           hybrid strategy combines the exploratory capabilities
+by minimizing the residuals of the field equations and        of machine-learning-based methods with the accuracy
+boundary conditions at sampled collocation points, with       of established numerical techniques, providing a high-
+automatic differentiation providing exact derivatives of      precision framework for studying rotating black holes in
+the network output. This reformulates the boundary-           higher-curvature gravity.
+value problem as a global optimization over function             To our knowledge, no machine-learning method has
+space rather than a step-by-step propagation across grid      previously found a rotating black-hole solution in
+                                                                                                                                3
+
+higher-curvature gravity. Prior PINN applications in               Once a promising valley is identified, the third stage
+gravitational physics have addressed perturbations of              refines the search using an adaptive learning rate decay
+known backgrounds [36–38] or time-dependent matter                 based on the validation loss to improve the precision of
+dynamics [39], not the finding of stationary background            the solution. In the fourth stage, we apply the L-BFGS
+solutions themselves.              Existing rotating black-hole    algorithm [44], a quasi-Newton second-order optimizer,
+solutions in, say, EGB gravity [23, 27–30] rely on Newton          which accelerates convergence, allowing us to reduce the
+iteration from perturbative or continuation-based seeds.           loss function to 10−5 and the equation residuals to 10−3 .
+The combination of a PINN with a high-precision pseudo-               To push the precision much further, the trained neural
+spectral refiner has only recently been explored in other          network is ultimately used to initialize a classic pseudo-
+contexts [40].                                                     spectral Chebyshev method equipped with a Gauss-
+   We will construct in what follows such a hybrid neural-         Newton optimizer and extended-precision arithmetic.
+spectral framework to obtain the first accurate spinning           This part rapidly reduces the residuals far below
+black holes to date in Lovelock gravity beyond EGB,                machine double-precision. Once the desired accuracy is
+focusing for concreteness on the cubic theory and using            reached, the approximate solution is written in terms
+the quadratic case to certify its accuracy. While slowly           of Chebyshev polynomials, having a function that is a
+rotating solutions in the cubic case are known [41], fully         high-precision approximation of the solution. It allows
+non-linear rotating black hole solutions in cubic or higher        us to compute the exact derivatives at any point, and
+Lovelock gravity for arbitrary couplings and angular               consequently, the residuals.
+momenta have remained inaccessible [42].                              The complete description of Akribeia, our hybrid
+   To construct the rotating solutions we employed                 neural-spectral algorithm combining physics-informed
+PINNs [31], parameterizing each of the metric functions            neural networks with pseudo-spectral methods, is
+in (4) by a deep network N (x; W), with W representing             provided in the Supplemental Material. This includes
+all the trainable parameters of the network (i.e., weights         the architecture and training protocol of the PINN
+and biases). We will represent the architecture by the             stage, the pseudo-spectral refinement procedure, the L-
+list [n1 , n2 , . . . , nL ], with ni being the dimension of the   BFGS optimization and convergence diagnostics. As
+i-th layer. This allows us to compute the equations on             a quantitative precision benchmark that validates our
+each point as E(x) = E [N (x), ∇N (x), ...]. The network           solution, this discovery-refinement framework recovers
+can then be trained by minimizing the loss function (3).           the Myers-Perry rotating black hole [45] in the GR
+   We implement exact (strong) boundary conditions by              limit, starting from random initializations with extreme
+reparameterizing the network output, which can always              accuracy. A comparison between the numerical and
+be done on a single direction of the domain, which in our          exact solutions in the L2 norm yields a relative error
+case corresponds to x = (x, α) ∈ R2 . We impose the                of 10−160 , achieved by employing 300-digit extended-
+strong boundary condition F (x0 ) for the radial direction         precision arithmetic.
+x and define the function                                             Rotating black hole solution.—For generic stationary
+                                                                 rotating black holes in odd dimensions D = 2n +
+        N b (x) = F(x0 ) + 1 − e−(x−x0 ) N (x; W) ,          (2)   1, the symmetry is Rt × U (1)n , while in the equal-
+                                                                   angular-momenta sector it is enhanced to Rt × U (n), as
+where N (x; W) is the raw network output. Consequently,            happens in the case of Myers-Perry solution to Einstein
+the optimization process is reduced to minimizing the              equations in higher dimensions [46]. This symmetry
+mean squared residual of the differential equations E,             enhancement allows the sphere sector that corresponds
+evaluated over a set of N collocation points xi distributed        to the spatial slices of the event horizon to be treated
+within the integration domain                                      as the homogeneous space S 2n−1 ≃ SU (n)/SU (n −
+                      1 X                                          1). Equivalently, S 2n−1 is the total space of the Hopf
+   Lequations (W) =       |E [N (x), ∇N (x), ...] |2 .      (3)    fibration, namely an S 1 bundle over CPn−1 .
+                      N                                               The SU (n − 1) isotropy representation decomposes as
+                         x∈I
+
+Fundamentally, all required derivatives are computed               1 ⊕ (n − 1) ⊕ (n − 1). Consequently, the most general
+exactly via automatic differentiation. To solve the system         SU (n)-invariant metric on the base manifold contains
+of equations, we represent the unknown functions using             only one independent squashing between the Hopf fiber
+fully connected neural networks with Swish activation              and the CPn−1 base. This enables us to use the
+functions for the hidden layers, adapting the network              stationary metric ansatz
+depth to the complexity of the problem.                                                     dr2                           
+   The training strategy for the neural networks proceeds              ds2 = −b(r) dt2 +          + g(r) ξ I ξ I + ξeI ξeI
+                                                                                            f (r)                              (4)
+in four main stages, encapsulated within a global phase of
+                                                                                                       2
+104 − 105 steps. Initially, we employ the Adam optimizer                         +h(r) (ζ − w(r) dt) ,
+[43] with a learning rate warm-up, which starts at 10−6
+and increases linearly to reach 10−3 . The second stage            where I = 1, . . . , n − 1. The 2n − 1 one-forms ξ I , ξeI ,
+consists of keeping the learning rate stable at 10−3 to            and ζ define a frame adapted to the coset description,
+broadly explore the highly non-linear solution landscape.          constructed from the corresponding Maurer-Cartan form.
+                                                                                                                       4
+
+We denote ξ I ξ I = ξ I ⊗ ξ I . The SU (n) symmetry
+fixes the invariant quadratic combinations appearing in
+the metric. The functions b(r) and f (r) determine the
+temporal and radial components of the metric; namely
+                  −1 2                    −1
+b(r) = −gtt + gζζ    gζt and f (r) = grr     , respectively.
+Function g(r) = gII parametrizes the size of the CPn−1
+base, h(r) describes the squashing of the Hopf fiber, and
+w(r) is the function associated with the rotation. We
+subsequently fix the remaining gauge freedom by setting
+g(r) = r2 .
+   From the viewpoint of physics, the zeroes of f (r)
+determine the location of the horizons of the black hole
+solution, with the maximum among its positive roots
+being the radius of the outer event horizon, rH . The          FIG. 1: Rotating solution with equal angular momenta for
+solutions of the equation b(r) = h(r)w2 (r), on the            rH = 1, ΩH = 0.33 fixed, and α ∈ [0, 3] in 5D EGB. The
+                                                               gradient bar corresponds to the neural network (NN) value
+other hand, give the infinite redshift hypersurfaces, which
+                                                               of the parameter input. Akribeia neural-spectral solutions
+define the limits of ergoregions. h(r) controls how the        reproduce all benchmarks to high precision.
+spatial geometry defined on the planes in which rotation
+takes place opens up as the radial direction r increases.
+The function w(r) gives the differential dragging due to
+rotation. We expect, although we do not impose, that           layers of 20 neurons each. The curves span the coupling
+w(r) is an odd function of the angular momentum a. This        range α ∈ [0, 3] in steps of 0.01, represented by solid
+is due to PT invariance under the Z2 transformations           color-gradient lines. We immediately notice that for
+t → −t and ζ → −ζ.                                             α = 3 our results agree with [27] (dashed lines), while
+   Additional restrictions of the metric functions come        for vanishing α we match the exact Myers-Perry rotating
+from boundary conditions. Consider asymptotically flat         solution (densely dotted lines).
+boundary conditions for the metric functions, namely              There are a few physically significant points to
+                                                               comment regarding the deformations of the metric
+   f (r) → 1 + O(r−2n+2 ) ,     b(r) → 1 − O(r−2n+2 ) ,        functions resulting from the inclusion of quadratic terms
+                                                               in conjunction with rotation. First, let us note that the
+   w(r) → O(r−2n ) ,           h(r) → r2 + O(r−2n+2 ) ,
+                                                               function h(r)/r2 governs the stretching (h(r) > r2 ) or
+at large r. Then, a black hole exists provided a regular       squashing (h(r) < r2 ) of the Hopf fiber relative to the
+solution satisfying the above boundary conditions has          CPn−1 base. We observe that h(rH )/rH    2
+                                                                                                          decreases with
+simultaneous zeros of the metric functions f (r) and b(r),     respect to the Myers-Perry case, for the same mass and
+namely f (rH ) = b(rH ) = 0. The angular velocity at the       angular momenta, and there is a critical value of the
+horizon is w(rH ) = ΩH , while h(rH ) = ΘH characterizes       coupling, α⋆ , above which the horizon becomes prolate,
+                                                                        2
+the squashing of the sphere at the horizon.              To    h(rH )/rH   < 1, suggesting that the solution might be
+improve the neural network convergence we implement            stable against Gregory-Laflamme instabilities typically
+the boundary conditions in terms of a compact radial           arising in the ultra-spinning limit [47]. Notice that h(r)
+variable, r − rH = tan(x). Further technical details are       is monotonic albeit h(r)/r2 is not.
+included in the Supplemental Material.                            The function w(r) exhibits relatively small deviations
+   Rotating black holes in EGB theory.—To test the             from the results of Einstein’s theory when compared to
+efficiency of our method, we first solve the D = 5 case        the other metric functions. As one might expect, it is
+with quadratic Lovelock; i.e., EGB theory. In this case,       monotonic with respect to r for all values of α. This
+there is a single parameter controlling the quadratic term;    is because, as previously mentioned, w(r) accounts for
+this is α = 4α2 /α1 . These spinning black hole solutions      the differential rotation of spacetime as one approaches
+were first constructed in [27] using numerical methods         or moves away from the horizon. This dragging is
+and serve as a test bed for our method. Their approach         always co-rotating with the horizon and, for a given value
+relies on starting from either the Myers-Perry solution        of ΩH , it increases monotonically with α > 0. This
+[45] (ΩH ̸= 0, α = 0) or the Boulware-Deser solution [10]      suggests that higher-curvature corrections enhance frame
+(ΩH = 0, α ̸= 0) as seeds, and then gradually increase         dragging throughout the exterior spacetime, which would
+the coupling constant α and/or ΩH ∼ O(a) until the             manifest as a shift in the Lense-Thirring precession rate
+desired configuration is reached. In contrast, the PINN        for orbiting test bodies.
+training procedure implemented here can construct, from           The correlated behavior shown by the functions f (r)
+a random initialization, a continuous family of solutions      and b(r), whose dependence on α for intermediate radii is
+parametrized by α ∈ [0, 3]. Figure 1 shows a whole             more apparent, indicates that the effective gravitational
+family of solutions obtained by our method using a fully       radius as well as the gravitational redshift factor grow
+connected neural network architecture with three hidden        with respect to their values in Einstein’s theory more
+                                                                                                                          5
+
+steeply with α. The plot also clearly demonstrates how
+our neural field parametrizes the solutions in α, from the
+stationary Myers-Perry black hole of Einstein’s theory
+to the numerical stationary solution of EGB [27]. This
+
+
+
+
+                                                                FIG. 3: Rotating black hole solutions with equal angular
+                                                                momenta for rH = 1, ΩH = 0.33, α = 0.5 fixed, and
+                                                                β ∈ [0, 0.5] in 7D cubic Lovelock gravity.
+
+
+
+                                                                momenta. The gaps visible in the graph between the
+FIG. 2: Horizon radius rH and angular velocity ΩH as smooth     GR solution (α = β = 0) and the continuous sweep of
+functions of α, obtained with Akribeia for fixed mass and       solutions arise because, as previously mentioned, only β
+angular momentum.                                               is being varied in this plot, while α is fixed and non-
+                                                                vanishing.
+serves as a non-trivial consistency check of our hybrid            Due to the increased difficulty introduced by the cubic
+neural-spectral method. A hallmark of Akribeia is its           term, achieving the same level of accuracy required a
+ability to trace physical observables continuously across       deeper network architecture consisting of four hidden
+parameter space, as illustrated in Fig. 2. This continuous      layers with 64 neurons each. The solid color-gradient
+parametric control –inaccessible to shooting methods or         lines here span the cubic coupling β ∈ [0, 0.5] in steps
+perturbative approaches– is precisely what is needed to         of 0.01, for a fixed value of α = 0.5 whereas the dotted
+construct the theoretical templates that gravitational          dashed lines show the analytic Myers-Perry solution in
+wave and horizon-scale observations will require.               D = 7 [45], which our solution consistently approaches
+   Rotating black holes in cubic Lovelock theory.—              in the α → 0 limit. Our hybrid approach successfully
+Having successfully contrasted our method against               passes the initialization sensitivities of spectral solvers,
+known results, let us enter into unexplored territory           rapidly reducing the residuals far below machine double-
+and find for the first time rotating black holes solutions      precision.
+in cubic Lovelock theory. The D = 7 case, the                      The method generalizes to higher odd dimensions
+lowest dimensionality in which those cubic terms actually       and/or higher-order curvature terms in Lovelock theory.
+contribute to the dynamics, a new length scale emerges          Provided that one considers multiple angular momenta
+that competes with the characteristic length α1/2 . This        of equal magnitude, the problem of solving the field
+new scale is β 1/4 with β = 16 α3 /α1 . Even though             equations reduces to a system of ordinary differential
+we fundamentally expect from Effective Field Theory             equations. Although the problem is highly non-linear,
+reasoning a single scale, α1/2 ∼ β 1/4 ∼ ℓ (the string          primarily because second derivatives of the metric tensor
+scale, the Planck length, etcetera), notice that two-scale      appear raised to increasing powers, our hybrid strategy
+systems might also lead to interesting phenomena [48].          using Akribeia makes it possible to find an accurate
+   For the sake of concreteness, the plot in Fig. 3 has fixed   solution with an ordinary laptop. We will conduct an
+but non-vanishing α and varies only the cubic coupling          exhaustive scan of solutions in a forthcoming paper.
+constant β. To the best of our knowledge, this is the              Discussion.—We have introduced a hybrid neural-
+first reported rotating solution in a theory with cubic         spectral algorithm combining physics-informed neural
+curvature terms, featuring finite angular momenta. This         networks with pseudo-spectral refinement, and applied
+is the main result of this paper.                               it to construct rotating black hole solutions in quadratic
+   A heuristic consistency check lies in the fact that,         and cubic Lovelock gravity with equal angular momenta.
+when comparing the cubic solution with the quadratic            These are the first fully non-linear rotating solutions
+one, one finds qualitatively similar behavior in the metric     in cubic Lovelock gravity for arbitrary values of the
+functions. This demonstrates that we are indeed dealing         gravitational couplings and angular momenta, filling a
+with the same sector of solutions. The qualitative              significant gap in the landscape of exact and numerical
+consequences of adding the cubic term on the stationary         solutions in higher-curvature gravity.
+sector of black hole solutions is quite similar to the             The method achieves a striking accuracy, overcoming
+analysis of EGB’s case, at least for equal angular              what is often the main limitation of standard numerical
+                                                                                                                           6
+
+approaches, and all solutions reduce correctly to the           to the gravitational redshift, and to frame dragging,
+known limits as the higher-curvature couplings and/or           i.e., precisely the features that our solutions show to
+angular momenta are turned off. The PINN stage                  be deformed by the higher-curvature couplings (Figs.
+provides the high-quality initialization that classical         1 and 2). The enhancement of w(r) translates into
+solvers require for convergence, while the pseudo-spectral      shifted Lense-Thirring precession frequencies of the
+stage uses extended-precision arithmetic, which is not          kind invoked to explain quasi-periodic oscillations [52].
+natively supported by conventional machine-learning             Certified parametric families of the type delivered by
+libraries.                                                      Akribeia are exactly what would allow the folding of
+   Several directions open naturally from this work.            non-Kerr metrics into these measurement pipelines and
+The most immediate, besides an exhaustive analysis              to quantify, or even break, the degeneracy between spin
+of rotating Lovelock black holes, is a systematic study         and higher-curvature couplings [53].
+of linearized perturbations around our solutions to
+                                                  2
+determine whether the suppression of h(rH )/rH       below         We thank Juan Álvarez Ruiz and Matías Volij for
+unity translates into stability against Gregory-Laflamme-       collaboration at early stages of this article, and the
+type instabilities. On the solution-construction side,          authors of [27] for sharing their numerical solution for
+Akribeia can be extended to higher Lovelock orders, to          the sake of comparison. We also thank Julio Oliva,
+asymptotically AdS backgrounds —where the interplay             Javier Gómez Serrano, Tristan Buckmaster, Claudio
+between higher-curvature corrections and superradiant           Muñoz and the AstroAI collaboration for interesting
+instabilities is particularly rich—, and to other beyond-       suggestions. J.F.S acknowledges support from NASA
+GR theories admitting a cohomogeneity-1 reduction. It           Grant NAS8-03060. This work is partially supported
+is worth noting that our method may prove useful for            by AEI-Spain PID2023-152148NB-I00 and by Maria de
+solving non-linear differential equations arising in other      Maeztu excellence unit grant CEX2023-001318-M, by
+areas of theoretical physics such as fluid mechanics [34].      Xunta de Galicia (CIGUS Network of Research Centres,
+   A key step towards astrophysical or cosmological             projects ED431C-2021/14 and ED431F-2023/19), by the
+applications demand our method to be adapted to other           European Union FEDER, and by a fellowship from the
+setups involving a system of coupled non-linear partial         ”la Caixa” Foundation (ID 100010434) with fellowship
+differential equations, which we are in the process to          code LCF/BQ/PI24/12040029.
+complete. That would allow us to make progress in
+the construction of parametric catalogues of solutions for        Author contributions.       F.A.S., M.O. and A.B.
+computing observational signatures —shadows, photon             developed the analytical framework and the hybrid
+rings, and gravitational wave ringdown spectra— that            numerical scheme, performed the analysis, interpreted
+can serve as templates for EHT, LISA, and next-                 the results, drafted part of the manuscript and wrote
+generation detectors.                                           the Supplemental Material. F.A.S., M.O. and D.A.
+   From an observational standpoint, X-ray probes               implemented the open-source code.        D.A. designed
+of accreting black holes offer strong-field tests               part of the machine-learning strategy. E.T. assisted
+complementary        to    horizon-scale   imaging     and      in the performance assessment of the machine-learning
+gravitational waves. Black hole spins are routinely             methods. J.F.S. contributed to contextualizing the
+measured under the Kerr hypothesis through continuum            results with an observational perspective. J.D.E., G.G.
+fitting of the thermal disk spectrum [49], relativistic         and C.G. conceived the project, interpreted the results,
+reflection spectroscopy [50] and, most recently, X-ray          and prepared the final version of the manuscript. All
+polarimetry [51]. These techniques are chiefly sensitive        authors discussed the results, reviewed the manuscript,
+to the location of the innermost stable circular orbit,         and approved the final version.
+
+
+
+
+ [1] K. S. Stelle, “Renormalization of Higher Derivative         [6] A. Maselli, S. Yi, L. Pierini, V. Vellucci, L. Reali,
+     Quantum Gravity,” Phys. Rev. D 16, 953 (1977).                  L. Gualtieri and E. Berti, “Black hole spectroscopy
+ [2] D. J. Gross and E. Witten, “Superstring Modifications of        beyond Kerr: Agnostic and theory-based tests with next-
+     Einstein’s Equations,” Nucl. Phys. B 277, 1 (1986).             generation interferometers,” Phys. Rev. D 109, 064060
+ [3] B. Zwiebach, “Curvature Squared Terms and String                (2024).
+     Theories,” Phys. Lett. B 156, 315 (1985).                   [7] P. A. Cano, L. Capuano, N. Franchini, S. Maenaut and
+ [4] K. Akiyama et al. [Event Horizon Telescope], “First             S. H. Völkel, “Higher-derivative corrections to the Kerr
+     Sagittarius A* Event Horizon Telescope Results. VI.             quasinormal mode spectrum,” Phys. Rev. D 110, 124057
+     Testing the Black Hole Metric,” Astrophys. J. Lett. 930,        (2024).
+     L17 (2022).                                                 [8] C. Lanczos, “A Remarkable property of the Riemann-
+ [5] A. G. Abac et al. [LIGO Scientific, Virgo and KAGRA],           Christoffel tensor in four dimensions,” Annals Math. 39,
+     “GW250114: Testing Hawking’s Area Law and the Kerr              842 (1938).
+     Nature of Black Holes,” Phys. Rev. Lett. 135, 111403        [9] D. Lovelock,        “The Einstein tensor and its
+     (2025).                                                         generalizations,” J. Math. Phys. 12, 498 (1971).
+                                                                                                                                7
+
+[10] D. G. Boulware and S. Deser, “String Generated Gravity             solving forward and inverse problems involving nonlinear
+     Models,” Phys. Rev. Lett. 55, 2656 (1985).                         partial differential equations,” J. Comput. Phys. 378, 686
+[11] K. S. Stelle, “Classical Gravity with Higher Derivatives,”         (2019).
+     Gen. Rel. Grav. 9, 353 (1978).                                [32] Z. Zou, Z. Wang and G. Em Karniadakis, “Learning
+[12] X. O. Camanho and J. D. Edelstein, “Causality in                   and discovering multiple solutions using physics-informed
+     AdS/CFT and Lovelock theory,” JHEP 06, 099 (2010).                 neural networks with random initialization and deep
+[13] X. O. Camanho, J. D. Edelstein and J. M. Sánchez                   ensemble,” Proc. A 481, 2325 (2025).
+     De Santos, “Lovelock theory and the AdS/CFT                   [33] M. Raissi, A. Yazdani and G. E. Karniadakis, “Hidden
+     correspondence,” Gen. Rel. Grav. 46, 1637 (2014).                  fluid mechanics: Learning velocity and pressure fields
+[14] X. O. Camanho, J. D. Edelstein, G. Giribet and                     from flow visualizations,” Science 367, 1026 (2020).
+     A. Gomberoff, “A New type of phase transition in              [34] Y. Wang, C. Y. Lai, J. Gómez-Serrano and
+     gravitational theories,” Phys. Rev. D 86, 124048 (2012).           T. Buckmaster, “Asymptotic self-similar blow-up profile
+[15] X. O. Camanho, J. D. Edelstein, G. Giribet and                     for three-dimensional axisymmetric Euler equations
+     A. Gomberoff, “Generalized phase transitions in Lovelock           using neural networks,” Phys. Rev. Lett. 130, 244002
+     gravity,” Phys. Rev. D 90, 064028 (2014).                          (2023).
+[16] S. Deser, H. Liu, H. Lu, C. N. Pope, T. C. Sisman and         [35] Y. Wang et al., “Discovery of unstable singularities,”
+     B. Tekin, “Critical Points of D-Dimensional Extended               arXiv:2509.14185.
+     Gravities,” Phys. Rev. D 83, 061502 (2011).                   [36] R. Luna, J. Calderón Bustillo, J. J. S. Martínez,
+[17] C. Garraffo and G. Giribet, “The Lovelock Black Holes,”            A. Torres-Forné and J. A. Font, “Solving the Teukolsky
+     Mod. Phys. Lett. A 23, 1801 (2008).                                equation with physics-informed neural networks,” Phys.
+[18] X. O. Camanho and J. D. Edelstein, “A Lovelock black               Rev. D 107, 064025 (2023).
+     hole bestiary,” Class. Quant. Grav. 30, 035009 (2013).        [37] A. S. Cornell, A. Ncube and G. Harmsen, “Using physics-
+[19] X. O. Camanho and J. D. Edelstein, “Cosmic censorship              informed neural networks to compute quasinormal
+     in Lovelock theory,” JHEP 11, 151 (2013).                          modes,” Phys. Rev. D 106, 124047 (2022).
+[20] A. Anabalon, N. Deruelle, Y. Morisawa, J. Oliva,              [38] A. M. Pombo and L. Pizzuti, “Teukolsky by design:
+     M. Sasaki, D. Tempo and R. Troncoso, “Kerr-Schild                  A hybrid spectral-PINN solver for Kerr quasinormal
+     ansatz in Einstein-Gauss-Bonnet gravity: An exact                  modes,” JCAP 03, 009 (2026).
+     vacuum solution in five dimensions,” Class. Quant. Grav.      [39] A. Ferrer-Sánchez, N. Villanueva-Espinosa, C. Hernani-
+     26, 065002 (2009).                                                 Morales, R. Ruiz de Austri-Bazan, J. A. Font, J. David
+[21] B. Ett and D. Kastor, “Kerr-Schild Ansatz in Lovelock              Martín-Guerrero and M. W. Choptuik, “Addressing the
+     Gravity,” JHEP 04, 109 (2011).                                     gravitational collapse of a massless scalar field with
+[22] R. P. Kerr, “Gravitational field of a spinning mass as             physics-informed neural networks,” Mach. Learn.: Sci.
+     an example of algebraically special metrics,” Phys. Rev.           Technol. 7, 025038 (2026).
+     Lett. 11, 237-238 (1963).                                     [40] K. Shukla, Z. Zou, C. H. Chan, A. Pandey, Z. Wang
+[23] Y. Brihaye and E. Radu, “Five-dimensional rotating                 and G. E. Karniadakis, “NeuroSEM: A hybrid framework
+     black holes in Einstein-Gauss-Bonnet theory,” Phys.                for simulating multiphysics problems by coupling PINNs
+     Lett. B 661, 167 (2008).                                           and spectral elements,” Comput. Methods Appl. Mech.
+[24] H. C. Kim and R. G. Cai, “Slowly Rotating Charged                  Engrg. 433, 117498 (2025).
+     Gauss-Bonnet Black holes in AdS Spaces,” Phys. Rev.           [41] R. Yue, D. Zou, T. Yu, P. Li and Z. Yang, “Slowly
+     D 77, 024045 (2008).                                               rotating charged black holes in anti-de Sitter third order
+[25] E. L. Allgower and K. Georg, “Introduction to                      Lovelock gravity,” Gen. Rel. Grav. 43, 2103 (2011).
+     numerical continuation methods” (Classics in Applied          [42] C. Adair, P. Bueno, P. A. Cano, R. A. Hennigar and
+     Mathematics, Vol. 45), Society for Industrial and Applied          R. B. Mann, “Slowly rotating black holes in Einsteinian
+     Mathematics, 2003.                                                 cubic gravity,” Phys. Rev. D 102, 084001 (2020).
+[26] X. C. Cai and D. E. Keyes, “Nonlinearly preconditioned        [43] D. P. Kingma and J. Ba, “Adam: A Method for
+     inexact Newton algorithms,” SIAM Journal on Scientific             Stochastic Optimization,” [arXiv:1412.6980 [cs.LG]].
+     Computing 24, 183 (2002).                                     [44] D. C. Liu and J. Nocedal, “On the limited memory BFGS
+[27] Y. Brihaye, B. Kleihaus, J. Kunz and E. Radu, “Rotating            method for large scale optimization,” Mathematical
+     black holes with equal-magnitude angular momenta in                Programming 45, 503 (1989).
+     d=5 Einstein-Gauss-Bonnet theory,” JHEP 11 (2010),            [45] R. C. Myers and M. J. Perry, “Black Holes in Higher
+     098.                                                               Dimensional Space-Times,” Annals Phys. 172, 304
+[28] B. Kleihaus, J. Kunz, E. Radu and B. Subagyo, “Spinning            (1986).
+     black strings in five-dimensional Einstein-Gauss-Bonnet       [46] H. K. Kunduri, J. Lucietti and H. S. Reall, “Gravitational
+     gravity,” Phys. Lett. B 713, 110 (2012).                           perturbations of higher dimensional rotating black holes:
+[29] A. Maselli, P. Pani, L. Gualtieri and V. Ferrari, “Rotating        Tensor perturbations,” Phys. Rev. D 74, 084021 (2006).
+     black holes in Einstein-Dilaton-Gauss-Bonnet gravity          [47] R. Emparan and R. C. Myers, “Instability of ultra-
+     with finite coupling,” Phys. Rev. D 92, no.8, 083014               spinning black holes,” JHEP 09, 025 (2003).
+     (2015).                                                       [48] F. Thaalba, L. Gualtieri, T. P. Sotiriou and
+[30] B. Kleihaus, J. Kunz, S. Mojica and E. Radu, “Spinning             E. Trincherini, “Screening of dipolar emission in
+     black holes in Einstein-Gauss-Bonnet-dilaton theory:               two-scale Gauss-Bonnet gravity,” arXiv:2512.04083.
+     Nonperturbative solutions,” Phys. Rev. D 93, 044047           [49] J. E. McClintock, R. Narayan and J. F. Steiner, “Black
+     (2016).                                                            Hole Spin via Continuum Fitting and the Role of Spin
+[31] M. Raissi, P. Perdikaris and G. E. Karniadakis, “Physics-          in Powering Transient Jets,” Space Sci. Rev. 183, 295
+     informed neural networks: A deep learning framework for            (2014).
+                                                                                                                           8
+
+[50] C. S. Reynolds, “Observational Constraints on Black Hole        oscillations from black hole X-ray binaries: observation
+     Spin,” Ann. Rev. Astron. Astrophys. 59, 117 (2021).             and theory,” New Astron. Rev. 85, 101524 (2019).
+[51] H. Krawczynski et al., “Polarized x-rays constrain the     [53] C. Bambi, “Testing black hole candidates with
+     disk-jet geometry in the black hole x-ray binary Cygnus         electromagnetic radiation,” Rev. Mod. Phys. 89, 025001
+     X-1,” Science 378, 650 (2022).                                  (2017).
+[52] A. Ingram and S. Motta, “A review of quasi-periodic
+
