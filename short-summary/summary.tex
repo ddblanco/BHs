@@ -1,16 +1,20 @@
 \documentclass[10pt,a4paper]{article}
 \ifdefined\pdftexversion\pdfoutput=1\fi
 
-\usepackage[a4paper,left=2.3cm,right=2.3cm,top=2.5cm,bottom=2.6cm]{geometry}
+\usepackage[a4paper,left=2.3cm,right=2.3cm,top=2.1cm,bottom=2.2cm]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage[table]{xcolor}
+\usepackage{titlesec}
+% Tighter section spacing: nine headings at the article default cost most of a
+% page on their own.
+\titlespacing*{\section}{0pt}{1.8ex plus .3ex minus .2ex}{1.0ex plus .2ex}
 \usepackage[colorlinks=true,linkcolor=blue!55!black,
             citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
 
-\captionsetup{font=small,labelfont=bf,width=.94\textwidth}
+\captionsetup{font=small,labelfont=bf,width=.78\textwidth}
 \setlength{\parskip}{0pt}
 \newcommand{\GB}{\mathrm{GB}}
 \newcommand{\ext}{\mathrm{ext}}
@@ -31,10 +35,10 @@
 
 \noindent
 A short account of the work behind \emph{Extremality shift of rotating black
-holes at finite Gauss--Bonnet coupling}: the question, the quantity that
-answers it, the method, the result, and --- at the same length as the result
---- what the evidence does and does not support. The manuscript is
-\texttt{manuscript/main.pdf}; a longer walk-through in Spanish is
+holes at finite Gauss--Bonnet coupling}: the question, the quantity that answers
+it, the method, the result, and --- at the same length --- what the evidence
+does and does not support. The manuscript is \texttt{manuscript/main.pdf}; a
+longer walk-through in Spanish is
 \texttt{manuscript/explicacion-en-espanol.md}.
 
 \section*{The question}
@@ -106,23 +110,21 @@ conjectured to end at the nakedly singular static configuration with
 $M=3\pi\alpha/4$, $J=S=0$.
 
 \paragraph{The gap, stated carefully.}
-It is worth being precise here, because the honest version is narrower than
-the tempting one. Scale invariance makes the extremal branch a single curve in
-the reduced variables of \aX{2303.12471}, and that curve already fixes the
-extremal mass: with $\mu=M_\ext/J^{2/3}$,
-$y=\alpha/J^{2/3}$, and $x,j$ the published scaled coupling and spin, the
-definitions alone give
+It is worth being precise here, because the honest version is narrower than the
+tempting one. Scale invariance makes the extremal branch a single curve in the
+reduced variables of \aX{2303.12471}, and that curve already fixes the extremal
+mass: with $\mu=M_\ext/J^{2/3}$, $y=\alpha/J^{2/3}$, and $x,j$ the published
+scaled coupling and spin, the definitions alone give
 \begin{equation}
  \mu=\mu(0)\,j^{-2/3},\qquad y=\frac{4x\mu}{3\pi},
  \qquad \mu(0)=\tfrac32\pi^{1/3}.
  \label{eq:dictionary}
 \end{equation}
-So $M_\ext(J,\alpha)$ is contained in the published domain of existence. What
-is not contained there is its \emph{derivative}. That function is not reported,
-and a slope read off a plotted domain boundary is not a quantity one would set
-beside the coefficient $\pi$ of \eqref{eq:published}. Nor is differencing the
-masses of separately constructed extremal solutions, since each carries its own
-construction error and the difference is taken between neighbouring couplings.
+So $M_\ext(J,\alpha)$ is contained in the published domain of existence; what is
+not is its \emph{derivative}. That function is not reported, and a slope read off
+a plotted domain boundary is not a quantity one would set beside the coefficient
+$\pi$ of \eqref{eq:published} --- nor is differencing the masses of separately
+constructed extremal solutions, since each carries its own construction error.
 The derivative is what this project measures, and it is measured rather than
 differenced.
 
@@ -174,10 +176,9 @@ boundary behaviour factored out, and the discretised system is solved by damped
 Newton iteration at fixed $(r_H,\Omega_H,\alpha)$. The production dataset is
 $\Nstates$ accepted solutions at $\Ncouplings$ couplings from $\alpha=0$ to
 $\alpha=1/2$ in units $r_H=1$; every one is a solve of the nonlinear problem at
-that coupling, not a perturbation about $\alpha=0$.
-
-The methods are those standard for stationary black holes in higher dimensions,
-reviewed in \aX{1510.02804}.
+that coupling, not a perturbation about $\alpha=0$. The methods are the
+standard ones for stationary black holes in higher dimensions, reviewed
+in \aX{1510.02804}.
 
 \paragraph{The response, without a step size.}
 The three derivatives in \eqref{eq:psi} could be obtained by re-solving at
@@ -221,59 +222,44 @@ rather than assumed --- and spin $q=\Cq$.
 The published figure cannot be redistributed: its licence grants distribution to
 arXiv and does not extend to third parties, so neither it nor the source file is
 in this repository. What is in the repository are coordinates. The arXiv source
-ships that figure as gnuplot PostScript, in which every curve is a polyline
-carrying its own vertices, so no digitisation is needed at all: the affine map
-from device to data space is fitted from the file's own printed ticks --- refused
-if those ticks are not collinear to within the one device unit of rounding
-gnuplot writes --- and the four curves are then read directly, $\Cvertices$
-vertices each.
+ships the figure as gnuplot PostScript, in which every curve is a polyline
+carrying its own vertices, so no digitisation is needed: the affine map from
+device to data space is fitted from the file's own printed ticks, refused if
+those are not collinear to within the one device unit gnuplot rounds to, and the
+four curves are read directly, $\Cvertices$ vertices each.
 
-That turns a reading exercise into a comparison of two calculations, and it says
-something the raster could not. At the horizon the two agree to $\Chorizon$,
-about a third of one device unit of the published figure, which fixes the
-parameters and the boundary conditions. In the interior they part: the largest
-difference is $\Cinterior$, a smooth excursion peaking where each curve is
-steepest and some twenty-seven device units wide. Reading the same figure from
-its raster assigns each point a pixel box wider than that, so that route could
-not have seen it.
-
-The departure is not ours. The same figure draws a second, near-Einstein
-coupling, $\alpha_{\rm ref.}=\Ccontrolalpha$, where our solution is Myers--Perry
-to thirteen digits; its published curve departs from us by $\Ccontrolinterior$
-and from the \emph{closed-form} Myers--Perry solution by $\Canalytic$. The
-closed form carries no numerical error, and the true solution at that coupling
-sits within $\mathcal O(\alpha)$ of it, so a departure this wide is a property of
-the published figure rather than of either calculation. We do not establish its
-cause, and we do not offer it as evidence of an erratum: the comparisons that
-carry this work --- the horizon data, the charges, the entropy and the
-near-horizon branch --- close at the digits quoted below.
+At the horizon the two calculations agree to $\Chorizon$, a third of one device
+unit, which fixes the parameters and the boundary conditions. In the interior
+they part by up to $\Cinterior$, a smooth excursion peaking where each curve is
+steepest. That departure is not ours: the same figure draws a near-Einstein
+coupling at which our solution is Myers--Perry to thirteen digits, and there its
+published curve sits $\Ccontrolinterior$ from ours and $\Canalytic$ from the
+\emph{closed form}, which carries no numerical error at all. The cause is not
+established here and none is asserted; the comparisons this work rests on,
+listed next, close at the digits quoted there.
 
 \begin{figure}[t]
  \centering
- \includegraphics[width=\textwidth]{fig-paper-comparison.pdf}
+ \includegraphics[width=.78\textwidth]{fig-paper-comparison.pdf}
  \caption{Left: the four metric functions at $\alpha_{\rm ref.}=\Cpaperalpha$,
  $q=\Cq$, ours as lines and the $\Cvertices$ published vertices as markers.
  Right: the difference, with the band of one device unit of the published
  figure ($\Cdevice$) shaded. Two conventions follow that figure so the two can
  be laid side by side: $h$ is drawn as $h/r^2$, which tends to unity at
- infinity, and $b$ as $-b$, since $b$ and $f$ otherwise overlap. The boundary
- conditions are visible rather than imposed: $b=f=0$ and $w=q$ at $r=r_H$, and
- $b,f,h/r^2\to1$, $w\to0$ as $r\to\infty$.}
+ infinity, and $b$ as $-b$, since $b$ and $f$ otherwise overlap.}
  \label{fig:paper}
 \end{figure}
 
-Four further comparisons with the same paper are quantitative rather than
-pictorial, and they carry the digits the figure cannot. The metric ansatz is
-identically their eq.~(2.8) in the gauge $g_{\theta\theta}=r^2$; the charge
-normalisations are those of their eq.~(3.6), with $J$ the momentum in each
-plane and not the total; their entropy, eq.~(3.10), equals our Jacobson--Myers
-form exactly when $\alpha_{\rm ref.}=4\alpha$, which is how that conversion is
-fixed; and our rederived near-horizon solution satisfies their eqs.~(4.11) and
-(4.12) as printed, to $\Npublishedstationarity$ and $\Npublishedspin$. The
-extremal entropy their near-horizon analysis gives is reproduced at finite
-coupling by the zero-temperature limit of our bulk solutions to
-$\Nhorizonworst$. One comparison with this paper does not close, and is
-reported below rather than absorbed.
+Four comparisons with the same paper are quantitative rather than pictorial and
+carry the digits a figure cannot. The ansatz is identically their eq.~(2.8) in
+the gauge $g_{\theta\theta}=r^2$; the charge normalisations are those of
+eq.~(3.6), with $J$ the momentum in each plane; their entropy, eq.~(3.10),
+equals our Jacobson--Myers form exactly when $\alpha_{\rm ref.}=4\alpha$, which
+is how that conversion is fixed; and our rederived near-horizon solution
+satisfies eqs.~(4.11) and (4.12) as printed, to $\Npublishedstationarity$ and
+$\Npublishedspin$, its extremal entropy matching the $T\to0$ limit of our bulk
+solutions to $\Nhorizonworst$. One comparison does not close, and is reported
+below rather than absorbed.
 
 \section*{What came out}
 
@@ -295,8 +281,8 @@ predicts, not more slowly than at $\alpha=0$.
 
 \begin{figure}[t]
  \centering
- \includegraphics[width=.54\textwidth]{../manuscript/figures/fig-shift.pdf}\\[3pt]
- \includegraphics[width=.86\textwidth]{../manuscript/figures/fig-massext.pdf}
+ \includegraphics[width=.44\textwidth]{../manuscript/figures/fig-shift.pdf}\\[3pt]
+ \includegraphics[width=.70\textwidth]{../manuscript/figures/fig-massext.pdf}
  \caption{Top: the measured slope against $y=\alpha/J^{2/3}$, with the
  published linear-order value $\pi$ as a star and secants of the mass curve as
  open squares. Bottom left: the extremal mass the slope integrates to, against
@@ -318,14 +304,14 @@ The result becomes less abstract when restated.
  excess opens linearly, and the measurement says it keeps opening at a rate
  that falls and then recovers.
 \item \emph{The geometry.} At fixed $T$ and $\Omega_i$ the Gibbs potential is
- the on-shell action per unit time, and the only explicit $\alpha$-dependence
- of that action is the Gauss--Bonnet term, so
+ the on-shell action per unit time, whose only explicit $\alpha$-dependence is
+ the Gauss--Bonnet term, so
  $\Psi=-(16\pi)^{-1}\int_\Sigma\sqrt{-g}\,\mathcal L_\GB\,\dd^4x$ over a
  stationary exterior slice: a positive $\Psi$ is a negative integrated
- Gauss--Bonnet density. Since the first law gives
- $\partial S/\partial\alpha|_{M,J}=-\Psi/T$, it is likewise a decrease of
- entropy at fixed mass and spin --- compatible with entropy per spin along the
- \emph{extremal} branch growing by a factor $\Nsigmagrowth$, because extremal
+ Gauss--Bonnet density. With $\partial S/\partial\alpha|_{M,J}=-\Psi/T$ it is
+ likewise a decrease of entropy at fixed mass and spin --- compatible with
+ entropy per spin along the \emph{extremal} branch growing by $\Nsigmagrowth$,
+ because extremal
  states at fixed $J$ have different masses as $\alpha$ changes.
 \item \emph{The turning point.} With $\omega=\Omega_HJ^{1/3}$, the same Smarr
  relation gives $3\omega=\mu-y\mu'$ and hence $3\omega'=-y\mu''$. For $y>0$ the
@@ -340,17 +326,16 @@ The result becomes less abstract when restated.
 The bound $M>3\pi\alpha/4$ is $\mu(y)>3\pi y/4$. If $\mu'$ stayed below some
 $c<3\pi/4$ everywhere, then $\mu(y)\le\mu(0)+cy$, which violates the bound once
 $y>\mu(0)/(3\pi/4-c)$. So $\mu'$ must return to at least
-$3\pi/4=\Nslopeasymptote$, a value above every slope measured here: the
-observed rise is required, not accidental. If the extremal branch also
-terminates as conjectured in \aX{2303.12471}, the average slope tends to
-$\Nslopeasymptote$. The sampled range stops well short of that --- the largest
-$x$ reached on the extremal branch is $\Nxextlast$, against a conjectured
+$3\pi/4=\Nslopeasymptote$, above every slope measured here: the observed rise is
+required, not accidental. If the branch also ends as conjectured in
+\aX{2303.12471}, the average slope tends to that value. Our range stops well
+short --- the largest extremal $x$ is $\Nxextlast$, against a conjectured
 endpoint at $x=1$ --- so this is consistency, not evidence.
 
 \section*{How far it can be trusted}
 
-The response solve is the one step with no analytic counterpart, so it is
-checked against four things that do not use it.
+The response solve has no analytic counterpart, so it is checked against four
+things that do not use it.
 
 \begin{center}\small
 \begin{tabular}{@{}lll@{}}
@@ -373,52 +358,47 @@ Radial resolution, $\Nstudywalks$ full re-walks & the whole pipeline at two coar
 
 The last two rows deserve comment. The Einstein limit is recovered from the
 same continuation and extrapolation used at finite coupling, with the analytic
-constants imposed nowhere; agreement there does not establish the error at
-finite $y$. The resolution study re-ran the complete ascending sequence and the
-complete $T=0$ extrapolation at two coarser base resolutions at every coupling,
-and the intercept moves by less than the fit sensitivity in all $\Nstudywalks$
-sequences --- which bounds the resolution effect but is not a convergence
-proof, for three reasons named in the manuscript's appendix.
+constants imposed nowhere, so agreement there does not establish the error at
+finite $y$. And the resolution study, which re-ran the complete ascending
+sequence and $T=0$ extrapolation at two coarser resolutions at every coupling,
+moves the intercept by less than the fit sensitivity in all $\Nstudywalks$
+sequences: that bounds the resolution effect without proving convergence.
 
 \paragraph{Limitations.}
 The extrapolation is the leading one, and the bands around it are
 sensitivities, not error bars. The coupling coverage is finite, the spin
-coverage uneven, and the calculation is restricted to equal spins and to the
-branch continuously connected to Myers--Perry; nothing here shows that branch
-is unique, stable, or the lowest in mass at the same angular momenta. None of
-the checks closes the gap that matters most: the mass-curve comparison shares
-systematic errors with the potential, the near-horizon route determines entropy
-rather than mass, and the Smarr and on-shell routes remove the response solve
-from the chain but not the solutions. Finally, this is classical
+coverage uneven, and the work is restricted to equal spins and to the branch
+continuously connected to Myers--Perry; nothing here shows that branch is
+unique, stable, or the lowest in mass at the same angular momenta. No check
+closes the gap that matters most: the mass-curve comparison shares systematics
+with the potential, the near-horizon route gives entropy rather than mass, and
+the Smarr and on-shell routes remove the response solve but not the solutions.
+Finally, this is classical
 Einstein--Gauss--Bonnet with the action \eqref{eq:action}. In a gravitational
 effective field theory, terms beyond Gauss--Bonnet contribute at the same order
 as the higher powers of $\alpha$ kept here, so the non-monotonic slope is not a
 universal prediction of a derivative expansion.
 
 \paragraph{One comparison that does not close.}
-Against the agreement just described, a separate reconstruction of the
-non-extremal family gives an outer ergosurface
+A separate reconstruction of the non-extremal family gives an outer ergosurface
 radius $1.102101$ against the $1.104$ quoted in \aX{1010.0860}, at $\alpha=1/2$
 in our convention. It is unresolved, recorded as a declared negative result
-rather than absorbed into a tolerance, and not offered as evidence of an
-erratum. It tests the metric functions away from the horizon and touches
-neither the charge extraction, the response solve nor the extrapolation; the
-near-horizon comparison that does test the same paper's coupling conversion
-agrees to $\Npublishedstationarity$.
+rather than absorbed into a tolerance, and not offered as an erratum. It tests
+the metric functions away from the horizon and touches neither the charge
+extraction, the response solve nor the extrapolation.
 
 \section*{New, reproduced, and cited}
 
-\emph{New here:} $\Psi$ measured on rotating solutions at finite coupling,
-across the whole family and not only at its extremal end, with the sign change
-it undergoes; the extremal slope obtained pointwise at $\Ncouplings$ couplings,
-its minimum and subsequent rise resolved; the extremal mass curve it integrates
-to, and the size of its departure from \eqref{eq:published}; the reading of
-$\Psi$ as an on-shell Gauss--Bonnet action, tested against the response on
-$\Nonshellstates$ archived solutions; and the identification of the slope
-minimum with the maximum of $\Omega_HJ^{1/3}$.
+\emph{New here:} $\Psi$ measured on rotating solutions at finite coupling across
+the whole family, with the sign change it undergoes; the extremal slope obtained
+pointwise at $\Ncouplings$ couplings, its minimum and rise resolved; the extremal
+mass curve it integrates to and its departure from \eqref{eq:published}; the
+reading of $\Psi$ as an on-shell Gauss--Bonnet action, tested against the
+response on $\Nonshellstates$ archived solutions; and the identification of the
+slope minimum with the maximum of $\Omega_HJ^{1/3}$.
 
 \emph{Reproduced rather than new:} the equal-spin family of \aX{1010.0860} and
-its profiles, to the resolution of figure~\ref{fig:paper}; the closed-form static solution; the $\mathcal O(\alpha)$
+its profiles; the closed-form static solution; the $\mathcal O(\alpha)$
 potential implied by \aX{2405.04576} and the first-order extremal mass $\pi$ of
 \aX{2009.00015}; the near-horizon extremal entropy of \aX{1010.0860}; and the
 extremal branch itself, which \aX{2303.12471} constructs directly and this work
@@ -427,37 +407,25 @@ reaches by extrapolation, with its bounds $j\le1$ and $x<1$.
 \emph{Cited, not reproduced:} the Myers--Perry and Boulware--Deser solutions
 (oracles, every closed form checked against the solver, but not rederived),
 Lovelock's theorem, the Wald and Jacobson--Myers entropy formulae, Sen's
-entropy function formalism, the covariant phase space derivation of the
-extended $\alpha$-term, and the Goon--Penco universality claim --- of which
-only the first-law identity is used, and that is rederived.
+formalism, the covariant phase space derivation of the extended $\alpha$-term,
+and the Goon--Penco universality claim, of which only the first-law identity is
+used, and rederived.
 
-\section*{The apparatus}
-
-One discipline shaped the repository more than any other: \textbf{no number
-that appears in the paper is typed into the paper}. Every figure, table and
-quoted quantity is generated from the recorded measurement into
-\texttt{numbers.tex} and read back as a macro, so the PDF, the figures, the
-tables and the data cannot disagree: rebuilding either reproduces them or
-fails. This document draws on the same file.
-
-Around that sit the checks that make a claim auditable rather than merely
-stated. A static checker verifies that every generated quantity is used and
-every used one generated, that no literal decimal survives in the prose, and
-that every citation resolves. Each result carries a provenance record naming
-its command, inputs and their hashes, audited against the bytes on disk, with
-the two exceptions it cannot resolve documented rather than silenced. Failed
-checks are declared in \texttt{artifacts/limitations.json}, and a test asserts
-that the declared failures still match the actual ones, so the list cannot grow
-into a way of muting the audit.
-
-Two lessons are worth recording. Re-running the same boundary-value problem on
-a different linear-algebra stack moved an extrapolated intercept by more than
-either genuine resolution change at the same coupling: the walk is adaptive, so
-a different BLAS changes which states pass the acceptance gate and therefore
-which states get fitted. And the quadrature for the on-shell integral
-\emph{cannot} be refined --- $\mathcal L_\GB$ is a cancellation decaying like
-$r^{-8}$ while the compactification amplifies what survives, so past about
-eighty nodes the answer degrades and then diverges. In both, the obvious
-convergence diagnostic measures something other than what it appears to.
+\paragraph{The apparatus.}
+One discipline shaped the repository more than any other: \textbf{no number that
+appears in the paper is typed into the paper}. Every figure, table and quoted
+quantity is generated from the recorded measurement into \texttt{numbers.tex}
+and read back as a macro, so nothing can drift; this document draws on the same
+file. Around that sit a static checker on macros, literal decimals and
+citations; a provenance record per result, naming its command and inputs with
+their hashes and audited against the bytes on disk; and a declared list of
+failing checks that a test holds equal to the actual ones, so it cannot grow
+into a way of muting the audit. Three findings of the process are worth
+recording, in each of which the obvious diagnostic measures something other than
+it appears to: a different linear-algebra stack moved an extrapolated intercept
+by more than either genuine resolution change, the walk being adaptive; the
+on-shell quadrature diverges past about eighty nodes, $\mathcal L_\GB$ being a
+cancellation that decays like $r^{-8}$ while the compactification amplifies what
+survives; and a comparison is only as sharp as the weaker side's resolution.
 
 \end{document}
