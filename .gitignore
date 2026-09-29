@@ -9,8 +9,9 @@ __pycache__/
 *.out
 *.toc
 *.synctex.gz
-# Optional third-party input: do not redistribute.
+# Optional third-party inputs: do not redistribute.
 references/data/1010.0860v1-figure-1b.png
+references/data/1010.0860-src/
 # Keep results, figures, supplements and the published PDF.
 !results/*.json
 !artifacts/*.png

@@ -41,3 +41,34 @@ Para regenerar la comparación, una vez obtenida:
 ```powershell
 .venv/Scripts/python experiments/egb_rotating_paper_profiles.py
 ```
+
+
+## Entrada externa opcional: el EPS vectorial de la misma figura
+
+`1010.0860-src/profiles-alpha.eps` **tampoco está incluido**, por la misma razón:
+la licencia de arXiv no concede redistribución a terceros. Es la figura 1b tal
+como la envió el autor, PostScript de gnuplot, donde cada curva es una polilínea
+con sus propios vértices. Leerla evita por completo la digitalización de píxeles.
+
+Para obtenerla desde la raíz del repositorio:
+
+```bash
+curl -sSL -o /tmp/1010.0860.tar.gz https://arxiv.org/e-print/1010.0860
+mkdir -p references/data/1010.0860-src
+tar -xzf /tmp/1010.0860.tar.gz -C references/data/1010.0860-src profiles-alpha.eps
+sha256sum references/data/1010.0860-src/profiles-alpha.eps
+PYTHONPATH=src python experiments/egb_rotating_paper_eps_profiles.py
+```
+
+SHA-256 esperado del EPS, registrado en el resultado:
+
+```text
+ed6981a241131041955a1d1ac469621074f900a209e7089e1bd46b61c897e142
+```
+
+La calibración de ejes no se escribe a mano: se ajusta con las marcas impresas
+del propio archivo y se rechaza si no son colineales dentro del redondeo de un
+paso de dispositivo. Sin el EPS, `experiments/egb_rotating_paper_eps_profiles.py`
+se detiene con un mensaje; el resultado guardado
+`results/egb-rotating-paper-eps-profiles.json` conserva las coordenadas extraídas
+y la comparación, que es lo único que se redistribuye.

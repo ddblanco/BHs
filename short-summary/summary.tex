@@ -19,6 +19,7 @@
 
 % Every number below is read from the measurement, not typed here.
 \input{../manuscript/numbers}
+\input{comparison-numbers}
 
 \title{\vspace{-1.2cm}What this project computed, and how far it can be trusted}
 \author{}
@@ -209,6 +210,71 @@ to three, six- and twelve-point windows, the coordinates $T$ and $\tau$, two
 non-polynomial forms. They measure sensitivity to stated modelling choices;
 they are not confidence intervals and cannot detect an error common to all.
 
+\section*{Reproducing the published family}
+
+Before measuring anything new, the solver has to return the family
+\aX{1010.0860} already constructed. Figure~\ref{fig:paper} is that comparison, at their
+coupling $\alpha_{\rm ref.}=\Cpaperalpha$ --- which is $\alpha=\Cgbalpha$ here,
+the conversion $\alpha_{\rm ref.}=4\alpha$ being itself read off their action
+rather than assumed --- and spin $q=\Cq$.
+
+The published figure cannot be redistributed: its licence grants distribution to
+arXiv and does not extend to third parties, so neither it nor the source file is
+in this repository. What is in the repository are coordinates. The arXiv source
+ships that figure as gnuplot PostScript, in which every curve is a polyline
+carrying its own vertices, so no digitisation is needed at all: the affine map
+from device to data space is fitted from the file's own printed ticks --- refused
+if those ticks are not collinear to within the one device unit of rounding
+gnuplot writes --- and the four curves are then read directly, $\Cvertices$
+vertices each.
+
+That turns a reading exercise into a comparison of two calculations, and it says
+something the raster could not. At the horizon the two agree to $\Chorizon$,
+about a third of one device unit of the published figure, which fixes the
+parameters and the boundary conditions. In the interior they part: the largest
+difference is $\Cinterior$, a smooth excursion peaking where each curve is
+steepest and some twenty-seven device units wide. Reading the same figure from
+its raster assigns each point a pixel box wider than that, so that route could
+not have seen it.
+
+The departure is not ours. The same figure draws a second, near-Einstein
+coupling, $\alpha_{\rm ref.}=\Ccontrolalpha$, where our solution is Myers--Perry
+to thirteen digits; its published curve departs from us by $\Ccontrolinterior$
+and from the \emph{closed-form} Myers--Perry solution by $\Canalytic$. The
+closed form carries no numerical error, and the true solution at that coupling
+sits within $\mathcal O(\alpha)$ of it, so a departure this wide is a property of
+the published figure rather than of either calculation. We do not establish its
+cause, and we do not offer it as evidence of an erratum: the comparisons that
+carry this work --- the horizon data, the charges, the entropy and the
+near-horizon branch --- close at the digits quoted below.
+
+\begin{figure}[t]
+ \centering
+ \includegraphics[width=\textwidth]{fig-paper-comparison.pdf}
+ \caption{Left: the four metric functions at $\alpha_{\rm ref.}=\Cpaperalpha$,
+ $q=\Cq$, ours as lines and the $\Cvertices$ published vertices as markers.
+ Right: the difference, with the band of one device unit of the published
+ figure ($\Cdevice$) shaded. Two conventions follow that figure so the two can
+ be laid side by side: $h$ is drawn as $h/r^2$, which tends to unity at
+ infinity, and $b$ as $-b$, since $b$ and $f$ otherwise overlap. The boundary
+ conditions are visible rather than imposed: $b=f=0$ and $w=q$ at $r=r_H$, and
+ $b,f,h/r^2\to1$, $w\to0$ as $r\to\infty$.}
+ \label{fig:paper}
+\end{figure}
+
+Four further comparisons with the same paper are quantitative rather than
+pictorial, and they carry the digits the figure cannot. The metric ansatz is
+identically their eq.~(2.8) in the gauge $g_{\theta\theta}=r^2$; the charge
+normalisations are those of their eq.~(3.6), with $J$ the momentum in each
+plane and not the total; their entropy, eq.~(3.10), equals our Jacobson--Myers
+form exactly when $\alpha_{\rm ref.}=4\alpha$, which is how that conversion is
+fixed; and our rederived near-horizon solution satisfies their eqs.~(4.11) and
+(4.12) as printed, to $\Npublishedstationarity$ and $\Npublishedspin$. The
+extremal entropy their near-horizon analysis gives is reproduced at finite
+coupling by the zero-temperature limit of our bulk solutions to
+$\Nhorizonworst$. One comparison with this paper does not close, and is
+reported below rather than absorbed.
+
 \section*{What came out}
 
 The slope $\partial M_\ext/\partial\alpha|_J$ is positive across the whole
@@ -237,6 +303,7 @@ predicts, not more slowly than at $\alpha=0$.
  the first-order line. Bottom right: the same branch in the $(x,j)$
  domain-of-existence plane of \aX{2303.12471}. Circles are $T=0$ intercepts of
  fits, not constructed solutions.}
+ \label{fig:result}
 \end{figure}
 
 \paragraph{Three ways to read it.}
@@ -329,7 +396,8 @@ as the higher powers of $\alpha$ kept here, so the non-monotonic slope is not a
 universal prediction of a derivative expansion.
 
 \paragraph{One comparison that does not close.}
-A separate reconstruction of the non-extremal family gives an outer ergosurface
+Against the agreement just described, a separate reconstruction of the
+non-extremal family gives an outer ergosurface
 radius $1.102101$ against the $1.104$ quoted in \aX{1010.0860}, at $\alpha=1/2$
 in our convention. It is unresolved, recorded as a declared negative result
 rather than absorbed into a tolerance, and not offered as evidence of an
@@ -350,7 +418,7 @@ $\Nonshellstates$ archived solutions; and the identification of the slope
 minimum with the maximum of $\Omega_HJ^{1/3}$.
 
 \emph{Reproduced rather than new:} the equal-spin family of \aX{1010.0860} and
-its profiles; the closed-form static solution; the $\mathcal O(\alpha)$
+its profiles, to the resolution of figure~\ref{fig:paper}; the closed-form static solution; the $\mathcal O(\alpha)$
 potential implied by \aX{2405.04576} and the first-order extremal mass $\pi$ of
 \aX{2009.00015}; the near-horizon extremal entropy of \aX{1010.0860}; and the
 extremal branch itself, which \aX{2303.12471} constructs directly and this work

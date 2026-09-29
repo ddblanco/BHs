@@ -2453,5 +2453,58 @@
     ],
     "status": "verified",
     "sha256": "5c9c6eb2d13c60fe6ca98cb41380d3f708f40b24ca62c0e1d544e4434d655432"
+  },
+  {
+    "id": "egb-rotating-paper-eps-profiles",
+    "kind": "result",
+    "path": "results/egb-rotating-paper-eps-profiles.json",
+    "command": "python experiments/egb_rotating_paper_eps_profiles.py",
+    "commit": "working-tree",
+    "inputs": [
+      "experiments/egb_rotating_paper_eps_profiles.py",
+      "src/rotating_bh/egb_rotating_saved.py",
+      "src/rotating_bh/egb_rotating_validation.py",
+      "src/rotating_bh/myers_perry.py",
+      "results/egb-rotating-family.json"
+    ],
+    "parameters": {
+      "q": 0.33,
+      "eps_sha256": "ed6981a241131041955a1d1ac469621074f900a209e7089e1bd46b61c897e142",
+      "source_sha256": {
+        "experiments/egb_rotating_paper_eps_profiles.py": "8b8027e99bbf9bab1700322f207c4a506ccf77e8fd45cdc36f16697f74e6790f",
+        "src/rotating_bh/egb_rotating_saved.py": "7f52254618dc520d7c0bd8490b1a0d04046bc9b0d187d6019dd2a268ca947505",
+        "src/rotating_bh/egb_rotating_validation.py": "57a635be94c87db0e30d2f02e2f1f4926233347f919701c2d97893fdf2d052b7",
+        "src/rotating_bh/myers_perry.py": "4eb64ded96c07692f8e31cd112da7727c9c3becb3d59d2f7241679624fc2957d",
+        "results/egb-rotating-family.json": "afb72dd82422132930aab72c28b3d8632584abb8a33c8917bc4520f94b168463"
+      }
+    },
+    "environment": "environment/requirements-lock.txt",
+    "agent": "claude",
+    "prompt_refs": [
+      "prompts.txt"
+    ],
+    "decisions": [
+      "Read the published figure from its vector paths instead of its raster; keep the EPS out of the distribution; use the near-Einstein curve against the closed form as a control"
+    ],
+    "checks": [
+      {
+        "name": "four_curves_found_per_coupling",
+        "passed": true
+      },
+      {
+        "name": "calibration_is_affine",
+        "passed": true
+      },
+      {
+        "name": "horizon_values_within_device_rounding",
+        "passed": true
+      },
+      {
+        "name": "analytic_departure_exceeds_rounding",
+        "passed": true
+      }
+    ],
+    "status": "verified",
+    "sha256": "6fe0f254b148597116bdf68fcb30989b6ef8577aff0ac4f50d28a834f529b754"
   }
 ]
