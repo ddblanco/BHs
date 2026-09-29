@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 \ifdefined\pdftexversion\pdfoutput=1\fi
 
-\usepackage[a4paper,left=2.3cm,right=2.3cm,top=2.1cm,bottom=2.2cm]{geometry}
+\usepackage[a4paper,left=2.15cm,right=2.15cm,top=1.9cm,bottom=1.9cm]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -10,11 +10,11 @@
 \usepackage{titlesec}
 % Tighter section spacing: nine headings at the article default cost most of a
 % page on their own.
-\titlespacing*{\section}{0pt}{1.8ex plus .3ex minus .2ex}{1.0ex plus .2ex}
+\titlespacing*{\section}{0pt}{1.5ex plus .3ex minus .2ex}{0.8ex plus .2ex}
 \usepackage[colorlinks=true,linkcolor=blue!55!black,
             citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
 
-\captionsetup{font=small,labelfont=bf,width=.78\textwidth}
+\captionsetup{font=small,labelfont=bf,width=.84\textwidth}
 \setlength{\parskip}{0pt}
 \newcommand{\GB}{\mathrm{GB}}
 \newcommand{\ext}{\mathrm{ext}}
@@ -37,18 +37,15 @@
 A short account of the work behind \emph{Extremality shift of rotating black
 holes at finite Gauss--Bonnet coupling}: the question, the quantity that answers
 it, the method, the result, and --- at the same length --- what the evidence
-does and does not support. The manuscript is \texttt{manuscript/main.pdf}; a
-longer walk-through in Spanish is
-\texttt{manuscript/explicacion-en-espanol.md}.
+does and does not support.
 
 \section*{The question}
 
 A rotating black hole in Einstein gravity cannot carry arbitrary angular
 momentum at a given mass. For Kerr the bound is $M^2\ge J$; in five dimensions,
 for the Myers--Perry solution with two equal angular momenta $J_1=J_2=J$, it is
-$M\ge\tfrac32\pi^{1/3}J^{2/3}$ (see \aX{0801.3471} for the higher-dimensional
-solutions and their phase structure). The black hole that saturates it is extremal:
-its temperature vanishes and its horizon degenerates.
+$M\ge\tfrac32\pi^{1/3}J^{2/3}$ (\aX{0801.3471}). The solution that saturates it
+is extremal: its temperature vanishes and its horizon degenerates.
 
 That bound belongs to the field equations, not to black holes in general. Add a
 higher-curvature term to the action and it moves. The question here is
@@ -63,8 +60,8 @@ beyond an infinitesimal perturbation of Einstein gravity?} The theory is
 \end{equation}
 the unique quadratic invariant whose field equations stay second order, and the
 first nontrivial Lovelock correction in five dimensions. Varying $\alpha$ means
-comparing equilibrium solutions of theories with different couplings. It does
-not describe a coupling that changes with time inside one spacetime.
+comparing equilibrium solutions of theories with different couplings, not a
+coupling that changes in time inside one spacetime.
 
 Two lines of work make the sign of the displacement interesting. The weak
 gravity conjecture reads a shift of an extremality bound as a statement about
@@ -110,8 +107,8 @@ conjectured to end at the nakedly singular static configuration with
 $M=3\pi\alpha/4$, $J=S=0$.
 
 \paragraph{The gap, stated carefully.}
-It is worth being precise here, because the honest version is narrower than the
-tempting one. Scale invariance makes the extremal branch a single curve in the
+The honest version is narrower than the tempting one. Scale invariance makes
+the extremal branch a single curve in the
 reduced variables of \aX{2303.12471}, and that curve already fixes the extremal
 mass: with $\mu=M_\ext/J^{2/3}$, $y=\alpha/J^{2/3}$, and $x,j$ the published
 scaled coupling and spin, the definitions alone give
@@ -138,11 +135,9 @@ Lovelock gravity, with a conjugate potential $\Psi$:
  \boxed{\;\Psi=\left(\frac{\partial M}{\partial\alpha}\right)_{S,J}.\;}
  \label{eq:firstlaw}
 \end{equation}
-The factor of two counts the two equal spins. ``Potential'' here does not mean
-an extra field or a function of the radius: $\Psi$ is one number attached to
-each solution, measuring how its mass responds to a change of theory at fixed
-entropy and angular momenta, as temperature is a derivative of energy with
-respect to entropy.
+The factor of two counts the two equal spins. ``Potential'' here is not a field:
+$\Psi$ is one number per solution, measuring how its mass responds to a change
+of theory at fixed entropy and angular momenta.
 
 Two facts make $\Psi$ the right object. First, on a regular extremal branch the
 chain rule and \eqref{eq:firstlaw} give
@@ -176,16 +171,27 @@ boundary behaviour factored out, and the discretised system is solved by damped
 Newton iteration at fixed $(r_H,\Omega_H,\alpha)$. The production dataset is
 $\Nstates$ accepted solutions at $\Ncouplings$ couplings from $\alpha=0$ to
 $\alpha=1/2$ in units $r_H=1$; every one is a solve of the nonlinear problem at
-that coupling, not a perturbation about $\alpha=0$. The methods are the
-standard ones for stationary black holes in higher dimensions, reviewed
-in \aX{1510.02804}.
+that coupling, not a perturbation about $\alpha=0$. Figure~\ref{fig:profiles}
+shows the four amplitudes at all $\Ncouplings$ couplings at one spin. The
+methods are the standard ones for stationary black holes in higher dimensions,
+reviewed in \aX{1510.02804}.
+
+\begin{figure}[t]
+ \centering
+ \includegraphics[width=.56\textwidth]{../manuscript/figures/fig-profiles.pdf}
+ \caption{The four amplitudes of the equal-spin ansatz at all $\Ncouplings$
+ couplings, $\alpha=0$ (lightest) to $\alpha=1/2$ (darkest), at spin
+ $q=\Nstartspin$ and $r_H=1$; each curve is one nonlinear solve. Conventions
+ follow fig.~1 of \aX{1010.0860}: $h$ is drawn as $h/r^2$, which tends to unity
+ at infinity, and $b$ as $-b$, since $b$ and $f$ otherwise overlap.}
+ \label{fig:profiles}
+\end{figure}
 
 \paragraph{The response, without a step size.}
 The three derivatives in \eqref{eq:psi} could be obtained by re-solving at
 $\alpha\pm\Delta\alpha$ and differencing, which trades a truncation error
-growing like $\Delta\alpha^2$ against a cancellation error growing like the
-solver tolerance divided by $\Delta\alpha$ --- a trade-off that worsens exactly
-where the solutions are hardest to converge. Instead, writing the discretised
+$\sim\Delta\alpha^2$ against a cancellation error $\sim$ tolerance$/\Delta\alpha$,
+worst exactly where the solutions are hardest to converge. Instead, writing the discretised
 problem as $R_N(u;\alpha)=0$ and using that it vanishes \emph{identically}
 along the branch of roots,
 \begin{equation}
@@ -206,10 +212,10 @@ temperature $\tau=TJ^{1/3}$ down to $\Ntaubest$, and the quoted extremal values
 are $T=0$ intercepts of cubic fits through the six coldest states. \emph{No
 solution is constructed at $T=0$}: every extremal number is an extrapolant, and
 the distance each fit had to travel is reported beside it. The quoted bands are
-the spread of the intercept over twenty-one fitting variations --- degrees one
-to three, six- and twelve-point windows, the coordinates $T$ and $\tau$, two
-non-polynomial forms. They measure sensitivity to stated modelling choices;
-they are not confidence intervals and cannot detect an error common to all.
+the spread of the intercept over twenty-one fitting variations (degrees one to
+three, six- and twelve-point windows, the coordinates $T$ and $\tau$, two
+non-polynomial forms): sensitivities to stated modelling choices, not confidence
+intervals, and blind to an error common to all.
 
 \section*{Reproducing the published family}
 
@@ -219,14 +225,13 @@ coupling $\alpha_{\rm ref.}=\Cpaperalpha$ --- which is $\alpha=\Cgbalpha$ here,
 the conversion $\alpha_{\rm ref.}=4\alpha$ being itself read off their action
 rather than assumed --- and spin $q=\Cq$.
 
-The published figure cannot be redistributed: its licence grants distribution to
-arXiv and does not extend to third parties, so neither it nor the source file is
-in this repository. What is in the repository are coordinates. The arXiv source
-ships the figure as gnuplot PostScript, in which every curve is a polyline
-carrying its own vertices, so no digitisation is needed: the affine map from
-device to data space is fitted from the file's own printed ticks, refused if
-those are not collinear to within the one device unit gnuplot rounds to, and the
-four curves are read directly, $\Cvertices$ vertices each.
+The published figure cannot be redistributed --- its licence covers arXiv and
+not third parties --- so neither it nor the source file is in this repository;
+the coordinates are. The arXiv source ships it as gnuplot PostScript, every
+curve a polyline carrying its own vertices, so nothing is digitised: the
+device-to-data map is fitted from the file's own printed ticks, refused unless
+those are collinear to within the one device unit gnuplot rounds to, and the
+four curves are read off, $\Cvertices$ vertices each.
 
 At the horizon the two calculations agree to $\Chorizon$, a third of one device
 unit, which fixes the parameters and the boundary conditions. In the interior
@@ -240,13 +245,13 @@ listed next, close at the digits quoted there.
 
 \begin{figure}[t]
  \centering
- \includegraphics[width=.78\textwidth]{fig-paper-comparison.pdf}
+ \includegraphics[width=.72\textwidth]{fig-paper-comparison.pdf}
  \caption{Left: the four metric functions at $\alpha_{\rm ref.}=\Cpaperalpha$,
- $q=\Cq$, ours as lines and the $\Cvertices$ published vertices as markers.
- Right: the difference, with the band of one device unit of the published
- figure ($\Cdevice$) shaded. Two conventions follow that figure so the two can
- be laid side by side: $h$ is drawn as $h/r^2$, which tends to unity at
- infinity, and $b$ as $-b$, since $b$ and $f$ otherwise overlap.}
+ $q=\Cq$, ours as lines and as markers the $\Cvertices$ vertices read from
+ fig.~1 of Brihaye, Kleihaus, Kunz and Radu, \aX{1010.0860}. Right: the
+ difference, with the band of one device unit of that figure ($\Cdevice$)
+ shaded. Conventions as in fig.~\ref{fig:profiles}, which is what makes the two
+ directly comparable.}
  \label{fig:paper}
 \end{figure}
 
@@ -281,8 +286,8 @@ predicts, not more slowly than at $\alpha=0$.
 
 \begin{figure}[t]
  \centering
- \includegraphics[width=.44\textwidth]{../manuscript/figures/fig-shift.pdf}\\[3pt]
- \includegraphics[width=.70\textwidth]{../manuscript/figures/fig-massext.pdf}
+ \includegraphics[width=.43\textwidth]{../manuscript/figures/fig-shift.pdf}\\[3pt]
+ \includegraphics[width=.64\textwidth]{../manuscript/figures/fig-massext.pdf}
  \caption{Top: the measured slope against $y=\alpha/J^{2/3}$, with the
  published linear-order value $\pi$ as a star and secants of the mass curve as
  open squares. Bottom left: the extremal mass the slope integrates to, against
@@ -337,7 +342,7 @@ endpoint at $x=1$ --- so this is consistency, not evidence.
 The response solve has no analytic counterpart, so it is checked against four
 things that do not use it.
 
-\begin{center}\small
+\begin{center}\footnotesize
 \begin{tabular}{@{}lll@{}}
 \toprule
 check & what it tests & worst deviation \\
@@ -373,11 +378,10 @@ unique, stable, or the lowest in mass at the same angular momenta. No check
 closes the gap that matters most: the mass-curve comparison shares systematics
 with the potential, the near-horizon route gives entropy rather than mass, and
 the Smarr and on-shell routes remove the response solve but not the solutions.
-Finally, this is classical
-Einstein--Gauss--Bonnet with the action \eqref{eq:action}. In a gravitational
-effective field theory, terms beyond Gauss--Bonnet contribute at the same order
-as the higher powers of $\alpha$ kept here, so the non-monotonic slope is not a
-universal prediction of a derivative expansion.
+Finally, this is classical Einstein--Gauss--Bonnet with the action
+\eqref{eq:action}: in an effective field theory, terms beyond Gauss--Bonnet
+enter at the same order as the higher powers of $\alpha$ kept here, so the
+non-monotonic slope is not a universal prediction of a derivative expansion.
 
 \paragraph{One comparison that does not close.}
 A separate reconstruction of the non-extremal family gives an outer ergosurface
@@ -397,16 +401,15 @@ reading of $\Psi$ as an on-shell Gauss--Bonnet action, tested against the
 response on $\Nonshellstates$ archived solutions; and the identification of the
 slope minimum with the maximum of $\Omega_HJ^{1/3}$.
 
-\emph{Reproduced rather than new:} the equal-spin family of \aX{1010.0860} and
-its profiles; the closed-form static solution; the $\mathcal O(\alpha)$
+\emph{Reproduced, not new:} the equal-spin family of \aX{1010.0860} and its
+profiles; the closed-form static solution; the $\mathcal O(\alpha)$
 potential implied by \aX{2405.04576} and the first-order extremal mass $\pi$ of
 \aX{2009.00015}; the near-horizon extremal entropy of \aX{1010.0860}; and the
 extremal branch itself, which \aX{2303.12471} constructs directly and this work
 reaches by extrapolation, with its bounds $j\le1$ and $x<1$.
 
 \emph{Cited, not reproduced:} the Myers--Perry and Boulware--Deser solutions
-(oracles, every closed form checked against the solver, but not rederived),
-Lovelock's theorem, the Wald and Jacobson--Myers entropy formulae, Sen's
+(oracles, checked against the solver but not rederived), Lovelock's theorem, the Wald and Jacobson--Myers entropy formulae, Sen's
 formalism, the covariant phase space derivation of the extended $\alpha$-term,
 and the Goon--Penco universality claim, of which only the first-law identity is
 used, and rederived.
@@ -416,11 +419,11 @@ One discipline shaped the repository more than any other: \textbf{no number that
 appears in the paper is typed into the paper}. Every figure, table and quoted
 quantity is generated from the recorded measurement into \texttt{numbers.tex}
 and read back as a macro, so nothing can drift; this document draws on the same
-file. Around that sit a static checker on macros, literal decimals and
-citations; a provenance record per result, naming its command and inputs with
-their hashes and audited against the bytes on disk; and a declared list of
-failing checks that a test holds equal to the actual ones, so it cannot grow
-into a way of muting the audit. Three findings of the process are worth
+file. Around it sit a static checker on macros, literal decimals and citations;
+a provenance record per result, naming its command and its hashed inputs and
+audited against the bytes on disk; and a declared list of failing checks held
+equal by a test to the actual ones, so it cannot become a way of muting the
+audit. Three findings of the process are worth
 recording, in each of which the obvious diagnostic measures something other than
 it appears to: a different linear-algebra stack moved an extrapolated intercept
 by more than either genuine resolution change, the walk being adaptive; the
