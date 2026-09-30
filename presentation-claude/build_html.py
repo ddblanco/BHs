@@ -17,7 +17,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 
-MATH = {r"\alpha": "α", r"\Psi": "Ψ", r"\pi": "π", r"\Omega": "Ω", r"\omega": "ω", r"\mu": "μ", r"\chi": "χ",
+MATH = {r"\sqrt{-g}": "√(−g)", r"\int": "∫", r"\nu": "ν", r"\rho": "ρ", r"\sigma": "σ", r"\alpha": "α", r"\Psi": "Ψ", r"\pi": "π", r"\Omega": "Ω", r"\omega": "ω", r"\mu": "μ", r"\chi": "χ",
         r"\kappa": "κ", r"\times": "×", r"\approx": "≈", r"\to": "→", r"\ge": "≥", r"\le": "≤",
         r"\sim": "~", r"\ne": "≠", r"\rm ": "", r"\,": " "}
 

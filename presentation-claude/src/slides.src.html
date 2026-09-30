@@ -129,6 +129,7 @@ img{display:block;max-width:100%}
         <p class="pt" style="margin-bottom:2px"><span class="hd">Known</span> to first order <span class="src">(arXiv:2009.00015)</span>:</p>
         <div class="eq" style="font-size:25px"><span class="m">M</span><sub>ext</sub> = <span class="fr"><span>3</span><span>2</span></span><span class="m">π</span><sup>1/3</sup><span class="m">J</span><sup>2/3</sup> + <span class="m">πα</span> + 𝒪(<span class="m">α</span><sup>2</sup>)</div>
         <p class="pt"><span class="hd">Asked:</span> ∂<span class="m">M</span><sub>ext</sub>/∂<span class="m">α</span> at <span class="hl">finite</span> <span class="m">α</span>?</p>
+        <p class="pt"><span class="hd">Hint:</span> numerical rotating BHs <span class="src">(arXiv:1010.0860)</span></p>
       </div>
     </div>
   </div>
@@ -210,7 +211,7 @@ img{display:block;max-width:100%}
           <line x1="336" y1="254" x2="204" y2="254" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
           <text x="270" y="274" text-anchor="middle" font-size="14" fill="#6b7280">critique</text>
         </svg>
-        <p class="sm" style="margin:10px 0 0;text-align:left">A check the referee asked for <span class="hl">failed</span>; an exact bound caught a real mass error.</p>
+        <p class="sm" style="margin:10px 0 0;text-align:left">A check the referee asked for <span class="hl">failed</span>: our error bars were too small (two ways of computing the slope disagreed) → we enlarged them.</p>
       </div>
       <div class="col center" style="flex:1">
         <img src="figures/fig-effort.png" style="width:620px" alt="Tokens processed: 102 million to reproduce known solutions, 508 million for the first new object, 408 million for the final measurement and paper">
@@ -228,7 +229,7 @@ img{display:block;max-width:100%}
 <section class="slide thanks" data-label="6">
   <div class="body">
     <div class="big">Thank you for your attention</div>
-    <div class="small">Thanks Matías and Nahuel for the AI course</div>
+    <div class="small">Matías and Nahuel, thanks for the AI course</div>
   </div>
 </section>
 
@@ -334,11 +335,12 @@ img{display:block;max-width:100%}
 <script>
 const NOTES = /*NOTES*/[];
 const slides = [...document.querySelectorAll('.slide')];
-const nMain = slides.filter(s => !s.classList.contains('backup')).length;
+const nMain = slides.filter(s => !s.classList.contains('backup') && !s.classList.contains('thanks')).length;
 const notes = document.getElementById('notes');
 let i = 0;
 try { const h = parseInt(location.hash.slice(1), 10); if (h >= 1 && h <= slides.length) i = h - 1; } catch (e) {}
 slides.forEach((s, k) => {
+  if (s.classList.contains('thanks')) return;   // closing slide: no number, not counted
   const f = document.createElement('div'); f.className = 'foot';
   const backup = s.classList.contains('backup');
   f.textContent = backup ? 'backup ' + s.dataset.label : (k + 1) + ' / ' + nMain;

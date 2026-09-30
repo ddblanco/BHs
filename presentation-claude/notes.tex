@@ -36,7 +36,7 @@
 {\LARGE\bfseries Speaker script\par}
 \smallskip
 {\large Extremality shift of rotating black holes at finite Gauss--Bonnet coupling\par}
-{\color{muted}Five minutes, five slides plus a closing one: about 650 words at a calm pace. The times are targets; the elapsed time is in brackets. Slides A1--A5 are backup for questions and are not part of the five minutes; their notes explain the method and the physics in more detail.\par}
+{\color{muted}Five minutes, five slides plus a closing one: about 650 words at a calm pace. The times are targets; the elapsed time is in brackets. Paragraphs marked ``Background'' are for you, not part of the script. Slides A1--A5 are backup for questions and are not part of the five minutes; their notes explain the method and the physics in more detail.\par}
 
 \slidenote{1}{1}{Title}{0:15 \quad [0:15]}
 
@@ -58,6 +58,23 @@ term, the natural first higher-curvature correction, with a coupling $\alpha$,
 the bound moves. How far? To first order in $\alpha$ the answer was known: the
 extremal mass grows with slope exactly $\pi$, the dashed line. Our question was
 what happens when $\alpha$ is \emph{not} small, that is, the question mark.
+
+\textbf{Background: the action} (for you, not part of the timed script; use a
+sentence of it if the audience needs it). In general relativity the dynamical
+field is the metric $g_{\mu\nu}$. The Einstein--Hilbert action,
+$\int \sqrt{-g}\,R$, with $R$ the Ricci scalar (the simplest scalar built from
+the curvature), gives as Euler--Lagrange equations Einstein's equations,
+$G_{\mu\nu} = 0$ in vacuum. They are second order in derivatives of the metric,
+like Newton's or Maxwell's equations. The Gauss--Bonnet term,
+$L_{\rm GB} = R^2 - 4R_{\mu\nu}R^{\mu\nu} + R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}$,
+is quadratic in the curvature, so it brings higher-derivative terms into the
+action. Terms like this are expected for two reasons. In effective field theory,
+general relativity is the first term of an expansion in curvature, and these are
+the first corrections; their size is set by the coupling $\alpha$, which has
+units of length squared. They also appear in the low-energy limit of string
+theory. The Gauss--Bonnet combination is special in two ways: its field equations
+stay second order, and in four dimensions it does not change the equations at all
+(it is a total derivative). That is one reason to work in five dimensions.
 
 \slidenote{3}{3}{Main result}{1:20 \quad [2:40]}
 
@@ -103,8 +120,9 @@ Finally, what we learned about working with agents. The division of labour on
 the left worked well: we chose the question and kept doubting; Claude Code wrote
 and ran the code; Codex acted as a referee and asked for checks. The referee
 rounds mattered: one check a referee asked for actually \emph{failed} when it was
-run, and an exact bound caught a real error in the mass that the internal
-diagnostics had missed.
+run. We compute the slope in two ways, and they disagreed by more than our error
+bars allowed: the bars were too small. We enlarged them to include every
+reasonable way of doing the extrapolation.
 
 The effort went where you might not expect. Reproducing all the known solutions
 took about 100 million tokens. The first genuinely new object, the rotating
