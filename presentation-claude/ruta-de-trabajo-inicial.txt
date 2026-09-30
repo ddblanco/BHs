@@ -1,0 +1,94 @@
+# Ruta de trabajo
+
+La ruta usa hitos con una salida comprobable. Pasar de un hito al siguiente
+requiere que sus criterios de salida estén satisfechos; una figura visualmente
+plausible no cuenta como validación.
+
+## Hito 0 — Alcance, requisitos y entorno
+
+*Estado (2026-09-05):* cerrado; 36 tests y reproducción
+limpia verificados. [Evidencia y limitaciones](reports/hito-0.md).
+
+*Salida:* pregunta científica acotada, bibliografía primaria, entorno
+reproducible, convenciones fijadas y prueba mínima del software.
+
+- Fijar acción, signos, normalización de alpha, unidades y coordenada radial.
+- Identificar las ecuaciones y condiciones de borde exactas del benchmark.
+- Elegir una pila numérica después de un spike comparativo pequeño.
+- Crear el esquema de procedencia para cálculos, tablas y figuras.
+- Registrar prompts y decisiones desde el comienzo.
+
+## Hito 1 — Banco analítico en relatividad general
+
+*Estado:* siguiente etapa, aún sin implementar.
+
+*Salida:* evaluación reproducible de Myers--Perry en D=5, spins iguales.
+
+- Implementar funciones métricas y magnitudes termodinámicas conocidas.
+- Evaluar las ecuaciones de Einstein sobre la solución de referencia.
+- Verificar horizonte, comportamiento asintótico y relaciones termodinámicas.
+- Producir los primeros tests y una figura con registro de procedencia.
+
+## Hito 2 — Infraestructura de problemas de contorno
+
+*Salida:* solver capaz de recuperar una solución conocida mediante
+continuación y con estudio de convergencia.
+
+- Compactificar el dominio radial y factorizar el comportamiento de borde.
+- Comparar colocación pseudoespectral/Newton con una alternativa robusta de
+  colocación adaptativa.
+- Definir normas de residuos, tolerancias y criterios de fallo.
+- Separar ecuaciones usadas para resolver de ecuaciones usadas como constraint.
+
+## Hito 3 — EGB estático y límite de GR
+
+*Salida:* recuperación del agujero negro estático de EGB y convergencia hacia
+GR cuando alpha -> 0.
+
+- Continuar desde la solución analítica de GR o EGB estática.
+- Barrer resoluciones y acoplamientos pequeños.
+- Verificar residuos fuera de los nodos de entrenamiento/colocación.
+
+## Hito 4 — EGB rotante asintóticamente plano
+
+*Salida mínima exitosa del proyecto:* familia parcial, pero validada, de
+soluciones D=5 con momentos angulares iguales que reproduzca resultados de
+Brihaye, Kleihaus, Kunz y Radu (2010).
+
+- Continuar primero en velocidad angular y luego en alpha.
+- Comparar magnitudes adimensionales y curvas publicadas.
+- Comprobar regularidad, cargas, temperatura, entropía y primera ley.
+- Documentar zonas donde el método pierde convergencia sin interpretarlas de
+  inmediato como fronteras físicas.
+
+## Hito 5 — Método híbrido asistido por IA
+
+*Salida objetivo:* comparación controlada entre el solver convencional y una
+aproximación neuronal con refinamiento espectral inspirada en Akribeia.
+
+- Entrenar sobre las mismas ecuaciones y condiciones de borde.
+- Refinar o proyectar la aproximación en una base espectral.
+- Evaluar ambos métodos con el mismo conjunto de tests independientes.
+- Comparar precisión, costo, robustez y dependencia de decisiones humanas.
+
+Este hito no es requisito para declarar exitoso el benchmark numérico.
+
+## Hito 6 — Exploración nueva
+
+*Salida ambiciosa:* evidencia numérica reproducible sobre una extensión no
+cubierta por los benchmarks.
+
+Sólo se seleccionará después del Hito 4. Candidatos: otra densidad de Lovelock,
+otra condición asintótica o una región no explorada del espacio de parámetros.
+El spin desigual o un ansatz de cohomogeneidad 2 se consideran proyectos de
+segunda generación por requerir PDEs.
+
+## Hito 7 — Entrega
+
+*Salida:* repositorio clonable, página HTML y PDF defendibles.
+
+- Ejecutar la reproducción desde un entorno limpio mediante instrucciones
+  destinadas a un agente sin contexto previo.
+- Auditar el inventario de artefactos y todas sus verificaciones.
+- Generar la página HTML narrativa y el PDF desde fuentes versionadas.
+- Incluir resultados negativos, límites y contribuciones de cada agente.

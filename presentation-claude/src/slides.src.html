@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extremality Shift Talk</title>
+<style>
+:root{
+  --ink:#1f2937; --muted:#6b7280; --accent:#1f5fa8; --accent-soft:#eef3fa;
+  --warm:#d9622b; --warm-soft:#fcefe8; --paper:#ffffff; --stage:#e5e7eb;
+  --sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+  --serif: "Latin Modern Roman", "CMU Serif", "Times New Roman", Georgia, serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --stage:#111318; }
+}
+:root[data-theme="dark"]{ --stage:#111318; }
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--stage);color:var(--ink);font-family:var(--sans)}
+body{overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+/* The slide is designed at 1280x720 and scaled to fit. */
+.slide{position:absolute;width:1280px;height:720px;background:var(--paper);
+  box-shadow:0 10px 40px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden;
+  transform-origin:center center}
+.slide.active{display:flex}
+.slide header{background:var(--accent);color:#fff;padding:22px 48px 18px;font-size:30px;font-weight:700;letter-spacing:-.2px;position:relative}
+.slide header::after{content:"";position:absolute;left:0;bottom:0;height:4px;background:var(--warm);width:var(--progress,0%)}
+.slide.backup header{background:#3b4a5e}
+.body{flex:1;padding:24px 48px 20px;display:flex;flex-direction:column;min-height:0}
+.foot{position:absolute;right:28px;bottom:14px;font-size:15px;color:var(--muted)}
+.row{display:flex;gap:32px;align-items:flex-start;min-height:0}
+.row.fill{flex:1;align-items:center}
+.col{display:flex;flex-direction:column;min-width:0}
+.center{align-items:center;text-align:center}
+img{display:block;max-width:100%}
+.cap{font-size:17px;color:var(--ink);margin-top:6px;text-align:center}
+.src{font-size:14px;color:var(--muted)}
+.m{font-family:var(--serif);font-style:italic;white-space:nowrap}
+.u{font-family:var(--serif);font-style:normal}
+.eq{font-family:var(--serif);font-size:28px;text-align:center;margin:4px 0 12px}
+.eqbar{padding:0 18px 4px;font-family:var(--serif);font-size:28px;
+  display:flex;justify-content:center;align-items:flex-end;gap:56px;margin-bottom:14px}
+.eqcol{display:flex;flex-direction:column;align-items:center}
+.eqcol>div:last-child{height:62px;display:flex;align-items:center}
+.eqcol .lab{font-family:var(--sans);font-size:14px;color:var(--muted);margin-bottom:2px}
+.bar{display:inline-block;border-left:1.5px solid currentColor;height:1.7em;vertical-align:middle;width:.7em;margin-left:.08em;position:relative}
+.bar sub{position:absolute;bottom:-.25em;left:.18em;font-size:.6em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.8em;line-height:1.1;margin:0 .1em}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .12em}
+.arr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1}
+.arr>span:first-child{font-size:.5em}
+.arr>span:last-child{font-size:1.1em;margin-top:-.15em}
+.hl{color:var(--warm);font-weight:600}
+.pt{font-size:21px;line-height:1.35;margin:0 0 12px}
+.pt b,.hd{color:var(--accent);font-weight:700}
+.sm{font-size:18px;line-height:1.4}
+.stat .v{font-size:32px;font-weight:700;color:var(--accent);line-height:1.1}
+.stat .d{font-size:15px;color:var(--muted);line-height:1.3;margin-top:3px}
+.quote{background:var(--accent-soft);border-left:4px solid var(--accent);padding:14px 18px;margin:0 0 16px;font-size:21px;line-height:1.4;font-style:italic}
+.quote .who{display:block;font-style:normal;font-size:14px;color:var(--muted);margin-top:6px}
+.snap{border:1px solid #d1d5db;width:100%}
+.lesson{font-size:23px;text-align:center;margin-top:auto;line-height:1.45}
+/* title slide */
+.title .body{padding:70px 72px 40px;justify-content:flex-start}
+.title h1{margin:0;color:var(--accent);font-size:48px;line-height:1.15;letter-spacing:-.5px}
+.title h2{margin:18px 0 44px;font-weight:400;font-size:26px}
+.title .authors{font-size:25px}
+.title .aff{font-size:16px;color:var(--muted);margin-top:8px;line-height:1.5}
+.title .ai{font-size:20px;margin-top:28px}
+.title .course{margin-top:auto;font-size:16px;color:var(--muted);line-height:1.55;border-top:1px solid #e5e7eb;padding-top:14px}
+.title::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--accent)}
+/* closing slide */
+.thanks{background:#23373b;color:#fff}
+.thanks .body{align-items:center;justify-content:center;text-align:center}
+.thanks .big{font-size:52px;font-weight:700}
+.thanks .small{font-size:28px;margin-top:28px;color:#e5e7eb}
+.thanks .foot{color:#9ca3af}
+/* notes panel */
+#notes{position:fixed;left:0;right:0;bottom:0;max-height:40vh;overflow:auto;background:#fffdf7;color:#1f2937;
+  border-top:3px solid var(--warm);padding:14px 22px 18px;font-size:17px;line-height:1.5;display:none;z-index:5;
+  box-shadow:0 -6px 24px rgba(0,0,0,.2)}
+#notes.open{display:block}
+#notes h3{margin:0 0 6px;font-size:16px;color:var(--warm);text-transform:uppercase;letter-spacing:.06em}
+#notes p{margin:0 0 8px;max-width:1000px}
+#help{position:fixed;left:14px;bottom:10px;font-size:13px;color:#9ca3af;z-index:4;transition:opacity 1s}
+#help.gone{opacity:0}
+#help kbd{border:1px solid #9ca3af;border-radius:3px;padding:0 4px;font-family:inherit}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  .slide{display:flex!important;position:relative;transform:none!important;box-shadow:none;page-break-after:always;break-after:page}
+  #notes,#help{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="viewport">
+
+<!-- 1 -->
+<section class="slide title" data-label="1">
+  <div class="body">
+    <h1>Extremality shift of rotating black holes<br>at finite Gauss–Bonnet coupling</h1>
+    <h2>A research project carried out with AI agents</h2>
+    <div class="authors">Cecilia Bejarano<sup>1</sup>, David Blanco<sup>2</sup>, Andrés Goya<sup>1</sup>, Guillem Pérez-Nadal<sup>2</sup></div>
+    <div class="aff"><sup>1</sup>Instituto de Astronomía y Física del Espacio (IAFE, CONICET–UBA)<br>
+      <sup>2</sup>Departamento de Física, FCEN–UBA and IFIBA (CONICET–UBA)</div>
+    <div class="ai">With AI assistance: <b>Claude Code</b> (Anthropic; Claude Opus 5, Sonnet 5) and <b>Codex</b> (OpenAI; GPT-5)</div>
+    <div class="course"><i>Gravitational Waves and AI-Assisted Research</i> — M. Zaldarriaga &amp; N. Mirón-Granese<br>
+      Departamento de Física, FCEN, Universidad de Buenos Aires · 2 October 2026 · github.com/ddblanco/BHs</div>
+  </div>
+</section>
+
+<!-- 2 problem -->
+<section class="slide" data-label="2">
+  <header>The question: how far does Gauss–Bonnet move the spin bound?</header>
+  <div class="body">
+    <div class="row">
+      <div class="col center" style="flex:0 0 500px;padding-top:30px">
+        <img src="figures/fig-question.png" style="width:500px" alt="Extremal mass against Gauss–Bonnet coupling: known Einstein value and first-order line, unknown at finite coupling">
+      </div>
+      <div class="col" style="flex:1;padding-top:4px">
+        <p class="pt" style="margin-bottom:6px"><span class="hd">General Relativity</span> <span class="src">(in 5D, two equal spins <span class="m">J</span><sub>1</sub> = <span class="m">J</span><sub>2</sub> = <span class="m">J</span>)</span></p>
+        <p class="pt" style="margin:0 0 6px 14px">Kerr (4D): <span class="m">M</span><sup>2</sup> ≥ |<span class="m">J</span>| &emsp; Myers–Perry (5D): <span class="m">M</span> ≥ <span class="fr"><span>3</span><span>2</span></span><span class="m">π</span><sup>1/3</sup><span class="m">J</span><sup>2/3</sup></p>
+        <p class="pt" style="margin:0 0 16px 14px"><span class="hl">extremal case:</span> bound saturates → <span class="m">T</span> = 0</p>
+        <p class="pt" style="margin-bottom:2px"><span class="hd">Add Gauss–Bonnet term</span>, coupling <span class="m">α</span>:</p>
+        <div class="eq" style="font-size:25px"><span class="m">I</span> = <span class="fr"><span>1</span><span>16<span class="m">πG</span></span></span> ∫ √<span style="text-decoration:overline"><span class="m">−g</span></span> (<span class="m">R</span> + <span class="m">α</span> 𝓛<sub>GB</sub>)</div>
+        <p class="pt" style="margin-bottom:2px"><span class="hd">Known</span> to first order <span class="src">(arXiv:2009.00015)</span>:</p>
+        <div class="eq" style="font-size:25px"><span class="m">M</span><sub>ext</sub> = <span class="fr"><span>3</span><span>2</span></span><span class="m">π</span><sup>1/3</sup><span class="m">J</span><sup>2/3</sup> + <span class="m">πα</span> + 𝒪(<span class="m">α</span><sup>2</sup>)</div>
+        <p class="pt"><span class="hd">Asked:</span> ∂<span class="m">M</span><sub>ext</sub>/∂<span class="m">α</span> at <span class="hl">finite</span> <span class="m">α</span>?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 result -->
+<section class="slide" data-label="3">
+  <header>Main result: the bound tightens, but not linearly</header>
+  <div class="body">
+    <div class="eqbar">
+      <div class="eqcol"><div class="lab">extended first law</div>
+        <div><span><span class="m">dM</span> = <span class="m">T dS</span> + 2<span class="m">Ω<sub>H</sub> dJ</span> + <span class="m hl">Ψ</span> <span class="m">dα</span></span></div></div>
+      <div class="eqcol"><div class="lab">at <span class="m">T</span> = 0, fixed <span class="m">J</span></div><div><span>⟹</span></div></div>
+      <div class="eqcol"><div class="lab">slope of the extremal mass</div>
+        <div><span><span class="fr"><span>∂<span class="m">M</span><sub>ext</sub></span><span>∂<span class="m">α</span></span></span><span class="bar"><sub class="m">J</sub></span> = <span class="m hl">Ψ</span><sub class="hl">ext</sub></span></div></div>
+    </div>
+    <div class="row" style="gap:20px">
+      <div class="col center" style="flex:0 0 600px"><img src="figures/fig-shift.png" alt="Slope of the extremal mass against scaled coupling"><div class="cap">slope ∂<span class="m">M</span><sub>ext</sub>/∂<span class="m">α</span> at fixed <span class="m">J</span> (<span class="hl">result</span>)</div></div>
+      <div class="col center" style="flex:0 0 330px"><img src="figures/fig-massext-left.png" alt="Extremal mass against scaled coupling, with the first-order line"><div class="cap">extremal mass</div></div>
+      <div class="col" style="flex:1;gap:14px">
+        <div class="stat"><div class="v">&gt; 0</div><div class="d">bound tightens</div></div>
+        <div class="stat"><div class="v" style="font-size:25px"><span class="m">π</span> → 1.07 → 1.44</div><div class="d">not monotonic</div></div>
+        <div class="stat"><div class="v">+31%</div><div class="d">growth of <span class="m">M</span><sub>ext</sub></div></div>
+        <div class="stat"><div class="v">2.3×</div><div class="d">first-order shift vs. measured</div></div>
+      </div>
+    </div>
+    <p class="src" style="text-align:center;margin-top:auto">356 numerical solutions at 13 couplings; the <span class="m">T</span> = 0 values are extrapolated from <span class="m">TJ</span><sup>1/3</sup> ≈ 3×10<sup>−6</sup>.</p>
+  </div>
+</section>
+
+<!-- 4 validation -->
+<section class="slide" data-label="4">
+  <header>Validation: how do we know it is right?</header>
+  <div class="body">
+    <div class="row fill">
+      <div class="col center" style="flex:0 0 700px"><img src="figures/fig-checks.png" alt="Worst deviation of each independent check, log scale"><div class="src" style="margin-top:4px">worst deviation of each independent check</div></div>
+      <div class="col sm" style="flex:1">
+        <div class="hd">1. Known answers first</div>
+        <div style="margin-bottom:12px">published family (arXiv:1010.0860) to 2×10<sup>−4</sup>; static closed form; <span class="m">π</span> at <span class="m">α</span> → 0</div>
+        <div class="hd">2. Independent routes to <span class="m">Ψ</span></div>
+        <div>Smarr, from one solution’s charges:</div>
+        <div class="eq" style="font-size:24px;margin:4px 0 6px"><span class="m">Ψ</span> = <span class="fr"><span>2<span class="m">M</span> − 3<span class="m">TS</span> − 6<span class="m">Ω<sub>H</sub>J</span></span><span>2<span class="m">α</span></span></span></div>
+        <div>on-shell Gauss–Bonnet action:</div>
+        <div class="eq" style="font-size:24px;margin:4px 0 6px"><span class="m">Ψ</span> = −<span class="fr"><span>1</span><span>16<span class="m">π</span></span></span> ∫<sub>Σ</sub> √<span style="text-decoration:overline"><span class="m">−g</span></span> 𝓛<sub>GB</sub></div>
+        <div style="margin-bottom:12px">neither uses our linear solve: agree to ~10<sup>−6</sup></div>
+        <div class="hd">3. Largest uncertainty</div>
+        <div><span class="m">T</span> → 0 is an extrapolation (the error bars)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 experience -->
+<section class="slide" data-label="5">
+  <header>What we learned working with agents</header>
+  <div class="body">
+    <div class="row" style="gap:28px;align-items:center">
+      <div class="col center" style="flex:0 0 540px">
+        <svg viewBox="0 0 540 300" width="540" height="300" role="img" aria-label="Workflow: we give prompts to Claude Code, which sends results to Codex; Codex sends critique back and reports to us" style="font-family:var(--sans)">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+          <rect x="175" y="8" width="190" height="80" rx="8" fill="#eef3fa" stroke="#1f5fa8" stroke-width="2"/>
+          <text x="270" y="36" text-anchor="middle" font-size="19" font-weight="700" fill="#1f2937">Us</text>
+          <text x="270" y="58" text-anchor="middle" font-size="15" fill="#1f2937">question, direction,</text>
+          <text x="270" y="77" text-anchor="middle" font-size="15" fill="#1f2937">doubt</text>
+          <rect x="10" y="196" width="190" height="90" rx="8" fill="#fcefe8" stroke="#d9622b" stroke-width="2"/>
+          <text x="105" y="224" text-anchor="middle" font-size="19" font-weight="700" fill="#1f2937">Claude Code</text>
+          <text x="105" y="247" text-anchor="middle" font-size="15" fill="#1f2937">writes code,</text>
+          <text x="105" y="267" text-anchor="middle" font-size="15" fill="#1f2937">runs, drafts</text>
+          <rect x="340" y="196" width="190" height="90" rx="8" fill="#fcefe8" stroke="#d9622b" stroke-width="2"/>
+          <text x="435" y="224" text-anchor="middle" font-size="19" font-weight="700" fill="#1f2937">Codex</text>
+          <text x="435" y="247" text-anchor="middle" font-size="15" fill="#1f2937">referee:</text>
+          <text x="435" y="267" text-anchor="middle" font-size="15" fill="#1f2937">asks for checks</text>
+          <line x1="210" y1="90" x2="130" y2="192" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+          <text x="118" y="140" text-anchor="middle" font-size="14" fill="#6b7280">79 prompts</text>
+          <line x1="410" y1="192" x2="330" y2="90" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+          <text x="420" y="140" text-anchor="middle" font-size="14" fill="#6b7280">reports</text>
+          <line x1="204" y1="228" x2="336" y2="228" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+          <text x="270" y="220" text-anchor="middle" font-size="14" fill="#6b7280">results</text>
+          <line x1="336" y1="254" x2="204" y2="254" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+          <text x="270" y="274" text-anchor="middle" font-size="14" fill="#6b7280">critique</text>
+        </svg>
+        <p class="sm" style="margin:10px 0 0;text-align:left">A check the referee asked for <span class="hl">failed</span>; an exact bound caught a real mass error.</p>
+      </div>
+      <div class="col center" style="flex:1">
+        <img src="figures/fig-effort.png" style="width:620px" alt="Tokens processed: 102 million to reproduce known solutions, 508 million for the first new object, 408 million for the final measurement and paper">
+        <div class="row" style="justify-content:space-around;width:100%;margin-top:12px">
+          <div class="stat col center"><div class="v">36.8 h</div><div class="d">agent time over 13 days</div></div>
+          <div class="stat col center"><div class="v">1.42 billion</div><div class="d">tokens processed</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="lesson"><b>Lesson:</b> the cost is not writing code, it is verifying it.<br>Ask for checks that <span class="hl">can fail</span>, and let one agent referee the other.</p>
+  </div>
+</section>
+
+<!-- 6 thanks -->
+<section class="slide thanks" data-label="6">
+  <div class="body">
+    <div class="big">Thank you for your attention</div>
+    <div class="small">Thanks Matías and Nahuel for the AI course</div>
+  </div>
+</section>
+
+<!-- A1 -->
+<section class="slide backup" data-label="A1">
+  <header>A1 · Numerical method: solving the field equations</header>
+  <div class="body" style="padding-top:14px">
+    <div class="row" style="gap:28px;font-size:16px;line-height:1.4">
+      <div class="col" style="flex:0 0 640px">
+        <div><span class="hd">Equal-spin ansatz</span> ⇒ ODEs in <span class="m">r</span> for <span class="m">b, f, h, w</span>:</div>
+        <div class="eq" style="font-size:19px;text-align:left;margin:4px 0 2px;line-height:1.5">
+          <span class="m">ds</span><sup>2</sup> = −<span class="m">b dt</span><sup>2</sup> + <span class="m">dr</span><sup>2</sup>/<span class="m">f</span> + <span class="m">r</span><sup>2</sup>[<span class="m">dθ</span><sup>2</sup> + sin<sup>2</sup><span class="m">θ</span> cos<sup>2</sup><span class="m">θ</span> (<span class="m">dφ</span><sub>1</sub> − <span class="m">dφ</span><sub>2</sub>)<sup>2</sup>]<br>
+          &emsp;&emsp;+ <span class="m">h</span> [sin<sup>2</sup><span class="m">θ dφ</span><sub>1</sub> + cos<sup>2</sup><span class="m">θ dφ</span><sub>2</sub> − <span class="m">w dt</span>]<sup>2</sup>
+        </div>
+        <div>horizon: <span class="m">b</span> = <span class="m">f</span> = 0, <span class="m">w</span> = <span class="m">Ω<sub>H</sub></span>; &nbsp;infinity: <span class="m">b, f, h/r</span><sup>2</sup> → 1, <span class="m">w</span> → 0</div>
+      </div>
+      <div class="col" style="flex:1;gap:4px">
+        <div><span class="hd">Discretise:</span> <span class="m">χ</span> = 1 − <span class="m">r<sub>H</sub>/r</span>, Chebyshev–Lobatto, <span class="m">N</span> = 64: <span class="m">R<sub>N</sub></span>(<span class="m">u</span>; <span class="m">α</span>, <span class="m">r<sub>H</sub></span>, <span class="m">Ω<sub>H</sub></span>) = 0 (4<span class="m">N</span> eqs.)</div>
+        <div><span class="hd">Solve:</span> damped Newton; continuation from Myers–Perry</div>
+        <div><span class="hd">Accept:</span> <span class="m">G<sub>μν</sub></span> + <span class="m">αH<sub>μν</sub></span> &lt; 10<sup>−8</sup> at 51 off-grid points</div>
+        <div><span class="hd">Read off:</span> <span class="m">b</span> ≃ 1 + <span class="m">U/r</span><sup>2</sup>, <span class="m">w</span> ≃ <span class="m">W/r</span><sup>4</sup> ⇒ <span class="m">M</span> = −3<span class="m">πU</span>/8, <span class="m">J</span> = <span class="m">πW</span>/4</div>
+      </div>
+    </div>
+    <div class="row" style="justify-content:space-around;margin-top:16px">
+      <div class="col center"><img src="figures/fig-paper-comparison-left.png" style="height:370px" alt="Our four metric functions (lines) against the vertices of fig. 1 of arXiv:1010.0860 (circles)"></div>
+      <div class="col center"><img src="figures/fig-profiles.png" style="height:370px" alt="Metric functions b, f, h, w at 13 couplings"></div>
+    </div>
+  </div>
+</section>
+
+<!-- A2 -->
+<section class="slide backup" data-label="A2">
+  <header>A2 · Numerical method: measuring <span class="m">Ψ</span> and reaching <span class="m">T</span> = 0</header>
+  <div class="body">
+    <div class="row" style="gap:24px">
+      <div class="col sm" style="flex:0 0 560px">
+        <div class="hd">Ψ from derivatives at fixed (<span class="m">r<sub>H</sub></span>, <span class="m">Ω<sub>H</sub></span>)</div>
+        <div class="eq" style="font-size:25px;margin:8px 0 18px"><span class="m">Ψ</span> = <span class="fr"><span>∂<span class="m">M</span></span><span>∂<span class="m">α</span></span></span><sub><span class="m">S,J</span></sub> = <span class="m">M<sub>α</sub></span> − <span class="m">T S<sub>α</sub></span> − 2<span class="m">Ω<sub>H</sub> J<sub>α</sub></span></div>
+        <div class="hd">Derivatives without finite differences</div>
+        <div class="eq" style="font-size:25px;margin:8px 0 2px"><span class="fr"><span>∂<span class="m">R<sub>N</sub></span></span><span>∂<span class="m">u</span></span></span> <span class="fr"><span><span class="m">du</span></span><span><span class="m">dα</span></span></span> = −<span class="fr"><span>∂<span class="m">R<sub>N</sub></span></span><span>∂<span class="m">α</span></span></span></div>
+        <div class="src" style="text-align:center;margin-bottom:18px">matrix = Newton Jacobian: one linear solve, no step size (implicit function theorem)</div>
+        <div class="hd">Get cold, then extrapolate</div>
+        <div>cubic fit through the 6 coldest states;<br>coldest <span class="m">TJ</span><sup>1/3</sup> ≈ 3×10<sup>−6</sup></div>
+      </div>
+      <div class="col center" style="flex:1"><img src="figures/fig-potential.png" alt="Psi against horizon temperature for several couplings"><div class="cap"><span class="m">Ψ</span> against temperature; red dots: the <span class="m">T</span> = 0 values (the slope)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- A3 -->
+<section class="slide backup" data-label="A3">
+  <header>A3 · Physical meaning of the result</header>
+  <div class="body center">
+    <img src="figures/fig-massext.png" style="width:860px" alt="Left: extremal mass against scaled coupling with the first-order line. Right: extremal branch in the plane of scaled coupling x and scaled spin j">
+    <div class="row" style="justify-content:space-around;width:100%;margin-top:14px">
+      <div class="col center sm"><div class="hd">Spin bound</div><span class="m">Ψ</span><sub>ext</sub> &gt; 0 ⇔ <span class="m">j</span><sub>ext</sub> falls:<br>less spin per unit mass</div>
+      <div class="col center sm"><div class="hd">Slope minimum</div>3<span class="m">ω</span> = <span class="m">μ</span> − <span class="m">y μ′</span><br>= fastest extremal horizon, <span class="m">ω</span> = <span class="m">Ω<sub>H</sub>J</span><sup>1/3</sup></div>
+      <div class="col center sm"><div class="hd">Why it rises again</div><span class="m">M</span> &gt; 3<span class="m">πα</span>/4 forces<br><span class="m">μ′</span> → 3<span class="m">π</span>/4 ≈ 2.36</div>
+    </div>
+  </div>
+</section>
+
+<!-- A4 -->
+<section class="slide backup" data-label="A4">
+  <header>A4 · How it started: the first prompts</header>
+  <div class="body">
+    <div class="quote" style="font-size:19px;margin-bottom:14px">“El proyecto consiste en utilizar agentes de IA para implementar códigos numéricos que permitan obtener soluciones de agujeros negros rotantes en dimensión D&gt;4 […] reproducir soluciones numéricas ya encontradas en la literatura. […] el paso siguiente sería emprender la búsqueda de nuevas soluciones.”<span class="who">Prompt 1 — 4 Sept, 19:16, to Codex · then “Fijate que el proyecto realmente siga las indicaciones propuestas por el docente del curso” (3), “ejecutar con subagentes” (5), “continuemos con el hito 3”, “dale, avanzá” · <b>79</b> human prompts, 4–28 Sept · Claude Code builds ↔ Codex referees</span></div>
+    <div class="row" style="justify-content:space-between;gap:24px">
+      <div class="col center" style="flex:0 0 520px">
+        <img class="snap" src="figures/fig-roadmap.png" alt="Excerpt of ruta-de-trabajo-inicial.txt, Hito 4 and Hito 6, with the minimum-success and chosen-after-Hito-4 lines highlighted">
+        <p class="src" style="margin:6px 0 0">first roadmap, 5 Sept. <span class="hl">Hito 6</span> became <span class="m">Ψ</span>; Hito 8 (<span class="m">T</span>→0, paper, referees) was not in the plan.</p>
+      </div>
+      <div class="col center" style="flex:0 0 640px">
+        <img class="snap" src="figures/fig-smarr.png" alt="arXiv:1010.0860, start of section 4.1.3 and footnote 14: no simple Smarr relation for nonzero alpha">
+        <p class="src" style="margin:6px 0 10px">arXiv:1010.0860, §4.1.3 and footnote 14.</p>
+        <p class="pt" style="font-size:19px;margin:0">Hito 6, <span class="m">α</span> as a thermodynamic variable:&nbsp;
+          <span style="font-family:var(--serif);font-size:22px;white-space:nowrap">2<i>M</i> = 3<i>TS</i> + 6<i>Ω<sub>H</sub>J</i> + 2<i>αΨ</i></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A5 -->
+<section class="slide backup" data-label="A5">
+  <header>A5 · What it cost</header>
+  <div class="body center">
+    <div class="row" style="justify-content:space-around;width:100%">
+      <div class="stat col center"><div class="v">36.8 h</div><div class="d">active agent time, 13 days</div></div>
+      <div class="stat col center"><div class="v">1.42 billion</div><div class="d">tokens processed<br>(99% re-read context)</div></div>
+      <div class="stat col center"><div class="v">5.9 million</div><div class="d">tokens written (≈ 24 MB)</div></div>
+      <div class="stat col center"><div class="v">79</div><div class="d">human prompts</div></div>
+    </div>
+    <img src="figures/fig-cost.png" style="width:1020px;margin-top:10px" alt="Active hours and tokens processed by project block">
+    <p class="pt" style="margin:8px 0 0">The first <span class="hl">new</span> object cost 5× the tokens of reproducing everything known.</p>
+    <p class="src" style="margin:2px 0 0">Not counted: human time, background numerical runs.</p>
+  </div>
+</section>
+
+</div>
+<div id="notes"></div>
+<div id="help"><kbd>←</kbd><kbd>→</kbd> move · <kbd>N</kbd> speaker notes (or open with ?notes) · <kbd>F</kbd> full screen · slides A1–A5 are backup</div>
+
+<script>
+const NOTES = /*NOTES*/[];
+const slides = [...document.querySelectorAll('.slide')];
+const nMain = slides.filter(s => !s.classList.contains('backup')).length;
+const notes = document.getElementById('notes');
+let i = 0;
+try { const h = parseInt(location.hash.slice(1), 10); if (h >= 1 && h <= slides.length) i = h - 1; } catch (e) {}
+slides.forEach((s, k) => {
+  const f = document.createElement('div'); f.className = 'foot';
+  const backup = s.classList.contains('backup');
+  f.textContent = backup ? 'backup ' + s.dataset.label : (k + 1) + ' / ' + nMain;
+  s.appendChild(f);
+  s.style.setProperty('--progress', backup ? '100%' : ((k + 1) / nMain * 100) + '%');
+});
+function fit() {
+  const nh = notes.classList.contains('open') ? notes.offsetHeight : 0;
+  document.getElementById('viewport').style.bottom = nh + 'px';
+  const sc = Math.min(window.innerWidth / 1280, (window.innerHeight - nh) / 720) * 0.97;
+  slides.forEach(s => s.style.transform = 'scale(' + sc + ')');
+}
+function show(k) {
+  i = Math.max(0, Math.min(slides.length - 1, k));
+  slides.forEach((s, n) => s.classList.toggle('active', n === i));
+  const n = NOTES[i];
+  notes.innerHTML = n ? '<h3>' + n.label + '. ' + n.title + ' · ' + n.time + '</h3>' + n.html : '';
+  try { history.replaceState(null, '', location.search + '#' + (i + 1)); } catch (e) {}
+  fit();
+}
+document.addEventListener('keydown', e => {
+  if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(i + 1); }
+  else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+  else if (e.key === 'Home') show(0);
+  else if (e.key === 'End') show(slides.length - 1);
+  else if (e.key === 'n' || e.key === 'N') { notes.classList.toggle('open'); fit(); }
+  else if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.();
+  }
+});
+document.getElementById('viewport').addEventListener('click', e => {
+  show(e.clientX > window.innerWidth / 2 ? i + 1 : i - 1);
+});
+window.addEventListener('resize', fit);
+if (/[?&]notes\b/.test(location.search)) notes.classList.add('open');
+fit(); show(i);
+setTimeout(() => document.getElementById('help').classList.add('gone'), 6000);
+</script>
+</body>
+</html>
