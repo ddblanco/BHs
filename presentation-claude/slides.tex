@@ -11,6 +11,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta}
@@ -51,16 +52,17 @@ at finite Gauss--Bonnet coupling\par}
 \vspace{0.55cm}
 {\normalsize Cecilia Bejarano$^{1}$, David Blanco$^{2}$, Andrés Goya$^{1}$, Guillem Pérez-Nadal$^{2}$\par}
 \vspace{0.12cm}
-{\scriptsize\color{muted}$^1$Instituto de Astronomía y Física del Espacio (IAFE, CONICET--UBA)\quad
+{\scriptsize\color{muted}$^1$Instituto de Astronomía y Física del Espacio (IAFE, CONICET--UBA) \\
 $^2$Departamento de Física, FCEN--UBA and IFIBA (CONICET--UBA)\par}
 \vspace{0.3cm}
-{\small With AI assistance: \textbf{Claude Code} (Anthropic; Claude Opus~5, Sonnet~5)
+{\small With AI assistance: \textbf{Claude Code} (Anthropic; Claude Opus~5, Sonnet~5) \\
 and \textbf{Codex} (OpenAI; GPT-5)\par}
 \vfill
 {\footnotesize\color{muted}
-\emph{Gravitational Waves and AI-Assisted Research} --- M.~Zaldarriaga \& N.~Mirón-Granese\\
-Departamento de Física, FCEN, Universidad de Buenos Aires \quad·\quad 2 October 2026
-\quad·\quad \texttt{github.com/ddblanco/BHs}\par}
+\emph{Gravitational Waves and AI-Assisted Research} --- M.~Zaldarriaga \& N.~Mirón Granese\\
+Departamento de Física, FCEN, Universidad de Buenos Aires \ \textperiodcentered{} \ 2 October 2026
+\ \textperiodcentered{} \\
+\texttt{repo \ github.com/ddblanco/BHs}\par}
 \end{frame}
 
 % ---------------------------------------------------------------- 2  problem
@@ -78,6 +80,9 @@ Departamento de Física, FCEN, Universidad de Buenos Aires \quad·\quad 2 Octobe
 \medskip
 \hd{Add Gauss--Bonnet term}, coupling $\alpha$:
 \[I=\tfrac1{16\pi G}\!\int\!\sqrt{-g}\,\bigl(R+\alpha\,\mathcal L_{\GB}\bigr)\]
+\vspace{-7pt}
+\par\hspace*{.6em}\src{schematically \ $R\sim g\,\partial^2g+\partial g\,\partial g$,\quad $\mathcal L_{\GB}\sim R^2$}\par
+\medskip
 \hd{Known} to first order in $\alpha$ \src{(arXiv:2009.00015)}:
 \[M_\ext=\tfrac32\pi^{1/3}J^{2/3}+\pi\,\alpha+\mathcal O(\alpha^2)\]
 \hd{Asked:} \ $\partial M_\ext/\partial\alpha|_J$ at \alert{finite} $\alpha$?\par\smallskip
@@ -192,7 +197,7 @@ Thank you for your attention\\[14pt]
 % ================================================================ backup
 
 % ---------------------------------------------------------------- A1
-\begin{frame}{A1 · Numerical method: solving the field equations}
+\begin{frame}{A1 \textperiodcentered{} Numerical method: solving the field equations}
 \vspace{-6pt}
 \begin{columns}[T,onlytextwidth]
 \column{.53\textwidth}\scriptsize
@@ -218,14 +223,14 @@ $R_N(u;\alpha,r_H,\Omega_H)=0$ \ ($4N$ eqs.)\\[2pt]
 \end{frame}
 
 % ---------------------------------------------------------------- A2
-\begin{frame}{A2 · Numerical method: measuring $\Psi$ and reaching $T=0$}
+\begin{frame}{A2 \textperiodcentered{} Numerical method: measuring $\Psi$ and reaching $T=0$}
 \begin{columns}[T,onlytextwidth]
 \column{.47\textwidth}\small
 \hd{$\Psi$ from derivatives at fixed $(r_H,\Omega_H)$}
 \[\Psi=\left.\frac{\partial M}{\partial\alpha}\right|_{S,J}=M_\alpha-T\,S_\alpha-2\Omega_H\,J_\alpha\]
 
 \hd{Derivatives without finite differences}
-\[\underbrace{\frac{\partial R_N}{\partial u}}_{\text{Newton Jacobian}}\frac{du}{d\alpha}=-\frac{\partial R_N}{\partial\alpha}\]
+\[\underbrace{\frac{\partial R_N}{\partial u}}_{\mathclap{\text{Newton Jacobian}}}\frac{du}{d\alpha}=-\frac{\partial R_N}{\partial\alpha}\]
 \scriptsize one linear solve, no step size (implicit function theorem)
 
 \medskip\small
@@ -239,7 +244,7 @@ coldest $TJ^{1/3}\approx3\times10^{-6}$
 \end{frame}
 
 % ---------------------------------------------------------------- A3
-\begin{frame}{A3 · Physical meaning of the result}
+\begin{frame}{A3 \textperiodcentered{} Physical meaning of the result}
 \centering
 \includegraphics[width=.66\textwidth]{fig-massext.pdf}
 
@@ -261,7 +266,7 @@ $\mu'\to\tfrac{3\pi}{4}\approx2.36$
 \end{frame}
 
 % ---------------------------------------------------------------- A4
-\begin{frame}[t]{A4 · How it started: the first prompts}
+\begin{frame}[t]{A4 \textperiodcentered{} How it started: the first prompts}
 \vspace{-4pt}
 \begin{beamercolorbox}[wd=\linewidth,sep=4pt,leftskip=4pt]{block body}
 \scriptsize\itshape ``El proyecto consiste en utilizar agentes de IA para implementar códigos
@@ -269,9 +274,9 @@ numéricos que permitan obtener soluciones de agujeros negros rotantes en
 dimensión D>4 [\ldots] reproducir soluciones numéricas ya encontradas en la
 literatura. [\ldots] el paso siguiente sería emprender la búsqueda de nuevas
 soluciones.''\par\smallskip\upshape\tiny\color{muted}Prompt 1 --- 4 Sept, 19:16, to Codex
-\quad·\quad then ``Fijate que el proyecto realmente siga las indicaciones propuestas por el
+\quad\textperiodcentered{}\quad then ``Fijate que el proyecto realmente siga las indicaciones propuestas por el
 docente del curso'' (3), ``ejecutar con subagentes'' (5), ``continuemos con el hito 3'', ``dale, avanzá''
-\quad·\quad \textbf{79} human prompts, 4--28 Sept \quad·\quad Claude Code builds $\leftrightarrow$ Codex referees
+\quad\textperiodcentered{}\quad \textbf{79} human prompts, 4--28 Sept \quad\textperiodcentered{}\quad Claude Code builds $\leftrightarrow$ Codex referees
 \end{beamercolorbox}
 \par\vspace{-16pt}\noindent
 \begin{minipage}[t]{.44\textwidth}\vspace{0pt}\centering
@@ -289,7 +294,7 @@ $2M=3TS+6\Omega_HJ+2\alpha\Psi$\par}
 \end{frame}
 
 % ---------------------------------------------------------------- A5
-\begin{frame}{A5 · What it cost}
+\begin{frame}{A5 \textperiodcentered{} What it cost}
 \centering
 \begin{columns}[T,onlytextwidth]
 \column{.25\textwidth}\centering\stat{36.8 h}{active agent time, 13 days}
