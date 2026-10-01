@@ -1,9 +1,10 @@
-% Five-minute talk: five timed slides (title, question, result, validation, lessons)
+% Showstopper version of ../slides.tex: slides 1-5 restyled (dark, one headline each),
+% closing and backup slides unchanged. Five-minute talk: five timed slides (title, question, result, validation, lessons)
 % followed by a closing slide and five backup slides (appendix), not timed. Build: ./build.sh
 % Every number on the slides is copied from manuscript/numbers.tex,
 % short-summary/comparison-numbers.tex or prompts/uso-de-tiempo-y-tokens.md;
 % the two derived ones (+31%, 2.3x) are asserted in make_figures.py.
-% The ten-minute version is kept in v10min/.
+% The plain version is ../slides.tex; the ten-minute one is ../v10min/.
 \documentclass[aspectratio=169,11pt]{beamer}
 \usetheme[progressbar=frametitle,numbering=fraction]{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -14,24 +15,34 @@
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta}
-\graphicspath{{figures/}}
+\usetikzlibrary{positioning,arrows.meta,fadings}
+\graphicspath{{../figures/}}
 
 \definecolor{ink}{HTML}{1F2937}
 \definecolor{accent}{HTML}{1F5FA8}
 \definecolor{warm}{HTML}{D9622B}
 \definecolor{muted}{HTML}{6B7280}
 \definecolor{paper}{HTML}{FFFFFF}
-\setbeamercolor{normal text}{fg=ink,bg=paper}
-\setbeamercolor{frametitle}{fg=white,bg=accent}
-\setbeamercolor{progress bar}{fg=warm,bg=accent!30}
-\setbeamercolor{alerted text}{fg=warm}
+\definecolor{night}{HTML}{05060A}
+\definecolor{glow}{HTML}{FF8A3D}
+\definecolor{gold}{HTML}{F5B942}
+\definecolor{panel}{HTML}{141824}
+% Dark throughout (showstopper style): night background, gold headings, glow for emphasis.
+\colorlet{accent}{gold}
+\definecolor{muted}{HTML}{9CA3AF}
+\setbeamercolor{background canvas}{bg=night}
+\setbeamercolor{normal text}{fg=white,bg=night}
+\setbeamercolor{palette primary}{fg=white,bg=night}
+\setbeamercolor{frametitle}{fg=white,bg=night}
+\setbeamercolor{progress bar}{fg=glow,bg=panel}
+\setbeamercolor{alerted text}{fg=glow}
 \setbeamerfont{frametitle}{size=\large}
-\setbeamercolor{block body}{bg=accent!7}
+\setbeamercolor{block body}{fg=white,bg=panel}
 
 \newcommand{\ext}{\mathsf{ext}}
+\newcommand{\card}[1]{\tikz\node[fill=white,rounded corners=4pt,inner sep=5pt]{#1};}
 \newcommand{\GB}{\mathsf{GB}}
-\newcommand{\stat}[2]{{\large\bfseries\color{accent}#1\par}\vspace{1pt}{\scriptsize\color{muted}#2\par}}
+\newcommand{\stat}[2]{{\large\bfseries\color{white}#1\par}\vspace{1pt}{\scriptsize\color{muted}#2\par}}
 \newcommand{\src}[1]{{\scriptsize\color{muted}#1}}
 \newcommand{\hd}[1]{{\small\bfseries\color{accent}#1}}
 \newcommand{\eqbox}[1]{%
@@ -42,149 +53,110 @@
 
 \begin{document}
 
+% ================================================================ show slides 1-5
+
 % ---------------------------------------------------------------- 1  title
-\begin{frame}[plain]
-\vspace*{0.4cm}
-{\LARGE\bfseries\color{accent}Extremality shift of rotating black holes\\[2pt]
-at finite Gauss--Bonnet coupling\par}
-\vspace{0.25cm}
-{\large A research project carried out with AI agents\par}
-\vspace{0.55cm}
-{\normalsize Cecilia Bejarano$^{1}$, David Blanco$^{2}$, Andrés Goya$^{1}$, Guillem Pérez-Nadal$^{2}$\par}
-\vspace{0.12cm}
-{\scriptsize\color{muted}$^1$Instituto de Astronomía y Física del Espacio (IAFE, CONICET--UBA) \\
-$^2$Departamento de Física, FCEN--UBA and IFIBA (CONICET--UBA)\par}
-\vspace{0.3cm}
-{\small With AI assistance: \textbf{Claude Code} (Anthropic; Claude Opus~5, Sonnet~5) \\
-and \textbf{Codex} (OpenAI; GPT-5)\par}
-\vfill
-{\footnotesize\color{muted}
-\emph{Gravitational Waves and AI-Assisted Research} --- M.~Zaldarriaga \& N.~Mirón Granese\\
-Departamento de Física, FCEN, Universidad de Buenos Aires \ \textperiodcentered{} \ 2 October 2026
-\ \textperiodcentered{} \\
-\texttt{repo \ github.com/ddblanco/BHs}\par}
+\begin{frame}[plain]\relax
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=east,inner sep=0] at (current page.east) {\includegraphics[height=\paperheight]{eht-photo.jpg}};
+\fill[night,path fading=east] ([xshift=-\paperheight]current page.north east) rectangle ([xshift=-.6\paperheight]current page.south east);
+\node[anchor=south west,font=\scriptsize,text=white!70,align=left] at ([xshift=.75cm,yshift=.45cm]current page.south west)
+  {AI agents course (M.~Zaldarriaga \& N.~Mirón Granese)\\[1pt]
+   {\tiny\color{white!50}FCEN--UBA \ \textperiodcentered{} \ 2 October 2026 \ \textperiodcentered{} \ \texttt{github.com/ddblanco/BHs}}};
+\node[anchor=south east,font=\tiny,text=white!55] at ([xshift=-6pt,yshift=4pt]current page.south east) {M87*, Event Horizon Telescope (2019)};
+\end{tikzpicture}%
+\vspace*{.2cm}
+\begin{minipage}{.62\textwidth}
+{\scriptsize\bfseries\color{gold}\MakeUppercase{Gravitational Waves and AI-Assisted Research}\par}
+\vspace{.35cm}
+{\fontsize{26}{29}\selectfont\bfseries How hard can a\\black hole \textcolor{glow}{spin}?\par}
+\vspace{.35cm}
+{\small\color{white!80}Extremality shift of rotating black holes\\at finite Gauss--Bonnet coupling\par}
+\vspace{.5cm}
+{\footnotesize C.~Bejarano \ D.~Blanco \ A.~Goya \ G.~Pérez Nadal\par}
+\vspace{.12cm}
+{\scriptsize\color{white!65}with \textbf{\color{white}Claude Code} and \textbf{\color{white}Codex}\par}
+\end{minipage}
 \end{frame}
 
 % ---------------------------------------------------------------- 2  problem
-\begin{frame}{The question: how far does Gauss--Bonnet move the spin bound?}
-\begin{columns}[T,onlytextwidth]
-\column{.33\textwidth}\centering
+\begin{frame}[plain]\relax
+\begin{columns}[c,onlytextwidth]
+\column{.5\textwidth}
+{\scriptsize\bfseries\color{gold}THE QUESTION\par}\vspace{6pt}
+{\LARGE\bfseries There is a\\ speed limit.\par}
+\vspace{8pt}
+{\small\color{white!80}Kerr (4D, GR): \ {\color{white}$M^2\ge|J|$}\par}\vspace{4pt}
+{\small\color{white!80}Myers--Perry (5D, GR): \ {\color{white}$M\ge\tfrac32\,\pi^{1/3}J^{2/3}$}\par}
 \vspace{10pt}
-\includegraphics[width=\linewidth]{fig-question.pdf}
-\par\vspace{2pt}
-\includegraphics[width=.5\linewidth]{eht-photo.jpg}\par
-\src{M87*, EHT (2019)}
-\column{.64\textwidth}\small
-\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{5pt}
-\hd{General Relativity} \src{(in 5D, two equal spins $J_1=J_2=J$)}
-\par\smallskip
-\noindent\hspace*{.6em}\mbox{Kerr (4D): \ $M^2\ge|J|$ \quad Myers--Perry (5D): \ $M\ge\tfrac32\,\pi^{1/3}J^{2/3}$}\par\smallskip
-\hspace*{.6em}\alert{extremal case:} bound saturates $\rightarrow$ \ $T=0$\par
-\medskip
-\hd{Add Gauss--Bonnet term}, coupling $\alpha$:
-\[I=\tfrac1{16\pi G}\!\int\!\sqrt{-g}\,\bigl(R+\alpha\,\mathcal L_{\GB}\bigr)\]
-\vspace{-7pt}
-\par\hspace*{.6em}\src{schematically \ $R\sim g\,\partial^2g+\partial g\,\partial g$}\\ 
-\par\hspace*{6em}\src{$\mathcal L_{\GB} = R^2 -4R_{\mu\nu}R^{\mu\nu}+R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}$}\\
-\hd{Known} to first order in $\alpha$ \src{(arXiv:2009.00015)}:
-\[M_\ext=\tfrac32\pi^{1/3}J^{2/3}+\pi\,\alpha+\mathcal O(\alpha^2)\]
-\hd{Asked:} \ $\partial M_\ext/\partial\alpha|_J$ at \alert{finite} $\alpha$?\par\smallskip
-\hd{Hint:} \ numerical rotating BHs \src{(arXiv:1010.0860)}
+{\small\color{white!80}Add Gauss--Bonnet, coupling $\alpha$: it moves.\\
+Known only for tiny $\alpha$: \ slope $=\pi$.\par}
+\vspace{14pt}
+{\Large\bfseries And at \textcolor{glow}{finite} $\alpha$?\par}
+\column{.47\textwidth}\centering
+\card{\includegraphics[width=\dimexpr\linewidth-10pt\relax]{fig-question.pdf}}
 \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------- 3  result
-\begin{frame}{Main result: the bound tightens, but not linearly}
-\vspace{-4pt}
-\begin{center}
-\begin{tabular}{@{}c@{\hspace{2.2em}}c@{\hspace{2.2em}}c@{}}
-{\scriptsize\color{muted}extended first law} &
-{\scriptsize\color{muted}at $T=0$, fixed $J$} &
-{\scriptsize\color{muted}slope of the extremal mass}\\[2pt]
-$\displaystyle dM=T\,dS+2\,\Omega_H\,dJ+\alert{\Psi}\,d\alpha$ &
-$\displaystyle\Longrightarrow$ &
-$\displaystyle\frac{\partial M_\ext}{\partial\alpha}\bigg|_J=\alert{\Psi_\ext}$
-\end{tabular}
-\end{center}
-\vspace{-2pt}
-\begin{columns}[T,onlytextwidth]
-\column{.47\textwidth}\centering\vspace{0pt}
-\includegraphics[width=.94\linewidth]{fig-shift.pdf}\\[-2pt]
-\scriptsize slope $\partial M_\ext/\partial\alpha|_J$ \ (\alert{result})
-\column{.30\textwidth}\centering\vspace{0pt}
-\includegraphics[width=\linewidth,trim=0 0 208.1bp 0,clip]{fig-massext.pdf}\\[-2pt]
-\scriptsize extremal mass
-\column{.19\textwidth}\raggedright\vspace{8pt}
-\stat{$>0$}{bound tightens}\vspace{2pt}
-{\normalsize\bfseries\color{accent}$\pi\!\to\!1.07\!\to\!1.44$\par}\vspace{1pt}{\scriptsize\color{muted}not monotonic\par}\vspace{2pt}
-\stat{$+31\%$}{growth of $M_\ext$}\vspace{2pt}
-\stat{$2.3\times$}{first-order shift vs.\ measured}
+\begin{frame}[plain]\relax
+{\scriptsize\bfseries\color{gold}THE RESULT\par}\vspace{4pt}
+{\LARGE\bfseries The limit gets \textcolor{glow}{tighter}.\par}
+{\large\color{white!75}But not the way first order said.\par}
+\vspace{8pt}
+\begin{columns}[c,onlytextwidth]
+\column{.55\textwidth}\centering
+\only<1>{\card{\includegraphics[height=4.4cm]{fig-shift.pdf}}}%
+\only<2>{\card{\includegraphics[height=4.4cm,trim=0 0 208.1bp 0,clip]{fig-massext.pdf}}}
+\column{.42\textwidth}\centering
+\only<1>{%
+{\fontsize{22}{26}\selectfont\bfseries\color{glow}$\pi\to1.07\to1.44$\par}
+{\scriptsize\color{white!65}slope $\partial M_\ext/\partial\alpha|_J$: falls, then rises\par}}%
+\only<2>{%
+{\fontsize{30}{34}\selectfont\bfseries\color{glow}$+31\%$\par}
+{\scriptsize\color{white!65}growth of the extremal mass $M_\ext$\par}
+\vspace{14pt}
+{\fontsize{30}{34}\selectfont\bfseries $2.3\times$\par}
+{\scriptsize\color{white!65}first order overshoots the real shift\par}}
 \end{columns}
-\vfill
-\centering\src{356 numerical solutions at 13 couplings; the $T=0$ values are extrapolated from $TJ^{1/3}\approx3\times10^{-6}$.}
 \end{frame}
 
 % ---------------------------------------------------------------- 4  validation
-\begin{frame}{Validation: how do we know it is right?}
-\begin{columns}[T,onlytextwidth]
-\column{.57\textwidth}\centering
-\includegraphics[width=\linewidth]{fig-checks.pdf}\\
-\src{worst deviation of each independent check}
-\column{.40\textwidth}\footnotesize
-\setlength{\abovedisplayskip}{2pt}\setlength{\belowdisplayskip}{2pt}
-\hd{1. Known answers first}\\
-published family (arXiv:1010.0860) to $2\times10^{-4}$;
-static closed form; $\pi$ at $\alpha\to0$
-
-\smallskip
-\hd{2. Independent routes to $\Psi$}\\
-Smarr, from one solution's charges:
-\[\Psi=\frac{2M-3TS-6\Omega_HJ}{2\alpha}\]
-on-shell Gauss--Bonnet action:
-\[\Psi=-\frac1{16\pi}\int_\Sigma\!\sqrt{-g}\,\mathcal L_{\GB}\]
-neither uses our linear solve: agree to $\sim10^{-6}$
-
-\smallskip
-\hd{3. Largest uncertainty}\\
-$T\to0$ is an extrapolation (the error bars)
+\begin{frame}[plain]\relax
+\begin{columns}[c,onlytextwidth]
+\column{.42\textwidth}
+{\scriptsize\bfseries\color{gold}WHY BELIEVE IT\par}\vspace{6pt}
+{\fontsize{54}{56}\selectfont\bfseries\color{glow}10\par}
+{\Large\bfseries independent checks.\par}
+\vspace{6pt}
+{\large All below $10^{-4}$.\par}
+\vspace{14pt}
+{\small\color{white!75}\alert<2>{Known solutions first:} arXiv:1010.0860 to $2\times10^{-4}$.\\[3pt]
+Two other formulas for the slope (Smarr relation, Gauss--Bonnet action)
+agree with our derivative method to $\sim10^{-6}$.\par}
+\vspace{8pt}
+{\scriptsize\color{white!55}Largest uncertainty: the $T\to0$ extrapolation.\par}
+\column{.55\textwidth}\centering
+\only<1,3>{\card{\includegraphics[width=\dimexpr\linewidth-10pt\relax]{fig-checks.pdf}}}%
+\only<2>{\card{\includegraphics[height=4.6cm,trim=0 0 217bp 0,clip]{fig-paper-comparison.pdf}}\par\vspace{3pt}
+{\scriptsize\color{white!65}lines: our solver \quad circles: arXiv:1010.0860, fig.~1\par}}
 \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------- 5  experience
-\begin{frame}{What we learned working with agents}
+\begin{frame}[plain]\relax
+\centering
+{\scriptsize\bfseries\color{gold}HOW IT WAS MADE\par}\vspace{6pt}
+{\LARGE\bfseries Two AI agents. One of them the \textcolor{glow}{referee}.\par}
+\vspace{18pt}
 \begin{columns}[T,onlytextwidth]
-\column{.46\textwidth}\centering
-\begin{tikzpicture}[
-  every node/.style={font=\scriptsize,align=center,rounded corners=3pt,
-                     draw=accent,line width=0.9pt,fill=accent!8,minimum width=1.9cm,minimum height=0.9cm},
-  hot/.style={draw=warm,fill=warm!10},
-  lab/.style={draw=none,fill=none,font=\tiny\color{muted},minimum width=0,minimum height=0},
-  >={Stealth[length=5pt]}]
-\node (h) {\textbf{Us}\\question, direction,\\doubt};
-\node[hot] (c) at (-1.75,-2.0) {\textbf{Claude Code}\\writes code,\\runs, drafts};
-\node[hot] (x) at (1.75,-2.0) {\textbf{Codex}\\referee:\\asks for checks};
-\draw[->,thick,muted] (h) -- node[lab,left]{79 prompts} (c);
-\draw[->,thick,muted] ([yshift=5pt]c.east) -- node[lab,above]{results} ([yshift=5pt]x.west);
-\draw[->,thick,muted] ([yshift=-5pt]x.west) -- node[lab,below]{critique} ([yshift=-5pt]c.east);
-\draw[->,thick,muted] (x) -- node[lab,right]{reports} (h);
-\end{tikzpicture}
-
-\vspace{6pt}
-\raggedright\scriptsize
-A check the referee asked for \alert{failed}: our error bars were too small (two ways of computing the slope disagreed) $\rightarrow$ we enlarged them.
-\column{.52\textwidth}\centering
-\includegraphics[width=\linewidth]{fig-effort.pdf}
-
-\vspace{4pt}
-\begin{columns}[T,onlytextwidth]
-\column{.5\linewidth}\centering\stat{36.8 h}{agent time over 13 days}
-\column{.5\linewidth}\centering\stat{1.42 billion}{tokens processed}
+\column{.33\textwidth}\centering{\fontsize{30}{34}\selectfont\bfseries 36.8\,h\par}{\scriptsize\color{white!65}agent time, 13 days\par}
+\column{.34\textwidth}\centering{\fontsize{30}{34}\selectfont\bfseries 1.42\,B\par}{\scriptsize\color{white!65}tokens processed\par}
+\column{.33\textwidth}\centering{\fontsize{30}{34}\selectfont\bfseries 79\par}{\scriptsize\color{white!65}human prompts\par}
 \end{columns}
-\end{columns}
-\vfill
-\centering\small
-\textbf{Lesson:} the cost is not writing code, it is verifying it.\\
-Ask for checks that \alert{can fail}, and let one agent referee the other.
+\vspace{22pt}
+{\large Writing the code was cheap.\par}
+{\Large\bfseries\color{glow}Verifying it was the work.\par}
 \end{frame}
 
 % ================================================================ after the talk
@@ -193,6 +165,10 @@ Ask for checks that \alert{can fail}, and let one agent referee the other.
 
 % ---------------------------------------------------------------- 6  thanks
 \begin{frame}[standout]
+\begin{tikzpicture}[remember picture,overlay]
+\node[inner sep=0] at (current page.center) {\includegraphics[height=\paperheight]{retro-crt.jpg}};
+\fill[night,opacity=.45] (current page.south west) rectangle (current page.north east);
+\end{tikzpicture}%
 Thank you for your attention\\[14pt]
 {\normalsize\mdseries Matías and Nahuel, thanks for the AI course}
 \end{frame}
@@ -219,9 +195,9 @@ $R_N(u;\alpha,r_H,\Omega_H)=0$ \ ($4N$ eqs.)\\[2pt]
 \vspace{4pt}
 \begin{columns}[T,onlytextwidth]
 \column{.43\textwidth}\centering
-\includegraphics[height=3.6cm,trim=0 0 217bp 0,clip]{fig-paper-comparison.pdf}
+\card{\includegraphics[height=3.6cm,trim=0 0 217bp 0,clip]{fig-paper-comparison.pdf}}
 \column{.55\textwidth}\centering
-\includegraphics[height=3.6cm]{fig-profiles.pdf}
+\card{\includegraphics[height=3.6cm]{fig-profiles.pdf}}
 \end{columns}
 \end{frame}
 
@@ -241,7 +217,7 @@ $R_N(u;\alpha,r_H,\Omega_H)=0$ \ ($4N$ eqs.)\\[2pt]
 cubic fit through the 6 coldest states;\\
 coldest $TJ^{1/3}\approx3\times10^{-6}$
 \column{.51\textwidth}\centering
-\includegraphics[width=\linewidth]{fig-potential.pdf}\\
+\card{\includegraphics[width=\dimexpr\linewidth-10pt\relax]{fig-potential.pdf}}\\
 \scriptsize $\Psi$ against temperature; red dots: the $T=0$ values (the slope)
 \end{columns}
 \end{frame}
@@ -274,7 +250,7 @@ agrees to $4.67\times10^{-7}$ (43 states, away from extremality)
 % ---------------------------------------------------------------- A3
 \begin{frame}{A3 \textperiodcentered{} Physical meaning of the result}
 \centering
-\includegraphics[width=.66\textwidth]{fig-massext.pdf}
+\card{\includegraphics[width=.62\textwidth]{fig-massext.pdf}}
 
 \vspace{2pt}
 \begin{columns}[T,onlytextwidth]
@@ -308,12 +284,12 @@ docente del curso'' (3), ``ejecutar con subagentes'' (5), ``continuemos con el h
 \end{beamercolorbox}
 \par\vspace{-16pt}\noindent
 \begin{minipage}[t]{.44\textwidth}\vspace{0pt}\centering
-\includegraphics[width=.9\linewidth]{fig-roadmap.png}\par\vspace{2pt}
-{\tiny\color{muted}first roadmap, 5 Sept. \textcolor{warm}{Hito 6} became $\Psi$;
+\card{\includegraphics[width=.84\linewidth]{fig-roadmap.png}}\par\vspace{2pt}
+{\tiny\color{muted}first roadmap, 5 Sept. \textcolor{glow}{Hito 6} became $\Psi$;
 Hito 8 ($T\to0$, paper, referees) was not in the plan.\par}
 \end{minipage}\hfill
 \begin{minipage}[t]{.52\textwidth}\vspace{0pt}\centering
-\includegraphics[width=\linewidth]{fig-smarr.png}\par\vspace{2pt}
+\card{\includegraphics[width=.9\linewidth]{fig-smarr.png}}\par\vspace{2pt}
 {\tiny\color{muted}arXiv:1010.0860, \S4.1.3 and footnote 14.\par}
 \vspace{4pt}
 {\scriptsize Hito 6, $\alpha$ as a thermodynamic variable:\
@@ -331,7 +307,7 @@ $2M=3TS+6\Omega_HJ+2\alpha\Psi$\par}
 \column{.25\textwidth}\centering\stat{79}{human prompts}
 \end{columns}
 \vspace{4pt}
-\includegraphics[width=.8\textwidth]{fig-cost.pdf}\\
+\card{\includegraphics[width=.8\textwidth]{fig-cost.pdf}}\\
 \small The first \alert{new} object cost $5\times$ the tokens of reproducing everything known.\\[2pt]
 \src{Not counted: human time, background numerical runs.}
 \end{frame}

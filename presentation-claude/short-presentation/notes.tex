@@ -1,4 +1,5 @@
-% Speaker script for slides.tex.  Build: ./build.sh
+% Speaker script for slides.tex (short version; the script of ../notes.tex with
+% references to panels removed from the slides adjusted).  Build: ./build.sh
 % build_html.py converts this file into notes.html and into the notes panel of
 % slides.html, so keep to the macros used here (\slidenote, \emph, \textbf,
 % inline $...$ with the symbols listed in build_html.MATH, ^{} and _{}).
@@ -84,15 +85,14 @@ the $T\,dS$ term disappears, so at fixed spin $\Psi$ is exactly the slope we
 want. We compute $\Psi$ on every numerical solution, 356 of them at 13
 couplings, and extrapolate to zero temperature.
 
-Here is the result. On the left, the slope against the scaled coupling
+Here is the result: the slope against the scaled coupling
 $y = \alpha/J^{2/3}$. At $y = 0$ we recover $\pi$, the green star. Then the slope
 falls fast, to about 1.07, and rises again to 1.44 at the largest coupling we
 reached. The open squares are an independent estimate from the mass curve.
 
 Three messages. The slope is always positive, so Gauss--Bonnet makes the spin
 bound tighter. It is far from constant, so the first-order formula fails
-quickly. And it is not monotonic. On the right, the extremal mass itself: it
-grows by 31 percent, and the first-order line predicts a shift more than twice
+quickly. And it is not monotonic. The extremal mass itself (backup A3) grows by 31 percent, and the first-order line predicts a shift more than twice
 as large as the real one.
 
 \slidenote{4}{4}{Validation}{1:10 \quad [3:50]}
@@ -116,8 +116,7 @@ is what the error bars in the result show.
 
 \slidenote{5}{5}{Experience: what we learned}{1:05 \quad [4:55]}
 
-Finally, what we learned about working with agents. The division of labour on
-the left worked well: we chose the question and kept doubting; Claude Code wrote
+Finally, what we learned about working with agents. The division of labour in the diagram worked well: we chose the question and kept doubting; Claude Code wrote
 and ran the code; Codex acted as a referee and asked for checks. The referee
 rounds mattered: one check a referee asked for actually \emph{failed} when it was
 run. We compute the slope in two ways, and they disagreed by more than our error

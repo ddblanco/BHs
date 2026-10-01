@@ -1,4 +1,5 @@
-% Speaker script for slides.tex.  Build: ./build.sh
+% Speaker script for slides.tex (showstopper version; the script of ../notes.tex
+% with references to panels removed from the slides adjusted).  Build: ./build.sh
 % build_html.py converts this file into notes.html and into the notes panel of
 % slides.html, so keep to the macros used here (\slidenote, \emph, \textbf,
 % inline $...$ with the symbols listed in build_html.MATH, ^{} and _{}).
@@ -20,7 +21,7 @@
 \setlength{\parskip}{6pt}
 \linespread{1.12}
 
-% \slidenote{page in slides.pdf}{label shown}{title}{timing}
+% \slidenote{page in slides.pdf (slides 3 and 4 have 2 and 3 overlay pages)}{label shown}{title}{timing}
 \newcommand{\slidenote}[4]{%
   \par\bigskip\noindent
   \begin{minipage}[t]{.3\textwidth}\vspace{0pt}
@@ -40,7 +41,7 @@
 
 \slidenote{1}{1}{Title}{0:15 \quad [0:15]}
 
-This is joint work by Cecilia Bejarano, David Blanco, Guillem Pérez-Nadal and
+This is joint work by Cecilia Bejarano, David Blanco, Guillem Pérez Nadal and
 myself. Most of the code, the computations and the writing were done by two AI
 agents, Claude Code and Codex, under our direction.
 
@@ -91,33 +92,29 @@ reached. The open squares are an independent estimate from the mass curve.
 
 Three messages. The slope is always positive, so Gauss--Bonnet makes the spin
 bound tighter. It is far from constant, so the first-order formula fails
-quickly. And it is not monotonic. On the right, the extremal mass itself: it
-grows by 31 percent, and the first-order line predicts a shift more than twice
+quickly. And it is not monotonic. \emph{(Click.)} The extremal mass itself grows by 31 percent, and the first-order line predicts a shift more than twice
 as large as the real one.
 
-\slidenote{4}{4}{Validation}{1:10 \quad [3:50]}
+\slidenote{5}{4}{Validation}{1:10 \quad [3:50]}
 
 How do we know it is right? Three kinds of evidence.
 
 First, known answers. Before computing anything new, the code reproduced a
-published family of rotating Gauss--Bonnet black holes to two parts in ten
-thousand. It also recovers the exact static solution and the value $\pi$ at
+published family of rotating Gauss--Bonnet black holes to two parts in ten thousand. \emph{(Click.)} The lines are our solver, the circles the published solutions. \emph{(Click back to the checks.)} It also recovers the exact static solution and the value $\pi$ at
 small coupling.
 
 Second, independent routes. $\Psi$ can also be obtained from the Smarr relation,
 using only the charges of a single solution, or as the integral of the
-Gauss--Bonnet density outside the black hole. Neither uses our main method, and
-both agree with it to about one part in a million. The bars show the worst
+Gauss--Bonnet density outside the black hole. Both use the same numerical solutions, but neither uses our main method, the linear solve for the derivatives, and both agree with it to about one part in a million. The bars show the worst
 deviation of every check.
 
 Third, the honest caveat. We never build a zero-temperature solution; we get
 very cold and extrapolate. That extrapolation is the largest uncertainty, and it
 is what the error bars in the result show.
 
-\slidenote{5}{5}{Experience: what we learned}{1:05 \quad [4:55]}
+\slidenote{8}{5}{Experience: what we learned}{1:05 \quad [4:55]}
 
-Finally, what we learned about working with agents. The division of labour on
-the left worked well: we chose the question and kept doubting; Claude Code wrote
+Finally, what we learned about working with agents. The division of labour worked well: we chose the question and kept doubting; Claude Code wrote
 and ran the code; Codex acted as a referee and asked for checks. The referee
 rounds mattered: one check a referee asked for actually \emph{failed} when it was
 run. We compute the slope in two ways, and they disagreed by more than our error
@@ -133,7 +130,7 @@ So our lesson: the cost is not in writing code, it is in verifying it. Ask for
 checks that can fail, and let one agent referee the other. Everything is in the
 repository.
 
-\slidenote{6}{6}{Thank you}{0:05 \quad [5:00]}
+\slidenote{9}{6}{Thank you}{0:05 \quad [5:00]}
 
 Thank you for your attention, and thanks to Matías and Nahuel for the AI course.
 
@@ -142,7 +139,7 @@ Thank you for your attention, and thanks to Matías and Nahuel for the AI course
 {\color{muted}Not part of the five minutes. Use them if there are questions; the
 notes below are written to be read, not recited.\par}
 
-\slidenote{7}{A1}{Numerical method: solving the field equations}{backup}
+\slidenote{10}{A1}{Numerical method: solving the field equations}{backup}
 
 \textbf{Why ordinary differential equations.} A generic rotating black hole in
 five dimensions depends on the radius and on an angle. When the two angular
@@ -212,7 +209,7 @@ error. The two other values of that series agree. We report it as an open
 discrepancy, not as an error of theirs. It does not enter $\Psi$ or the
 extrapolation.
 
-\slidenote{8}{A2}{Numerical method: measuring $\Psi$ and reaching $T = 0$}{backup}
+\slidenote{11}{A2}{Numerical method: measuring $\Psi$ and reaching $T = 0$}{backup}
 
 \textbf{What $\Psi$ is.} $\Psi$ is not a field; it is one number per solution.
 It is the change in mass when the coupling changes while entropy and angular
@@ -252,7 +249,7 @@ the fit (number of points, degree, square-root or logarithmic terms, $T$ or
 $T J^{1/3}$ as variable) gives the error bars of the result slide. That
 extrapolation is the largest uncertainty in the whole calculation.
 
-\slidenote{9}{A2b}{Two other routes to $\Psi$}{backup}
+\slidenote{12}{A2b}{Two other routes to $\Psi$}{backup}
 
 These are the two checks on the validation slide that do not use the linear
 solve of A2. Both start from the same numerical solutions.
@@ -270,7 +267,7 @@ out by the field equations, so $\Psi$ is minus the Gauss--Bonnet density
 integrated outside the horizon, over $16\pi$. It needs no charges at all. On 43
 states, none of them near extremality, it agrees to $4.67\times10^{-7}$.
 
-\slidenote{10}{A3}{Physical meaning of the result}{backup}
+\slidenote{13}{A3}{Physical meaning of the result}{backup}
 
 \textbf{The sign: the spin bound tightens.} A positive slope means the minimum
 mass at fixed spin grows with the coupling. Equivalently, the maximum spin a
@@ -312,7 +309,7 @@ finite range of couplings. In an effective-field-theory view, other
 higher-curvature terms enter at the same order as $\alpha^2$, so the
 non-monotonic slope is a property of this theory, not a universal prediction.
 
-\slidenote{11}{A4}{How it started: the first prompts}{backup}
+\slidenote{14}{A4}{How it started: the first prompts}{backup}
 
 The project began on 4 September as the final project of this course. At the top
 is the very first prompt, to Codex: write numerical codes for rotating black
@@ -331,7 +328,7 @@ Traschen. Treating $\alpha$ as a thermodynamic variable, scaling gives it:
 $2M = 3TS + 6\Omega_H J + 2\alpha\Psi$, which our solutions satisfy to about
 $10^{-7}$.
 
-\slidenote{12}{A5}{What it cost}{backup}
+\slidenote{15}{A5}{What it cost}{backup}
 
 About 37 hours of active agent time over 13 days, and 79 human prompts. The
 agents processed 1.4 billion tokens, but 99 percent of that is context being
