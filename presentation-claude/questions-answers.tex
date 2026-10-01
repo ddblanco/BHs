@@ -1,0 +1,395 @@
+% Questions about the manuscript and the talk, and their answers.
+% Every number below is read from an artifact in the repository: the dataset
+% ../results/egb-extremality.json (the same file manuscript/numbers.tex is
+% generated from), ../results/egb-rotating-external-contrasts.json, and the
+% cost ledger ../prompts/uso-de-tiempo-y-tokens.md. The code quoted is
+% ../src/rotating_bh/{extremality,egb_rotating_bvp}.py.
+% Build: tectonic -X compile questions-answers.tex
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue!55!black]{hyperref}
+
+\definecolor{accent}{HTML}{1F5FA8}
+\newcommand{\q}[1]{\subsection*{\color{accent}#1}}
+\newcommand{\ext}{\mathsf{ext}}
+
+\title{Questions on the manuscript and the talk}
+\author{}
+\date{1 October 2026}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-0.8cm}
+
+\noindent\rule{\linewidth}{0.4pt}
+\medskip
+
+\noindent Four questions, each answered from an artifact in the repository
+rather than from recollection. Sections~1 and~2 concern one sentence of
+section~4 of the manuscript; sections~3 and~4 concern one sentence of the
+speaker notes. What was \emph{not} checked is stated at the end of each answer
+and collected under Provenance.
+
+% ================================================================
+\section{What does 356 mean, and are the couplings equispaced?}
+
+\noindent The sentence at issue opens section~4, \emph{Results}:
+\begin{quote}
+``The dataset contains $356$ accepted solutions at $13$ couplings from
+$\alpha=0$ to $\alpha=1/2$ in units $r_H=1$.''
+\end{quote}
+
+\q{The 356 is a total over couplings, not a count per coupling}
+
+It is the number of converged black-hole solutions \emph{summed over all
+thirteen couplings} --- not $356$ per coupling, and nothing to do with the
+number of $\alpha$ values. Each coupling carries one \emph{walk}: a
+continuation in the spin at that fixed $\alpha$ (section~\ref{sec:walk-ref}
+below). The number $356$ is the total length of the thirteen walks.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}rrlr@{}}
+\toprule
+$\alpha$ & states & walk & $TJ^{1/3}$ range \\
+\midrule
+$0$     & $43$ & full   & $1.12\times10^{-5}$ to $8.74\times10^{-2}$\\
+$0.005$ & $10$ & narrow & $2.44\times10^{-3}$ to $5.10\times10^{-2}$\\
+$0.01$  & $11$ & narrow & $1.21\times10^{-3}$ to $5.14\times10^{-2}$\\
+$0.02$  & $40$ & full   & $4.61\times10^{-3}$ to $8.15\times10^{-2}$\\
+$0.035$ & $11$ & narrow & $3.76\times10^{-3}$ to $5.13\times10^{-2}$\\
+$0.05$  & $45$ & full   & $4.49\times10^{-4}$ to $7.42\times10^{-2}$\\
+$0.075$ & $16$ & narrow & $4.38\times10^{-4}$ to $4.75\times10^{-2}$\\
+$0.1$   & $45$ & full   & $3.84\times10^{-4}$ to $6.48\times10^{-2}$\\
+$0.15$  & $17$ & narrow & $2.57\times10^{-4}$ to $3.90\times10^{-2}$\\
+$0.2$   & $45$ & full   & $1.44\times10^{-4}$ to $5.21\times10^{-2}$\\
+$0.3$   & $16$ & narrow & $1.06\times10^{-4}$ to $2.59\times10^{-2}$\\
+$0.4$   & $13$ & narrow & $5.06\times10^{-5}$ to $1.97\times10^{-2}$\\
+$0.5$   & $44$ & full   & $3.34\times10^{-6}$ to $3.34\times10^{-2}$\\
+\midrule
+\textbf{total} & $\mathbf{356}$ & & \\
+\bottomrule
+\end{tabular}
+\caption{States per coupling, read from \texttt{results/egb-extremality.json}.
+The two populations are the two kinds of walk described in section~2.}
+\end{table}
+
+The counts are bimodal, and the split is exactly the one the next sentence of
+section~4 describes. The six couplings walked over the \emph{whole} spin range,
+$\alpha=0$, $0.02$, $0.05$, $0.1$, $0.2$, $0.5$, carry $40$--$45$ states each,
+$262$ in total. The seven that start at $q=0.6$ and run only to the
+near-extremal end carry $10$--$17$ each, $94$ in total. So
+\[
+  356 \;=\; \underbrace{262}_{\text{6 full walks}} \;+\; \underbrace{94}_{\text{7 narrow walks}} .
+\]
+``Accepted'' means the state passed the solver's acceptance gate: the stored
+rows carry the diagnostics it is judged on
+(\texttt{max\_relative\_tensor\_residual}, \texttt{psi\_window\_spread},
+\texttt{mass\_tail\_spread}, and so on). Refused attempts are not in the count.
+
+\q{The couplings are not equispaced}
+
+\begin{center}\small
+\begin{tabular}{@{}l@{\;}*{13}{r@{\;}}@{}}
+$\alpha$ & $0$ & $.005$ & $.01$ & $.02$ & $.035$ & $.05$ & $.075$ & $.1$ & $.15$ & $.2$ & $.3$ & $.4$ & $.5$\\
+gap & & $.005$ & $.005$ & $.01$ & $.015$ & $.015$ & $.025$ & $.025$ & $.05$ & $.05$ & $.1$ & $.1$ & $.1$\\
+\end{tabular}
+\end{center}
+
+\noindent The spacing is graded, widening by a factor of about $20$ from the
+small-$\alpha$ end to the large-$\alpha$ end. That matches what is being
+measured: the result is the departure from the first-order value
+\[
+  M_\ext=\tfrac32\pi^{1/3}J^{2/3}+\pi\,\alpha+\mathcal O(\alpha^2),
+\]
+so the $\alpha\to0$ end has to be resolved finely enough to see the slope leave
+$\pi$, while the large-$\alpha$ end only has to track a slowly varying curve.
+
+The grid is also aligned with its two uses. The six full walks sit at
+$0$, $0.02$, $0.05$, $0.1$, $0.2$, $0.5$, and the seven narrow ones interleave
+between them. The narrow walks exist only to add resolution to the
+extremal-slope curve, which is why they skip the low-spin region entirely.
+
+% ================================================================
+\section{What is a ``walk''?}
+\label{sec:walk-ref}
+
+A \emph{walk} is one continuation sequence: a chain of solutions at
+\emph{fixed} $\alpha$, stepped in the spin, each solve seeded by the previous
+one. It is the unit the dataset is organised into --- thirteen couplings,
+thirteen walks, $356$ states. What follows is read from
+\texttt{src/rotating\_bh/extremality.py}.
+
+\q{Where a walk starts}
+
+\texttt{walk\_to\_extremality(alpha\_gb)} first builds a base solution with
+\texttt{predictor\_ladder(start=.60, \dots)}: it climbs in the \emph{coupling}
+from the known $\alpha=0$ Myers--Perry solution up to the target $\alpha$ in
+steps of \texttt{coupling\_step=.005}, holding the spin at $\Omega_H=0.6$. In
+units $r_H=1$ one has $q=r_H\Omega_H=\Omega_H$, which is why the manuscript
+calls this $q=0.6$.
+
+\q{Where a walk goes}
+
+From that base it runs \texttt{walk} twice, in both directions in the spin,
+with \texttt{spin\_step=.01} in $\Omega_H$:
+\begin{itemize}\itemsep1pt
+  \item \texttt{direction=-1}, down to $\Omega_H=0$, the static limit;
+  \item \texttt{direction=+1}, up until the temperature falls below
+        \texttt{floor=1e-6}, the near-extremal end.
+\end{itemize}
+The walk is the concatenation \texttt{descending + [anchor] + ascending},
+sorted in $\Omega_H$. Its length is that coupling's row in the table above.
+This is precisely the six-versus-seven split: the couplings given both
+directions are the $40$--$45$-state full walks, while the seven narrow ones
+were given only the ascending branch from $q=0.6$ --- the region the $T\to0$
+extrapolation actually consumes.
+
+\q{Why it is a walk and not a scan}
+
+Every step is Newton-solved from the previous solution as its seed. These
+states cannot be solved independently, because near extremality there is no
+good initial guess except a neighbour. Three behaviours of the loop follow from
+that, each recorded in the source as the answer to a way an earlier version
+failed:
+
+\begin{itemize}\itemsep3pt
+  \item \textbf{Halve, do not stop.} A Newton failure is treated as a seeding
+  accident rather than a physical boundary: the step halves and retries. What
+  ends a walk is the step collapsing below \texttt{minimum\_step=1e-5}. The
+  docstring puts it plainly --- ``a wall which looked physical was not''.
+
+  \item \textbf{Roll back on a refused state.} A state that misses the
+  acceptance gate is not kept as the seed. Otherwise every later solve inherits
+  the bad profile and the walk dies far short of where it could reach, which
+  the source records as what the first production run did at the two smallest
+  couplings.
+
+  \item \textbf{Raise the resolution before shortening the step.} Approaching
+  extremality the independent tensor residual grows, and the cure is
+  $N=64\to96$, not a smaller step. The resolution that accepted each state is
+  stored with it, which is the \texttt{resolution} field in the rows.
+\end{itemize}
+
+\q{Why 356 is not simply steps times couplings}
+
+A walk steps far more often than it records. States are kept on a schedule:
+whenever the spin has moved by \texttt{spin\_record=.02} \emph{or} the
+temperature has changed by a factor of \texttt{temperature\_record=1.3}.
+Measuring at every accepted step would spend the run in \texttt{diagnose};
+measuring on a fixed spin grid would crowd the samples where nothing changes.
+So $356$ counts \emph{recorded, accepted} states, and the number of Newton
+solves behind them is substantially larger.
+
+This also explains the temperature coverage in the table of section~1. The
+$1.3\times$ temperature trigger makes the samples bunch up automatically as $T$
+collapses towards extremality --- which is where \texttt{extremal\_state} needs
+them, since it fits only the \texttt{window=12} coldest states.
+
+% ================================================================
+\section{What is the ``rotating solver''?}
+\label{sec:solver}
+
+\noindent The sentence at issue is in the speaker notes for the cost slide:
+\begin{quote}
+``Reproducing all known solutions took about four hours; the first new object,
+the rotating solver, took five times more \dots''
+\end{quote}
+
+\noindent It is the code that finds rotating Einstein--Gauss--Bonnet black
+holes: \texttt{src/rotating\_bh/egb\_rotating\_bvp.py}, built in milestone
+(\emph{hito}) 4. The ten-minute notes say it at greater length --- ``the first
+genuinely new object, the rotating Gauss--Bonnet black hole'' --- which is what
+the five-minute line compresses.
+
+\q{What it is}
+
+A spectral collocation solver for the radial boundary-value problem of the
+rotating EGB system. From its docstring:
+\begin{itemize}\itemsep1pt
+  \item Chebyshev--Lobatto nodes; damped Newton with a \emph{complex-step}
+  Jacobian and a line search --- the same architecture as the vacuum solver
+  \texttt{vacuum\_bvp.py}, deliberately mirrored.
+  \item Four compact amplitudes $B,F,H,W$ on a compactified radius, $z=1/r$ and
+  $x=1-z$, so that $x=0$ is the horizon $r_H=1$ and $x=1$ is $r\to\infty$.
+  \item The horizon row is singular in the generic interior formula --- the
+  coefficient matrix of the underlying $[f',b'',h'',w'']$ system degenerates
+  there --- so it uses separately derived horizon relations, verified against
+  the exact Myers--Perry closed form.
+  \item At infinity, $B=1$, $F=1$, $H_x=0$, $W_x=0$.
+  \item At $\alpha_{\rm GB}=0$ the interior equations reproduce the vacuum ones
+  exactly.
+\end{itemize}
+Everything in the paper rests on it: the walk of section~\ref{sec:walk-ref}
+calls into it at every step, and the $356$ states are its accepted outputs.
+
+\q{Why it was the expensive block}
+
+Hito 4 cost $11.2$ hours and $508$\,M tokens, $31\%$ of the project's time and
+$36\%$ of its tokens --- the largest single block. The ``five times'' of the
+notes is a token ratio, and it is a comparison across different units:
+
+\begin{center}\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Block & Hours & Tokens \\
+\midrule
+Hitos 0--3, reproducing the known literature & $4.4$ & $101{,}558{,}821$ \\
+\textbf{Hito 4, rotating EGB black hole} & $\mathbf{11.2}$ & $\mathbf{507{,}954{,}588}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent $508/101.6=5.0$. Note that the sentence quotes hours for the first
+block and tokens for the second.
+
+The ledger documents why it was costly:
+\begin{itemize}\itemsep3pt
+  \item \textbf{The direct tensor derivation was symbolically intractable.}
+  Christoffel and Riemann for the non-diagonal metric did not terminate. The
+  work moved to the reduced action, with equivalence to the full tensor
+  verified \emph{numerically} over generic profiles rather than symbolically.
+
+  \item \textbf{Five discarded solver routes} before the one that worked:
+  fitting a single horizon parameter; multi-parameter shooting with
+  \texttt{least\_squares} and \texttt{solve\_ivp}; \texttt{solve\_bvp} seeded
+  from Myers--Perry with an exact analytic Jacobian, which went singular with
+  parameters diverging to $10^4$--$10^{22}$; extracting the horizon conditions
+  from the compactified form, where \texttt{sp.limit} did not terminate; and
+  translating the raw relations into compact variables, which gave correct but
+  unrecognisable expressions that failed to reproduce even the vacuum form. The
+  route that worked redid the horizon and infinity expansions \emph{directly}
+  in the compact variables.
+
+  \item \textbf{Three self-inflicted errors}, each costed: $z$ and $x$ treated
+  as independent symbols; the numerator extracted before the series, producing
+  a spurious relation; and $f''$, $w''$ omitted from the physical jets, which
+  left an order-one tensor residual even on exact Myers--Perry.
+\end{itemize}
+
+% ================================================================
+\section{Is it a different solver from the one of arXiv:1010.0860, and what
+was it used to reproduce there?}
+\label{sec:contrast}
+
+\noindent Different in method and independently written. The second half of the
+question has the more interesting answer: the rotating solver was never
+successfully checked against their \emph{bulk numbers at finite coupling}. The
+single comparison that would do that is the one that failed.
+
+\q{The two solvers}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.17\linewidth}>{\raggedright\arraybackslash}p{.37\linewidth}>{\raggedright\arraybackslash}p{.37\linewidth}@{}}
+\toprule
+ & Brihaye, Kleihaus, Kunz, Radu & This project \\
+ & \texttt{arXiv:1010.0860} & \texttt{egb\_rotating\_bvp.py} \\
+\midrule
+Method & \textsc{colsys}, a standard off-the-shelf BVP package (their ref.~[41]: Ascher, Christiansen \& Russell) & Chebyshev--Lobatto spectral collocation, written from scratch \\[3pt]
+Nonlinear solve & Newton--Raphson with adaptive mesh selection & Damped Newton, complex-step Jacobian, line search \\[3pt]
+Grid & $10^2$--$10^3$ mesh points, adaptive & $N=64$, raised to $96$ on a refused state \\[3pt]
+Quoted accuracy & relative $\sim10^{-6}$ & tolerance $10^{-11}$, with per-state residual gates \\[3pt]
+Equations & their own reduction & independently rederived via the reduced action, equivalence checked numerically \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent What the two share is a strategy, not code. They also continued from
+the closed-form solutions, ``increasing gradually $\alpha$ or $\Omega_H$'',
+which is structurally the walk of section~\ref{sec:walk-ref} together with the
+climb in the coupling that seeds it.
+
+\q{What was actually reproduced against them}
+
+The eight external contrasts of
+\texttt{results/egb-rotating-external-contrasts.json}, with their sectors,
+which are the point:
+
+\begin{center}\small
+\begin{tabular}{@{}llc@{}}
+\toprule
+Check & Sector & Result \\
+\midrule
+reduced normalisation pinned & convention & pass \\
+$\omega_H^2(j^2)$ reduced relation & Einstein-limit & pass \\
+each-spin reading of $J$ & convention & pass \\
+critical temperature & Einstein-limit & pass \\
+Wald entropy matches paper & Gauss--Bonnet & pass \\
+$b'(r_H)=2r_H/(r_H^2+\alpha)$ at $\Omega_H=0$ & Gauss--Bonnet & pass, $\sim10^{-14}$ \\
+$b',f'$ decrease monotonically in $\Omega_H$ & Gauss--Bonnet & pass \\
+\textbf{published ergosurface radii, their \S4.1.1} & Gauss--Bonnet & \textbf{fail} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent To these the manuscript adds their near-horizon eqs.~(4.11) and
+(4.12), satisfied to $9.17\times10^{-14}$ and $6.66\times10^{-16}$, which is
+what pins the coupling conversion $\alpha_{\rm ref.}=4\alpha$.
+
+The structure matters more than the tally. The file's own scope note says the
+contrasts were chosen among statements ``that are closed forms or carry more
+digits than the section 4.1.1 radii''. Hence:
+\begin{itemize}\itemsep3pt
+  \item the Einstein-limit agreements \textbf{do not test the Gauss--Bonnet
+  terms at all}, and the file labels them apart for that reason;
+  \item the two tightest Gauss--Bonnet agreements are against \emph{closed-form}
+  statements --- the static horizon-derivative formula at $\Omega_H=0$, which
+  carries no rotation, and the near-horizon algebra, which is computed by
+  \texttt{near\_horizon.py} and \textbf{does not use the bulk rotating solver};
+  \item the only check that compares our rotating bulk solutions at finite
+  $\alpha$ against values they obtained \emph{numerically} is the ergosurface
+  radius, which gives $1.102101$ against their $1.104$ at $\alpha=1/2$ in our
+  convention. The manuscript states that the discrepancy is unresolved and
+  declines to offer it as evidence of an erratum.
+\end{itemize}
+
+So, stated strictly: the rotating solver reproduces Myers--Perry exactly at
+$\alpha=0$, reproduces closed-form EGB statements, and reproduces the
+near-horizon sector --- but its finite-$\alpha$ rotating \emph{bulk} output has
+one published cross-check, and that one disagrees in the fourth digit.
+
+The manuscript's containment argument is that the ergosurface radius tests the
+reconstruction of the metric functions \emph{away from the horizon}, whereas
+the result depends on the asymptotic charge extraction, the response solve and
+the zero-temperature extrapolation, none of which uses $r_e$. That is a
+reasonable argument and it is made in the discussion rather than buried;
+whether it is strong enough is a judgement a referee may well press on.
+
+% ================================================================
+\section*{Provenance}
+
+The per-coupling counts, the $\alpha$ grid and the temperature ranges were read
+directly from \texttt{results/egb-extremality.json} and reproduce the generated
+macros \texttt{\textbackslash Nstates}~$=356$,
+\texttt{\textbackslash Ncouplings}~$=13$,
+\texttt{\textbackslash Nmapcouplings}~$=6$,
+\texttt{\textbackslash Nnarrowcouplings}~$=7$ and
+\texttt{\textbackslash Nmaplist} of \texttt{manuscript/numbers.tex}. The
+description of the walk is read from
+\texttt{src/rotating\_bh/extremality.py}.
+
+The description of the rotating solver is read from the docstring of
+\texttt{src/rotating\_bh/egb\_rotating\_bvp.py}; the costs, the five discarded
+routes and the three errors from \texttt{prompts/uso-de-tiempo-y-tokens.md},
+sections 2 and 3. The method of \texttt{arXiv:1010.0860} is from its section
+4.1.1 and its reference~[41], in the copy under \texttt{papers/}. The contrast
+table is read from
+\texttt{results/egb-rotating-external-contrasts.json}; the ergosurface numbers
+are from the discussion section of \texttt{manuscript/main.tex}.
+
+\medskip
+\noindent\emph{Not checked:} no walk was re-run and no solve was performed; the
+$356$ stored rows were not individually re-tested against the acceptance
+thresholds, and the external contrasts were read from the stored artifact
+rather than recomputed. The ratio $508/101.6=5.0$ of section~\ref{sec:solver}
+is arithmetic on the ledger table; the notes do not show the division.
+
+\end{document}
