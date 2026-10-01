@@ -82,18 +82,20 @@
 % ---------------------------------------------------------------- 2  problem
 \begin{frame}[plain]\relax
 \begin{columns}[c,onlytextwidth]
-\column{.5\textwidth}
+\column{.58\textwidth}
 {\scriptsize\bfseries\color{gold}THE QUESTION\par}\vspace{6pt}
-{\LARGE\bfseries There is a\\ speed limit.\par}
+{\LARGE\bfseries There is a speed limit.\par}
 \vspace{8pt}
 {\small\color{white!80}Kerr (4D, GR): \ {\color{white}$M^2\ge|J|$}\par}\vspace{4pt}
 {\small\color{white!80}Myers--Perry (5D, GR): \ {\color{white}$M\ge\tfrac32\,\pi^{1/3}J^{2/3}$}\par}
+\vspace{4pt}
+{\small\color{white}$\mathcal{L}=R+2\Lambda+\alpha\,(R^2-4R_{ab}^2+R_{abcd}^2)$\par}
 \vspace{10pt}
 {\small\color{white!80}Add Gauss--Bonnet, coupling $\alpha$: it moves.\\
 Known only for tiny $\alpha$: \ slope $=\pi$.\par}
 \vspace{14pt}
 {\Large\bfseries And at \textcolor{glow}{finite} $\alpha$?\par}
-\column{.47\textwidth}\centering
+\column{.40\textwidth}\centering
 \card{\includegraphics[width=\dimexpr\linewidth-10pt\relax]{fig-question.pdf}}
 \end{columns}
 \end{frame}
@@ -109,14 +111,20 @@ Known only for tiny $\alpha$: \ slope $=\pi$.\par}
 \only<1>{\card{\includegraphics[height=4.4cm]{fig-shift.pdf}}}%
 \only<2>{\card{\includegraphics[height=4.4cm,trim=0 0 208.1bp 0,clip]{fig-massext.pdf}}}
 \column{.42\textwidth}\centering
+{\scriptsize\color{white!65}extended first law\par}\vspace{2pt}
+{\small$dM=T\,dS+2\,\Omega_H\,dJ+\tikz[baseline=(x.base)]\node[draw=glow,rounded corners=2pt,inner sep=2pt,text=glow](x){$\Psi\,d\alpha$};$\par}
+\vspace{6pt}
+{\scriptsize\color{white!65}at $T=0$, fixed $J$:\par}\vspace{2pt}
+{\small$\Psi_\ext=\left.\dfrac{\partial M_\ext}{\partial\alpha}\right|_J$\par}
+\vspace{14pt}
 \only<1>{%
 {\fontsize{22}{26}\selectfont\bfseries\color{glow}$\pi\to1.07\to1.44$\par}
 {\scriptsize\color{white!65}slope $\partial M_\ext/\partial\alpha|_J$: falls, then rises\par}}%
 \only<2>{%
-{\fontsize{30}{34}\selectfont\bfseries\color{glow}$+31\%$\par}
+{\fontsize{22}{26}\selectfont\bfseries\color{glow}$+31\%$\par}
 {\scriptsize\color{white!65}growth of the extremal mass $M_\ext$\par}
-\vspace{14pt}
-{\fontsize{30}{34}\selectfont\bfseries $2.3\times$\par}
+\vspace{8pt}
+{\fontsize{22}{26}\selectfont\bfseries $2.3\times$\par}
 {\scriptsize\color{white!65}first order overshoots the real shift\par}}
 \end{columns}
 \end{frame}
@@ -146,7 +154,7 @@ agree with our derivative method to $\sim10^{-6}$.\par}
 % ---------------------------------------------------------------- 5  experience
 \begin{frame}[plain]\relax
 \centering
-{\scriptsize\bfseries\color{gold}HOW IT WAS MADE\par}\vspace{6pt}
+{\scriptsize\bfseries\color{gold}HOW IT WAS MADE \& WHAT WE LEARNED\par}\vspace{6pt}
 {\LARGE\bfseries Two AI agents. One of them the \textcolor{glow}{referee}.\par}
 \vspace{18pt}
 \begin{columns}[T,onlytextwidth]
@@ -154,7 +162,9 @@ agree with our derivative method to $\sim10^{-6}$.\par}
 \column{.34\textwidth}\centering{\fontsize{30}{34}\selectfont\bfseries 1.42\,B\par}{\scriptsize\color{white!65}tokens processed\par}
 \column{.33\textwidth}\centering{\fontsize{30}{34}\selectfont\bfseries 79\par}{\scriptsize\color{white!65}human prompts\par}
 \end{columns}
-\vspace{22pt}
+\vspace{18pt}
+{\scriptsize\color{white!55}(4.4\,h reproducing, 11.2\,h new solver, 8.7\,h $\Psi_{T\to0}$)\par}
+\vspace{8pt}
 {\large Writing the code was cheap.\par}
 {\Large\bfseries\color{glow}Verifying it was the work.\par}
 \end{frame}

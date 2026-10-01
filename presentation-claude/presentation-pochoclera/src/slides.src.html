@@ -157,13 +157,14 @@ img{display:block;max-width:100%}
     <div class="row" style="gap:56px;align-items:center">
       <div class="col" style="flex:1">
         <div class="kick">The question</div>
-        <h2 class="h">There is a<br>speed limit.</h2>
+        <h2 class="h" style="white-space:nowrap">There is a speed limit.</h2>
         <p class="lead" style="margin:26px 0 8px">Kerr (4D, GR): <span style="color:#fff"><span class="m">M</span><sup>2</sup> ≥ |<span class="m">J</span>|</span></p>
-        <p class="lead" style="margin:0 0 22px">Myers–Perry (5D, GR): <span style="color:#fff"><span class="m">M</span> ≥ <span class="fr"><span>3</span><span>2</span></span><span class="m">π</span><sup>1/3</sup><span class="m">J</span><sup>2/3</sup></span></p>
+        <p class="lead" style="margin:0 0 8px">Myers–Perry (5D, GR): <span style="color:#fff"><span class="m">M</span> ≥ <span class="fr"><span>3</span><span>2</span></span><span class="m">π</span><sup>1/3</sup><span class="m">J</span><sup>2/3</sup></span></p>
+        <p class="lead" style="margin:0 0 22px;color:#fff"><span class="m">ℒ</span> = <span class="m">R</span> + 2<span class="m">Λ</span> + <span class="m">α</span>(<span class="m">R</span><sup>2</sup> − 4<span class="m">R</span><sub><span class="m">ab</span></sub><sup>2</sup> + <span class="m">R</span><sub><span class="m">abcd</span></sub><sup>2</sup>)</p>
         <p class="lead" style="margin:0 0 30px">Add Gauss–Bonnet, coupling <span class="m">α</span>: it moves.<br>Known only for tiny <span class="m">α</span>: slope = <span class="m">π</span>.</p>
         <div style="font-size:42px;font-weight:800">And at <span class="glow">finite</span> <span class="m">α</span>?</div>
       </div>
-      <div class="col" style="flex:0 0 560px"><div class="card"><img src="figures/fig-question.png" alt="Extremal mass against Gauss–Bonnet coupling: known Einstein value and first-order line, unknown at finite coupling"></div></div>
+      <div class="col" style="flex:0 0 460px"><div class="card"><img src="figures/fig-question.png" alt="Extremal mass against Gauss–Bonnet coupling: known Einstein value and first-order line, unknown at finite coupling"></div></div>
     </div>
   </div>
 </section>
@@ -212,13 +213,14 @@ img{display:block;max-width:100%}
 <!-- 5 experience -->
 <section class="slide show" data-label="5">
   <div class="body" style="align-items:center;text-align:center">
-    <div class="kick">How it was made</div>
+    <div class="kick">How it was made &amp; What did we learn?</div>
     <h2 class="h" style="font-size:52px">Two AI agents. One of them the <span class="glow">referee</span>.</h2>
-    <div class="row" style="gap:110px;justify-content:center;margin:56px 0">
+    <div class="row" style="gap:110px;justify-content:center;margin:56px 0 36px">
       <div><div class="big">36.8 h</div><div class="lab">agent time, 13 days</div></div>
       <div><div class="big">1.42 B</div><div class="lab">tokens processed</div></div>
       <div><div class="big">79</div><div class="lab">human prompts</div></div>
     </div>
+    <div class="dim" style="margin-bottom:14px">(4.4 h reproducing known solutions, 11.2 h new solver, 8.7 h <span class="m">Ψ</span>(<span class="m">T</span> → 0))</div>
     <div style="font-size:30px">Writing the code was cheap.</div>
     <div class="glow" style="font-size:44px;font-weight:800;margin-top:6px">Verifying it was the work.</div>
   </div>
