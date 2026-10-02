@@ -81,8 +81,8 @@ def data_uri(path, mime="image/png"):
 
 def build_slides(notes):
     src = (HERE / "src" / "slides.src.html").read_text()
-    src = re.sub(r'src="(figures/[^"]+\.png)"', lambda m: f'src="{data_uri(HERE.parent / m.group(1))}"', src)
-    src = re.sub(r'src="(figures/[^"]+\.jpg)"', lambda m: f'src="{data_uri(HERE.parent / m.group(1), "image/jpeg")}"', src)
+    src = re.sub(r'src="(figures/[^"]+\.png)"', lambda m: f'src="{data_uri(HERE / m.group(1))}"', src)
+    src = re.sub(r'src="(figures/[^"]+\.jpg)"', lambda m: f'src="{data_uri(HERE / m.group(1), "image/jpeg")}"', src)
     assert "/*NOTES*/[]" in src
     src = src.replace("/*NOTES*/[]", json.dumps(notes, ensure_ascii=False))
     n_slides = src.count('<section class="slide')

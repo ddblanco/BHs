@@ -1,10 +1,9 @@
-% Showstopper version of ../slides.tex: slides 1-5 restyled (dark, one headline each),
-% closing and backup slides unchanged. Five-minute talk: five timed slides (title, question, result, validation, lessons)
+% Showstopper deck: slides 1-5 dark, one headline each. Five-minute talk: five timed slides (title, question, result, validation, lessons)
 % followed by a closing slide and five backup slides (appendix), not timed. Build: ./build.sh
 % Every number on the slides is copied from manuscript/numbers.tex,
 % short-summary/comparison-numbers.tex or prompts/uso-de-tiempo-y-tokens.md;
 % the two derived ones (+31%, 2.3x) are asserted in make_figures.py.
-% The plain version is ../slides.tex; the ten-minute one is ../v10min/.
+% The ten-minute version is kept in v10min/.
 \documentclass[aspectratio=169,11pt]{beamer}
 \usetheme[progressbar=frametitle,numbering=fraction]{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -16,7 +15,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,fadings}
-\graphicspath{{../figures/}}
+\graphicspath{{figures/}}
 
 \definecolor{ink}{HTML}{1F2937}
 \definecolor{accent}{HTML}{1F5FA8}
