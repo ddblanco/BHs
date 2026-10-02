@@ -17,7 +17,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 HERE = Path(__file__).parent
 OUT = HERE / "figures"
-PAPER = HERE.parent / "papers" / "1010.0860.pdf"
+PAPER = HERE.parent / "papers" / "1010.0860-brihaye-kleihaus-kunz-radu-equal-spin-egb-d5.pdf"
 ACCENT = (31, 95, 168)
 WARM = (217, 98, 43)
 HIGHLIGHT = (253, 226, 199)
