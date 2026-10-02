@@ -3,6 +3,9 @@
   slides.html  <- src/slides.src.html, figures inlined, speaker notes from notes.tex
   notes.html   <- notes.tex, with slide thumbnails rendered from slides.pdf
 
+`python3 build_html.py -new` builds slides-new.html and notes-new.html from
+src/slides-new.src.html, notes-new.tex and slides-new.pdf instead.
+
 notes.tex is the single source of the speaker script; this converts only the
 small LaTeX subset that file uses and fails loudly on anything else.
 """
@@ -12,10 +15,12 @@ import html
 import json
 import re
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).parent
+SUFFIX = sys.argv[1] if len(sys.argv) > 1 else ""
 
 MATH = {r"\sqrt{-g}": "√(−g)", r"\int": "∫", r"\nu": "ν", r"\rho": "ρ", r"\sigma": "σ", r"\alpha": "α", r"\Psi": "Ψ", r"\pi": "π", r"\Omega": "Ω", r"\omega": "ω", r"\mu": "μ", r"\chi": "χ",
         r"\kappa": "κ", r"\times": "×", r"\approx": "≈", r"\to": "→", r"\ge": "≥", r"\le": "≤",
@@ -52,7 +57,7 @@ def paras(block):
 
 
 def parse_notes():
-    tex = (HERE / "notes.tex").read_text()
+    tex = (HERE / f"notes{SUFFIX}.tex").read_text()
     body = tex[tex.index(r"\slidenote{1}"):tex.index(r"\newpage")]
     parts = re.split(r"\\slidenote\{(\d+)\}\{([^}]*)\}\{([^}]*)\}\{([^}]*)\}", body)[1:]
     notes = []
@@ -80,20 +85,20 @@ def data_uri(path, mime="image/png"):
 
 
 def build_slides(notes):
-    src = (HERE / "src" / "slides.src.html").read_text()
+    src = (HERE / "src" / f"slides{SUFFIX}.src.html").read_text()
     src = re.sub(r'src="(figures/[^"]+\.png)"', lambda m: f'src="{data_uri(HERE / m.group(1))}"', src)
     src = re.sub(r'src="(figures/[^"]+\.jpg)"', lambda m: f'src="{data_uri(HERE / m.group(1), "image/jpeg")}"', src)
     assert "/*NOTES*/[]" in src
     src = src.replace("/*NOTES*/[]", json.dumps(notes, ensure_ascii=False))
     n_slides = src.count('<section class="slide')
     assert n_slides == len(notes), (n_slides, len(notes))
-    (HERE / "slides.html").write_text(src)
+    (HERE / f"slides{SUFFIX}.html").write_text(src)
     return n_slides
 
 
 def thumbnails(n):
     with tempfile.TemporaryDirectory() as d:
-        subprocess.run(["pdftoppm", "-png", "-r", "40", str(HERE / "slides.pdf"), f"{d}/t"], check=True)
+        subprocess.run(["pdftoppm", "-png", "-r", "40", str(HERE / f"slides{SUFFIX}.pdf"), f"{d}/t"], check=True)
         files = sorted(Path(d).glob("t-*.png"))
         return [data_uri(f) for f in files]
 
@@ -146,12 +151,12 @@ def build_notes(notes, intro, qa, credit, thumbs):
                  f'{n["html"]}</section>')
     page = (NOTES_PAGE.replace("__INTRO__", intro).replace("__SECTIONS__", secs)
             .replace("__QA__", qa).replace("__CREDIT__", credit))
-    (HERE / "notes.html").write_text(page)
+    (HERE / f"notes{SUFFIX}.html").write_text(page)
 
 
 if __name__ == "__main__":
     notes, intro, qa, credit = parse_notes()
     n = build_slides(notes)
     build_notes(notes, intro, qa, credit, thumbnails(n))
-    for f in ("slides.html", "notes.html"):
+    for f in (f"slides{SUFFIX}.html", f"notes{SUFFIX}.html"):
         print(f, f"{(HERE / f).stat().st_size / 1e6:.2f} MB")

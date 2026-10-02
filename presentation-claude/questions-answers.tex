@@ -11,6 +11,7 @@
 \usepackage{lmodern}
 \usepackage[margin=2.6cm]{geometry}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xcolor}
@@ -19,10 +20,14 @@
 \definecolor{accent}{HTML}{1F5FA8}
 \newcommand{\q}[1]{\subsection*{\color{accent}#1}}
 \newcommand{\ext}{\mathsf{ext}}
+\definecolor{alert}{HTML}{B03A2E}
+\newcommand{\alertbox}[1]{\par\medskip\noindent
+  \fcolorbox{alert}{alert!6}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{#1}}%
+  \par\medskip}
 
 \title{Questions on the manuscript and the talk}
 \author{}
-\date{1 October 2026}
+\date{2 October 2026}
 
 \begin{document}
 \sloppy
@@ -32,13 +37,26 @@
 \noindent\rule{\linewidth}{0.4pt}
 \medskip
 
-\noindent Seven questions, each answered from an artifact in the repository
+\noindent Nine questions, each answered from an artifact in the repository
 rather than from recollection. Sections~1 and~2 concern one sentence of
 section~4 of the manuscript; sections~3 and~4 concern one sentence of the
 speaker notes; section~5 concerns the extremal solutions of
 \texttt{arXiv:2303.12471}; section~6 whether our solver could construct
-them; and section~7 the mass-curve secants of the result slide. What was \emph{not} checked is stated at the end of each answer
+them; section~7 the mass-curve secants of the result slide; and
+section~8 why $\Psi$ is computed at all when the extremal mass comes from the
+asymptotic charges, and what comparing the two routes does and does not test;
+and section~9 how the extrapolation to $T=0$ is done, and what happens to the
+comparison of section~8 when $\Psi$ and $\mu$ get the same fit treatment.
+What was \emph{not} checked is stated at the end of each answer
 and collected under Provenance.
+
+\noindent The framing used throughout, and in \texttt{slides-new} and
+\texttt{notes-new}: the extremal mass $M_\ext(J,\alpha)$ and its slope are read
+from the asymptotic charges; $\Psi$ is the potential conjugate to $\alpha$, and
+its $T\to0$ limit is the slope that the entropy of nearby states predicts
+(section~\ref{sec:whypsi}). Where an answer below was first written under the
+older framing --- $\Psi$ as the better way to obtain the slope --- it has been
+revised.
 
 % ================================================================
 \section{What does 356 mean, and are the couplings equispaced?}
@@ -404,12 +422,13 @@ $j\approx0.95$--$1$, so that matching is ill-conditioned there. That is where ou
 branch lives: $j_\ext=[\mu(0)/\mu]^{3/2}$ with $\mu$ rising by $31\%$ gives $j$
 from $1$ down to about $0.67$.
 
-\q{4. Our result is a slope, and slopes read off a figure are the weak point}
+\q{4. Part of our result is a slope, and slopes read off a figure are the weak point}
 
-The headline numbers ($\pi\to1.07\to1.44$, and the ten checks below $10^{-4}$) are
-values of $\partial M_\ext/\partial\alpha|_J$. Differentiating a curve read from
-a figure, or differencing separately constructed extremal solutions, amplifies
-the error. The paper also states no accuracy for the equal-spin extremal
+The headline numbers $\pi\to1.07\to1.44$ are values of
+$\partial M_\ext/\partial\alpha|_J$. Differencing masses divides their error by
+the spacing in the coupling. With our masses, good to $10^{-3}$--$10^{-6}$, that
+works (section~\ref{sec:secants}); with masses read off a figure to about one
+percent, the slope would be uncertain by order one. The paper also states no accuracy for the equal-spin extremal
 solutions: the only error estimate it gives ($\sim10^{-3}$) is in its section~4,
 for the single-plane solutions. Even a perfect reading would have no error bar to
 compare against.
@@ -559,17 +578,343 @@ that puts $\Delta y_{\rm opt}$ near $0.05$, about ten times the spacing used
 there, and with $\delta\mu\approx10^{-5}$ near $0.01$. At small coupling the
 secants are noise-limited, and halving the spacing would make them worse.
 
-\q{Why the main method avoids it}
+\q{Does $\Psi$ avoid it?}
 
-The thermodynamic points difference nothing in $\alpha$: $\Psi$ comes from one
-linear solve with the Newton Jacobian at fixed $\alpha$, so there is no
-$\Delta\alpha$ to choose (backup slide A2). Its only error is the extrapolation
-of $\Psi$ itself. That is also largest at small coupling --- about $0.09$--$0.16$
-at $y=0.005$--$0.04$, against $0.001$--$0.003$ at large $y$, because those
-couplings were walked over a narrow spin range and their coldest states are not
-very cold --- but it is still smaller than the secant noise there ($0.11$
-against $0.26$ in the first interval). This is the manuscript's argument for
-measuring the derivative rather than differencing masses.
+Only in part, and only at small coupling. $\Psi$ differences nothing in
+$\alpha$: it comes from one linear solve with the Newton Jacobian at fixed
+$\alpha$, so there is no $\Delta\alpha$ to choose (backup slide A2). Its error is
+the extrapolation of $\Psi$ itself to $T=0$. That is also largest at small
+coupling --- the stored \texttt{psi\_uncertainty} is $0.09$--$0.16$ at
+$y=0.005$--$0.04$, against $0.001$--$0.003$ at large $y$, because those couplings
+were walked over a narrow spin range and their coldest states are not very cold.
+In the first interval it is still smaller than the secant noise: $0.11$ at the
+upper end, or $0.06$ as the mean of the two ends used in
+section~\ref{sec:whypsi}, against $0.26$. With the stored spreads the secants
+look the more precise above $y\approx0.07$, but those spreads give $\mu$ only
+three of the fits that $\Psi$ gets. With the same fit list for both
+(section~\ref{sec:extrap}) the secant noise grows to $0.06$--$2.2$ and $\Psi$
+is the more precise slope at every coupling, so the manuscript's argument for
+measuring the derivative rather than differencing masses holds.
+
+% ================================================================
+\section{If $M_\ext$ comes from the asymptotics, why compute $\Psi$?}
+\label{sec:whypsi}
+
+\alertbox{\textbf{\color{alert}Alert: parts of the manuscript need to be
+rewritten.} The motivation for $\Psi$ in the introduction of
+\texttt{manuscript/main.tex} (lines~124--131) says that differencing masses is
+unreliable and that $\Psi$ gives the slope ``measured rather than
+differenced''. With the stored spreads the data seemed to contradict this
+for $y\gtrsim0.07$; with $\Psi$ and $\mu$ on the same fit envelope
+(section~\ref{sec:extrap}) they support it at every coupling, so the precision
+argument stands and only its wording needs care. Three
+passages need revising: the introduction paragraph; the sentence ``Figure~4
+shows the mass that this integral accumulates'' (line~972), since the plotted
+$\mu$ is the direct extrapolation and not the integral of $\Psi_\ext$; and the
+route comparison around line~1005, which should present the agreement as a
+check of the thermodynamic quantities and of the first-law subtraction,
+stating also what it cannot test. The squares of figure~5 and the points of
+figure~4 also lack error bars, although the spreads are stored.
+\texttt{slides-new} and \texttt{notes-new} already use the revised framing.}
+
+\alertbox{\textbf{\color{alert}Bottom line (corrected, section~\ref{sec:extrap}):
+with the same $20$-fit envelope for both, $\Psi$ gives the slope more precisely
+than the mass read at infinity at every coupling.}
+\emph{Per interval} ($\int\Psi\,\mathrm dy$ against $\Delta\mu$, and equally
+$\Psi$ against the secant $\Delta\mu/\Delta y$, since both divide by the same
+$\Delta y$): $\Psi$ has the smaller error \textbf{in all $12$ intervals, by a
+factor $8$--$22$}.
+\emph{Cumulatively} ($\mu(0)+\int_0^y\Psi\,\mathrm dy'$ against $\mu(y)$ read at
+infinity): the integral has the smaller error \textbf{for $y\le0.038$} (by a
+factor $4$--$20$) and is \textbf{worse from $y=0.057$ on} (by a factor
+$1.5$--$11$), because the linearly summed errors of $\Psi$ accumulate.\\[3pt]
+\emph{Superseded:} an earlier version of this box said $\Psi$ was better only
+for $y<0.038$. That compared $\Psi$'s wide envelope with the much narrower
+three-fit spread stored for $\mu$, and is withdrawn.}
+{\small\noindent Errors are half-widths of the fit-sensitivity envelope of
+section~\ref{sec:extrap}, computed by \texttt{checks/route\_envelopes.py},
+combined linearly; the cumulative $\Psi$ error is their trapezoid sum from
+$y=0$.\par}
+\medskip
+
+\noindent For the extremal mass curve itself, $\Psi$ is not needed. Each
+solution's mass is read from the asymptotic falloff,
+$b=1+U/r^2+\dots$, $M=-3\pi U/8$, $J=\pi W/4$
+(\texttt{src/rotating\_bh/egb\_rotating\_observables.py}); $M$ and $J$ are
+extrapolated to $T=0$ at each coupling
+(\texttt{src/rotating\_bh/extremality.py}), and
+$\mu=M_\ext/J_\ext^{2/3}$. No integral of $\Psi$ enters $\mu(y)$, and
+differencing $\mu(y)$ already gives the slope.
+
+\q{What the stored routes show}
+
+From \texttt{route\_comparison} of \texttt{results/egb-extremality.json}; the
+$\Psi$ spread is the stored \texttt{goon\_penco\_spread}, the mean of the two
+endpoint sensitivities. \textbf{Caution:} the two spread columns are not built
+the same way (section~\ref{sec:extrap}): the secant column carries only the
+three degree checks of $\mu$, and the $\Psi$ column an older two-model envelope
+narrower than the manuscript's. On equal footing the secant spreads grow by
+factors of about $5$ to $900$ and $\Psi$ is the more precise slope throughout.
+
+\begin{center}\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+midpoint $y$ & secant $\Delta\mu/\Delta y$ & secant spread & $\Psi$ interval mean & $\Psi$ spread\\
+\midrule
+$0.0024$ & $3.0671$ & $0.26$ & $3.0671$ & $0.062$\\
+$0.0073$ & $2.9081$ & $0.40$ & $2.9081$ & $0.10$\\
+$0.0153$ & $2.6463$ & $0.22$ & $2.6470$ & $0.12$\\
+$0.0296$ & $2.2240$ & $0.14$ & $2.2258$ & $0.13$\\
+$0.0477$ & $1.8188$ & $0.046$ & $1.8186$ & $0.049$\\
+$0.0723$ & $1.4732$ & $4.8\times10^{-4}$ & $1.4722$ & $5.5\times10^{-3}$\\
+$0.1028$ & $1.2365$ & $1.5\times10^{-3}$ & $1.2353$ & $1.6\times10^{-3}$\\
+$0.1465$ & $1.1036$ & $8.3\times10^{-4}$ & $1.1014$ & $1.6\times10^{-3}$\\
+$0.2021$ & $1.0758$ & $3.6\times10^{-4}$ & $1.0745$ & $2.6\times10^{-3}$\\
+$0.2791$ & $1.1447$ & $1.3\times10^{-4}$ & $1.1431$ & $2.5\times10^{-3}$\\
+$0.3759$ & $1.2712$ & $9.7\times10^{-5}$ & $1.2706$ & $2.4\times10^{-3}$\\
+$0.4669$ & $1.3902$ & $6.4\times10^{-5}$ & $1.3908$ & $1.7\times10^{-3}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{itemize}\itemsep3pt
+  \item The central values agree to $10^{-5}$--$10^{-3}$ everywhere.
+  \item \emph{With the stored spreads} the mass route looks more precise for
+  $y\gtrsim0.07$ and $\Psi$ only for $y\lesssim0.03$. \emph{This is an artefact
+  of the unequal envelopes and is withdrawn}: on equal footing $\Psi$ is more
+  precise in every interval, by a factor $8$--$22$ (section~\ref{sec:extrap}).
+  \item $\Psi_\ext$ is not ``measured'' at $T=0$ either: it is a $T\to0$
+  intercept with the same extrapolation step the manuscript names as its
+  dominant error, and that step is where its sensitivity comes from.
+\end{itemize}
+So $\Psi$ \emph{is} the more precise slope, but not because it avoids the
+extrapolation: both routes extrapolate, and $\Psi$ simply extrapolates more
+stably than the mass and spin do. The other points of this section --- the mass
+curve does not need $\Psi$, and what the route comparison does and does not
+test --- are unaffected.
+
+\q{What $\Psi$ gives that the mass curve cannot}
+
+\begin{enumerate}\itemsep3pt
+  \item \emph{A test of the extended first law with the Wald entropy for
+  rotating EGB.} The mass route never uses $S$; the $\Psi$ route does, through
+  $T\,\partial S/\partial\alpha$ in the subtraction, together with the
+  regularity assumption $T\,\partial S_\ext/\partial\alpha\to0$. Agreement of
+  the two routes is therefore a numerical check of the first law, the
+  Jacobson--Myers entropy and the Goon--Penco relation for this family. It is a
+  partial check: what it can and cannot test is set out below.
+  \item \emph{$\Psi$ at finite temperature over the whole domain}
+  (figure~2): a thermodynamic response coefficient that no mass curve
+  contains, and new for rotating solutions.
+  \item \emph{A slope at each coupling without choosing neighbours.} This
+  matters only for the derivative at a specific $y$, for example to locate the
+  minimum, which the manuscript explicitly does not attempt.
+\end{enumerate}
+
+\q{First law and Smarr: one test, not two}
+
+\begin{itemize}\itemsep3pt
+  \item The Smarr relation $2M=3TS+6\Omega_HJ+2\alpha\Psi$
+  (\texttt{main.tex}, eq.~\texttt{smarr}) is the first law combined with the
+  scaling symmetry, which is exact for these solutions. Checking Smarr checks
+  the first law along the scaling direction; the subtraction of
+  eq.~\texttt{psi} checks it along the coupling direction at fixed
+  $(r_H,\Omega_H)$. These are the same law along two paths.
+  \item Smarr also gives $\Psi$ algebraically from a single solution, with no
+  derivative: $\Psi_{\rm Smarr}=(2M-3TS-6\Omega_HJ)/2\alpha$
+  (eq.~\texttt{psismarr}). The manuscript already compares it with the
+  implicitly differentiated $\Psi$ and finds agreement at every finite
+  coupling. If $\Psi$ alone were the goal, Smarr would supply it without the
+  linear solve. The implicit route earns its place where Smarr is weak --- at
+  small $\alpha$ the numerator is a near-cancellation divided by a small
+  $\alpha$ --- and it does not rely on the scaling argument.
+  \item The extended first law is a theorem (Kastor et~al.; Neri). Agreement
+  therefore tests the implementation, not the law: the Wald/Jacobson--Myers
+  entropy, the charge normalisations, the horizon quantities, and the
+  assumption $T\,\partial S_\ext/\partial\alpha\to0$ at extremality. This is
+  validation of the numerics, not a physics result.
+\end{itemize}
+
+\q{What the route comparison does and does not test}
+
+It is a genuine consistency check, but a partial one.
+\begin{itemize}\itemsep3pt
+  \item \emph{What differs, and is therefore tested.} The mass route uses only
+  $M$ and $J$ read at infinity. The $\Psi$ route also uses $T$, the Wald entropy
+  with its explicit $\alpha$ term, $\Omega_H$, the $\alpha$-derivatives from the
+  linear solve, and the assumption $T\,\partial S_\ext/\partial\alpha\to0$; and
+  it uses them along the fixed-$(r_H,\Omega_H)$ direction, while the mass curve
+  runs along the extremal branch. Agreement of $\int\Psi\,\mathrm dy$ with
+  $\Delta\mu$ says that the numerical $(M,T,S,\Omega_H,J,\Psi)$ satisfy the
+  extended first law consistently along two different paths through the
+  solutions. That is not automatic: a wrong entropy term, a wrong $T$, a bad
+  derivative or a wrong relative normalisation of $M$ and $S$ would each show
+  up as a mismatch.
+  \item \emph{What is shared, and is therefore not tested.} The same solutions
+  on the same branch, from the same field equations and discretisation
+  (covered instead by the residual and resolution checks); and the $T\to0$
+  extrapolation. $M$, $J$ and $\Psi$ are extrapolated separately, with the same
+  kind of fit through the same cold states, so if the cubic misses the true
+  approach to $T=0$ all intercepts are biased.
+  \item \emph{Not ``alike''.} Such a bias need not shift $\Psi_\ext$ by exactly
+  the derivative of the shift in $\mu$, so it could still produce a mismatch.
+  But the errors can be correlated, and agreement does not bound them; the
+  manuscript says the same of a common offset in the masses
+  (\texttt{main.tex}, line~1031).
+\end{itemize}
+So the comparison checks the thermodynamic quantities and the first-law
+subtraction. It is not an independent measurement of $M_\ext$ and not a test of
+the extrapolation; only a solution built directly at $T=0$
+(section~\ref{sec:direct}) removes that caveat. A direct test of the
+correlation is available: redo the route comparison for each of the $21$ fit
+variants and see whether the two routes shift together.
+
+\q{What to claim as the physics content of $\Psi$}
+
+\begin{itemize}\itemsep3pt
+  \item $\Psi$ itself over the rotating domain at finite temperature
+  (figure~2), which has not been reported before.
+  \item A non-perturbative check of the Goon--Penco relation for this family:
+  the extremal mass slope equals $\lim_{T\to0}\bigl(-T\,\partial S/\partial
+  \alpha|_{M,J}\bigr)$. This ties the sign of the mass shift to the sign of the
+  entropy shift of nearby non-extremal states, a link the mass curve alone
+  cannot make.
+\end{itemize}
+
+\q{Suggested reframing}
+
+Keep the precision argument, but state it with the equal-footing envelopes
+of section~\ref{sec:extrap}, and do not present the extremal mass shift as the
+only reason to compute $\Psi$. Present $\Psi$
+as the potential conjugate to $\alpha$, a measurable thermodynamic quantity,
+with the entropy--extremality relation of Goon and Penco as its application.
+Present the agreement with the first law and with Smarr as validation of the
+numerics, and say what that validation cannot reach: the shared solutions and
+the $T\to0$ extrapolation. A referee reading the sensitivity budget next to
+figure~5 could ask exactly this question.
+
+\medskip
+\noindent\emph{Not checked:} whether the spreads of neighbouring $\mu$ are
+correlated; if they are, the secant spreads shrink further and the conclusion
+strengthens. The spreads are fit-sensitivity envelopes, not standard errors.
+The Smarr comparison was read from the manuscript, not recomputed; the
+statements on the first law, on Smarr and on what the route comparison tests are
+reasoned from the method and the manuscript's equations. The ranges in the bottom-line box were computed here from those stored
+envelopes; with a quadrature instead of a linear combination they would shift
+somewhat. The $21$-variant route
+comparison was not run, so whether the extrapolation errors of the two routes
+are correlated is open.
+
+% ================================================================
+\section{How is the extrapolation to $T=0$ done?}
+\label{sec:extrap}
+
+\noindent No solution in the dataset has $T=0$. The solver's horizon ansatz is
+non-degenerate (section~\ref{sec:direct}), so each walk climbs in spin towards
+extremality and stops cold but not at zero: $\tau=TJ^{1/3}\le4.61\times10^{-3}$
+at every coupling and $3.34\times10^{-6}$ at the coldest. Every extremal number
+in the manuscript is the $T=0$ intercept of a fit through those cold states.
+
+\q{The production fit}
+
+At each coupling the accepted states are sorted by the unscaled temperature $T$
+($r_H=1$). Each observable --- $M$, $J$, $S$ and $\Psi$ separately --- is fitted
+with a cubic polynomial in $T$ through the six coldest states, and the constant
+term is its $T=0$ value (\texttt{src/rotating\_bh/extremality.py},
+\texttt{extrapolate} and \texttt{extremal\_state}). The invariants
+$y=\alpha/J_\ext^{2/3}$, $\mu=M_\ext/J_\ext^{2/3}$ and $\sigma=S_\ext/J_\ext$ are
+then formed from these intercepts. The same code also fits degree~1 through
+four states and degree~2 through five; the range of the three intercepts is the
+stored \texttt{spread} of each observable (the ``original degree checks'').
+
+\q{The sensitivity envelope}
+
+For $\Psi$ the manuscript then asks how far the intercept moves when the fit
+is changed (\texttt{manuscript/reanalysis.py}, \texttt{sensitivity}): two
+coordinates ($T$ and $\tau$), two windows (the six and up to the twelve coldest
+states) and five models --- polynomials of degree $1$, $2$, $3$,
+$c_0+c_1v+c_{1/2}\sqrt v$ and $c_0+c_1v+c_2v^2+c_{\log}v^2\log v$, with $v$ the
+coordinate divided by its largest value in the window. That is $20$ fits,
+the ``$21$'' of the manuscript counting the production one. The half-width is the
+largest distance of any intercept from the production value, or the degree
+spread if larger. Two further diagnostics: the production cubic fits its own six
+points to $1.77\times10^{-6}$, and dropping any one of them moves the intercept
+by at most $1.09\times10^{-5}$.
+
+\q{What it cannot see}
+
+The leading near-extremal powers of $T$ were never derived, so the cubic is a
+convenience, not a model of the approach to extremality. The $\sqrt v$ and
+$v^2\log v$ terms probe two specific departures from analyticity, not the
+general case. The envelope is a sensitivity to a stated list of choices: it
+carries no confidence level, and a bias common to all $20$ fits --- a wrong
+near-extremal form, or an error in the underlying charges --- leaves it
+unchanged. The sensitivity is largest where the walk's lever arm is shortest:
+the couplings $0.005$--$0.035$ were walked over a narrow spin range and their
+coldest states span only a factor $12$--$42$ in $\tau$.
+
+\q{Two inconsistencies in how the envelopes are stored}
+
+\begin{itemize}\itemsep3pt
+  \item \emph{$\Psi$.} The \texttt{psi\_uncertainty} stored in
+  \texttt{results/egb-extremality.json} is an older envelope: the degree spread
+  or the shift from only the $\sqrt T$ and $T^2\log T$ fits on the twelve
+  coldest states, whichever is larger (\texttt{experiments/egb\_extremality.py}).
+  \texttt{manuscript/make\_figures.py} replaces it by the $20$-fit envelope
+  before drawing the extremal table and figure~5 of the manuscript, so the manuscript is
+  self-consistent; but \texttt{route\_comparison} in the JSON, and the table
+  of section~\ref{sec:whypsi}, use the older and narrower one. Above
+  $y\approx0.05$ it is smaller by a factor $2$--$25$.
+  \item \emph{$\mu$, $y$, $\sigma$, $M$, $J$.} These carry only the three
+  degree checks (manuscript, table~\texttt{budget}). They never received the
+  $20$-fit treatment.
+\end{itemize}
+
+\q{Both routes on the same footing}
+
+\texttt{checks/route\_envelopes.py} applies the same $20$ fits to $M$ and $J$,
+forms $\mu$ fit by fit, and compares. The $\mu$ envelope grows from
+$10^{-7}$--$10^{-3}$ to $4\times10^{-4}$--$2\times10^{-2}$:
+
+\begin{center}\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+interval in $y$ & $\Psi$ envelope & secant envelope & ratio & cumulative ratio at upper end\\
+\midrule
+$0$--$0.005$      & $0.062$ & $1.33$ & $0.047$ & $0.05$\\
+$0.005$--$0.010$  & $0.100$ & $2.25$ & $0.045$ & $0.15$\\
+$0.010$--$0.021$  & $0.124$ & $2.17$ & $0.057$ & $0.12$\\
+$0.021$--$0.038$  & $0.146$ & $2.24$ & $0.065$ & $0.22$\\
+$0.038$--$0.057$  & $0.075$ & $1.34$ & $0.056$ & $1.9$\\
+$0.057$--$0.088$  & $0.020$ & $0.25$ & $0.081$ & $1.5$\\
+$0.088$--$0.118$  & $0.022$ & $0.30$ & $0.071$ & $1.6$\\
+$0.118$--$0.175$  & $0.017$ & $0.15$ & $0.12$  & $2.3$\\
+$0.175$--$0.229$  & $0.012$ & $0.14$ & $0.089$ & $2.4$\\
+$0.229$--$0.329$  & $0.0087$ & $0.065$ & $0.13$ & $3.6$\\
+$0.329$--$0.423$  & $0.0066$ & $0.074$ & $0.089$ & $2.5$\\
+$0.423$--$0.511$  & $0.0042$ & $0.058$ & $0.072$ & $11$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent The ratio is $\Psi$ envelope over secant envelope (below one: $\Psi$
+better). The cumulative ratio compares the trapezoid sum of the $\Psi$ envelope
+from $y=0$ with the $\mu$ envelope at the upper end.
+
+\alertbox{\textbf{\color{alert}This reverses the comparison of
+section~\ref{sec:whypsi}.} With the same fits for both, $\Psi$ gives the slope
+$8$--$22$ times more precisely than the mass secants in every interval. The
+mass curve itself, $\mu(y)$, is still better read directly than integrated from
+$\Psi$ beyond $y\approx0.05$. The earlier ``mass route wins above $y\approx0.07$''
+came from giving $\mu$ only three fits. The manuscript has the same blind spot:
+its $\delta\mu$ column, and the combined spread in its route comparison, use the
+three-fit spread.}
+
+\noindent\emph{Not checked:} the $20$-fit list is the manuscript's choice and
+was applied to $M$ and $J$ unchanged; $M$ and $J$ were paired fit by fit, which
+keeps their correlation, but no other pairing was tried. Whether the shifts of
+$\Psi$ and of the $\mu$ secants are correlated across the $20$ fits --- the test
+proposed in section~\ref{sec:whypsi} --- was not computed; the intercepts needed
+for it are now available from the same script.
 
 % ================================================================
 \section*{Provenance}
@@ -609,6 +954,21 @@ Section~\ref{sec:secants} reads \texttt{mu}, \texttt{mu\_spread},
 \texttt{psi\_uncertainty} and \texttt{y} of each extremal record, and
 \texttt{mass\_only} and \texttt{mass\_only\_spread} of
 \texttt{route\_comparison}, from \texttt{results/egb-extremality.json}.
+Section~\ref{sec:whypsi} reads \texttt{mass\_only}, \texttt{mass\_only\_spread},
+\texttt{goon\_penco} and \texttt{goon\_penco\_spread} of
+\texttt{route\_comparison} from the same file, the mass extraction from
+\texttt{src/rotating\_bh/egb\_rotating\_observables.py} and
+\texttt{extremality.py}, the plotting code from
+\texttt{manuscript/make\_figures.py}, and the quoted passages, the Smarr
+relation, eq.~\texttt{psismarr} and its comparison from
+\texttt{manuscript/main.tex}.
+Section~\ref{sec:extrap} reads \texttt{extrapolate} and \texttt{extremal\_state}
+of \texttt{src/rotating\_bh/extremality.py}, \texttt{sensitivity} of
+\texttt{manuscript/reanalysis.py}, the override in
+\texttt{manuscript/make\_figures.py}, the construction of
+\texttt{psi\_uncertainty} in \texttt{experiments/egb\_extremality.py} and the
+numerics appendix of \texttt{manuscript/main.tex}; its numbers are the output of
+\texttt{checks/route\_envelopes.py}, run on 2 October 2026.
 
 \medskip
 \noindent\emph{Not checked:} no walk was re-run and no solve was performed; the
