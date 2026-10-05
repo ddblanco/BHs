@@ -1,4 +1,7 @@
-% Speaker script for slides.tex.  Build: ./build.sh
+% Speaker script for slides-new.tex (new motivation: the extremal mass is read
+% at infinity; Psi is the conjugate potential and its T->0 limit tests the
+% entropy-extremality relation; see questions-answers.tex, section 8).
+% Build: ./build-new.sh
 % build_html.py converts this file into notes.html and into the notes panel of
 % slides.html, so keep to the macros used here (\slidenote, \emph, \textbf,
 % inline $...$ with the symbols listed in build_html.MATH, ^{} and _{}).
@@ -25,7 +28,7 @@
 \newcommand{\slidenote}[4]{%
   \par\bigskip\noindent
   \begin{minipage}[t]{.3\textwidth}\vspace{0pt}
-    \includegraphics[page=#1,width=\linewidth]{slides.pdf}
+    \includegraphics[page=#1,width=\linewidth]{slides-new.pdf}
   \end{minipage}\hfill
   \begin{minipage}[t]{.66\textwidth}\vspace{0pt}
     {\large\bfseries\color{accent}#2.\ #3}\par
@@ -60,6 +63,10 @@ term, the natural first higher-curvature correction, with a coupling $\alpha$
 extremal mass grows with slope exactly $\pi$, the dashed line. Our question was
 what happens when $\alpha$ is \emph{not} small, that is, the question mark.
 
+And a second question. Thermodynamics says the shift should also be visible
+somewhere else: in the entropy of nearby black holes that are not quite
+extremal. Does it hold beyond first order?
+
 \textbf{Background: the action} (for you, not part of the timed script; use a
 sentence of it if the audience needs it). In general relativity the dynamical
 field is the metric $g_{\mu\nu}$. The Einstein--Hilbert action,
@@ -83,36 +90,78 @@ the black holes are asymptotically flat.
 
 The answer first: the limit gets tighter, but not the way first order said.
 
-The key idea is thermodynamic, on the right of the slide. If we treat $\alpha$
-as one more thermodynamic variable, the first law gets a new term,
-$\Psi\,d\alpha$. At zero temperature the $T\,dS$ term disappears, so at fixed
-spin $\Psi$ is exactly the slope we want. We compute $\Psi$ on every numerical
-solution, 356 of them at 13 couplings, and extrapolate to zero temperature.
+The extremal mass comes straight from the solutions. Far away the metric falls
+off as one plus $U/r^2$, and $U$ is the mass. We have 356 solutions at 13
+couplings; at each coupling we push to very low temperature and extrapolate the
+mass and the spin to zero temperature. The plot is that mass, in units of
+$J^{2/3}$, against the scaled coupling $y = \alpha/J^{2/3}$. It grows by 31
+percent over the range, and the first-order line predicts a shift 2.3 times
+larger than the real one.
 
-The plot is that slope against the scaled coupling $y = \alpha/J^{2/3}$. At
-$y = 0$ we recover $\pi$, the green star. Then the slope falls fast, to about
+[click] Now the slope, and the second question. If we treat $\alpha$ as one more
+thermodynamic variable, the first law gets a new term, $\Psi\,d\alpha$. At zero
+temperature the $T\,dS$ term disappears, so at fixed spin $\Psi$ is exactly the
+slope of the extremal mass: the entropy of nearby black holes predicts the
+shift. We compute $\Psi$ on every solution, using the entropy, and extrapolate
+it to zero temperature: the black dots. The open squares are the slope of the
+mass curve itself, differences between neighbouring couplings. The two agree:
+integrating $\Psi$ reproduces the change in mass in every interval, the worst to
+0.2 percent.
+
+At $y = 0$ we recover $\pi$, the green star. Then the slope falls fast, to about
 1.07, and rises again to 1.44 at the largest coupling we reached: $\pi$ to 1.07
-to 1.44. The black dots are the thermodynamic values. The open squares are
-differences of the extremal mass between neighbouring couplings: a cross-check
-that does not use the entropy formula, though it shares the same solutions and
-extrapolation.
+to 1.44. The slope is always positive, so Gauss--Bonnet makes the spin bound
+tighter; it is far from constant, so first order fails quickly; and it is not
+monotonic.
 
-Three messages. The slope is always positive, so Gauss--Bonnet makes the spin
-bound tighter. It is far from constant, so the first-order formula fails
-quickly. And it is not monotonic.
+\textbf{Background: why $\Psi$, if the mass comes from infinity.} The extremal
+mass and its slope do not need $\Psi$: the mass curve gives both. But with
+the same fit-sensitivity treatment for both routes, $\Psi$ gives the slope 8 to
+22 times more precisely than differences of the mass, at every coupling
+(questions-answers, section 9). What $\Psi$ adds is the potential itself over the whole domain at finite temperature (A2),
+new for rotating solutions, and a test beyond first order of the relation of
+Goon and Penco: the extremal mass shift equals the zero-temperature limit of
+$-T$ times the change of entropy at fixed mass and spin. Agreement checks our
+entropy, our charges and the assumption that the entropy term vanishes at
+extremality; it does not test the first law, which is a theorem.
 
-[click] Now the extremal mass itself. It grows by 31 percent over the range,
-and the first-order line predicts a shift 2.3 times larger than the real one.
+\textbf{Background: what the route comparison does and does not test.} It is a
+genuine consistency check, but a partial one. The mass route uses only $M$ and
+$J$ read at infinity. The $\Psi$ route also uses the temperature, the Wald
+entropy with its explicit $\alpha$ term, $\Omega_H$, the derivatives from the
+linear solve, and the assumption that the entropy term vanishes at extremality;
+and it uses them along the fixed-$(r_H, \Omega_H)$ direction, while the mass
+curve runs along the extremal branch. Agreement therefore says that the
+numerical $M$, $T$, $S$, $\Omega_H$, $J$ and $\Psi$ satisfy the extended first
+law consistently along two different paths through the solutions. That is not
+automatic: a wrong entropy term, a wrong temperature, a bad derivative or a
+wrong relative normalisation of $M$ and $S$ would each show up as a mismatch.
+What the comparison cannot test is what the two routes share: the same
+solutions on the same branch, from the same field equations and discretisation
+(covered instead by the residual and resolution checks), and the
+zero-temperature extrapolation. $M$, $J$ and $\Psi$ are extrapolated separately,
+with the same kind of fit through the same cold states, so if the cubic misses
+the true approach to $T = 0$ all intercepts are biased. Such a bias need not
+shift $\Psi_{\rm ext}$ by exactly the derivative of the shift in $\mu$, so it
+could still show up as a mismatch; but the errors can be correlated, and
+agreement does not bound them (the manuscript says the same of a common offset
+in the masses). So: a check of the thermodynamic quantities and of the
+first-law subtraction, not an independent measurement of $M_{\rm ext}$, and not a
+test of the extrapolation; only a solution built directly at $T = 0$ removes
+that caveat. This is reasoned from the method, not tested. A direct test would
+redo the route comparison for each of the 21 fit variants and see whether the
+two routes shift together.
 
 \textbf{Background: the open squares.} With $\mu = M_{\rm ext}/J^{2/3}$, each
 square is the change in $\mu$ divided by the change in $y$ between two
-neighbouring couplings, plotted at the midpoint: an interval average, not a pointwise slope, which is why the squares
-sit slightly off the dots near the minimum. They test the thermodynamic route
-(first law, Wald entropy, linear solve) because they use only masses read off at
-infinity. They are not independent of it: both use the same solutions and the
-same zero-temperature extrapolation, so an error in that extrapolation would
-move both alike. Worst interval: $1.6\times10^{-4}$, 0.2 percent of the change in
-$\mu$ over that interval (manuscript, ``identity'' equation).
+neighbouring couplings, plotted at the midpoint: an interval average, not a
+pointwise slope, which is why the squares sit slightly off the dots near the
+minimum. Worst interval: $1.6\times10^{-4}$, 0.2 percent of the change in $\mu$
+over that interval (manuscript, ``identity'' equation). The squares carry no
+error bars on the plot; their spreads reach 0.4 at the smallest couplings, where
+the couplings are closely spaced (questions-answers, sections 7 and 8), and
+reach 0.06 to 2.2 everywhere once the mass gets the same fits as $\Psi$
+(section 9).
 
 \slidenote{5}{4}{Validation}{1:10 \quad [3:50]}
 
@@ -128,11 +177,14 @@ at small coupling.
 [click] Then independent routes. $\Psi$ can also be obtained from the Smarr
 relation, using only the charges of a single solution, or as the integral of the
 Gauss--Bonnet density outside the black hole. Neither uses our derivative method,
-and both agree with it to about one part in a million.
+and both agree with it to about one part in a million. The first law itself is a
+theorem, so what these agreements test is our numerics: the entropy formula,
+the charges and the derivative method.
 
 The honest caveat, at the bottom of the slide. We never build a zero-temperature
 solution; we get very cold and extrapolate. That extrapolation is the largest
-uncertainty, and it is what the error bars in the result show.
+uncertainty. The bars on the result slide show how much the answer changes with
+the fitting choice; they are a sensitivity, not a confidence interval.
 
 \textbf{Background: ``all below $10^{-4}$''} refers to the ten checks in the
 chart, the worst being $6.9\times10^{-5}$ (coarser radial resolution). The
@@ -240,6 +292,11 @@ extrapolation.
 
 \slidenote{11}{A2}{Numerical method: measuring $\Psi$ and reaching $T = 0$}{backup}
 
+\textbf{Why compute it.} The extremal mass does not need $\Psi$: it is read at
+infinity. $\Psi$ is the potential conjugate to the coupling, a thermodynamic
+quantity in its own right, and its zero-temperature limit is the slope that the
+entropy of nearby states predicts. Comparing it with the mass curve is the test.
+
 \textbf{What $\Psi$ is.} $\Psi$ is not a field; it is one number per solution.
 It is the change in mass when the coupling changes while entropy and angular
 momentum are held fixed, just as temperature is the change in mass per unit of
@@ -288,6 +345,8 @@ length cubed. Euler's theorem for a function of that kind gives
 $2M = 3TS + 6\Omega_H J + 2\alpha\Psi$, so $\Psi$ follows from the charges of a
 single solution. The division by $\alpha$ makes it useless near $\alpha = 0$.
 Over 313 states it agrees with the main method to $1.45\times10^{-6}$.
+Smarr is the first law combined with the scaling symmetry, so this checks the
+same law along another path: it validates the numerics, not the law.
 
 \textbf{On-shell action.} At fixed temperature and angular velocity the Gibbs
 potential is the on-shell action per unit time. The only explicit $\alpha$ in
@@ -392,9 +451,19 @@ and a slope from differences of such masses would be uncertain by order one.
 Their raw data would test our zero-temperature masses directly. From the figure,
 only a rough check of the sign and the $2.3\times$ overshoot is possible.
 \item[What exactly is new?]
-$\Psi$ on rotating solutions at finite coupling; the slope at 13 couplings, with its
-minimum and its rise; the extremal mass curve and how far it departs from first
-order; and the reading of $\Psi$ as an on-shell Gauss--Bonnet action.
+The extremal mass curve at 13 couplings and how far it departs from first order;
+its slope, with its minimum and its rise, obtained both from the mass and from
+the entropy through the first law; $\Psi$ on rotating solutions at finite
+coupling and temperature; and the reading of $\Psi$ as an on-shell
+Gauss--Bonnet action.
+\item[If the extremal mass comes from infinity, why compute $\Psi$?]
+For the mass curve we do not need it: the mass at infinity gives the curve and,
+by differences, the slope. $\Psi$ is the potential conjugate to $\alpha$, new
+for rotating black holes at finite temperature, and its zero-temperature limit
+tests the Goon--Penco relation: the extremal mass shift is fixed by the entropy
+of nearby states. That the three routes to $\Psi$ agree, and that $\Psi$ agrees
+with the mass curve, validates our numerics, not the first law, which is a
+theorem.
 \item[Which parts did the humans do?]
 We chose the problem and the reference papers, steered each milestone, asked for
 critical reviews, made the agents referee each other, and questioned the results.

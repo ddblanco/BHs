@@ -1,3 +1,7 @@
+% slides-new: the showstopper deck with the motivation of questions-answers.tex,
+% section 8: the extremal mass is read at infinity; Psi is the potential
+% conjugate to alpha, and its T->0 limit tests the entropy-extremality relation.
+% Build: ./build-new.sh
 % Showstopper deck: slides 1-5 dark, one headline each. Five-minute talk: five timed slides (title, question, result, validation, lessons)
 % followed by a closing slide and five backup slides (appendix), not timed. Build: ./build.sh
 % Every number on the slides is copied from manuscript/numbers.tex,
@@ -94,6 +98,8 @@
 Known only for tiny $\alpha$: \ slope $=\pi$.\par}
 \vspace{14pt}
 {\Large\bfseries And at \textcolor{glow}{finite} $\alpha$?\par}
+\vspace{4pt}
+{\small\color{white!80}Does the entropy of nearby black holes predict it?\par}
 \column{.40\textwidth}\centering
 \card{\includegraphics[width=\dimexpr\linewidth-10pt\relax]{fig-question.pdf}}
 \end{columns}
@@ -108,25 +114,30 @@ Known only for tiny $\alpha$: \ slope $=\pi$.\par}
 \begin{columns}[c,onlytextwidth]
 \column{.58\textwidth}\centering
 % Fixed-height right column (overlayarea) and equal card heights, so title and text do not move between overlays.
-\only<1>{\card{\includegraphics[height=4.7cm]{fig-shift.pdf}}}%
-\only<2>{\card{\includegraphics[height=4.7cm,trim=0 0 208.1bp 0,clip]{fig-massext.pdf}}}
+\only<1>{\card{\includegraphics[height=4.7cm,trim=0 0 208.1bp 0,clip]{fig-massext.pdf}}}%
+\only<2>{\card{\includegraphics[height=4.7cm]{fig-shift.pdf}}}
 \column{.40\textwidth}\centering
-{\scriptsize\color{white!65}extended first law\par}\vspace{2pt}
-{\small$dM=T\,dS+2\,\Omega_H\,dJ+\tikz[baseline=(x.base)]\node[draw=glow,rounded corners=2pt,inner sep=2pt,text=glow](x){$\Psi\,d\alpha$};$\par}
-\vspace{6pt}
-{\scriptsize\color{white!65}at $T=0$, fixed $J$:\par}\vspace{2pt}
-{\small$\Psi_\ext=\left.\dfrac{\partial M_\ext}{\partial\alpha}\right|_J$\par}
-\vspace{6pt}
-\begin{overlayarea}{\linewidth}{3.1cm}\centering
+\begin{overlayarea}{\linewidth}{5.2cm}\centering
 \only<1>{%
-{\fontsize{22}{26}\selectfont\bfseries\color{glow}$\pi\to1.07\to1.44$\par}
-{\scriptsize\color{white!65}slope $\partial M_\ext/\partial\alpha|_J$: falls, then rises\par}}%
-\only<2>{%
+{\scriptsize\color{white!65}mass read at infinity, then $T\to0$ at fixed $J$\par}\vspace{2pt}
+{\small$b\simeq1+U/r^2,\quad M=-\tfrac{3\pi}{8}\,U$\par}
+\vspace{14pt}
 {\fontsize{22}{26}\selectfont\bfseries\color{glow}$+31\%$\par}
 {\scriptsize\color{white!65}growth of the extremal mass $M_\ext$\par}
 \vspace{8pt}
 {\fontsize{22}{26}\selectfont\bfseries $2.3\times$\par}
-{\scriptsize\color{white!65}first order overshoots the real shift\par}}
+{\scriptsize\color{white!65}first order overshoots the real shift\par}}%
+\only<2>{%
+{\scriptsize\color{white!65}extended first law\par}\vspace{2pt}
+{\small$dM=T\,dS+2\,\Omega_H\,dJ+\tikz[baseline=(x.base)]\node[draw=glow,rounded corners=2pt,inner sep=2pt,text=glow](x){$\Psi\,d\alpha$};$\par}
+\vspace{4pt}
+{\scriptsize\color{white!65}at $T=0$, fixed $J$: the entropy predicts the slope\par}\vspace{2pt}
+{\small$\Psi_\ext=\left.\dfrac{\partial M_\ext}{\partial\alpha}\right|_J$\par}
+\vspace{8pt}
+{\fontsize{22}{26}\selectfont\bfseries\color{glow}$\pi\to1.07\to1.44$\par}
+{\scriptsize\color{white!65}slope: falls, then rises\par}
+\vspace{4pt}
+{\scriptsize\color{white!65}$\Psi$ (dots) and mass at infinity (squares) agree: worst interval $0.2\%$\par}}
 \end{overlayarea}
 \end{columns}
 \end{frame}
@@ -142,8 +153,8 @@ Known only for tiny $\alpha$: \ slope $=\pi$.\par}
 {\large All below $10^{-4}$.\par}
 \vspace{14pt}
 {\small\color{white!75}\alert<2>{Known solutions first:} arXiv:1010.0860 to $2\times10^{-4}$.\\[3pt]
-Two other formulas for the slope (Smarr relation, Gauss--Bonnet action)
-agree with our derivative method to $\sim10^{-6}$.\par}
+$\Psi$ three ways (first law, Smarr relation, Gauss--Bonnet action)
+agrees to $\sim10^{-6}$: a test of our entropy and charges.\par}
 \vspace{8pt}
 {\scriptsize\color{white!55}Largest uncertainty: the $T\to0$ extrapolation.\par}
 \column{.55\textwidth}\centering
@@ -231,6 +242,8 @@ $R_N(u;\alpha,r_H,\Omega_H)=0$ \ ($4N$ eqs.)\\[2pt]
 \hd{Get cold, then extrapolate}\\
 cubic fit through the 6 coldest states;\\
 coldest $TJ^{1/3}\approx3\times10^{-6}$
+
+\smallskip\scriptsize\color{muted}$M_\ext$ is read at infinity; $\Psi_{T\to0}$ is the slope the entropy predicts.
 \column{.51\textwidth}\centering
 \card{\includegraphics[width=\dimexpr\linewidth-10pt\relax]{fig-potential.pdf}}\\
 \scriptsize $\Psi$ against temperature; red dots: the $T=0$ values (the slope)
@@ -259,7 +272,8 @@ Gibbs potential = on-shell action per unit time; at fixed $(T,\Omega_H)$, $\alph
 agrees to $4.67\times10^{-7}$ (43 states, away from extremality)
 \end{columns}
 \vfill
-\centering\src{Both use the same numerical solutions; neither uses the linear solve of A2.}
+\centering\src{Smarr is the first law plus scaling: the same law along another path.
+Both use the same numerical solutions; neither uses the linear solve of A2.}
 \end{frame}
 
 % ---------------------------------------------------------------- A3

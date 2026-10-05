@@ -163,6 +163,7 @@ img{display:block;max-width:100%}
         <p class="lead" style="margin:0 0 22px;color:#fff"><span class="m">ℒ</span> = <span class="m">R</span> + 2<span class="m">Λ</span> + <span class="m">α</span>(<span class="m">R</span><sup>2</sup> − 4<span class="m">R</span><sub><span class="m">ab</span></sub><sup>2</sup> + <span class="m">R</span><sub><span class="m">abcd</span></sub><sup>2</sup>)</p>
         <p class="lead" style="margin:0 0 30px">Add Gauss–Bonnet, coupling <span class="m">α</span>: it moves.<br>Known only for tiny <span class="m">α</span>: slope = <span class="m">π</span>.</p>
         <div style="font-size:42px;font-weight:800">And at <span class="glow">finite</span> <span class="m">α</span>?</div>
+        <p class="lead" style="margin:14px 0 0">Does the entropy of nearby black holes predict it?</p>
       </div>
       <div class="col" style="flex:0 0 460px"><div class="card"><img src="figures/fig-question.png" alt="Extremal mass against Gauss–Bonnet coupling: known Einstein value and first-order line, unknown at finite coupling"></div></div>
     </div>
@@ -177,13 +178,16 @@ img{display:block;max-width:100%}
     <div class="sub">But not the way first order said.</div>
     <div class="row" style="gap:48px;align-items:center;margin-top:28px">
       <div class="col" style="flex:0 0 640px;height:420px;justify-content:center;align-items:center">
-        <div class="card" data-on="1"><img src="figures/fig-shift.png" style="height:390px" alt="Slope of the extremal mass against scaled coupling"></div>
-        <div class="card" data-on="2"><img src="figures/fig-massext-left.png" style="height:390px" alt="Extremal mass against scaled coupling, with the first-order line"></div>
+        <div class="card" data-on="1"><img src="figures/fig-massext-left.png" style="height:390px" alt="Extremal mass against scaled coupling, with the first-order line"></div>
+        <div class="card" data-on="2"><img src="figures/fig-shift.png" style="height:390px" alt="Slope of the extremal mass against scaled coupling"></div>
       </div>
-      <div class="col center" style="flex:1;gap:40px">
-        <div data-on="1"><div class="big glow" style="font-size:56px"><span class="m">π</span> → 1.07 → 1.44</div><div class="lab">slope ∂<span class="m">M</span><sub>ext</sub>/∂<span class="m">α</span> at fixed <span class="m">J</span>: falls, then rises</div></div>
-        <div data-on="2"><div class="big glow">+31%</div><div class="lab">growth of the extremal mass <span class="m">M</span><sub>ext</sub></div></div>
-        <div data-on="2"><div class="big">2.3×</div><div class="lab">first order overshoots the real shift</div></div>
+      <div class="col center" style="flex:1;gap:30px">
+        <div data-on="1"><div class="lab">mass read at infinity, then <span class="m">T</span> → 0 at fixed <span class="m">J</span></div><div class="eq" style="font-size:26px;margin-top:6px"><span class="m">b</span> ≃ 1 + <span class="m">U</span>/<span class="m">r</span><sup>2</sup>, &nbsp; <span class="m">M</span> = −<span class="fr"><span>3<span class="m">π</span></span><span>8</span></span><span class="m">U</span></div></div>
+        <div data-on="1"><div class="big glow">+31%</div><div class="lab">growth of the extremal mass <span class="m">M</span><sub>ext</sub></div></div>
+        <div data-on="1"><div class="big">2.3×</div><div class="lab">first order overshoots the real shift</div></div>
+        <div data-on="2"><div class="lab">at <span class="m">T</span> = 0, fixed <span class="m">J</span>: the entropy predicts the slope</div><div class="eq" style="font-size:26px;margin-top:6px"><span class="m">Ψ</span><sub>ext</sub> = ∂<span class="m">M</span><sub>ext</sub>/∂<span class="m">α</span>|<sub><span class="m">J</span></sub></div></div>
+        <div data-on="2"><div class="big glow" style="font-size:56px"><span class="m">π</span> → 1.07 → 1.44</div><div class="lab">slope: falls, then rises</div></div>
+        <div data-on="2"><div class="lab"><span class="m">Ψ</span> (dots) and mass at infinity (squares) agree: worst interval 0.2%</div></div>
       </div>
     </div>
   </div>
@@ -199,7 +203,7 @@ img{display:block;max-width:100%}
         <div style="font-size:40px;font-weight:800">independent checks.</div>
         <div style="font-size:30px;margin-top:10px">All below 10<sup>−4</sup>.</div>
         <p class="lead" style="margin:30px 0 10px"><span class="step-hl">Known solutions first:</span> arXiv:1010.0860 to 2×10<sup>−4</sup>.</p>
-        <p class="lead" style="margin:0 0 14px">Two other formulas for the slope (Smarr relation, Gauss–Bonnet action) agree with our derivative method to ~10<sup>−6</sup>.</p>
+        <p class="lead" style="margin:0 0 14px"><span class="m">Ψ</span> three ways (first law, Smarr relation, Gauss–Bonnet action) agrees to ~10<sup>−6</sup>: a test of our entropy and charges.</p>
         <div class="dim">Largest uncertainty: the <span class="m">T</span> → 0 extrapolation.</div>
       </div>
       <div class="col center" style="flex:0 0 640px;height:470px;justify-content:center">
@@ -275,6 +279,7 @@ img{display:block;max-width:100%}
         <div class="src" style="text-align:center;margin-bottom:18px">matrix = Newton Jacobian: one linear solve, no step size (implicit function theorem)</div>
         <div class="hd">Get cold, then extrapolate</div>
         <div>cubic fit through the 6 coldest states;<br>coldest <span class="m">TJ</span><sup>1/3</sup> ≈ 3×10<sup>−6</sup></div>
+        <div class="src" style="margin-top:16px"><span class="m">M</span><sub>ext</sub> is read at infinity; <span class="m">Ψ</span><sub><span class="m">T</span>→0</sub> is the slope the entropy predicts.</div>
       </div>
       <div class="col center" style="flex:1"><img src="figures/fig-potential.png" alt="Psi against horizon temperature for several couplings"><div class="cap"><span class="m">Ψ</span> against temperature; red dots: the <span class="m">T</span> = 0 values (the slope)</div></div>
     </div>
@@ -302,7 +307,7 @@ img{display:block;max-width:100%}
         <div>agrees to 4.67×10<sup>−7</sup> (43 states, away from extremality)</div>
       </div>
     </div>
-    <p class="src" style="text-align:center;margin-top:auto;font-size:16px">Both use the same numerical solutions; neither uses the linear solve of A2.</p>
+    <p class="src" style="text-align:center;margin-top:auto;font-size:16px">Smarr is the first law plus scaling: the same law along another path. Both use the same numerical solutions; neither uses the linear solve of A2.</p>
   </div>
 </section>
 

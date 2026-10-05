@@ -12,7 +12,10 @@
 \usepackage[a4paper,margin=2.0cm]{geometry}
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{amsmath}
 \usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
 \usepackage[colorlinks=true,urlcolor=blue!55!black]{hyperref}
 \definecolor{accent}{HTML}{1F5FA8}
 \definecolor{muted}{HTML}{6B7280}
@@ -21,7 +24,6 @@
 \linespread{1.12}
 
 % \slidenote{page in slides.pdf}{label shown}{title}{timing}
-% The page is the slide's first page: slide 3 spans pages 3-4 and slide 4 pages 5-7.
 \newcommand{\slidenote}[4]{%
   \par\bigskip\noindent
   \begin{minipage}[t]{.3\textwidth}\vspace{0pt}
@@ -32,132 +34,130 @@
     {\small\color{muted}#4}
   \end{minipage}\par\smallskip}
 
+
+% Short lead sentence used at the top of each backup note.
+\newcommand{\inone}[1]{\textbf{In one line.} #1\par}
 \begin{document}
 
 {\LARGE\bfseries Speaker script\par}
 \smallskip
 {\large Extremality shift of rotating black holes at finite Gauss--Bonnet coupling\par}
-{\color{muted}Five minutes, five slides plus a closing one: about 650 words at a calm pace. The times are targets; the elapsed time is in brackets. Paragraphs marked ``Background'' are for you, not part of the script. [click] marks a click within a slide: slide 3 has two steps and slide 4 three. Slides A1--A5 are backup for questions and are not part of the five minutes; their notes explain the method and the physics in more detail.\par}
+{\color{muted}Five minutes: five slides plus a closing one, about 700 words at a brisk but calm pace. The times are targets; the elapsed time is in brackets. The ``Background'' paragraph is for you and is not spoken. Slides A1--A5 are backup for questions. Their notes are short and plain; Appendices A and B at the end tell the same story in more detail.\par}
 
 \slidenote{1}{1}{Title}{0:15 \quad [0:15]}
 
-This is joint work by Cecilia Bejarano, David Blanco, Guillem Pérez-Nadal and
-myself. Most of the code, the computations and the writing were done by two AI
-agents, Claude Code and Codex, under our direction.
+Este es un trabajo que realizamos en conjunto con Cecilia Bejarano, David Blanco y Guillem Pérez Nadal sobre soluciones de agujero negro rotante en dimensión cinco. La implementación del código, los cálculos y la escritura del paper fueron realizadas por dos agentes de IA, Claude Code y Codex bajo nuestras directivas, correcciones y preguntas.
 
-\slidenote{2}{2}{Problem: the question}{1:05 \quad [1:20]}
 
-A rotating black hole cannot spin arbitrarily fast for its mass. For Kerr the
-bound is $J \le M^2$. When it is saturated the temperature drops to zero, and
-the black hole is called \emph{extremal}.
+\slidenote{2}{2}{The question}{1:05 \quad [1:20]}
 
-In five dimensions with two equal angular momenta the bound reads: $M$ at least
-three halves $\pi^{1/3} J^{2/3}$. That is the orange star.
+La teoría de la Relatividad General de Einstein posee soluciones de agujero negro rotante, descubiertas por Kerr en 1960, que describen muy bien las observaciones (EHT). El momento angular J de dichos agujeros negros no puede ser arbitrariamente alto, está acotado por su masa M, cuando satura el límite se dice que el agujero negro es \emph{extremal}. Si se supera dicha cota, la solución deja de ser un agujero negro y se transforma en una singularidad desnuda. 
+En $D=4$ la cota es $M^2 \ge |J|$. Para $D>4$ las soluciones son las de Myers-Perry y también su momento angular está acotado por su masa $M \ge \frac{3}{2}\pi^{1/3} J^{2/3}$.
+Una peculiaridad de las soluciones de agujero negro \emph{extremal} es que la temperatura del agujero negro se hace cero.
 
-This bound is a property of Einstein's equations. If we add the Gauss--Bonnet
-term, the natural first higher-curvature correction, with a coupling $\alpha$
---- the bracket in the Lagrangian on the slide --- the bound moves. How far? To first order in $\alpha$ the answer was known: the
-extremal mass grows with slope exactly $\pi$, the dashed line. Our question was
-what happens when $\alpha$ is \emph{not} small, that is, the question mark.
+La acción de Einstein-Hilbert (señalar la acción) es la más simple que podemos construir. La modificación más sencilla que podemos hacer es suplementar la acción con el llamdo término Gauss-Bonnet (que garantiza que las ecuaciones de movimiento siguen siendo de segundo orden, aunque no lineales en las derivadas segundas de la métrica). Estos términos pueden ser motivados desde teoría de cuerdas. Para la teoría de Einstein-Gauss-Bonnet no se conocen soluciones analíticas de agujero negro rotante pero \textbf{si} se conocen \emph{soluciones numéricas}.
 
-\textbf{Background: the action} (for you, not part of the timed script; use a
-sentence of it if the audience needs it). In general relativity the dynamical
-field is the metric $g_{\mu\nu}$. The Einstein--Hilbert action,
-$\int \sqrt{-g}\,R$, with $R$ the Ricci scalar (the simplest scalar built from
-the curvature), gives as Euler--Lagrange equations Einstein's equations,
-$G_{\mu\nu} = 0$ in vacuum. They are second order in derivatives of the metric,
-like Newton's or Maxwell's equations. The Gauss--Bonnet term,
-$L_{\rm GB} = R^2 - 4R_{\mu\nu}R^{\mu\nu} + R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}$,
-is quadratic in the curvature, so it brings higher-derivative terms into the
-action. Terms like this are expected for two reasons. In effective field theory,
-general relativity is the first term of an expansion in curvature, and these are
-the first corrections; their size is set by the coupling $\alpha$, which has
-units of length squared. They also appear in the low-energy limit of string
-theory. The Gauss--Bonnet combination is special in two ways: its field equations
-stay second order, and in four dimensions it does not change the equations at all
-(it is a total derivative). That is one reason to work in five dimensions. The
-cosmological constant in the Lagrangian on the slide is zero throughout this work:
-the black holes are asymptotically flat.
+Al consultarle al agente sobre posibles extensiones de la bibliografía relevante surge la idea de estudiar cómo se modifica el valor de la masa extremal debido a la presencia de términos superiores en la curvatura. Esa es la pregunta que queremos responder: cómo cambia esa cota al agregar correciones a la acción de GR.
+
+En la literatura hay trabajos a nivel perturbativo pero no a nivel no-lineal. Este proyecto trata sobre llenar ése hueco: cómo cambia la cota extremal con el coupling $\alpha$? Sigue siendo lineal para valores de $\alpha$ finito? Veremos que no.
+
+
 
 \slidenote{3}{3}{Main result}{1:20 \quad [2:40]}
+\textbf{\emph{Si bien nuestro objetivo es obtener el valor de la masa extremal en función de $\alpha$, va a resultar más sencillo calcular la derivada de la masa respecto al coupling $\alpha$ y tomar el límite de temperatura cero.}}
 
-The answer first: the limit gets tighter, but not the way first order said.
+La forma en que abordamos el problema es pensar al coupling $\alpha$ como una variable termodinámica más. En ese caso el potencial químico $\Psi$ nos dice cuánto cambia la masa al cambiar $\alpha$ manteniendo la entropía y el momento angular fijos.
 
-The key idea is thermodynamic, on the right of the slide. If we treat $\alpha$
-as one more thermodynamic variable, the first law gets a new term,
-$\Psi\,d\alpha$. At zero temperature the $T\,dS$ term disappears, so at fixed
-spin $\Psi$ is exactly the slope we want. We compute $\Psi$ on every numerical
-solution, 356 of them at 13 couplings, and extrapolate to zero temperature.
+% Here is our idea. Think of $\alpha$ as one more knob in thermodynamics, like
+% pressure or volume. Then the first law of black holes gets one more term,
+% $\Psi\,d\alpha$. The number $\Psi$ tells us how much the mass changes when we
+% turn the knob, keeping entropy and spin fixed.
 
-The plot is that slope against the scaled coupling $y = \alpha/J^{2/3}$. At
-$y = 0$ we recover $\pi$, the green star. Then the slope falls fast, to about
-1.07, and rises again to 1.44 at the largest coupling we reached: $\pi$ to 1.07
-to 1.44. The black dots are the thermodynamic values. The open squares are
-differences of the extremal mass between neighbouring couplings: a cross-check
-that does not use the entropy formula, though it shares the same solutions and
-extrapolation.
+En el caso extremal la temperatura es cero. Si además mantemos fijo el momento angular, la derivada de la masa respecto a $\alpha$ es directamente $\Psi_{\rm ext}$.
+% At zero temperature the temperature term drops out. So, at fixed spin, $\Psi$ is
+% exactly the slope we want: how fast the smallest allowed mass grows with
+% $\alpha$.
 
-Three messages. The slope is always positive, so Gauss--Bonnet makes the spin
-bound tighter. It is far from constant, so the first-order formula fails
-quickly. And it is not monotonic.
+El resultado del \emph{solver} es el potencial $\Psi = \frac{\partial M}{\partial \alpha}$ como se ve en la figura. Se ve que primero decae hasta un valor mínimo y luego aumenta. 
+% The plot on the left is the answer. At $\alpha = 0$ we get back $\pi$, the green
+% star. Then the slope drops quickly, to about 1.07, and climbs again to 1.44 at
+% the largest coupling we reached.
 
-[click] Now the extremal mass itself. It grows by 31 percent over the range,
-and the first-order line predicts a shift 2.3 times larger than the real one.
+Luego podemos integrar este resultado para obtener una estimación de la masa extremal en función del coupling). Podemos destacar tres cosas: la pendiente es siempre positiva y el comportamiento claramente es no-lineal. Una forma de interpretar este resultado es que, \emph{a masa fija, el máximo momento angular permitido es menor que en GR debido al coupling $\alpha$.}
+% Three messages. First, the slope is always positive, so Gauss--Bonnet tightens
+% the spin limit. Second, the slope is far from constant, so the first-order formula
+% fails quickly. Third, the slope is not monotonic: it falls and then rises. On the
+% right you see the smallest allowed mass itself. It grows by 31 percent. The
+% first-order line would predict more than twice that growth.
 
-\textbf{Background: the open squares.} With $\mu = M_{\rm ext}/J^{2/3}$, each
-square is the change in $\mu$ divided by the change in $y$ between two
-neighbouring couplings, plotted at the midpoint: an interval average, not a pointwise slope, which is why the squares
-sit slightly off the dots near the minimum. They test the thermodynamic route
-(first law, Wald entropy, linear solve) because they use only masses read off at
-infinity. They are not independent of it: both use the same solutions and the
-same zero-temperature extrapolation, so an error in that extrapolation would
-move both alike. Worst interval: $1.6\times10^{-4}$, 0.2 percent of the change in
-$\mu$ over that interval (manuscript, ``identity'' equation).
+Dato: Se consideraron 13 valores distintos de $\alpha$ y 356 soluciones en total. Se tomaron valores de temperatura cada vez más bajos y luego se extrapoló el resultado para temperatura cero.
+% We measured $\Psi$ on 356 numerical black holes, at 13 values of $\alpha$. We made
+% them colder and colder, and extrapolated to zero temperature.
+
 
 \slidenote{5}{4}{Validation}{1:10 \quad [3:50]}
 
-How do we know it is right? Ten independent checks, each shown by its worst
-deviation, and all of them below one part in ten thousand.
+Cómo sabemos que lo que se hizo está bien? El agente realizó 10 chequeos independientes que se muestran acá
+%How do we know it is right? Ten independent checks, each shown by its worst
+%%deviation, and all of them below one part in ten thousand.
 
-[click] Known solutions first. Before computing anything new, the code
-reproduced a published family of rotating Gauss--Bonnet black holes, from
-arXiv:1010.0860: lines ours, circles theirs, agreeing at the horizon to two parts
-in ten thousand. It also recovers the exact static solution and the value $\pi$
-at small coupling.
+[click] El primer paso fue reproducir la familia de soluciones de agujeros negros rotantes. y reobtener la relación extremal cuando $\alpha$ tiende a cero.
+%[click] Known solutions first. Before computing anything new, the code
+%reproduced a published family of rotating Gauss--Bonnet black holes, from
+%arXiv:1010.0860: lines ours, circles theirs, agreeing at the horizon to two parts
+%in ten thousand. It also recovers the exact static solution and the value $\pi$
+%at small coupling.
 
-[click] Then independent routes. $\Psi$ can also be obtained from the Smarr
-relation, using only the charges of a single solution, or as the integral of the
-Gauss--Bonnet density outside the black hole. Neither uses our derivative method,
-and both agree with it to about one part in a million.
+[click] También se calculó $\Psi$ de otras dos formas (relación de Smarr y desde el término de Gauss-Bonnet) dando resultados que difieren solamente en una parte en $10^6$.
+%[click] Then independent routes. $\Psi$ can also be obtained from the Smarr
+%relation, using only the charges of a single solution, or as the integral of the
+%Gauss--Bonnet density outside the black hole. Neither uses our derivative method,
+%and both agree with it to about one part in a million.
 
-The honest caveat, at the bottom of the slide. We never build a zero-temperature
-solution; we get very cold and extrapolate. That extrapolation is the largest
-uncertainty, and it is what the error bars in the result show.
+La principal fuente de "duda" es la extrapolación a temperatura cero.
+%The honest caveat, at the bottom of the slide. We never build a zero-temperature
+%solution; we get very cold and extrapolate. That extrapolation is the largest
+%uncertainty, and it is what the error bars in the result show.
 
-\textbf{Background: ``all below $10^{-4}$''} refers to the ten checks in the
-chart, the worst being $6.9\times10^{-5}$ (coarser radial resolution). The
-comparison with arXiv:1010.0860 is not one of the ten: its $2\times10^{-4}$ is
-limited by the resolution of their plot, not by our solver (see A1).
+%\textbf{Background: ``all below $10^{-4}$''} refers to the ten checks in the
+%chart, the worst being $6.9\times10^{-5}$ (coarser radial resolution). The
+%comparison with arXiv:1010.0860 is not one of the ten: its $2\times10^{-4}$ is
+%limited by the resolution of their plot, not by our solver (see A1).
 
 \slidenote{8}{5}{Experience: how it was made}{1:05 \quad [4:55]}
 
-Finally, how it was made. Two AI agents, and one of them was the referee. We
-chose the question and kept doubting; Claude Code wrote and ran the code; Codex
-acted as a referee and asked for checks. The referee rounds mattered: one check a
-referee asked for actually \emph{failed} when it was run. We compute the slope in
-two ways, and they disagreed by more than our error bars allowed: the bars were
-too small. We enlarged them to include every reasonable way of doing the
-extrapolation.
+Qué aprendimos? Los agentes son capaces de encontrar preguntas abiertas en la literatura que pueden disparar nuevos proyectos.
 
-The numbers: 36.8 hours of agent time over 13 days, 1.42 billion tokens
-processed, and 79 prompts from us. The effort went where you might not expect.
-Reproducing all the known solutions took 4.4 hours; the first genuinely new
-object, the rotating Gauss--Bonnet solver, took 11.2; and getting $\Psi$ to zero
-temperature, with the paper and the referee rounds, another 8.7.
+Utilizar distintos agentes como monitores o referís unos de otros ayuda a encontrar puntos flojos en el trabajo y resolverlos.
 
-So our lesson: writing the code was cheap; verifying it was the work. Ask for
-checks that can fail, and let one agent referee the other. Everything is in the
-repository.
+Desde luego, los agentes son capaces de producir mucho código y resultados de forma rápida. El problema, el cuello de botella, es la verificación y validación de todo este trabajo.
+
+Cosas para notar:
+\begin{itemize}
+    \item La reproducción de resultados conocidos costó 100 millones de tokens
+    \item El cálculo del nuevo \emph{solver}, costó $5$ veces más.
+    \item Hay una discrepancia entre nuestro \emph{solver} y el de 1010.0860 en la ergoesfera. No se sabe a qué se debe pero no entra explícitamente en ningún cálculo.
+    \item 37 horas de cálculo y 1.42 miles de millones de tokens.
+    \item El costo no es escribir código sino verificarlo. Exigir chequeos que puedan fallar y dejar que los agentes se corrijan entre sí.
+\end{itemize}
+
+%Finally, how it was made. Two AI agents, and one of them was the referee. We
+%chose the question and kept doubting; Claude Code wrote and ran the code; Codex
+%acted as a referee and asked for checks. The referee rounds mattered: one check a
+%referee asked for actually \emph{failed} when it was run. We compute the slope in
+%two ways, and they disagreed by more than our error bars allowed: the bars were
+%too small. We enlarged them to include every reasonable way of doing the
+%extrapolation.
+
+%The numbers: 36.8 hours of agent time over 13 days, 1.42 billion tokens
+%processed, and 79 prompts from us. The effort went where you might not expect.
+%Reproducing all the known solutions took 4.4 hours; the first genuinely new
+%object, the rotating Gauss--Bonnet solver, took 11.2; and getting $\Psi$ to zero
+%temperature, with the paper and the referee rounds, another 8.7.
+
+%So our lesson: writing the code was cheap; verifying it was the work. Ask for
+%checks that can fail, and let one agent referee the other. Everything is in the
+%repository.
 
 \slidenote{9}{6}{Thank you}{0:05 \quad [5:00]}
 
