@@ -121,27 +121,36 @@ branch a single curve in the reduced variables of \cite{Kleihaus:2023zzs}, and
 that curve already fixes $M_\ext(J,\alpha)$: with $\mu=M_\ext/J^{2/3}$ and
 $y=\alpha/J^{2/3}$, the definitions in section~\ref{sec:invariants} give
 $\mu=\mu(0)\,j^{-2/3}$ and $y=4x\mu/(3\pi)$, so the domain of existence
-reported there contains the extremal mass at fixed angular momentum. What it does
-not contain is the derivative. That function is not reported, and a slope read
-off a plotted domain boundary is not a quantity one would set beside the
-coefficient $\pi$ of \eqref{eq:published}; nor is differencing the masses of
-separately constructed extremal solutions, since each carries its own
-construction error and the difference is taken between neighbouring couplings.
-The derivative is what the rest of this paper measures, and it is measured
-rather than differenced.
+reported there contains the extremal mass at fixed angular momentum. In
+practice it is reported only as curves normalised by the mass, with no
+tabulated values and no stated accuracy for the equal-spin extremal solutions,
+and not in the projection that fixes $\mu(y)$. What it does not contain at all
+is the derivative. A slope read off a plotted domain boundary is not a quantity
+one would set beside the coefficient $\pi$ of \eqref{eq:published}, and
+differencing extremal masses, ours included, divides their errors by the
+spacing between neighbouring couplings.
 
-We take the derivative directly instead. The extended first law of Lovelock
-gravity \cite{Kastor:2010gq,Neri:2024} promotes $\alpha$ to a thermodynamic
-variable with a conjugate potential $\Psi=\partial M/\partial\alpha|_{S,J}$,
-which we measure on each rotating solution by differentiating the discretised
-field equations implicitly --- one linear solve, no step size, no second
-solution. On a regular extremal branch the first law identifies
-$\lim_{T\to0}\Psi$ with $\partial M_\ext/\partial\alpha|_J$, so the slope is
-obtained pointwise at each coupling rather than reconstructed from a difference
-of masses; integrating it then returns the mass curve itself, and the two
-routes can be compared. We follow the branch continuously connected to
-Myers--Perry at $\Ncouplings$ couplings, from $\alpha=0$ to $y=\alpha/J^{2/3}=
-\Nylastshort$.
+The extended first law of Lovelock gravity \cite{Kastor:2010gq,Neri:2024}
+promotes $\alpha$ to a thermodynamic variable with a conjugate potential
+$\Psi=\partial M/\partial\alpha|_{S,J}$. This potential is a response
+coefficient of every solution, not only of the extremal ones, and we evaluate
+it on each rotating solution by differentiating the discretised field
+equations implicitly --- one linear solve, no step size, no second solution.
+On a regular extremal branch the first law identifies $\lim_{T\to0}\Psi$ with
+$\partial M_\ext/\partial\alpha|_J$, and the entropy--extremality relation of
+\cite{Goon:2019faz} identifies the same limit with that of
+$-T\,\partial S/\partial\alpha|_{M,J}$ on nearby non-extremal states. The slope is therefore obtained at each coupling
+without choosing a neighbour. It is not obtained at zero temperature: like
+every extremal quantity in this paper, $\lim_{T\to0}\Psi$ is the intercept of
+a fit through cold states. It is, however, the more stable intercept, and with
+the same fits applied to both, it gives the slope more precisely than
+differencing the extrapolated masses in every interval we sample
+(section~\ref{sec:shift}). The extremal mass itself we read independently from
+the asymptotic charges. Comparing the two routes then tests the thermodynamic
+quantities and the first-law subtraction that the potential relies on, though
+not the extrapolation they share. We follow the branch continuously connected
+to Myers--Perry at $\Ncouplings$ couplings, from $\alpha=0$ to
+$y=\alpha/J^{2/3}=\Nylastshort$.
 
 The slope is positive throughout the sampled range, so the extremal mass at
 fixed angular momentum increases with the coupling and the bound on the scaled
@@ -161,10 +170,13 @@ coupling, across the whole family and not only at its extremal end, together
 with the sign change it undergoes; the extremal slope
 $\partial M_\ext/\partial\alpha|_J$ obtained pointwise at $\Ncouplings$
 couplings, with its minimum and subsequent rise resolved; the extremal mass
-curve that slope integrates to, and the size of its departure from
-\eqref{eq:published}; the reading of $\Psi$ as an on-shell Gauss--Bonnet
-action, tested against the response; and the identification of the slope
-minimum with the maximum of $\Omega_HJ^{1/3}$ on the extremal branch.
+curve read from the asymptotic charges, the size of its departure from
+\eqref{eq:published}, and its agreement with the integrated slope, which ties
+the sign of the mass shift to the sign of the entropy correction of nearby
+non-extremal states for this family; the reading of $\Psi$ as an on-shell
+Gauss--Bonnet action, tested against the response; and the identification of
+the slope minimum with the maximum of $\Omega_HJ^{1/3}$ on the extremal
+branch.
 Recovered rather than new: the equal-spin family of \cite{Brihaye:2010wp} and
 its profiles; the closed-form static solution; the $\mathcal O(\alpha)$
 potential implied by \cite{Wu:2024xnb} and the first-order extremal mass $\pi$
@@ -620,13 +632,22 @@ for the continuation towards extremality.
 \section{Results}
 \label{sec:results}
 
-The dataset contains $\Nstates$ accepted solutions at $\Ncouplings$
-couplings from $\alpha=0$ to $\alpha=1/2$ in units $r_H=1$.
-Every one of them is a solution of the nonlinear radial boundary-value
-problem of section~\ref{sec:response}, solved at that coupling: nothing is
-obtained by perturbing about $\alpha=0$ or by rescaling the static solution.
-The spin coverage is not uniform across the $\Ncouplings$ couplings, and the
-difference matters for what each figure can show.
+The dataset contains $\Nstates$ accepted solutions in total, summed over
+$\Ncouplings$ couplings from $\alpha=0$ to $\alpha=1/2$ in units $r_H=1$. The
+couplings are not equally spaced: the spacing is finest at small $\alpha$,
+where the slope has to be resolved as it leaves its perturbative value, and
+widens towards $\alpha=1/2$; the values are the first column of
+table~\ref{tab:extremal}. Each coupling carries one \emph{walk}, a
+continuation in the spin at fixed $\alpha$ in which every Newton solve is
+seeded by the previous solution. A walk takes many more steps than it records:
+a state is kept whenever the spin or the temperature has changed by a set
+amount, so the recorded states crowd together as the temperature falls, and
+only states that pass the acceptance gates of appendix~\ref{app:numerics} are
+counted. Every one of them is a solution of the nonlinear radial
+boundary-value problem of section~\ref{sec:response}, solved at that coupling:
+nothing is obtained by perturbing about $\alpha=0$ or by rescaling the static
+solution. The spin coverage is not uniform across the $\Ncouplings$ couplings,
+and the difference matters for what each figure can show.
 At $\Nmapcouplings$ of them, namely \Nmaplist, the family was walked
 over the whole spin range, from $q$ near zero up to the near-extremal end.
 At the remaining $\Nnarrowcouplings$ the walk starts at $q=\Nstartspin$ and
@@ -960,8 +981,13 @@ continuous minimum between the sampled couplings.
 The central extrapolated $M_\ext$ remains increasing at fixed $J$ across the
 sampled range: the $\mu$ column of table~\ref{tab:extremal} is monotone, and
 its increments exceed the corresponding spreads in table~\ref{tab:budget} by
-two orders of magnitude or more. The accumulated mass change is the integral of
-the slope:
+two orders of magnitude or more. Those spreads, however, are the three degree
+checks only. Given the same twenty-fit list as the potential
+(appendix~\ref{app:numerics}), the envelope of $\mu$ at the smallest couplings
+becomes comparable with the increments between neighbouring couplings. There
+the increase of the extremal mass rests on the sign of $\Psi_\ext$, whose
+envelope is far smaller than its value, rather than on the mass curve alone.
+The accumulated mass change is the integral of the slope:
 \begin{equation*}
  M_\ext(J,\alpha)-M_\ext(J,0)
  =J^{2/3}\int_0^{\alpha/J^{2/3}}\Psi_\ext(y')\,\dd y'.
@@ -969,8 +995,11 @@ the slope:
 Thus the suppression of the local slope is not a suppression factor
 for the total mass shift.
 
-Figure~\ref{fig:massext} shows the mass that this integral accumulates.
-Across the sampled range $\mu$ rises by $\Nmugrowth\%$, while the first-order
+Figure~\ref{fig:massext} shows the extremal mass itself. The plotted $\mu$ is
+not this integral: it is formed at each coupling from the separately
+extrapolated asymptotic charges, $\mu=M_\ext/J_\ext^{2/3}$, and the integral is
+compared with it below. Across the sampled range $\mu$ rises by
+$\Nmugrowth\%$, while the first-order
 expression \eqref{eq:published} runs above it and overshoots by a factor
 $\Nlinearratio$ at the largest coupling. The fall of the slope below $\pi$ is a
 fall in the rate: the extremal mass grows more slowly than linear order
@@ -997,7 +1026,11 @@ increase of $\mu$ re-expressed, and not an independent measurement.
  the bounds $x<1$ and $j\le1$ reported there dashed, and the endpoint conjectured
  there as a star; the dotted segment joins our last sampled point to that
  endpoint and is not computed. Every plotted extremal point is a $T=0$
- intercept of a fit and not a constructed solution.}
+ intercept of a fit and not a constructed solution; $\mu$ is formed from the
+ extrapolated mass and angular momentum, not by integrating $\Psi_\ext$. The
+ points carry no error bars. Their twenty-fit envelopes are discussed in
+ appendix~\ref{app:numerics}, and the three-fit spreads in
+ table~\ref{tab:budget}.}
  \label{fig:massext}
 \end{figure}
 
@@ -1007,10 +1040,25 @@ extrapolated masses and spins. Scale invariance implies
  \int_{y_1}^{y_2}\Psi_\ext(y)\,\dd y=\mu(y_2)-\mu(y_1).
  \label{eq:identity}
 \end{equation}
-The right side does not use the entropy formula, so this provides a
-useful consistency test. It is not an independent determination:
-both sides share masses, spins, the solver and the temperature-based
-selection and extrapolation of the near-extremal states.
+The two sides reach the mass curve by different paths. The right side uses only
+the mass and angular momentum read at infinity, along the extremal branch. The
+left side also uses the temperature, the Wald entropy with its explicit
+$\alpha$ term, the horizon angular velocity, the coupling derivatives of the
+response solve and the assumption that $T\,\partial S_\ext/\partial\alpha$
+vanishes at extremality, and it uses them along the fixed-$(r_H,\Omega_H)$
+direction of \eqref{eq:psi}. Agreement therefore checks that the numerical
+$(M,T,S,\Omega_H,J,\Psi)$ satisfy the extended first law consistently along
+two different paths through the solutions: a wrong entropy term, temperature,
+derivative or relative normalisation of $M$ and $S$ would each appear as a
+mismatch. Since the extended first law is a theorem
+\cite{Kastor:2010gq,Neri:2024}, this validates the numerics, not the law. It is
+also not an independent determination of $M_\ext$. Both sides share the
+solutions, the field equations and their discretisation, and the
+zero-temperature extrapolation: $M$, $J$ and $\Psi$ are extrapolated
+separately but with the same kind of fit through the same cold states, so a fit
+that misses the true approach to extremality biases every intercept. Such a
+bias need not cancel in \eqref{eq:identity}, but its effects on the two sides
+can be correlated, and agreement does not bound them.
 
 We integrate a local cubic interpolant through the four nearest
 potential samples. The largest interval discrepancy in
@@ -1028,9 +1076,25 @@ routes, the discrepancy is within the combined spread at
 $\Nroutewithinspread$ of the $\Nrouteintervals$ intervals, the worst case
 reaching $\Nroutespreadratio$ of it; since the two routes share those spreads
 this is a consistency statement about the quadrature and not an independent
-confirmation. Agreement of the changes in $\mu$ does not
+confirmation. The recorded spreads are the narrow ones: for $\mu$ the three
+degree checks, and for $\Psi$ an earlier envelope narrower than that of
+table~\ref{tab:extremal}. The twenty-fit envelopes of
+appendix~\ref{app:numerics} are wider for both, so the count above is
+conservative. Agreement of the changes in $\mu$ does not
 bound a common offset in the masses, and we do not use it as an
 absolute mass-accuracy estimate or a calibration of the sensitivity bars.
+
+The same envelopes settle which route is the more precise. Interval by
+interval, the potential determines the change in $\mu$ about an order of
+magnitude more precisely than the difference of the extrapolated masses, at
+every sampled interval; the open squares of figure~\ref{fig:shift} are the
+noisier slope estimate, most of all at the smallest couplings, where the
+spacing is finest and the walks are narrowest. Cumulatively the comparison
+splits. Summed from $y=0$, the errors of $\Psi_\ext$ accumulate, and the
+integrated slope is the better determination of $\mu$ only at the smallest
+couplings; beyond them $\mu$ read at infinity is. Neither route escapes the
+extrapolation in temperature: $\Psi_\ext$ is the more precise slope because it
+extrapolates more stably than $M$ and $J$, not because it avoids that step.
 
 \begin{figure}[t]
  \centering
@@ -1038,7 +1102,11 @@ absolute mass-accuracy estimate or a calibration of the sensitivity bars.
  \caption{The extremal mass slope. Circles show the extrapolated potential
  with its fit-sensitivity envelope; open squares show secants of $\mu(y)$ at
  interval midpoints. A secant is an interval average rather than a pointwise
- derivative, and the two estimates share numerical inputs. The star is the
+ derivative, and the two estimates share numerical inputs. The squares carry
+ no error bars. Each inherits the $\mu$ envelopes of its two ends divided by
+ the interval, which with the twenty-fit list is comparable with the secant
+ itself at the smallest couplings and well above the envelope of $\Psi_\ext$
+ everywhere (section~\ref{sec:shift}). The star is the
  perturbative value $\pi$ of \cite{Ma:2020xwi}, which is not imposed in
  the response calculation.}
  \label{fig:shift}
@@ -1096,9 +1164,15 @@ to $\Psi_\ext$ agree to $\Nsmarrextworst$ relative at all
 $\Nsmarrextcouplings$ finite couplings, well below every fit sensitivity in
 table~\ref{tab:extremal}. The division by
 $\alpha$ in \eqref{eq:psismarr} is ill-conditioned as $\alpha\to0$, which is
-why no row appears at $\alpha=0$ and why this route cannot replace the response
-calculation; at $\alpha=0$ the corresponding test is the perturbative
-potential of section~\ref{sec:perturbative}.
+why no row appears at $\alpha=0$; at $\alpha=0$ the corresponding test is the
+perturbative potential of section~\ref{sec:perturbative}. At finite coupling
+the Smarr route could supply $\Psi$ without the linear solve. The response
+calculation earns its place where Smarr is weak, at small coupling, where the
+numerator of \eqref{eq:psismarr} is a near-cancellation divided by a small
+$\alpha$, and because it does not rely on the scaling argument. Smarr and the
+subtraction \eqref{eq:psi} are the same first law taken along two directions,
+the scaling direction and the coupling direction, so their agreement is one
+consistency test of the numerics and not two.
 
 \begin{table}[t]
  \centering\small
@@ -1349,18 +1423,27 @@ One comparison with \cite{Brihaye:2010wp} does not close. A separate
 reconstruction of the non-extremal family gave an outer ergosurface radius
 $1.102101$ against the $1.104$ quoted there, at $\alpha=1/2$ in our
 convention. The discrepancy is unresolved and we do not offer it as evidence
-of an erratum. It tests the reconstruction of the non-extremal metric
+of an erratum. It is also the only comparison of our rotating solutions at
+finite coupling with values obtained numerically in \cite{Brihaye:2010wp}; the
+comparisons that close are with closed-form statements or with the
+near-horizon algebra, which does not use the bulk solver. It tests the reconstruction of the non-extremal metric
 functions away from the horizon; it does not test the asymptotic charge
 extraction, the response solve or the extrapolation, none of which uses the
 ergosurface radius, and the near-horizon comparison of section~\ref{sec:checks},
 which does test the coupling conversion, agrees to $\Npublishedstationarity$.
 
-Three things would sharpen the result. A direct construction of extremal
+Four things would sharpen the result. A direct construction of extremal
 solutions carrying their own response measurement, along the lines of
-\cite{Kleihaus:2023zzs}, would remove the extrapolation; a derivation of the
-leading near-extremal powers of $T$ would do more still, since it would replace
-the fitted cubic with a model; and a second-order perturbative calculation
-would test the initial departure from $\Psi_\ext=\pi$ independently.
+\cite{Kleihaus:2023zzs}, would remove the extrapolation, though built from
+our field equations and charge extraction it would not be independent of
+them; a derivation of the leading near-extremal powers of $T$ would do more
+still, since it would replace the fitted cubic with a model; a second-order
+perturbative calculation would test the initial departure from
+$\Psi_\ext=\pi$ independently; and the extremal solutions of
+\cite{Kleihaus:2023zzs} in tabulated form would test the mass curve
+independently. The departures measured here are large enough that even a
+percent-level comparison would test the sign of the shift and the overshoot
+of the first-order formula, though not the slope.
 
 \appendix
 \section{Numerical construction and sensitivity analysis}
@@ -1496,6 +1579,17 @@ intercepts from the production central estimate, or the original
 degree spread if larger.
 The central values are unchanged by this reanalysis.
 
+The tables apply this list to the potential only. Applied unchanged to $M$ and
+$J$, pairing them fit by fit so that their correlation is kept and forming
+$\mu$ from each pair, it widens the envelope of $\mu$ over the degree spread of
+table~\ref{tab:budget} by up to several orders of magnitude, most where that
+spread is smallest. This is the comparison on equal footing used in
+section~\ref{sec:shift}: with the same fits on both sides, the potential is the
+more precise slope in every sampled interval, and the integrated potential is
+the more precise mass curve only at the smallest couplings. Whether the shifts
+of the two routes across the twenty fits are correlated has not been
+computed.
+
 Table~\ref{tab:models} shows the largest changes from the square-root
 and logarithmic models across the two coordinates and windows.
 These terms are sensitivity probes, not a derivation of the
@@ -1570,7 +1664,9 @@ measure and not a bound on their sum.
  table~\ref{tab:extremal}, not only for $\Psi_\ext$. The first four are
  intercept spreads across the original degree checks, $\delta j$ propagated
  through the extrapolated $M$ and $J$ together; $\delta\Psi_\ext$ is the
- envelope of table~\ref{tab:extremal}. The last two columns are the largest
+ envelope of table~\ref{tab:extremal}. The two kinds are not comparable: the
+ degree spreads cover three fits and the envelope twenty, and the same twenty
+ fits widen $\delta\mu$ considerably (appendix~\ref{app:numerics}). The last two columns are the largest
  residual the production cubic leaves on its own six states and the largest
  displacement of its intercept when one of those states is removed; they are
  not independent contributions to be combined.}
