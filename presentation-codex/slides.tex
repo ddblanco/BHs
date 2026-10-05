@@ -1,0 +1,135 @@
+\documentclass[20pt,aspectratio=169]{beamer}
+\geometry{paperwidth=320mm,paperheight=180mm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,booktabs}
+\definecolor{ink}{HTML}{152D40}
+\definecolor{accent}{HTML}{007E87}
+\definecolor{muted}{HTML}{536575}
+\setbeamercolor{normal text}{fg=ink,bg=white}
+\setbeamercolor{frametitle}{fg=ink}
+\setbeamercolor{structure}{fg=accent}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}{\vspace{6mm}\insertframetitle\par}
+\setbeamerfont{frametitle}{size=\fontsize{32}{36},series=\bfseries}
+\setbeamersize{text margin left=15mm,text margin right=15mm}
+\setbeamertemplate{footline}{\hspace{15mm}\textcolor{muted}{\fontsize{11}{13}\selectfont AI agents for research\hfill UBA, 1--2 October 2026\hspace{12mm}\insertframenumber/8\hspace{15mm}}\vspace{5mm}}
+\newcommand{\smallnote}[1]{{\fontsize{14}{17}\selectfont\color{muted}#1\par}}
+\newcommand{\key}[1]{{\color{accent}\bfseries #1}}
+\input{sources/numbers.tex}
+\input{sources/comparison-numbers.tex}
+\hypersetup{pdftitle={Rotating black holes with AI agents},pdfauthor={Cecilia Bejarano, David Blanco, Andrés Goya, Guillem Pérez-Nadal}}
+\begin{document}
+\begin{frame}
+\relax
+{\fontsize{42}{47}\selectfont\bfseries Rotating black holes\\with AI agents\par}
+\vspace{5mm}
+{\color{accent}\fontsize{25}{30}\selectfont Reproducing a numerical family\\and measuring the shift of extremality\par}
+\vspace{8mm}
+Cecilia Bejarano\textsuperscript{1}, David Blanco\textsuperscript{2}, Andrés Goya\textsuperscript{1},\\Guillem Pérez-Nadal\textsuperscript{2}\par
+\vspace{4mm}
+\smallnote{\textsuperscript{1} Instituto de Astronomía y Física del Espacio (IAFE), CONICET--UBA\\\textsuperscript{2} Departamento de Física, FCEN, UBA and IFIBA, CONICET--UBA}
+\vspace{6mm}
+\smallnote{Course on AI agents for research, Departamento de Física, Universidad de Buenos Aires\\Course leaders: Matías Zaldarriaga and Nahuel Mirón-Granese}
+\vspace{4mm}
+\smallnote{AI assistance: Claude (Anthropic) and ChatGPT / Codex (OpenAI).\\The human authors take responsibility for the scientific claims.}
+\end{frame}
+\begin{frame}{The first prompts}
+\smallnote{4 September 2026 \quad Original project prompt, excerpt}
+\vspace{5mm}
+{\fontsize{26}{33}\selectfont ``Una vez verificados los códigos, el paso siguiente sería emprender la búsqueda de nuevas soluciones.''\par}
+\vspace{7mm}
+\key{Validate the code before exploring new solutions.}
+\vspace{9mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+\key{Initial scope}\\[3mm]Rotating black holes in $D>4$\\Known GR and EGB benchmarks
+\end{column}
+\begin{column}{.48\textwidth}
+\key{The next prompts}\\[3mm]Literature list, including 1010.0860\\Follow the course requirements
+\end{column}
+\end{columns}
+\vspace{10mm}
+\smallnote{The working problem became $D=5$, asymptotic flatness and equal spins $J_1=J_2=J$.\\Source: chronological prompt log, entries 001--003. English line is a paraphrase.}
+\end{frame}
+\begin{frame}{Reproducing the profiles in 1010.0860}
+\centering
+\includegraphics[width=.88\textwidth,height=103mm,keepaspectratio]{assets/fig-paper-comparison.pdf}
+\par\vspace{2mm}
+\key{Same functions and axes. A visible interior mismatch remains.}\par
+\vspace{3mm}
+\smallnote{$\alpha_{\rm paper}=3=4\alpha$, $q=0.33$. Up to $0.014$ absolute difference.\\74 vertices per published curve, extracted from the source PostScript.\\Brihaye, Kleihaus, Kunz and Radu (2010), Fig. 1. Project comparison: \texttt{short-summary}.}
+\end{frame}
+\begin{frame}{Measuring the shift of extremality}
+\smallnote{Classical Einstein--Gauss--Bonnet gravity in five dimensions, $G_5=1$}
+\vspace{4mm}
+\[ I=\frac{1}{16\pi}\int d^5x\sqrt{-g}\,[R+\alpha\mathcal L_{\rm GB}] \]
+\vspace{2mm}
+\[ dM=T\,dS+2\Omega_H\,dJ+\Psi\,d\alpha\qquad\color{accent}\left.\frac{\partial M_{\rm ext}}{\partial\alpha}\right|_J=\lim_{T\to0}\Psi \]
+\vspace{5mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+\key{Nonlinear solutions}\\[3mm]Four radial functions\\Chebyshev collocation + Newton\\\Nstates\ states, \Ncouplings\ couplings
+\end{column}
+\begin{column}{.48\textwidth}
+\key{Response at each solution}\\[3mm]$R(u,\alpha)=0$\\[2mm]$R_u\,u_{,\alpha}=-R_{,\alpha}$\\[2mm]One linear solve, then extrapolate
+\end{column}
+\end{columns}
+\vspace{7mm}
+\smallnote{Standard first law and numerical methods. Project contribution: finite-coupling response.\\The extremal identity assumes a regular branch and finite $\partial_\alpha S_{\rm ext}|_J$.}
+\end{frame}
+\begin{frame}{The slope stays positive and turns upward}
+\begin{columns}[c,onlytextwidth]
+\begin{column}{.71\textwidth}\includegraphics[width=\linewidth]{assets/fig-shift.pdf}\end{column}
+\begin{column}{.25\textwidth}
+\key{Lowest sample}\\[2mm]$\Psi_{\rm ext}\simeq\Npsiminshort$\\$y\simeq\Nyminshort$\\[9mm]
+\key{Last sample}\\[2mm]$\Psi_{\rm ext}\simeq\Npsilastshort$\\$y\simeq\Nylastshort$
+\end{column}
+\end{columns}
+\vspace{4mm}
+\smallnote{Black points: $T=0$ extrapolants. Bars: fit sensitivity, not confidence intervals.\\Star: published first-order slope $\pi$ (Ma, Li and Lü, 2009.00015).\\Open squares: mass secants, which share numerical systematics with the response.}
+\end{frame}
+\begin{frame}{The extremal mass grows more slowly than linear order}
+\begin{columns}[c,onlytextwidth]
+\begin{column}{.53\textwidth}
+\centering\includegraphics[width=.92\linewidth,height=116mm,keepaspectratio,trim=0 0 215 0,clip]{assets/fig-massext.pdf}
+\end{column}
+\begin{column}{.43\textwidth}
+\key{About \Nmugrowth\% mass growth}\\[3mm]Across the sampled range at fixed $J$\\[9mm]
+Every extremal point is extrapolated\\[6mm]Branch uniqueness and stability untested\\[6mm]Finite-coupling classical EGB result\\No universal higher-curvature EFT claim
+\end{column}
+\end{columns}
+\smallnote{Left panel of the manuscript mass figure. $\mu=M_{\rm ext}/J^{2/3}$ and $y=\alpha/J^{2/3}$.}
+\end{frame}
+\begin{frame}{Recorded time and token use}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.32\textwidth}{\fontsize{39}{43}\selectfont\key{36.8 h}}\\[2mm]Active agent time\end{column}
+\begin{column}{.32\textwidth}{\fontsize{39}{43}\selectfont\key{1.42 billion}}\\[2mm]Processed tokens\end{column}
+\begin{column}{.30\textwidth}{\fontsize{39}{43}\selectfont\key{5.94 million}}\\[2mm]Output tokens\end{column}
+\end{columns}
+\vspace{9mm}
+\begin{tabular}{@{}p{172mm}rr@{}}
+\toprule
+Largest work blocks & Active time & Processed tokens\\\midrule
+Rotating EGB equations and solver & 11.2 h & 508 M\\
+Response, manuscript and review & 8.7 h & 408 M\\
+First conjugate-potential attempt & 4.5 h & 169 M\\\bottomrule
+\end{tabular}\par
+\vspace{6mm}
+\smallnote{4--28 September 2026. Mostly cached context reads. Counts are not a billing estimate.\\Active time uses a 20-minute inactivity cutoff. Human work and unattended numerical runs are excluded.\\\textbf{Total CPU/GPU computation time is unavailable.} Source: project usage report.}
+\end{frame}
+\begin{frame}{What we learned about agents in research}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.47\textwidth}
+\key{What made the result useful}\\[6mm]Analytic benchmarks and assertions\\[6mm]Independent checks of the equations\\[6mm]Saved failures, data and run receipts
+\end{column}
+\begin{column}{.47\textwidth}
+\key{What still needs human judgment}\\[6mm]Choosing a tractable problem\\[6mm]Recognizing shared numerical errors\\[6mm]Limiting claims to the evidence
+\end{column}
+\end{columns}
+\vspace{12mm}
+{\fontsize{26}{32}\selectfont The physics result is a positive, non-monotonic extremal slope on the sampled branch.\par}
+\vspace{6mm}
+\smallnote{Known family reproduced with explicit discrepancies. Finite-coupling derivative measured in this project.\\Next decisive check: independently construct extremal solutions and compare the slope.}
+\end{frame}
+\end{document}

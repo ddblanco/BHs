@@ -1,0 +1,36 @@
+20260929
+#1
+Prepare a short presentation about the content of this project: the reproduction of paper 1010.0860 (short-summary) and the shift of extremality due to higher-curvature terms (manuscript). Place everything inside a folder /presentation-codex. The presentation must be 10 minutes with 7-8 slides. The authors are: Cecilia Bejarano, David Blanco, Andrés Goya and Guillem Pérez-Nadal (check the correct affiliations in the web), assisted by Claude and ChatGPT (I'm not sure how to give proper credit to this). The presentation corresponds to a course on the use of AI agents for research (people in charge: Matías Zaldarriaga and Nahuel Mirón-Granese) conducted at the Physics Deparment of the University of Buenos Aires. The talk will be given on October 1st-2nd. Be as clear and concise as you can. Include figures and little text. Include information regarding the first prompts used for the project and how much tokens and time of computation it consumed. Prepare a text of what should I tell when giving the presentation. The presentation and the text must be prepared for human understanding. Do it in html and in tex/pdf.
+
+#2 Codex
+Add to the second slide of the short presentation something minimal about the extremality condition of the kerr black hole and about black hole thermodynamics (the first law).
+Add to the third slide an snapshot of the file "ruta-de-trabajo-inicial.txt" and of the beggining of section 4.1.3 and footnote 14 of 1010.0860 regarding the extended Smarr relation for egb black holes.
+Modify the notes (tex, pdf, html) files accordingly. Add some extra clarifications in the notes explaining the numbers in slide 4.
+
+20260930
+#1
+I need you to modify the short presentation and the text it goes with it to make it shorter: the talk should last 5 minutes. I have the following suggestions:
+Para organizar la presentación tengan en cuenta al menos una diapositiva de:
+- Problema/pregunta: contexto general del tema a tratar, qué problema o pregunta intentaron abordar y por qué
+- Resultado principal: mostrar uno de los resultados más relevantes que pudieron obtener.
+- Validación: ¿cómo evaluaron si ese resultado es correcto, razonable o confiable?
+- Experiencia/aprendizaje: algún truco, dificultad, herramienta o aprendizaje durante el desarrollo que crean que puede ser útil para el resto.
+Keep it concise and understandable for humans. Try to use graphs, some equations/formulas and little text. The text/notes what goes with the presentation must be also human readable and understandable you can expand more. You can add some appendices explaining in more details the numerical method and/or the physical meaning of the results. 
+
+#2
+Modify the date: the actual date is 02/10/2026.
+Slide 2: make the figure a little bit smaller, so the text "Kerr (4D):... extremal can fit in one line. Place Kerr(4D) and Myers-Perry (5D) as bullets within a head text saying GR. Below them appears "Add Gauss-Bonnet term..."
+Slide3: It is awfully looking how the equation with first law is. Make it nicer looking.
+
+#3
+I added by hand some modifications in the first two slides, check if everything is correct.
+Slide 3, leave the first law equation without any box.
+After slide 5 add a slide saying "Thank you for your attention" and "Thanks Matías and Nahuel for the course".
+
+#4
+Change the following in the backup slides:
+A1. Change the size of the plots to add the 1st figure in slide of "Step 0".
+Delete slide "Step 0..."
+
+#5
+Slide A1: change the order of figures and erase the captions
