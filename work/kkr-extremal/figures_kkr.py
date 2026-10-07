@@ -163,11 +163,73 @@ def _(FIG, INK, OURS, nh, np, plt):
     ax3.axhline(2, color="#9aa7b0", lw=.7, ls=":")
     ax3.set_xscale("log"); ax3.set_xlim(8e-4, yy.max()*1.2)   # y = 0 (Myers-Perry: gamma = 2) off-axis
     ax3.set_xlabel(r"$y=\alpha/J^{2/3}$")
-    ax3.set_ylabel(r"$\gamma$"); ax3.legend(loc="lower left"); ax3.grid(alpha=.18, lw=.5)
+    ax3.set_ylabel(r"$\gamma$"); ax3.legend(loc="upper left"); ax3.grid(alpha=.18, lw=.5)
     fig3.tight_layout()
     fig3.savefig(FIG / "fig3-exponent.pdf"); fig3.savefig(FIG / "fig3-exponent.png", dpi=200)
     fig3
     return (fig3,)
+
+
+@app.cell
+def _(FIG, INK, KKR, MP, OURS, STATIC, branch, np, plt):
+    # Figure 4: profiles of extremal solutions, deviation from extremal Myers-Perry
+    # (KKR gauge, a = 1, g_H = P2(0) = 1; P_i = exp(2 F_i) = 1 + (1-s)^2 Q_i, W = (1-s)^2 Q_4)
+    _CHEB = np.polynomial.chebyshev
+    fig4, axes4 = plt.subplots(2, 2, figsize=(6.4, 4.6), sharex=True)
+    _sg = np.linspace(0, 1, 400)
+    _targets = (0.1, 0.5, 1.5, 3.1)
+    _colors4 = (MP, KKR, STATIC, OURS)
+    for _target, _col in zip(_targets, _colors4):
+        _row = min(branch["rows"], key=lambda _r: abs(_r["alpha"] - _target))
+        _Q = [_CHEB.chebval(1 - 2*_sg, np.array(_c)) for _c in _row["coeffs_high"]]
+        _F = [0.5*np.log(1 + (1 - _sg)**2*_q) for _q in _Q[:3]]
+        _Wp = (1 - _sg)**2*_Q[3]
+        _lab = rf"$\alpha={_row['alpha']:.2f}$, $x={_row['high']['x']:.2f}$"
+        for _ax, _v in zip(axes4.flat, (*_F, _Wp)):
+            _ax.plot(_sg, _v, color=_col, label=_lab)
+    for _ax, _name in zip(axes4.flat, ("$F_1$", "$F_2$", "$F_3$", "$W$")):
+        _ax.set_ylabel(_name); _ax.axhline(0, color=INK, lw=.5, ls=":"); _ax.grid(alpha=.18, lw=.5)
+    for _ax in axes4[1]:
+        _ax.set_xlabel(r"$s=r/(1+r)$   (horizon $s=0$, infinity $s=1$)")
+    axes4[0, 0].legend(loc="upper right")
+    fig4.tight_layout()
+    fig4.savefig(FIG / "fig4-profiles.pdf"); fig4.savefig(FIG / "fig4-profiles.png", dpi=200)
+    fig4
+    return (fig4,)
+
+
+@app.cell
+def _(FIG, HERE, INK, KKR, OURS, ext_ms, json, np, plt):
+    # Figure 5: why the mass is read as a value, not as a second derivative
+    _conv_P = json.loads((HERE / "convergence_r.json").read_text())
+    _conv_Q = json.loads((HERE / "convergence_rq.json").read_text())
+    _ref = {round(_r["alpha_gb"], 6): _r["mu"] for _r in ext_ms}
+    fig5, ax5 = plt.subplots(figsize=(6.2, 3.0))
+    _marks = ("o", "s", "^")
+    for (_cp, _cq), _mk in zip(zip(_conv_P, _conv_Q), _marks):
+        _mu_ref = _ref[round(_cp["alpha"], 6)]
+        _nP = np.array([_r["n"] for _r in _cp["rows"]]); _dP = np.array([abs(_r["mu"] - _mu_ref) for _r in _cp["rows"]])
+        _nQ = np.array([_r["n"] for _r in _cq["rows"]]); _dQ = np.array([abs(_r["mu"] - _mu_ref) for _r in _cq["rows"]])
+        ax5.loglog(_nP, _dP, _mk + "--", color=KKR, ms=4, mfc="white")
+        ax5.loglog(_nQ, _dQ, _mk + "-", color=OURS, ms=4)
+    _nn = np.array([40, 170])
+    ax5.loglog(_nn, 3e-3*(_nn/40.)**-2.0, ":", color=INK, lw=.8)
+    ax5.text(105, 7e-4, r"$\propto N^{-2}$", fontsize=8)
+    ax5.axhspan(1e-8, 2e-6, color="#9aa7b0", alpha=.15, lw=0)
+    ax5.text(172, 1.4e-8, "agreement of the\ntwo routes", fontsize=7, color="#5b6b76", ha="right", va="bottom")
+    _h = [plt.Line2D([], [], color=KKR, ls="--", label=r"$M$ from $P_1''(\infty)$ ($P$ form)"),
+          plt.Line2D([], [], color=OURS, ls="-", label=r"$M$ from $Q_1(\infty)$ ($Q$ form)")]
+    _h += [plt.Line2D([], [], color=INK, ls="", marker=_m, ms=4, mfc="white", label=rf"$\alpha={_a}$")
+           for _m, _a in zip(_marks, (0.05, 0.2, 0.5))]
+    ax5.legend(handles=_h, fontsize=6.5, loc="upper left", bbox_to_anchor=(1.01, 1.0))
+    ax5.set_xticks([32, 48, 64, 96, 128, 160]); ax5.set_xticks([], minor=True)
+    ax5.set_xticklabels(["32", "48", "64", "96", "128", "160"])
+    ax5.set_xlabel("number of collocation points $N$")
+    ax5.set_ylabel(r"$|\mu(N)-\mu_{\rm ms}|$"); ax5.grid(alpha=.18, lw=.5)
+    fig5.tight_layout()
+    fig5.savefig(FIG / "fig5-convergence.pdf"); fig5.savefig(FIG / "fig5-convergence.png", dpi=200)
+    fig5
+    return (fig5,)
 
 
 if __name__ == "__main__":
