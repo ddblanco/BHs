@@ -42,7 +42,11 @@ CURRENT (production)
                           ~7 min to generate.
   pw_generator.py 0      -> _pw_generated_p0.py : J from conserved p_w.
   extremal_r_solver.py   P representation (kept as a check; M from P1''(1)
-                          converges only ~N^-3.4).
+                          converges only ~N^-2: fitted |mu(N) - mu_ms| over
+                          N = 48..160 in convergence_r.json gives exponents
+                          1.99 / 2.05 / 2.14 at alpha = .05 / .2 / .5; the
+                          earlier note "N^-3.4" is not reproduced by that fit;
+                          see writeup/ fig5).
   extremal_rq.py         PRODUCTION: P_i = 1+(1-s)^2 Q_i, W = (1-s)^2 Q_4,
                           product-rule jets; rows: s=0 dP_i/ds=0 (i=1..3)+E_W;
                           node 1: E_W -> g_H = P2(0) = 1; s=1 rows identically
