@@ -18,3 +18,5 @@ references/data/1010.0860-src/
 !manuscript/figures/*.pdf
 !manuscript/supplementary/*
 .claude/settings.local.json
+# regenerable cache of the review scripts
+.riemann_cache.pkl
