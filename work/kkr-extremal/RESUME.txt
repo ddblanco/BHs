@@ -1,0 +1,89 @@
+Resume notes for the extremal-solution reproduction of arXiv:2303.12471
+(work/kkr-extremal). Plain text; update after every milestone.
+
+GOAL
+  Reproduce the equal-spin asymptotically flat results of arXiv:2303.12471
+  (fig. 1 left panels: a_H, s, t_H vs x and vs j), build a solver for the
+  EXTREMAL solutions themselves, and obtain M_ext(J, alpha), mu(y) and the
+  slope dM_ext/dalpha|_J directly at T = 0, to compare with the manuscript's
+  T -> 0 extrapolation (results/egb-extremality.json).
+
+DONE (all with asserted checks)
+  arxiv/                 arXiv source of 2303.12471 (paper.tex + 9 EPS)
+  eps_digitise.py        -> digitised.json : vector curves of the *-MP2.eps
+                          panels (equal spins). Each file has 3 plots: main,
+                          inset (twice). Plot-0 paths drawn AFTER the first
+                          fill belong to the inset and are mis-calibrated;
+                          use plot 0 up to the second fill, and plot 1.
+                          Calibration vs closed-form static curves ~3e-4.
+  derive.py              -> equations.pkl : EL equations with g = f2 FREE,
+                          = tensor route to 3e-14 on generic jets.
+  nearhorizon.py         -> nearhorizon.json : throat reproduces at7-at9
+                          (their at9 "J" = J1+J2 = 2 x per-plane J).
+                          Exponents (gauge f = rho^2/v1): pairs (gam,-1-gam);
+                          alpha=0 {-3,-2,0,0,1,2}; finite alpha: 2 -> gamma in
+                          (1.77,2): horizon C^1 not C^2 in rho.
+
+DEAD ENDS (keep for the write-up)
+  extremal_equations.py / extremal_solver.py : gauge g = r^2 with double-zero
+     factored (b=(1-z^2)^2 B ...). Collocation near singular (cond 1e12-13,
+     sigma_min -> 0 with N): near-extremal neighbours (B,F ~ 1/(x+delta)) are
+     almost representable by polynomials. Abandoned.
+  kkr_solver.py (xi = r^2/(1+r^2), power 1): KKR gauge b f = fixed works,
+     but (i) at fixed (a, alpha) a smooth zero mode (physical size vs a)
+     -> fix g_H = P2(0) = 1 ; (ii) residual gauge r -> r + c sqrt(b f) gives
+     r^3 = xi^(3/2) at the horizon -> slow algebraic convergence in xi.
+     The constraint-row replacement was WRONG (made things worse).
+
+CURRENT (production)
+  kkr_equations.py 0     -> _kkr_generated_p0.py : KKR gauge in s = r/(1+r);
+                          three forms per residual (xi-expanded for s<=.12,
+                          zeta-expanded for s>=.88, unexpanded in between).
+                          ~7 min to generate.
+  pw_generator.py 0      -> _pw_generated_p0.py : J from conserved p_w.
+  extremal_r_solver.py   P representation (kept as a check; M from P1''(1)
+                          converges only ~N^-3.4).
+  extremal_rq.py         PRODUCTION: P_i = 1+(1-s)^2 Q_i, W = (1-s)^2 Q_4,
+                          product-rule jets; rows: s=0 dP_i/ds=0 (i=1..3)+E_W;
+                          node 1: E_W -> g_H = P2(0) = 1; s=1 rows identically
+                          zero -> all four equations collocated at s* between
+                          the last two nodes. c_t = Q1(1)/2.
+  test_rq.py             gate + resolution study -> convergence_rq.json:
+                          mu at alpha = .05/.2/.5 (N=96) = 2.3280174 / 2.5319363
+                          / 2.8885348 vs manuscript 2.3280172 / 2.5319363 /
+                          2.8885349; y agrees to 1e-7. Round-off floor grows
+                          with N: best N ~ 48-96.
+  branch_rq.py           the branch, N = 48/72, resumable (branch_rq.json);
+                          tails < 1e-5, constraint < 1e-6, residual < 5e-8.
+                          The N = 64/96 attempt is in branch_rq_N64-96_discarded.*
+                          (round-off noise ~1e-6 at N=96 made the step collapse).
+  analyse_branch.py      checks (near horizon, Smarr, first law, omega identity)
+                          and comparison with the manuscript -> analysis.json
+  kkr_curves.py          -> kkr_curves.json (extremal curves of their fig. 1)
+  figures_kkr.py         marimo notebook -> figures/*.pdf|png; export with
+                          ../../.venv/bin/marimo export html figures_kkr.py -o figures_kkr.html
+
+STATUS (2026-10-07)
+  branch_rq.json: phase 1 (N 48/72 -> adaptive, constraint < 1e-6) to alpha
+    0.764; phase 2 (N 96/144+, constraint < 1e-5, tangent predictor) to alpha
+    2.2864 (x 0.809); phase 3 (N 128/192, constraint < 1e-4) to 3.0936;
+    phase 4 (N 144/216 -> 208/312, residual < 2e-7) to 3.1176 (x 0.863): STOPPED,
+    method limit (constraint > 1e-4 near the horizon, round-off floor at high N).
+    Further: horizon-stretching coordinate or extended precision.
+    Resume:  python branch_rq.py 10 144 216 1e-4 keep 2e-7
+  polished.json: the 12 manuscript couplings at N = 64/96/128 -> table.
+    mu agrees with the manuscript to <= 6e-6, y to <= 3.4e-7, the slope
+    mu' with Psi_ext to <= 1.9e-5 (envelopes 6e-4..2e-1).
+  nearhorizon.json: gamma(y) to y = 36: min 1.773 at y 0.029, = 2 at y 0.71,
+    = 3 at y 4.5.
+  figures/ + figures_kkr.html exported (python -m marimo: the .venv/bin/marimo
+    shebang is stale).
+  report/report.tex compiles with pdflatex (tectonic not installed).
+
+DONE 2026-10-07 15:00: final analysis, figures, report, vault pages.
+NEXT (only if extending to x ~ 0.92)
+  1. after any new branch rows: python analyse_branch.py; python make_report_numbers.py;
+     python -m marimo export html figures_kkr.py -o figures_kkr.html;
+     cd report && pdflatex report.tex (x2)
+  2. vault pages: vault/exercises/kkr-extremal-reproduction.md,
+     vault/concepts/non-smooth-extremal-horizon.md, vault/papers/2303.12471...

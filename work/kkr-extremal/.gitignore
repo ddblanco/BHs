@@ -1,0 +1,13 @@
+# third-party inputs: do not redistribute (fetch with: curl -L https://arxiv.org/e-print/2303.12471)
+arxiv/
+dsw.txt
+# regenerable intermediates (derive.py, kkr_equations.py, extremal_equations.py)
+*.pkl
+!equations.pkl
+_kkr_generated_p1.py
+_kkr_generated_p2.py
+_kkr_generated_p3.py
+_extremal_generated.py
+# superseded runs (their logs stay as records of the failed attempts, ignored by *.log)
+*_discarded.json
+__marimo__/

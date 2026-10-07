@@ -1,0 +1,135 @@
+<title>KKR Extremal Run Usage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column; two ledgers (tokens, compute) with a to-scale bar list, then caveats. */
+:root {
+  --bg: #f6f7f8;
+  --surface: #ffffff;
+  --fg: #1c2328;
+  --muted: #5d6a73;
+  --rule: #d9dee2;
+  --accent: #1f6f78;
+  --bar: #9cc3c7;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12171a; --surface: #192024; --fg: #e3e8eb; --muted: #95a3ab;
+    --rule: #2c363c; --accent: #6fb8bf; --bar: #2f6a70; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12171a; --surface: #192024; --fg: #e3e8eb; --muted: #95a3ab;
+  --rule: #2c363c; --accent: #6fb8bf; --bar: #2f6a70; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.55; }
+.page { max-width: 760px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 56px; display: grid; gap: 36px; }
+header { display: grid; gap: 8px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-size: 28px; font-weight: 600; line-height: 1.2; margin: 0; text-wrap: balance; }
+h2 { font-size: 18px; font-weight: 600; margin: 0 0 4px; text-wrap: balance; }
+p { margin: 0; max-width: 65ch; }
+.lede { color: var(--muted); }
+.totals { display: flex; flex-wrap: wrap; gap: 12px; }
+.total { flex: 1 1 200px; min-width: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; display: grid; gap: 2px; }
+.total .num { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; }
+.total .lbl { font-size: 13px; color: var(--muted); }
+section { display: grid; gap: 12px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-size: 12px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+td.n, th.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.sum td { font-weight: 600; border-bottom: none; }
+.bars { display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 15rem) 1fr 4.5rem; gap: 12px; align-items: center; }
+.bar-row .name { font-size: 14px; min-width: 0; }
+.track { height: 12px; background: var(--rule); border-radius: 2px; position: relative; overflow: hidden; }
+.fill { position: absolute; inset: 0 auto 0 0; background: var(--bar); }
+.bar-row .val { font-family: var(--mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.timeline { font-family: var(--mono); font-size: 13px; color: var(--muted); display: grid; gap: 4px; }
+ul.notes { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 65ch; }
+code { font-family: var(--mono); font-size: 13px; background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 0 4px; }
+@media (max-width: 520px) {
+  .bar-row { grid-template-columns: 1fr 4rem; }
+  .bar-row .track { grid-column: 1 / -1; grid-row: 2; }
+}
+</style>
+
+<div class="page">
+  <header>
+    <div class="eyebrow">BHs · work/kkr-extremal · 5–7 Oct 2026</div>
+    <h1>Token use and computation time</h1>
+    <p class="lede">For this session: the revision of <code>main.tex</code>, the commit, and the reproduction of arXiv:2303.12471 with the new extremal solver. Final figures, 7 Oct 2026, 15:00 (UTC−3); all computations have finished.</p>
+  </header>
+
+  <div class="totals">
+    <div class="total"><span class="num">≈ 0.78 M</span><span class="lbl">tokens, by the session's budget counter</span></div>
+    <div class="total"><span class="num">≈ 9.3 h</span><span class="lbl">sum of computation run times</span></div>
+    <div class="total"><span class="num">≈ 7.7 h</span><span class="lbl">actual computing time, with overlapping runs counted once</span></div>
+  </div>
+
+  <section>
+    <h2>Tokens</h2>
+    <p class="lede">Read from the remaining-tokens counter, which resets at each of your messages. It does not split input, output or cached tokens; <code>/cost</code> in Claude Code gives the exact session figures.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Part of the session</th><th class="n">Tokens</th></tr></thead>
+        <tbody>
+          <tr><td>Revising <code>main.tex</code> from the Q&amp;A</td><td class="n">≈ 165,000</td></tr>
+          <tr><td>Commit and push</td><td class="n">≈ 1,000</td></tr>
+          <tr><td>KKR reproduction and extremal solver, up to the first usage question</td><td class="n">≈ 560,000</td></tr>
+          <tr><td>Usage page, finishing the branch run, final build</td><td class="n">≈ 55,000</td></tr>
+          <tr class="sum"><td>Total</td><td class="n">≈ 780,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Computation time by block</h2>
+    <p class="lede">Run times from <code>time</code> output and from the creation and last-change times of each run's log and output files. Bars are to scale.</p>
+    <div class="bars" role="list">
+      <div class="bar-row" role="listitem"><span class="name">Extremal branch, production run (five phases)</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="val">263 min</span></div>
+      <div class="bar-row" role="listitem"><span class="name">Symbolic generation (equations, near-horizon, residual code)</span><div class="track"><div class="fill" style="width:28.5%"></div></div><span class="val">75 min</span></div>
+      <div class="bar-row" role="listitem"><span class="name">Non-smoothness check (low priority, in parallel)</span><div class="track"><div class="fill" style="width:25.9%"></div></div><span class="val">68 min</span></div>
+      <div class="bar-row" role="listitem"><span class="name">Final analysis, figures and report builds</span><div class="track"><div class="fill" style="width:20.9%"></div></div><span class="val">55 min</span></div>
+      <div class="bar-row" role="listitem"><span class="name">Solver tests and resolution studies</span><div class="track"><div class="fill" style="width:17.1%"></div></div><span class="val">45 min</span></div>
+      <div class="bar-row" role="listitem"><span class="name">Extremal branch, two discarded attempts</span><div class="track"><div class="fill" style="width:13.7%"></div></div><span class="val">36 min</span></div>
+      <div class="bar-row" role="listitem"><span class="name">High-resolution pass at the 12 manuscript couplings</span><div class="track"><div class="fill" style="width:6.5%"></div></div><span class="val">17 min</span></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>Sum of run times</td><td class="n">≈ 559 min ≈ 9.3 h</td></tr>
+          <tr><td>Ran alongside the branch (non-smoothness check, high-resolution pass, extended near-horizon scan)</td><td class="n">≈ −99 min</td></tr>
+          <tr class="sum"><td>Actual computing time</td><td class="n">≈ 460 min ≈ 7.7 h</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Calendar time</h2>
+    <div class="timeline">
+      <span>05 Oct 16:03  arXiv source downloaded</span>
+      <span>06 Oct 23:25  last run of the day (N = 64/96 attempt, discarded)</span>
+      <span>07 Oct 09:29  work resumes</span>
+      <span>07 Oct 14:10  extremal branch stops at x = 0.863</span>
+      <span>07 Oct 15:00  final analysis, figures and report built</span>
+    </div>
+    <p>About 47 hours elapsed in total, most of it idle (including the overnight gap from 6 Oct 23:25 to 7 Oct 09:29). The elapsed time is not a measure of computation.</p>
+  </section>
+
+  <section>
+    <h2>How to read these figures</h2>
+    <ul class="notes">
+      <li>The first version of this page gave 5 to 5.5 hours of actual computing. That was a rough overlap estimate; the overlap is now measured from the run timestamps.</li>
+      <li>NumPy runs multithreaded, so CPU time exceeds wall time: the last branch phase used about 60 min of CPU in 44 min.</li>
+      <li>The branch stopped at x = 0.863, short of KKR's x ≈ 0.92. That is a limit of the method (constraint violation next to the horizon at the highest usable resolution), not of running time.</li>
+      <li>The symbolic-generation row includes a 13-minute symbolic attempt that failed and was replaced by a numerical one.</li>
+    </ul>
+  </section>
+</div>
