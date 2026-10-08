@@ -40,6 +40,13 @@ changed, none removed, of which 4 belonged to an upstream commit rather than to 
 Note the ordering trap: the inventory has to be generated *last*. Writing this page after
 the first regeneration invalidated it, and it had to be redone.
 
+Done again on 2026-10-08: 249 -> 438 entries, 190 added (`work/kkr-extremal`,
+`work/critical-review`, `work/review`, `presentation-claude`, `output/pdf`, vault pages), 9
+changed (7 regenerated manuscript figures, `main.tex`, `.gitignore`), 1 removed: the
+gitignored third-party `references/data/1010.0860-src/profiles-alpha.eps`, which an earlier
+refresh had picked up from a local copy. The walk does not read `.gitignore`, so check the
+new entries against `git ls-files` before writing; here all 438 were tracked.
+
 Related: [[environment-drift-in-recorded-measurements]] — six figure PDFs were among the
 16 changed, re-rendered by a different matplotlib with identical data, which is exactly
 the kind of byte change a snapshot records and a provenance check should not.
