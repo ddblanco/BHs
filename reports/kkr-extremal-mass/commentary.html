@@ -83,6 +83,12 @@ th, td { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--ru
 th { font-family: var(--font-body); font-weight: 600; color: var(--ink-2); font-size: 12.5px; }
 th:first-child, td:first-child { text-align: left; }
 .foot { font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: 12px; }
+@media print {
+  @page { margin: 14mm 12mm; }
+  body { padding: 0; }
+  figure, .tbl, .verdict, li { break-inside: avoid; }
+  h2 { break-after: avoid; }
+}
 </style>
 </head>
 <body>
