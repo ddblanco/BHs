@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is the extremal slope new?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow referee-memo column; verdict box up top, four short sections, one chart. */
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --ink: #1b2330;
+  --ink-2: #4a5566;
+  --rule: #d9dee6;
+  --accent: #b4441c;
+  --ours: #2a78d6;
+  --theirs: #eb6834;
+  --ref: #8a93a3;
+  --verdict-bg: #fbeee8;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #12161d; --surface: #1a2029; --ink: #e8ecf2; --ink-2: #a9b3c2;
+    --rule: #2e3644; --accent: #f0875a; --ours: #3987e5; --theirs: #d95926;
+    --ref: #7d8696; --verdict-bg: #2a1d18;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #12161d; --surface: #1a2029; --ink: #e8ecf2; --ink-2: #a9b3c2;
+  --rule: #2e3644; --accent: #f0875a; --ours: #3987e5; --theirs: #d95926;
+  --ref: #7d8696; --verdict-bg: #2a1d18;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--ink);
+  font: 400 16px/1.55 var(--font-body);
+  padding: 40px 20px 56px;
+}
+main { max-width: 680px; margin: 0 auto; display: grid; gap: 28px; }
+header { display: grid; gap: 6px; }
+.eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+h1 { font: 600 34px/1.1 var(--font-display); margin: 0; text-wrap: balance; }
+h2 { font: 600 21px/1.2 var(--font-display); margin: 0 0 8px; text-wrap: balance; }
+p, ul { margin: 0; }
+section { display: grid; gap: 10px; }
+ul { padding-left: 1.2em; display: grid; gap: 6px; }
+.meta { color: var(--ink-2); font-size: 14px; }
+.verdict {
+  background: var(--verdict-bg); border-left: 4px solid var(--accent);
+  padding: 14px 18px; display: grid; gap: 6px;
+}
+.verdict strong { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--accent); }
+.mono { font-family: var(--font-mono); font-size: .92em; }
+figure { margin: 4px 0 0; background: var(--surface); border: 1px solid var(--rule); padding: 14px 14px 10px; }
+figcaption { font-size: 13.5px; color: var(--ink-2); margin-top: 6px; }
+.chart { overflow-x: auto; }
+svg { display: block; width: 100%; min-width: 480px; height: auto; }
+svg text { font-family: var(--font-mono); font-size: 11px; fill: var(--ink-2); }
+svg .grid { stroke: var(--rule); stroke-width: 1; }
+svg .axis { stroke: var(--ref); stroke-width: 1; }
+svg .refline { stroke: var(--ref); stroke-width: 1.2; stroke-dasharray: 5 4; }
+svg .band { fill: var(--ours); fill-opacity: .07; }
+svg .theirs { fill: none; stroke: var(--theirs); stroke-width: 2; stroke-linejoin: round; }
+svg .hit { fill: transparent; }
+svg .err { stroke: var(--ours); stroke-width: 1.5; }
+svg .axlabel { font-family: var(--font-body); font-size: 12px; fill: var(--ink); }
+svg .ours { fill: var(--ours); stroke: var(--surface); stroke-width: 1.5; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font: 400 13.5px/1.4 var(--font-mono); font-variant-numeric: tabular-nums; }
+th, td { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--font-body); font-weight: 600; color: var(--ink-2); font-size: 12.5px; }
+th:first-child, td:first-child { text-align: left; }
+.foot { font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Internal referee note · d=5 equal-spin EGB · 8 Oct 2026</div>
+    <h1>Is the extremal slope new?</h1>
+    <p class="meta">On the manuscript's ∂M<sub>ext</sub>/∂α|<sub>J</sub>, compared with Kleihaus, Kunz &amp; Radu, arXiv:2303.12471 (Ref. [2]).</p>
+  </header>
+
+  <div class="verdict">
+    <strong>Not ready to submit as it is.</strong>
+    <p>Ref. [2] already contains M<sub>ext</sub>(α) and its slope, over about six times our coupling range. Our numbers agree with it. The paper needs reframing before it goes to a journal.</p>
+  </div>
+
+  <section>
+    <h2>1. M<sub>ext</sub> is the observable; its slope adds little</h2>
+    <p>M<sub>ext</sub>(J, α) is the physically relevant quantity. It is the extremality bound itself: it says which (M, J) a black hole can have at a given coupling. Its slope, compared with M<sub>ext</sub>, carries little new information:</p>
+    <ul>
+      <li>The physics in the slope is its sign (the bound tightens) and its shape. Both are visible in M<sub>ext</sub>(α).</li>
+      <li>The slope is the natural object only at α → 0, where first-order perturbation theory gives π. At finite α, the comparison with perturbation theory is cleaner on M<sub>ext</sub> itself. At y = 0.51 the first-order formula predicts a shift 2.3 times the measured one, a mass 32% too high.</li>
+      <li>Its links to the entropy (Goon–Penco) and to Ψ in the extended first law are consistency identities. The manuscript itself declines to draw weak-gravity conclusions for uncharged, rotating holes. Ψ would be physical if α were set by a field such as a modulus, but the manuscript does not argue this.</li>
+      <li>Its practical value is technical: Ψ gives the slope pointwise, without differencing. That makes it a good tool and check for M<sub>ext</sub>, but not a result in itself.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. Both can be read from Ref. [2]</h2>
+    <p><b>How.</b> Ref. [2] prints no M<sub>ext</sub>, but its Fig. 1 plots the extremal horizon area against α/M (main panel) and against J/M<sup>3/2</sup> (inset). Matching the area between the two curves gives J/M<sup>3/2</sup> as a function of α/M on the extremal branch, which is M<sub>ext</sub>(J, α). I took the curves from the PDF's vector data, and the entropy panels confirm the result.</p>
+    <p><b>Result.</b> It agrees with ours to 2×10⁻³ in M<sub>ext</sub> and 0.015 in the slope, minimum included. Ref. [2] reaches α ≈ 2.6; we stop at 0.51.</p>
+    <figure>
+      <div class="legend"><span style="--c: var(--theirs)">read from Ref. [2], Fig. 1</span><span style="--c: var(--ours)">manuscript, Ψ<sub>ext</sub></span></div>
+      <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" id="slope" viewBox="0 0 640 300" role="img" aria-label="dM_ext/dalpha against alpha at J = 1: Ref. 2 curve and manuscript points coincide for alpha up to 0.51; Ref. 2 continues to alpha = 2.6, rising toward 3π/4.">
+<line class="grid" x1="64" x2="624" y1="240.3" y2="240.3"/>
+<text x="56" y="244.3" text-anchor="end">1.0</text>
+<line class="grid" x1="64" x2="624" y1="191.1" y2="191.1"/>
+<text x="56" y="195.1" text-anchor="end">1.5</text>
+<line class="grid" x1="64" x2="624" y1="141.9" y2="141.9"/>
+<text x="56" y="145.9" text-anchor="end">2.0</text>
+<line class="grid" x1="64" x2="624" y1="92.7" y2="92.7"/>
+<text x="56" y="96.7" text-anchor="end">2.5</text>
+<line class="grid" x1="64" x2="624" y1="43.5" y2="43.5"/>
+<text x="56" y="47.5" text-anchor="end">3.0</text>
+<text x="64.0" y="278" text-anchor="middle">0.0</text>
+<text x="167.7" y="278" text-anchor="middle">0.5</text>
+<text x="271.4" y="278" text-anchor="middle">1.0</text>
+<text x="375.1" y="278" text-anchor="middle">1.5</text>
+<text x="478.8" y="278" text-anchor="middle">2.0</text>
+<text x="582.5" y="278" text-anchor="middle">2.5</text>
+<text class="axlabel" x="344.0" y="296" text-anchor="middle">α   (J = 1)</text>
+<text class="axlabel" x="14" y="137.0" text-anchor="middle" transform="rotate(-90 14 137.0)">∂M<tspan baseline-shift="sub" font-size="8">ext</tspan> / ∂α</text>
+<line class="axis" x1="64" x2="624" y1="260" y2="260"/>
+<line class="refline" x1="64" x2="624" y1="29.6" y2="29.6"/>
+<text x="624" y="23.6" text-anchor="end">π  first order</text>
+<line class="refline" x1="64" x2="624" y1="106.9" y2="106.9"/>
+<text x="624" y="100.9" text-anchor="end">3π/4  conjectured endpoint</text>
+<rect class="band" x="64.0" y="14" width="106.0" height="246"/>
+<text x="176.0" y="248.2">← manuscript range</text>
+<polyline class="theirs" points="79.6,195.5 85.0,216.7 90.7,226.4 96.4,231.6 102.3,233.0 108.3,230.6 114.5,230.5 120.8,227.5 127.4,222.7 134.2,219.1 141.2,213.3 148.6,209.0 156.3,204.5 164.3,199.9 172.8,196.0 181.7,189.5 191.2,183.7 201.3,182.0 211.9,178.9 223.4,171.6 236.0,167.9 249.4,163.0 264.4,157.7 280.8,155.1 298.9,152.7 318.8,147.9 342.0,142.7 368.6,139.6 399.3,136.7 435.6,132.6 480.4,129.2 535.7,125.8 608.9,122.1"/>
+<circle class="hit" cx="79.6" cy="195.5" r="6"><title>Ref. [2]: α = 0.075, ∂M/∂α = 1.455</title></circle>
+<circle class="hit" cx="85.0" cy="216.7" r="6"><title>Ref. [2]: α = 0.101, ∂M/∂α = 1.241</title></circle>
+<circle class="hit" cx="90.7" cy="226.4" r="6"><title>Ref. [2]: α = 0.129, ∂M/∂α = 1.142</title></circle>
+<circle class="hit" cx="96.4" cy="231.6" r="6"><title>Ref. [2]: α = 0.156, ∂M/∂α = 1.088</title></circle>
+<circle class="hit" cx="102.3" cy="233.0" r="6"><title>Ref. [2]: α = 0.184, ∂M/∂α = 1.074</title></circle>
+<circle class="hit" cx="108.3" cy="230.6" r="6"><title>Ref. [2]: α = 0.213, ∂M/∂α = 1.098</title></circle>
+<circle class="hit" cx="114.5" cy="230.5" r="6"><title>Ref. [2]: α = 0.243, ∂M/∂α = 1.100</title></circle>
+<circle class="hit" cx="120.8" cy="227.5" r="6"><title>Ref. [2]: α = 0.274, ∂M/∂α = 1.131</title></circle>
+<circle class="hit" cx="127.4" cy="222.7" r="6"><title>Ref. [2]: α = 0.306, ∂M/∂α = 1.179</title></circle>
+<circle class="hit" cx="134.2" cy="219.1" r="6"><title>Ref. [2]: α = 0.338, ∂M/∂α = 1.216</title></circle>
+<circle class="hit" cx="141.2" cy="213.3" r="6"><title>Ref. [2]: α = 0.372, ∂M/∂α = 1.275</title></circle>
+<circle class="hit" cx="148.6" cy="209.0" r="6"><title>Ref. [2]: α = 0.408, ∂M/∂α = 1.318</title></circle>
+<circle class="hit" cx="156.3" cy="204.5" r="6"><title>Ref. [2]: α = 0.445, ∂M/∂α = 1.364</title></circle>
+<circle class="hit" cx="164.3" cy="199.9" r="6"><title>Ref. [2]: α = 0.484, ∂M/∂α = 1.411</title></circle>
+<circle class="hit" cx="172.8" cy="196.0" r="6"><title>Ref. [2]: α = 0.524, ∂M/∂α = 1.450</title></circle>
+<circle class="hit" cx="181.7" cy="189.5" r="6"><title>Ref. [2]: α = 0.567, ∂M/∂α = 1.516</title></circle>
+<circle class="hit" cx="191.2" cy="183.7" r="6"><title>Ref. [2]: α = 0.613, ∂M/∂α = 1.576</title></circle>
+<circle class="hit" cx="201.3" cy="182.0" r="6"><title>Ref. [2]: α = 0.662, ∂M/∂α = 1.593</title></circle>
+<circle class="hit" cx="211.9" cy="178.9" r="6"><title>Ref. [2]: α = 0.713, ∂M/∂α = 1.624</title></circle>
+<circle class="hit" cx="223.4" cy="171.6" r="6"><title>Ref. [2]: α = 0.769, ∂M/∂α = 1.698</title></circle>
+<circle class="hit" cx="236.0" cy="167.9" r="6"><title>Ref. [2]: α = 0.829, ∂M/∂α = 1.736</title></circle>
+<circle class="hit" cx="249.4" cy="163.0" r="6"><title>Ref. [2]: α = 0.894, ∂M/∂α = 1.786</title></circle>
+<circle class="hit" cx="264.4" cy="157.7" r="6"><title>Ref. [2]: α = 0.966, ∂M/∂α = 1.840</title></circle>
+<circle class="hit" cx="280.8" cy="155.1" r="6"><title>Ref. [2]: α = 1.045, ∂M/∂α = 1.866</title></circle>
+<circle class="hit" cx="298.9" cy="152.7" r="6"><title>Ref. [2]: α = 1.132, ∂M/∂α = 1.891</title></circle>
+<circle class="hit" cx="318.8" cy="147.9" r="6"><title>Ref. [2]: α = 1.229, ∂M/∂α = 1.939</title></circle>
+<circle class="hit" cx="342.0" cy="142.7" r="6"><title>Ref. [2]: α = 1.340, ∂M/∂α = 1.992</title></circle>
+<circle class="hit" cx="368.6" cy="139.6" r="6"><title>Ref. [2]: α = 1.468, ∂M/∂α = 2.024</title></circle>
+<circle class="hit" cx="399.3" cy="136.7" r="6"><title>Ref. [2]: α = 1.617, ∂M/∂α = 2.053</title></circle>
+<circle class="hit" cx="435.6" cy="132.6" r="6"><title>Ref. [2]: α = 1.792, ∂M/∂α = 2.094</title></circle>
+<circle class="hit" cx="480.4" cy="129.2" r="6"><title>Ref. [2]: α = 2.008, ∂M/∂α = 2.129</title></circle>
+<circle class="hit" cx="535.7" cy="125.8" r="6"><title>Ref. [2]: α = 2.274, ∂M/∂α = 2.164</title></circle>
+<circle class="hit" cx="608.9" cy="122.1" r="6"><title>Ref. [2]: α = 2.627, ∂M/∂α = 2.202</title></circle>
+<line class="err" x1="64.0" x2="64.0" y1="30.6" y2="28.5"/>
+<circle class="ours" cx="64.0" cy="29.6" r="4.5"><title>Manuscript: α = 0.0000, ∂M/∂α = 3.142 ± 0.011</title></circle>
+<line class="err" x1="65.0" x2="65.0" y1="55.5" y2="33.3"/>
+<circle class="ours" cx="65.0" cy="44.4" r="4.5"><title>Manuscript: α = 0.0048, ∂M/∂α = 2.991 ± 0.112</title></circle>
+<line class="err" x1="66.0" x2="66.0" y1="69.5" y2="52.1"/>
+<circle class="ours" cx="66.0" cy="60.8" r="4.5"><title>Manuscript: α = 0.0098, ∂M/∂α = 2.825 ± 0.088</title></circle>
+<line class="err" x1="68.3" x2="68.3" y1="111.2" y2="79.6"/>
+<circle class="ours" cx="68.3" cy="95.4" r="4.5"><title>Manuscript: α = 0.0207, ∂M/∂α = 2.473 ± 0.160</title></circle>
+<line class="err" x1="72.0" x2="72.0" y1="150.7" y2="133.0"/>
+<circle class="ours" cx="72.0" cy="141.9" r="4.5"><title>Manuscript: α = 0.0384, ∂M/∂α = 2.001 ± 0.090</title></circle>
+<line class="err" x1="75.8" x2="75.8" y1="176.3" y2="174.6"/>
+<circle class="ours" cx="75.8" cy="175.5" r="4.5"><title>Manuscript: α = 0.0569, ∂M/∂α = 1.659 ± 0.009</title></circle>
+<circle class="ours" cx="82.2" cy="208.2" r="4.5"><title>Manuscript: α = 0.0878, ∂M/∂α = 1.326 ± 0.002</title></circle>
+<circle class="ours" cx="88.4" cy="224.0" r="4.5"><title>Manuscript: α = 0.1179, ∂M/∂α = 1.166 ± 0.001</title></circle>
+<circle class="ours" cx="100.3" cy="233.3" r="4.5"><title>Manuscript: α = 0.1752, ∂M/∂α = 1.071 ± 0.002</title></circle>
+<circle class="ours" cx="111.5" cy="231.5" r="4.5"><title>Manuscript: α = 0.2291, ∂M/∂α = 1.090 ± 0.003</title></circle>
+<circle class="ours" cx="132.3" cy="219.9" r="4.5"><title>Manuscript: α = 0.3292, ∂M/∂α = 1.208 ± 0.002</title></circle>
+<circle class="ours" cx="151.6" cy="207.5" r="4.5"><title>Manuscript: α = 0.4225, ∂M/∂α = 1.334 ± 0.003</title></circle>
+<circle class="ours" cx="170.0" cy="196.6" r="4.5"><title>Manuscript: α = 0.5112, ∂M/∂α = 1.444 ± 0.001</title></circle>
+</svg></div>
+      <figcaption>Units with J = 1 (each spin); general J: α → α/J<sup>2/3</sup>. Hover over a point for its value.</figcaption>
+    </figure>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>α (J = 1)</th><th>M<sub>ext</sub> ours</th><th>M<sub>ext</sub> Ref. [2]</th><th>∂M<sub>ext</sub>/∂α ours</th><th>∂M<sub>ext</sub>/∂α Ref. [2]</th></tr></thead>
+        <tbody>
+          <tr><td>0.088</td><td>2.3735</td><td>2.3727</td><td>1.326</td><td>1.352</td></tr>
+          <tr><td>0.175</td><td>2.4740</td><td>2.4733</td><td>1.071</td><td>1.079</td></tr>
+          <tr><td>0.329</td><td>2.6466</td><td>2.6463</td><td>1.208</td><td>1.205</td></tr>
+          <tr><td>0.511</td><td>2.8885</td><td>2.8884</td><td>1.444</td><td>1.437</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Why Ref. [2] never stated it</h2>
+    <p>This is my inference. Ref. [2] is a short survey of three families of solutions. Its question was whether the Einstein bound j ≤ 1 survives. That is weaker than knowing M<sub>ext</sub>(α): it only says the bound never relaxes. Like most higher-dimensional phase diagrams, its plots are normalised by the mass, so M<sub>ext</sub>(J) never appears as a plotted quantity. Ref. [2] does not cite the first-order result of Ma, Li and Lü, so it had no perturbative value to compare against. These authors also rarely give data tables.</p>
+  </section>
+
+  <section>
+    <h2>4. Is it worth sending to a journal?</h2>
+    <p><b>Not in its current form.</b> Its headline (M<sub>ext</sub> grows, the slope dips and then rises) can be read from a figure in Ref. [2], and a referee who knows that paper would object. The abstract's claim that Ref. [2] gives "not M<sub>ext</sub>(J,α) or its slope" does not survive this comparison.</p>
+    <p><b>Yes, after two changes.</b></p>
+    <ul>
+      <li>Reframe the paper as a precise, error-controlled confirmation of Ref. [2]. Lead with what Ref. [2] cannot give: Ψ on non-extremal solutions and its sign change, the implicit-response method, and the numerical check of Ma–Li–Lü. In that form it is a solid but modest paper for PRD or CQG.</li>
+      <li>For a stronger result, take the branch past x = 0.92 and test Ref. [2]'s conjecture that it ends at M = 3πα/4 with J → 0. That is the open question Ref. [2] leaves. Earlier work in this repo already reaches x ≈ 0.81.</li>
+    </ul>
+  </section>
+
+  <p class="foot">Reproduce: <span class="mono">python experiments/kkr_fig1_extremal_mass.py</span>. Data in <span class="mono">results/kkr-fig1-extremal-mass.json</span>; full version in <span class="mono">report.pdf</span>. Sections 3 and 4 are judgement, not computation.</p>
+</main>
+
+</body>
+</html>
