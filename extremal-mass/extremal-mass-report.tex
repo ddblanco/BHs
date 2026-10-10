@@ -1,0 +1,92 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=17mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3.5pt}
+\pagestyle{empty}
+\newcommand{\ext}{\mathrm{ext}}
+\begin{document}
+
+{\large\bfseries Extremal mass at fixed angular momentum in EGB, $D=5$}\\[1pt]
+{\small Status as of 9 October 2026. Asymptotically flat black holes, two equal spins $J_1=J_2=J$, $G_5=1$, action $R+\alpha\mathcal L_{\rm GB}$.}
+
+\medskip
+We want the smallest mass $M_\ext(J,\alpha)$ that still has a horizon when
+$J$ is held fixed and the Gauss--Bonnet coupling $\alpha$ is varied. By
+dimensional analysis it is a function of one variable:
+\[
+M_\ext=\pi^{1/3}J^{2/3}\,m(s),\qquad s=\frac{\pi^{2/3}\alpha}{J^{2/3}} .
+\]
+No closed form for $m(s)$ is known. This is what we have.
+
+\textbf{1. Weak coupling: the series through $s^4$.}
+\[
+m(s)=\frac32+s-\frac{236}{105}s^2+d_3\,s^3+d_4\,s^4+O(s^5),
+\]
+\[
+d_3=\frac{60851752}{33075}-1536\,\zeta(3)=-6.548307\ldots,\qquad
+d_4=-\frac{592541765354296}{1489863375}+\frac{227328}{5}\zeta(3)+\frac{88064}{25}\pi^4=66.100522\ldots
+\]
+The linear term is known [1]. The coefficients $d_2$ and $d_3$ were first
+obtained from the Euclidean action. We have now rederived them in a
+different way: we solve for the exterior metric of the extremal black hole
+order by order in $\alpha$, exactly, and read the mass directly off the
+fall-off of $g_{tt}$ at infinity. At each order the metric functions are
+combinations of multiple polylogarithms in $1/r^2$ with rational
+coefficients, of weight at most the order. The integration constants are
+fixed by asymptotic flatness and by requiring the horizon to be a double
+zero of $g^{rr}$ (extremality). This is how $d_4$ was obtained; before, it
+was known only numerically. An independent numerical calculation (spectral
+boundary-value problem) gives $66.10052$, which agrees in all seven
+available digits.
+
+Checks: at each order the solution satisfies the reduced field equations
+exactly, and the horizon angular velocity, computed separately from the
+mass, satisfies the extremal first law $dM_\ext=2\Omega_H\,dJ$ (at fixed
+$\alpha$) with zero residual at orders 2, 3 and 4.
+
+Caveat: $d_4$ is exact \emph{provided} certain constants that appear when the
+polylogarithms are evaluated at the horizon equal the zeta values we
+identified numerically (100 digits, error $<10^{-80}$). This is not proved.
+The series is also formal: we do not know whether it converges. The
+coefficients ($1,\,-2.2,\,-6.5,\,66$) do not yet show a clear growth pattern.
+
+\textbf{2. Strong coupling ($\alpha\to\infty$, $J$ fixed): a candidate.}
+A matched analysis of three regions (horizon throat, core, intermediate zone)
+gives
+\[
+M_\ext=\frac{3\pi\alpha}{4}+\frac{4J}{3\sqrt\alpha}+o\!\left(J/\sqrt\alpha\right),\qquad \Omega_H\sqrt\alpha\to\tfrac23 ,
+\]
+consistent with the first law. It relies on the regions matching
+uniformly, which is not proved. The full numerical solution reaches only
+$\alpha\simeq3.12$ (with $J/\alpha^{3/2}\simeq0.26$), too far from the limit
+to confirm it.
+
+\textbf{3. The point $J=0$.} The term $3\pi\alpha/4$ is the mass of the
+static solution with zero horizon radius, which is singular. Kleihaus, Kunz
+and Radu conjecture that the rotating extremal branch ends there [2]. It is
+not a regular extremal black hole: static black holes with a horizon always
+have positive temperature.
+
+\textbf{4. What is missing.} There is no closed form for $m(s)$ at finite
+coupling, and no proof that none exists. The negative results we have apply
+to specific families: Hamilton--Jacobi superpotentials with finitely many
+powers of $r$, Liouvillian solutions of one perturbation equation (its
+differential Galois group is $SL(2,\mathbb C)$), and a candidate
+differential equation for $m(s)$ that an independent numerical point rules
+out. The second-order exterior already contains $\mathrm{Li}_2(1/r^2)$, and
+$\zeta(3)$ and $\pi^4$ appear at higher orders, which makes a simple
+algebraic formula unlikely.
+
+\textbf{Next steps.} The $s^5$ term with the same program (the constants it
+needs are already identified); with five or six coefficients the radius of
+convergence can be estimated. On the numerical side, extending the branch
+beyond $\alpha\simeq3$ to test the strong-coupling limit.
+
+\vfill
+{\footnotesize [1] Ma, Li, L\"u, arXiv:2009.00015. \quad
+[2] Kleihaus, Kunz, Radu, arXiv:2303.12471. \quad
+Code and outputs: \texttt{extremal-mass/code/}; see \texttt{extremal-mass/README.md}.}
+\end{document}

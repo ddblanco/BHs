@@ -1,0 +1,33 @@
+{
+ "date": "2026-10-09T21:42:37.229496-03:00",
+ "command": [
+  "C:\\Users\\davib\\Proyectos\\BHs\\work\\analytic_metric\\.venv\\Scripts\\python.exe",
+  "constants.py"
+ ],
+ "environment": {
+  "python": "3.11.9",
+  "sympy": "1.14.0"
+ },
+ "constants": {
+  "K2": "0",
+  "cZ": "0",
+  "cV": "0",
+  "K1": "-3181568/945 + 1024*pi**2/3",
+  "K3": "-96512/45 + 128*pi**2",
+  "X2": "64/9"
+ },
+ "M2": "-472*pi/105",
+ "Omega2_over_sqrt2": "944/315",
+ "output": [
+  "PASS h2 -> 0 at infinity with one constant: K2 = 0",
+  "PASS f2 -> 0 at infinity; b(oo)=1 and w(oo)=0 fix the additive constants",
+  "PASS h2 finite at the horizon (all u^-n and ell terms cancel) with K1 = -3181568/945 + 1024*pi**2/3",
+  "PASS first-order double zero reproduced: x_H = 1 + (16/3) alpha",
+  "DERIVED K3 = -96512/45 + 128*pi**2 ; X2 = 64/9",
+  "CHECK b double zero at the same x_H: residuals 0, 0",
+  "DERIVED M2 = -472*pi/105  (expected -472*pi/105 from c2=-236/105 pi^(5/3))",
+  "DERIVED Omega2/sqrt2 = 944/315 (expected 944/315 from 3 omega = mu - y mu')",
+  "PASS second-order extremal exterior reproduces c2 via ADM mass AND via Omega_H"
+ ],
+ "seconds": 24.84086459997343
+}

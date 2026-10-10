@@ -1,0 +1,88 @@
+{
+ "date": "2026-10-09T21:48:18.122754-03:00",
+ "command": [
+  "C:\\Users\\davib\\Proyectos\\BHs\\work\\analytic_metric\\.venv\\Scripts\\python.exe",
+  "pert.py",
+  "4",
+  "5"
+ ],
+ "environment": {
+  "python": "3.11.9",
+  "sympy": "1.14.0"
+ },
+ "masses": {
+  "2": "-472*pi/105",
+  "3": "32*pi*(7606469 - 6350400*Z3)/33075",
+  "4": "64*pi*(23616599086080*Z2**2 + 8467191532800*Z3 - 74067720669287)/1489863375"
+ },
+ "omegas": {
+  "2": "944*sqrt(2)/315",
+  "3": "sqrt(2)*(8192*Z3 - 973628032/99225)",
+  "4": "128*sqrt(2)*(-23616599086080*Z2**2 - 8467191532800*Z3 + 74067720669287)/1489863375"
+ },
+ "constants": {
+  "2": {
+   "K2": "0",
+   "cB": "0",
+   "cV": "0",
+   "K1": "2048*Z2 - 3181568/945",
+   "K3": "768*Z2 - 96512/45",
+   "Xn": "64/9"
+  },
+  "3": {
+   "K2": "0",
+   "cB": "0",
+   "cV": "0",
+   "K1": "114688*Z2/15 - 4227072*Z3/5 + 34556051456/19845",
+   "K3": "-4057088*Z2/75 - 1544192*Z3/5 + 14295613952/99225",
+   "Xn": "-83968/81"
+  },
+  "4": {
+   "K2": "0",
+   "cB": "0",
+   "cV": "0",
+   "K1": "15500312576*Z2**2/125 - 2506883072*Z2/225 + 37087084544*Z3/1125 - 22404619052713984/45147375",
+   "K3": "5643534336*Z2**2/125 - 812990464*Z2/13125 + 842727424*Z3/25 - 128463986297380352/1719073125",
+   "Xn": "-8192"
+  }
+ },
+ "output": [
+  "word expansions ready (3.6s)",
+  "order 2: lower orders satisfy the reduced system; sources built (7.4s)",
+  "order 2: particular h_2 [1] has weight 2, 4 words",
+  "order 2: f_2 verified against the f-equation; log b quadrature done",
+  "order 2: angular velocity quadrature done (17.5s)",
+  "order 2: K1=2048*Z2 - 3181568/945, K2=0, K3=768*Z2 - 96512/45, X2=64/9",
+  "order 2: M_2 (zeta values) = -472*pi/105; numeric -14.1222069761369753195654064467",
+  "order 2: M_2 = -472*pi/105",
+  "order 2: Omega_2 = 944*sqrt(2)/315",
+  "order 2: first-law control Omega vs M: residual 0",
+  "order 2: done in 22.5s",
+  "order 3: lower orders satisfy the reduced system; sources built (28.6s)",
+  "order 3: particular h_3 [1] has weight 3, 8 words",
+  "order 3: particular h_3 [Z2] has weight 1, 2 words",
+  "order 3: f_3 verified against the f-equation; log b quadrature done",
+  "order 3: angular velocity quadrature done (59.9s)",
+  "order 3: K1=114688*Z2/15 - 4227072*Z3/5 + 34556051456/19845, K2=0, K3=-4057088*Z2/75 - 1544192*Z3/5 + 14295613952/99225, X3=-83968/81",
+  "order 3: M_3 (zeta values) = -6144*pi*zeta(3) + 243407008*pi/33075; numeric -82.2884559156007227571259254425",
+  "order 3: M_3 = 32*pi*(7606469 - 6350400*Z3)/33075",
+  "order 3: Omega_3 = sqrt(2)*(8192*Z3 - 973628032/99225)",
+  "order 3: first-law control Omega vs M: residual 0",
+  "order 3: done in 77.1s",
+  "order 4: lower orders satisfy the reduced system; sources built (41.0s)",
+  "order 4: particular h_4 [1] has weight 4, 16 words",
+  "order 4: particular h_4 [Z2] has weight 2, 4 words",
+  "order 4: particular h_4 [Z3] has weight 1, 2 words",
+  "order 4: particular h_4 [Z2**2] has weight 0, 1 words",
+  "order 4: f_4 verified against the f-equation; log b quadrature done",
+  "order 4: angular velocity quadrature done (161.2s)",
+  "order 4: K1=15500312576*Z2**2/125 - 2506883072*Z2/225 + 37087084544*Z3/1125 - 22404619052713984/45147375, K2=0, K3=5643534336*Z2**2/125 - 812990464*Z2/13125 + 842727424*Z3/25 - 128463986297380352/1719073125, X4=-8192",
+  "order 4: M_4 (zeta values) = -4740334122834368*pi/1489863375 + 1818624*pi*zeta(3)/5 + 704512*pi**5/25; numeric 1661.28731507934555623184220154",
+  "order 4: M_4 = 64*pi*(23616599086080*Z2**2 + 8467191532800*Z3 - 74067720669287)/1489863375",
+  "order 4: Omega_4 = 128*sqrt(2)*(-23616599086080*Z2**2 - 8467191532800*Z3 + 74067720669287)/1489863375",
+  "order 4: first-law control Omega vs M: residual 0",
+  "order 4: done in 222.8s"
+ ],
+ "seconds": 326.0072693999973,
+ "constants_note": "C<word> = regularised value of the word at the horizon (constant term of its expansion in u=x-1, ell=log u)"
+}
