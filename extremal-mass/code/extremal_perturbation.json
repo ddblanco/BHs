@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-09T21:41:53.236390",
+  "command": [
+    "C:\\Users\\davib\\Proyectos\\BHs\\work\\analytic_metric\\.venv\\Scripts\\python.exe",
+    "extremal_perturbation.py"
+  ],
+  "python": "3.11.9",
+  "sympy": "1.14.0",
+  "output": [
+    "ENVIRONMENT Python 3.11.9 SymPy 1.14.0",
+    "PASS exact extremal exterior E_b through first order",
+    "PASS exact extremal exterior E_f through first order",
+    "PASS exact extremal exterior E_g through first order",
+    "PASS exact extremal exterior E_h through first order",
+    "PASS exact extremal exterior E_w through first order",
+    "PASS common displaced double root to first order: r_H=1+(8/3)*alpha+O(alpha^2)",
+    "PASS fixed-J Omega_H has zero linear correction; dM/dalpha=pi, dJ/dalpha=0",
+    "LOG coefficient near r=1: b: -128*u**3",
+    "LOG coefficient near r=1: f: 256*u**3",
+    "LOG coefficient near r=1: h: -256*u**2",
+    "LOG coefficient near r=1: w: 32*sqrt(2)*u**2"
+  ],
+  "base": [
+    "(r - 1)**2*(r + 1)**2/(r**4 + 1)",
+    "(r - 1)**2*(r + 1)**2/r**4",
+    "(r**4 + 1)/r**2",
+    "sqrt(2)/(r**4 + 1)"
+  ],
+  "delta": [
+    "-8*(r - 1)*(r + 1)*(24*r**10*log(1 - 1/r**2) + r**10 - 48*r**8*log(1 - 1/r**2) + 25*r**8 + 24*r**6*log(1 - 1/r**2) - 35*r**6 + 13*r**4 + 6*r**2 - 2)/(3*r**6*(r**4 + 1)**2)",
+    "8*(r - 1)*(r + 1)*(12*r**10*log(1 - 1/r**2) - 24*r**8*log(1 - 1/r**2) + 12*r**8 + 12*r**6*log(1 - 1/r**2) - 19*r**6 + r**4 - 2*r**2 + 4)/(3*r**10)",
+    "-16*(6*r**12*log(1 - 1/r**2) - 6*r**10*log(1 - 1/r**2) + 6*r**10 - 6*r**8*log(1 - 1/r**2) - 3*r**8 + 6*r**6*log(1 - 1/r**2) - 6*r**6 + 4*r**4 + r**2 - 1)/(3*r**8)",
+    "-8*sqrt(2)*(6*r**10*log(1 - 1/r**2) - 24*r**8*log(1 - 1/r**2) + 6*r**8 + 24*r**6*log(1 - 1/r**2) - 21*r**6 + 14*r**4 - 6*r**2*log(1 - 1/r**2) + 5*r**2 - 8)/(3*r**2*(r**4 + 1)**2)"
+  ],
+  "decomposition": [
+    {
+      "rational": "-8*(r - 1)*(r + 1)*(r**10 + 25*r**8 - 35*r**6 + 13*r**4 + 6*r**2 - 2)/(3*r**6*(r**4 + 1)**2)",
+      "logarithm": "-64*(r - 1)**3*(r + 1)**3/(r**4 + 1)**2"
+    },
+    {
+      "rational": "8*(r - 1)*(r + 1)*(12*r**8 - 19*r**6 + r**4 - 2*r**2 + 4)/(3*r**10)",
+      "logarithm": "32*(r - 1)**3*(r + 1)**3/r**4"
+    },
+    {
+      "rational": "-16*(6*r**10 - 3*r**8 - 6*r**6 + 4*r**4 + r**2 - 1)/(3*r**8)",
+      "logarithm": "-32*(r - 1)**2*(r + 1)**2*(r**2 + 1)/r**2"
+    },
+    {
+      "rational": "-8*sqrt(2)*(6*r**8 - 21*r**6 + 14*r**4 + 5*r**2 - 8)/(3*r**2*(r**4 + 1)**2)",
+      "logarithm": "-16*sqrt(2)*(r - 1)**2*(r + 1)**2*(r**4 - 2*r**2 - 1)/(r**4 + 1)**2"
+    }
+  ],
+  "horizon_shift": "8/3",
+  "omega_linear": "0",
+  "log_orders": [
+    {
+      "field": "b",
+      "leading": "-128*u**3"
+    },
+    {
+      "field": "f",
+      "leading": "256*u**3"
+    },
+    {
+      "field": "h",
+      "leading": "-256*u**2"
+    },
+    {
+      "field": "w",
+      "leading": "32*sqrt(2)*u**2"
+    }
+  ],
+  "seconds": 90.95299999997951,
+  "script_sha256": "130afed43a33dd2c62d3b05c7fbc59c338c029002134e09a14b86d058b74ec21",
+  "not_checked": [
+    "second-order double-root condition",
+    "uniform extremal/horizon expansion",
+    "full finite-alpha metric",
+    "second-order mass coefficient"
+  ]
+}
