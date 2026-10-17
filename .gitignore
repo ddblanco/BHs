@@ -20,3 +20,6 @@ references/data/1010.0860-src/
 .claude/settings.local.json
 # regenerable cache of the review scripts
 .riemann_cache.pkl
+
+# compiled helper of extremal-mass/strong (regenerable by build_crhs.py)
+extremal-mass/strong/_crhs.so

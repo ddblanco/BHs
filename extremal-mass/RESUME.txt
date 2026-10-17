@@ -1,0 +1,39 @@
+RESUME NOTES - extremal mass m(s), session of 2026-10-16 (Claude). Plain text; update after every milestone.
+
+GOAL (user): analytic expression for M_ext(J, alpha) = pi^(1/3) J^(2/3) m(s), s = pi^(2/3) alpha / J^(2/3).
+Hint from user: pure-Lovelock solutions of arXiv:1201.4994 (papers/1201.4994-dadhich-pons-prabhu-...) for
+alpha -> infinity, J = 0.   Code units: J = J0 = pi sqrt2/4 (C2 = 32), s = 2 alpha, m = 2M/pi = 3 mu/4.
+
+NEW RESULTS (receipts = the named scripts; run with ../../.venv/bin/python -B)
+ 1. d_5 exact (code/pert.py 5 6, 25.5 min, 209 MB; code/pert_order5.json; series/coefficients.py):
+      d5 = 447853140007115845664/6100990520625 + 657983488/175 z3 - 3972366336/625 z2^2 - 1464139776/25 z5
+         = 423.920197004910672...;  X5 = 292028416/729; first law residual 0.
+    d6: code/pert.py 6 6 running in background (log code/pert_order6.log) - check it.
+ 2. Near-horizon data are ALGEBRAIC (strong/throat_series.py): throat eqs (1)-(3) of
+    reports/strong-coupling-endpoint.pdf reproduce r_H^2 through alpha^4 and predicted X5 (confirmed by pert.py).
+    strong/check_throat_vs_kkr.py: s(q) from q = h_H/g_H alone matches the spectral branch to 1e-6.
+ 3. Weak-series singularity: g_H(s) branch points s* = 0.0059231771 +- 0.0548188529 i (|s*| = 0.05514,
+    arg 83.83 deg) (strong/gH_branch.py, gH_series.py); image of a critical point q_c = 2.16110 -+ 0.94332 i of
+    s(q) (strong/q_map.py).  Signs of d1..d5 = signs of Re(s*^-n).  Conjecture: weak series radius 0.0551.
+ 4. BTZ UNIVERSALITY (the user's hint, strong/btz_universality.py, PASS asserted):
+    static D=5 EGB = derivative-degenerate pure GB (1201.4994 eq. 15, N=2, beta = -1/(4 alpha));
+    small static holes are BTZ with l^2 = 4 alpha, 1/(4G3) = 3 pi alpha (first law checked by hand).
+    Extremal BTZ: Delta M = S^2/(48 pi^3 alpha^2).  Exact throat entropy: S^2/(48 pi^3 alpha^(3/2) J)
+    = 4/3 + 3 t^2/8 + O(t^3), t = (2 alpha/g_H)^(-1/2)  =>  Delta M = 4 J /(3 sqrt(alpha)): the
+    matched-asymptotics coefficient a1 = 4/3 obtained independently.  No O(t) term: a2 is NOT from the core.
+ 5. NEW NUMERICAL SOLVER for all s (strong/twoside.py, validated):
+    reduced system f' = F1, h'' = F2 (areal gauge), compiled to C long double (build_crhs.py);
+    horizon series (horizon_series.py): rank-one level blocks, H1 from Nt_2 with kappa(H1) self-consistent;
+      physical H1 root = the one whose indicial roots are {-1-gamma, -1, gamma} (matches throat gamma to 1e-12);
+    gamma-mode amplitude B (confirmed on the spectral solution: (h - h_series)/x^gamma = 27.3, phi = -0.54);
+    large-r series in z = 1/r (asym_numeric.solve_seq): free data mu = -a2 and b4, no logs, MP exact;
+    two-sided matching of (f, h, h') at r_m: Newton in (B, mu, b4).
+    s = 2.98202: m = 3.04100659 vs spectral 3.04100567 (rel 3e-7).
+    One-sided outward shooting is ill-conditioned (r^6 growing squashing mode) - do not use for mu.
+    sweep.py: resumable sweep -> strong/sweep.json (skip gamma-integer resonances listed in RES).
+
+NEXT
+  a. sweep s = 0.5 .. 2000 (alpha 0.25 .. 1000); fit strong-coupling coefficients a1 (4/3?), a2 (0.4565?), a3.
+  b. d6 when done -> asymptotics of d_n vs s*; resummation (conformal map) using s*.
+  c. global representation (two-point Pade / fit with exact ends), error vs numerics.
+  d. LaTeX write-up, vault pages (vault/papers/arxiv-1201.4994.md written), commit/push branch.
