@@ -35,8 +35,7 @@ def run_point(alpha, guess=None, check=True):
         except Exception:
             p = None
     if p is None:
-        Bs = np.r_[-np.logspace(5, -2, 36), np.logspace(-2, 5, 36)]
-        g = robust_guess(T, Bs)
+        g = T.guess()
         p = T.solve(g)
     rec = dict(alpha=alpha, s=2*alpha, m=0.75*p[1], mu=p[1], B=p[0], b4=p[2], gamma=T.sh.gam,
                err=T.err, cond=T.cond, rm=T.rm, R=T.R, x0=T.sh.x0)
@@ -44,7 +43,12 @@ def run_point(alpha, guess=None, check=True):
         dm = []
         for kw in (dict(x0f=0.0015), dict(rm=1.4*T.rm), dict(R=1.5*T.R)):
             T2 = TwoSide(alpha, **kw)
-            p2 = T2.solve(p)
+            try:
+                p2 = T2.solve(p)
+                if T2.err > 1e-6:
+                    raise RuntimeError
+            except Exception:
+                p2 = T2.solve(T2.guess())
             dm.append(0.75*(p2[1]-p[1]))
         rec['dm_variants'] = dm
     rec['seconds'] = time.time()-t

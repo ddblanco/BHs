@@ -1,11 +1,11 @@
-"""Exact weak-coupling coefficients d_n of m(s) = 3/2 + sum d_n s^n from code/pert_order5.json
+"""Exact weak-coupling coefficients d_n of m(s) = 3/2 + sum d_n s^n from code/pert_order6.json
 (d_n = M_n 2^(1-n)/pi), their values, and the comparison of their signs/growth with the
 nearest branch point s* of the algebraic extremal throat (strong/gH_branch.py)."""
 import json, sympy as s, mpmath as mp
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 Z2, Z3, Z5 = s.symbols('Z2 Z3 Z5')
-J = json.loads((HERE.parent/'code/pert_order5.json').read_text())
+J = json.loads((HERE.parent/'code/pert_order6.json').read_text())
 d = {1: s.Integer(1)}
 for n, M in J['masses'].items():
     n = int(n)

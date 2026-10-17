@@ -18,16 +18,38 @@ class TwoSide:
         self.alpha = alpha
         self.sh = Shooter(alpha, L)
         self.sh.x0 = x0f*self.sh.S.rH
+        from gamma_mode import gamma_series
+        phi, psi, chk = gamma_series(self.sh.S, self.sh.gam, self.sh.nv, 8)
+        self.gser = (phi, psi)
+        self.sh.gser = self.gser
         self.rm = rm or 1.5*self.sh.S.rH+0.5*np.sqrt(alpha)
         self.R = R or max(40., 25*np.sqrt(alpha))
         self.M, self.rtol = M, rtol
 
     def outward(self, B):
         S = self.sh.S
-        y0 = initial_data(S, self.sh.gam, self.sh.nv, B, self.sh.x0)
+        from extremal_shoot import ev_h, ev_big, ev_det
+        y0 = initial_data(S, self.sh.gam, self.sh.nv, B, self.sh.x0, self.gser)
         sol = solve_ivp(crhs, (S.rH+self.sh.x0, self.rm), y0, args=(self.alpha,), method='DOP853',
-                        rtol=self.rtol, atol=1e-15)
+                        rtol=self.rtol, atol=1e-15, events=[ev_h, ev_big, ev_det])
+        if sol.status != 0:
+            return np.full(3, np.nan), sol.status
         return sol.y[:, -1], sol.status
+
+    def guess(self, Bs=None):
+        """B* by bisection of the outward escape direction, mu from r^2(1-f) at 3 r_m"""
+        sh = self.sh
+        sh.R = 6*self.rm
+        Bs = Bs if Bs is not None else np.r_[-np.logspace(5, -2, 29), np.logspace(-2, 5, 29)]
+        sg = [np.sign(sh.T(B)[0]) for B in Bs]
+        for i in range(len(Bs)-1):
+            if sg[i] != sg[i+1]:
+                sh.solve(Bs[i], Bs[i+1])
+                sol = sh.run(sh.B, R=sh.best.t[-1], dense=True)
+                r = min(sol.t[-1], 3*self.rm)
+                f, h, hp = sol.sol(r)
+                return [sh.B, r**2*(1-f), 0.0]
+        raise RuntimeError('no B bracket')
 
     def asym_data(self, mu, b4, R):
         a, b, chk = solve_seq(self.alpha, mu, b4, M=self.M)
@@ -68,7 +90,13 @@ class TwoSide:
                 dp = np.zeros(3); dp[j] = 1e-6*max(1, abs(p[j]))
                 Jm[:, j] = (self.mismatch(p+dp)-self.mismatch(p-dp))/(2*dp[j])
             step = np.linalg.solve(Jm, -e)
-            p = p+step
+            lam = 1.0
+            for bt in range(30):
+                en = self.mismatch(p+lam*step)
+                if np.all(np.isfinite(en)) and np.max(np.abs(en)) < np.max(np.abs(e)):
+                    break
+                lam *= 0.5
+            p = p+lam*step
             if verbose:
                 print(f'  it {it}: |e|={np.max(np.abs(e)):.2e} p={p}', flush=True)
             if np.max(np.abs(step)/np.maximum(1, np.abs(p))) < tol:

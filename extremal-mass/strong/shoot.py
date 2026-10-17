@@ -79,13 +79,17 @@ class Indicial:
         return v/v[1]
 
 
-def initial_data(S, gam, nv, B, x0):
+def initial_data(S, gam, nv, B, x0, gser=None):
+    """background series + B * gamma-mode; gser = (phi, psi) full gamma-mode series
+    (gamma_mode.gamma_series); without it only the leading (nv) term is used"""
     F, H = S.F, S.H
     k = np.arange(len(F)); kh = np.arange(len(H))
-    Fx = np.sum(F*x0**k); Fpx = np.sum(F[1:]*k[1:]*x0**(k[1:]-1))
-    f = x0**2*Fx + B*nv[0]*x0**(gam+1)
-    h = np.sum(H*x0**kh) + B*x0**gam
-    hp = np.sum(H[1:]*kh[1:]*x0**(kh[1:]-1)) + B*gam*x0**(gam-1)
+    Fx = np.sum(F*x0**k)
+    phi, psi = gser if gser is not None else (np.array([nv[0]]), np.array([1.0]))
+    j = np.arange(len(psi))
+    f = x0**2*Fx + B*np.sum(phi*x0**(gam+1+j))
+    h = np.sum(H*x0**kh) + B*np.sum(psi*x0**(gam+j))
+    hp = np.sum(H[1:]*kh[1:]*x0**(kh[1:]-1)) + B*np.sum(psi*(gam+j)*x0**(gam+j-1))
     return np.array([f, h, hp])
 
 

@@ -53,8 +53,10 @@ class Shooter:
         self.R = R or max(12., 6*np.sqrt(alpha))
         self.rtol = rtol
 
+    gser = None
+
     def run(self, B, R=None, dense=False):
-        y0 = initial_data(self.S, self.gam, self.nv, B, self.x0)
+        y0 = initial_data(self.S, self.gam, self.nv, B, self.x0, self.gser)
         return solve_ivp(rhs, (self.S.rH+self.x0, R or self.R), y0, args=(self.alpha,), method='DOP853',
                          rtol=self.rtol, atol=1e-14, events=[ev_h, ev_big, ev_det], dense_output=dense)
 
