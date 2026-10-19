@@ -60,16 +60,21 @@ if __name__ == '__main__':
     data = json.loads(OUT.read_text()) if OUT.exists() else []
     done = {round(d['alpha'], 12) for d in data}
     guess = None
-    for al in alphas:
+    for idx, al in enumerate(alphas):
         if round(al, 12) in done:
             prev = [d for d in data if round(d['alpha'], 12) == round(al, 12)][0]
             guess = [prev['B'], prev['mu'], prev['b4']]
             continue
         if any(abs(al/r-1) < 0.03 for r in RES):
             print('skip (near gamma resonance)', al, flush=True); continue
+        import signal
+        def _alarm(*a): raise TimeoutError('point exceeded time limit')
+        signal.signal(signal.SIGALRM, _alarm); signal.alarm(900)
         try:
-            rec = run_point(al, guess)
+            rec = run_point(al, guess, check=(idx % 4 == 0))
+            signal.alarm(0)
         except Exception as ex:
+            signal.alarm(0)
             print('FAILED', al, repr(ex), flush=True); guess = None; continue
         data.append(rec); OUT.write_text(json.dumps(data, indent=1))
         guess = [rec['B'], rec['mu'], rec['b4']]

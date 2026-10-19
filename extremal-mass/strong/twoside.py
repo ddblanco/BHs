@@ -17,10 +17,19 @@ class TwoSide:
     def __init__(self, alpha, rm=None, R=None, M=16, x0f=0.003, L=12, rtol=1e-13):
         self.alpha = alpha
         self.sh = Shooter(alpha, L)
-        self.sh.x0 = x0f*self.sh.S.rH
         from gamma_mode import gamma_series
         phi, psi, chk = gamma_series(self.sh.S, self.sh.gam, self.sh.nv, 8)
         self.gser = (phi, psi)
+        # convergence radius of the horizon expansions (root test on the last coefficients)
+        S = self.sh.S
+        rad = []
+        for c in (S.H[3:], S.F[3:], psi[2:]):
+            k = np.arange(len(c))+3
+            ok = np.abs(c) > 0
+            rad.append(np.min(np.abs(c[ok])**(-1.0/k[ok])))
+        self.rho_c = float(min(rad))
+        x0_scaled = x0f/0.003*0.1*self.rho_c if x0f is not None else 0.1*self.rho_c
+        self.sh.x0 = min(x0f*S.rH, x0_scaled)
         self.sh.gser = self.gser
         self.rm = rm or 1.5*self.sh.S.rH+0.5*np.sqrt(alpha)
         self.R = R or max(40., 25*np.sqrt(alpha))
@@ -40,7 +49,8 @@ class TwoSide:
         """B* by bisection of the outward escape direction, mu from r^2(1-f) at 3 r_m"""
         sh = self.sh
         sh.R = 6*self.rm
-        Bs = Bs if Bs is not None else np.r_[-np.logspace(5, -2, 29), np.logspace(-2, 5, 29)]
+        sc = self.rho_c**(-self.sh.gam)
+        Bs = Bs if Bs is not None else np.r_[-sc*np.logspace(4, -4, 41), sc*np.logspace(-4, 4, 41)]
         sg = [np.sign(sh.T(B)[0]) for B in Bs]
         for i in range(len(Bs)-1):
             if sg[i] != sg[i+1]:

@@ -1,0 +1,118 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=18mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs,graphicx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\newcommand{\ext}{\mathrm{ext}}
+\input{strong/numbers.tex}
+\begin{document}
+
+{\Large\bfseries Extremal mass of equal-spin EGB black holes in $D=5$:\\[2pt]
+weak series to $s^6$, its singularity, and the strong-coupling limit}\\[3pt]
+{\small 16--17 October 2026. Continuation of \texttt{extremal-mass-report.pdf}.
+$G_5=1$, action $R+\alpha\mathcal L_{\rm GB}$, $J_1=J_2=J$,
+$M_\ext=\pi^{1/3}J^{2/3}m(s)$, $s=\pi^{2/3}\alpha/J^{2/3}$.}
+
+\section*{Summary}
+\begin{enumerate}
+\item \textbf{Weak coupling, two more exact orders.} $d_5$ and $d_6$ (below) from the exact
+exterior program; the horizon shifts $X_5,X_6$ and the first law are checked at each order.
+\item \textbf{The near-horizon data are algebraic.} The extremal throat equations fix $g_H(s)$
+exactly; their series reproduces the perturbative horizon through $\alpha^4$ and predicted
+$X_5,X_6$ before the exterior computation finished.
+\item \textbf{Radius of the weak series.} $g_H(s)$ has its nearest branch points at
+$s_*=\SstarRe\pm\SstarIm\,i$, $|s_*|=\SstarAbs$, a square-root fold of the throat.
+The signs of $d_1,\dots,d_6$ are those of $\mathrm{Re}\,s_*^{-n}$ (6 of 6).
+Conjecture: $m(s)$ has the same singularity, so the weak series converges only for $|s|<\SstarAbs$.
+\item \textbf{Strong coupling from pure-Lovelock universality.} Static $D=5$ EGB is the
+``derivative-degenerate'' Lovelock theory of Dadhich--Pons--Prabhu (arXiv:1201.4994); its
+small-hole core is a BTZ black hole with $\ell^2=4\alpha$, $1/(4G_3)=3\pi\alpha$. Using the
+extremal-BTZ relation $\Delta M=S^2/(48\pi^3\alpha^2)$ with the \emph{exact} extremal entropy gives
+\[ M_\ext=\frac{3\pi\alpha}{4}+\frac{4J}{3\sqrt\alpha}+\dots,\qquad
+m(s)=\frac{3s}{4}+\frac43 s^{-1/2}+\dots \]
+which reproduces the coefficient $4/3$ of the earlier matched-asymptotics candidate by an
+independent route.
+\item \textbf{Numerics at strong coupling.} A new two-sided shooting solver reaches
+$s=\SmaxNum$ (the spectral branch stopped at $5.24$). \StrongFitSentence
+\item \textbf{No closed form.} $\zeta(3),\zeta(5),\zeta(3)^2,\pi^{2k}$ in $d_n$ exclude an algebraic
+$m(s)$; the complex singularity at $|s|=0.055$ excludes a simple elementary form built from the
+two ends. \GlobalFitSentence
+\end{enumerate}
+
+\section*{1. Weak coupling through $s^6$}
+\[
+m(s)=\tfrac32+s-\tfrac{236}{105}s^2+d_3s^3+d_4s^4+d_5s^5+d_6s^6+O(s^7),
+\]
+\begin{align*}
+d_5&=\tfrac{447853140007115845664}{6100990520625}+\tfrac{657983488}{175}\zeta(3)
+-\tfrac{3972366336}{625}\zeta(2)^2-\tfrac{1464139776}{25}\zeta(5)=423.920197004910\ldots\\
+d_6&=-\tfrac{1245254609028150217918650165824}{88766575114501659375}
++\tfrac{15735548018688}{6125}\zeta(2)^3-\tfrac{57616520085504}{109375}\zeta(2)^2
++\tfrac{5569511424}{35}\zeta(3)^2\\
+&\quad-\tfrac{94884252024832}{165375}\zeta(3)+\tfrac{2699634147328}{625}\zeta(5)
+=-4737.494826989936\ldots
+\end{align*}
+($d_3,d_4$ as in the earlier report.) Method and conditions are those of
+\texttt{code/pert.py}: exact hyperlogarithm quadratures, constants fixed by asymptotic flatness
+and a double zero of $g^{rr}$; exact \emph{conditional} on the PSLQ identification (100 digits)
+of the regularised horizon constants $C_w$ with multiple zeta values. At orders 5 and 6
+the first-law residual $dM=2\Omega_H\,dJ$ is identically zero, and the horizon shifts
+$X_5=292028416/729$, $X_6=58879115264/6561$ equal the throat predictions of \S2.
+Run times 25.5\,min (order 5) and 1\,h\,38\,min (order 6).
+
+\section*{2. Algebraic near-horizon data and the radius of convergence}
+With $a=\alpha/g_H$ and $q=h_H/g_H$ the extremal throat satisfies
+$P(a,q)=16a^2q^2(4-q)-8a(2q^2-7q+4)+q-2=0$ and
+$8J^2/(\pi^2g_H^3)=q^2(4-q)[1+4a(4-3q)]/8$.
+At fixed $J$ these give $g_H(s)$ as an algebraic function, with
+$g_H=1+\tfrac83 s+\tfrac{16}9 s^2-\tfrac{10496}{81}s^3-512 s^4+\tfrac{9125888}{729}s^5+\dots$
+(in units where $g_H(0)=1$). Two independent checks: (i) these coefficients equal the
+horizon shifts of the exterior computation through $s^6$; (ii) the map $s(q)$ reproduces
+the coupling of every point of the earlier spectral branch from its $q$ alone, to $10^{-6}$.
+
+Eliminating $(g_H,q)$ from the throat equations and their Jacobian gives the candidate branch
+points; Pad\'e approximants of 60 exact Taylor coefficients select those on the physical
+sheet: $s_*=\SstarRe\pm\SstarIm\,i$. In the $q$-plane $s_*$ is a critical point of the explicit
+map $s(q)$, at $q_c=2.16110\mp0.94332\,i$: a square-root fold. The Pad\'e poles beyond
+$s_*$ lie on the line $\mathrm{Re}\,s\simeq0.006$, i.e.\ a cut running away from $s_*$.
+
+\emph{Evidence that $m(s)$ shares it.} $\mathrm{sign}\,d_n=\mathrm{sign}\,\mathrm{Re}\,s_*^{-n}$
+for $n=1,\dots,6$ ($\arg s_*=83.8^\circ$, so the pattern is not trivial); $|d_n||s_*|^n$
+decreases slowly. A conformal map that opens the cuts from $s_*,\bar s_*$ turns the divergent
+series into one oscillating around the numerical $m(s)$ out to $s\approx0.5$
+(\texttt{series/conformal.py}); its slow convergence indicates further singularities near the
+boundary of the mapped disk. None of this is a proof.
+
+\section*{3. Strong coupling: pure-Lovelock universality}
+For $D=5$ EGB the static master equation is $\psi+2\alpha\psi^2=\mu/r^4$, $V=1-\psi r^2$;
+completing the square it is the $N=2$ ``derivative-degenerate'' polynomial
+$F(\psi)=-a+(\psi-\beta)^2$ of arXiv:1201.4994 (their eq.\ 15) with $\beta=-1/(4\alpha)$.
+For $r\ll\sqrt\alpha$ it behaves like pure Gauss--Bonnet in its critical odd dimension,
+which (their \S IV) has BTZ-like, universal thermodynamics: with $\mu=r_h^2+2\alpha$,
+\[ \Delta M=\tfrac{3\pi}{8}r_h^2,\quad S=6\pi^2\alpha\, r_h,\quad T=\frac{r_h}{8\pi\alpha}
+\;\Longleftrightarrow\; \text{BTZ with }\ell^2=4\alpha,\ \tfrac1{4G_3}=3\pi\alpha . \]
+The critical static solution $\mu=2\alpha$, $M=3\pi\alpha/4$, is the massless BTZ point.
+For an extremal BTZ hole with the same $(\ell,G_3)$, $\Delta M=4G_3S^2/(4\pi^2\ell^2)=S^2/(48\pi^3\alpha^2)$.
+The extremal entropy is known exactly from the throat; in $t=(2a)^{-1/2}$
+\[ \frac{S_\ext^2}{48\pi^3\alpha^{3/2}J}=\frac43+\frac38t^2+O(t^3)
+\quad\Longrightarrow\quad \Delta M_\ext=\frac{4J}{3\sqrt\alpha}\,(1+O(t^2)) \]
+(\texttt{strong/btz\_universality.py}, symbolic). The step that is assumed, not derived, is
+that the rotating extremal core obeys the static BTZ dictionary. The absence of an $O(t)$ term
+means the next coefficient $a_2$ of $s^{-1}$ in $m(s)$ cannot come from the core.
+
+\section*{4. Numerical solution at large $s$}
+\input{strong/numerics.tex}
+
+\section*{5. What is and is not established}
+\textbf{Exact:} $d_5,d_6$ (conditional on the zeta identifications); the algebraic throat and
+$g_H(s)$; the location of $s_*$; $a_1=4/3$ \emph{given} the BTZ dictionary for the rotating core.
+\textbf{Numerical:} $m(s)$ for $0<s\le\SmaxNum$ with the error budget of \S4; $a_2,a_3$.
+\textbf{Conjectural:} that $s_*$ is the nearest singularity of $m(s)$; the value of $a_2$
+from the earlier matched analysis. \textbf{Not obtained:} a closed form for $m(s)$.
+
+\vfill
+{\footnotesize Code: \texttt{extremal-mass/code} (exact series), \texttt{extremal-mass/series},
+\texttt{extremal-mass/strong}; resume notes \texttt{extremal-mass/RESUME.txt}.}
+\end{document}
