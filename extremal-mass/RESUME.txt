@@ -37,3 +37,15 @@ NEXT
   b. d6 when done -> asymptotics of d_n vs s*; resummation (conformal map) using s*.
   c. global representation (two-point Pade / fit with exact ends), error vs numerics.
   d. LaTeX write-up, vault pages (vault/papers/arxiv-1201.4994.md written), commit/push branch.
+
+STATUS 2026-10-19
+  d6 exact (code/pert_order6.json; X6 = 58879115264/6561 = throat prediction; sign of d6 = sign Re s*^-6).
+  sweep.json: two-sided solver OK for s = 2 .. 8.57 (err <= 6e-7); (m - 3s/4) sqrt(s) = 1.4295 at s = 8.57,
+    flattening (consistent with a1 = 4/3, not yet a confirmation).
+  BLOCKER for s > ~10: horizon-series radius shrinks (~1/40 at alpha=10, ~1/120 at alpha=25) and gamma grows
+    (3.65, 4.69), so the gamma-mode enters the start data at relative size x0^gamma ~ 1e-14: unresolvable in
+    double precision.  The near-degenerate level blocks (normalized det ~1e-6 at alpha=10) are GENUINE
+    (identical at 50 digits), not round-off.
+  PLAN: quad-precision (__float128) C integrator for the outward leg + horizon and gamma-mode series in mpmath
+    (TPS works with mpf objects), then rerun sweep.py for alpha >= 5.6.
+  Report draft: strong-coupling-report.tex (needs strong/numbers.tex, numerics.tex from make_numbers.py).
