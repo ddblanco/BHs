@@ -49,3 +49,12 @@ STATUS 2026-10-19
   PLAN: quad-precision (__float128) C integrator for the outward leg + horizon and gamma-mode series in mpmath
     (TPS works with mpf objects), then rerun sweep.py for alpha >= 5.6.
   Report draft: strong-coupling-report.tex (needs strong/numbers.tex, numerics.tex from make_numbers.py).
+
+STATUS 2026-10-19 (quad solver)
+  strong/mp_series.py: horizon + gamma-mode series at 60 digits (gamma = throat formula to 1e-55).
+    BUG FIXED: ode_poly.collapsed cache keyed by alpha value -> mpf reused double coefficients; now keyed by type.
+  strong/build_qrhs.py: __float128 Bulirsch-Stoer outward integrator (libquadmath), validated on the spectral solution.
+  strong/twoside_q.py: two-sided solver, quad near horizon (to x = 0.5 radius), double beyond.
+    VALIDATED s = 2.98202: m = 3.0410066654717 (double run at x0/2: 3.0410066658; spectral 3.04100567).
+  NEXT: alpha = 10 test (tq_10.log), then sweep alpha in [5.6, 1000] with continuation in Bhat = B rho^gamma.
+  NOTE: never use pkill -f with a pattern that appears in the same shell command (it kills the shell).

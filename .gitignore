@@ -23,3 +23,4 @@ references/data/1010.0860-src/
 
 # compiled helper of extremal-mass/strong (regenerable by build_crhs.py)
 extremal-mass/strong/_crhs.so
+extremal-mass/strong/_qrhs.so

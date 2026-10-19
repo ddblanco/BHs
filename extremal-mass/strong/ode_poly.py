@@ -53,7 +53,7 @@ _CACHE = {}
 
 
 def collapsed(alpha):
-    key = alpha if not isinstance(alpha, complex) else ('c', alpha)
+    key = (type(alpha).__name__, alpha)
     if key not in _CACHE:
         _CACHE[key] = _collapse(alpha)
     return _CACHE[key]
