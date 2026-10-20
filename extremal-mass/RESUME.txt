@@ -58,3 +58,14 @@ STATUS 2026-10-19 (quad solver)
     VALIDATED s = 2.98202: m = 3.0410066654717 (double run at x0/2: 3.0410066658; spectral 3.04100567).
   NEXT: alpha = 10 test (tq_10.log), then sweep alpha in [5.6, 1000] with continuation in Bhat = B rho^gamma.
   NOTE: never use pkill -f with a pattern that appears in the same shell command (it kills the shell).
+
+STATUS 2026-10-20 (large s)
+  Initial-value shooting is hopeless for s > ~10: squashing mode ~ exp(+-4 sqrt6 alpha/r) in the core (factor e^76 at
+  alpha = 10).  Tried scipy solve_bvp (bvp.py, bvp_cont.py): works to s = 9 (validated vs shooting, 2e-10) but unreliable.
+  PRODUCTION: strong/ms.py multiple shooting (nodes: log x near horizon, WKB phase 4 sqrt6 alpha/r in the core, log r
+    outside; segments in double DOP853 (C rhs) except x <= 0.05 rho in QUAD (near-horizon double is noise-limited);
+    left family at x0 = 0.003 rho with Bhat = B rho^gamma (60-digit series, linear in B: the B^2 term was the cause
+    of a residual floor near gamma = 3, shown by quad checks); right: large-r series (mu, b4) with rows scaled R^2,R^2,R^3).
+  strong/ms_cont.py: continuation with secant predictor, dense profiles in ms_sols/, results ms_results.json.
+  Converged so far: s = 9.16 .. 9.32 (m(9.32) = 7.4580467158685), crossing gamma = 3 at alpha = 4.83 next.
+  RULE: never kill with pkill/ps|grep patterns that occur in the same shell command; use the pid files (ms.pid).

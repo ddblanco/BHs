@@ -199,3 +199,31 @@ if __name__ == '__main__':
               f'|gamma-throat|={mp.nstr(S.gamma_check, 3)} nv={mp.nstr(S.nv[0], 12)} lead={[mp.nstr(v, 3) for v in S.gamma_lead]} '
               f'check={[mp.nstr(v, 3) for v in S.check]} radius~{mp.nstr(S.radius(), 4)}  [{time.time()-t:.0f}s]', flush=True)
         print('   psi:', [mp.nstr(v, 8) for v in S.psi[:5]])
+
+
+def cached(alpha, L=18, ng=10):
+    """MPSeries with a json cache (strong/mp_cache/alpha.json); returns an object with the same fields"""
+    import json, os
+    from pathlib import Path
+    d = Path(__file__).resolve().parent/'mp_cache'
+    d.mkdir(exist_ok=True)
+    fn = d/f'{float(alpha):.12g}_L{L}_n{ng}.json'
+    keys = ['rH', 'F0', 'H0', 'H1', 'gamma', 'gamma_throat', 'g', 'q', 'a', 'v']
+    if fn.exists():
+        js = json.loads(fn.read_text())
+        S = MPSeries.__new__(MPSeries)
+        S.alpha = mp.mpf(js['alpha']); S.alpha_f = float(alpha); S.L = L
+        for k in keys:
+            setattr(S, k, mp.mpf(js[k]))
+        for k in ('F', 'H', 'phi', 'psi'):
+            setattr(S, k, [mp.mpf(v) for v in js[k]])
+        S.nv = (S.phi[0], mp.mpf(1))
+        S.gamma_check = abs(S.gamma-S.gamma_throat)
+        return S
+    S = MPSeries(alpha, L=L, ng=ng)
+    js = {k: mp.nstr(getattr(S, k), DPS) for k in keys}
+    js['alpha'] = mp.nstr(S.alpha, DPS)
+    for k in ('F', 'H', 'phi', 'psi'):
+        js[k] = [mp.nstr(v, DPS) for v in getattr(S, k)]
+    fn.write_text(json.dumps(js, indent=1))
+    return S
