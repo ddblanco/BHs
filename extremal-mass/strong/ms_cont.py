@@ -48,13 +48,36 @@ def step(al, prev, res, depth=0):
     if depth >= 3:
         raise RuntimeError(f'continuation failed at alpha={al}')
     a0 = prev_alpha[0]
-    mid = round(float(np.sqrt(a0*al)), 6)
+    mid = round(avoid(float(np.sqrt(a0*al)), a0), 6)
     p2 = step(mid, prev, res, depth+1)
     prev_alpha[0] = mid
     return step(al, p2, res, depth+1)
 
 
 prev_alpha = [None]
+
+
+def _resonances():
+    from throat import throat
+    from scipy.optimize import brentq
+    out = []
+    for n in range(2, 16):
+        try:
+            out.append(float(np.exp(brentq(lambda la: throat(np.exp(la))['gamma']-n, np.log(0.75), np.log(1e5)))))
+        except Exception:
+            pass
+    return out
+
+
+RES = _resonances()
+
+
+def avoid(a, ref):
+    """move a midpoint out of a +-1.2% band around any gamma = integer coupling (towards ref)"""
+    for r in RES:
+        if abs(a/r-1) < 0.012:
+            return r*(0.985 if ref < r else 1.015)
+    return a
 
 if __name__ == '__main__':
     seed, a_seed = sys.argv[1], float(sys.argv[2])

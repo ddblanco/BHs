@@ -78,9 +78,9 @@ class MS:
     def flow(self, i, Z):
         if not np.all(np.isfinite(Z)):
             return np.full(3, np.nan)
-        if np.exp(self.t[i+1]) <= 0.05*self.b.rho*1.000001:
+        if np.exp(self.t[i+1]) <= 0.5*self.b.rho*1.000001:
             return self.qflow(i, Z)
-        self._nev = 0; self._maxev = 60000
+        self._nev = 0; self._maxev = 300000
         try:
             Zs = np.abs(Z)+1e-3
             def blow(t, Zt):
@@ -245,7 +245,7 @@ class MS:
         nodes below k* are then replaced by the chain (the old profiles do not reach that close to the horizon).
         Zs: list of node states Z_1..Z_{K-1} (modified in place)."""
         x = np.exp(self.t)
-        kstar = int(np.searchsorted(x, 0.05*self.b.rho*0.999999))
+        kstar = int(np.searchsorted(x, 0.5*self.b.rho*0.999999))
         target = np.array(Zs[kstar-1]); sc = np.abs(target)+1e-3
         B = 0.0 if not np.isfinite(beta) else beta
         for it in range(8):
