@@ -16,8 +16,10 @@ For r ≪ √α it behaves like pure GB in its critical odd dimension, i.e. like
   come from the core.
 
 Status: the BTZ dictionary is derived for static holes; applying it to the rotating extremal
-core is an assumption, supported by the agreement with the matched result and with the
-numerical branch (`extremal-mass/strong/analyse_sweep.py`).
+core is an assumption. It is supported by the matched result and by the numerical branch.
+Multiple shooting (`extremal-mass/strong/ms.py`, `ms_cont.py`) reaches s = 49, and free fits
+on s ≥ 15 give a₁ ∈ [1.3329, 1.3338]. With a₁ = 4/3 fixed, a₂ ∈ [0.4548, 0.4575]; the
+conditional matched value is 0.456527 (`extremal-mass/strong/make_numbers.py`, 2026-10-21).
 
 Receipt: `extremal-mass/strong/btz_universality.py` (asserts the limit 4/3 symbolically),
 2026-10-16, SymPy 1.14, output `S^2/(48 pi^3 alpha^(3/2) J) = 3*t**2/8 + 4/3`.

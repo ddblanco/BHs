@@ -1,82 +1,115 @@
 """Generate numbers.tex (macros) and numerics.tex (section 4 body) for strong-coupling-report.tex
-from sweep.json, the spectral branch, and the strong-coupling fits.  Every number in the report's
-numerical section comes from here."""
+from the spectral branch, sweep.json, bvp_results.json, ms_results.json, the strong-coupling fits,
+and the global approximant of global2.py.  Every number in the report's numerical section comes from here."""
 import json
 import numpy as np
 from pathlib import Path
+from global2 import data, fit, A2
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-sw = sorted(json.loads((HERE/'sweep.json').read_text()), key=lambda d: d['s'])
-S = np.array([d['s'] for d in sw]); Mv = np.array([d['m'] for d in sw])
 
-# spectral branch comparison (overlap s <= 5.24)
+S, Mv, SRC = data()
+sw = json.loads((HERE/'sweep.json').read_text())
+ms = sorted([d for d in json.loads((HERE/'ms_results.json').read_text()) if d['ok']], key=lambda d: d['s'])
+bvp = sorted([d for d in json.loads((HERE/'bvp_results.json').read_text()) if d['status'] == 0], key=lambda d: d['s'])
+
+# spectral branch comparison
 spec = []
 for r in json.loads((ROOT/'work/kkr-extremal/analysis.json').read_text())['branch']:
-    a, M, J = r['alpha'], r['M'], r['J']
-    if a > 0:
-        spec.append((np.pi**(2/3)*a/J**(2/3), M/(np.pi**(1/3)*J**(2/3))))
+    if r['alpha'] > 0:
+        spec.append((np.pi**(2/3)*r['alpha']/r['J']**(2/3), r['M']/(np.pi**(1/3)*r['J']**(2/3))))
 spec = np.array(sorted(spec))
-cmp_rows = []
-for d in sw:
-    if d['s'] <= spec[-1, 0]:
-        ms = np.interp(d['s'], spec[:, 0], spec[:, 1])
-        cmp_rows.append((d['s'], d['m'], ms, d['m']/ms-1))
-maxdev = max(abs(c[3]) for c in cmp_rows) if cmp_rows else float('nan')
-variants = [max(abs(v) for v in d['dm_variants']) for d in sw if d.get('dm_variants')]
+spec = spec[np.r_[True, np.diff(spec[:, 0]) > 1e-4]]
+from scipy.interpolate import CubicSpline
+spl = CubicSpline(spec[:, 0], spec[:, 1])
+dev = [abs(d['m']/spl(d['s'])-1) for d in sw+bvp if d['s'] <= spec[-1, 0]]
+maxdev = max(dev)
+sw0 = min(sw, key=lambda d: abs(d['s']-2.98202))
+_b = [r for r in json.loads((ROOT/'work/kkr-extremal/analysis.json').read_text())['branch'] if r['alpha'] > 0]
+specmed = float(np.median([r['constraint'] for r in _b])); specmax = max(r['constraint'] for r in _b)
+variants = max(max(abs(v) for v in d['dm_variants']) for d in sw if d.get('dm_variants'))
+maxres = max(d['res'] for d in ms)
+near = np.array([(d['s'], d['m']) for d in ms if d['s'] < 10.4])
+_c = np.polyfit(near[:, 0]-9.5, near[:, 1], 6)
+_b9 = min(bvp, key=lambda d: abs(d['s']-9.0037))
+xdev = abs(np.polyval(_c, _b9['s']-9.5)-_b9['m'])
 
-# strong-coupling fits with a1 = 4/3 fixed and free
-sig = S**-0.5; y = Mv-0.75*S
+# strong-coupling fits: (m - 3s/4) sqrt(s) = a1 + a2 s^-1/2 + ...
+D = (Mv-0.75*S)*np.sqrt(S); u = S**-0.5
 fits = []
-for smin in (20, 50, 100):
+for smin in (15, 20, 25):
     sel = S >= smin
-    for K in (2, 3, 4):
-        if sel.sum() > K+2:
-            A = np.array([sig[sel]**k for k in range(2, K+2)]).T
-            c = np.linalg.lstsq(A, y[sel]-4/3*sig[sel], rcond=None)[0]
-            fits.append(('fixed', smin, K, c))
-    for K in (3, 4, 5):
-        if sel.sum() > K+2:
-            A = np.array([sig[sel]**k for k in range(1, K+1)]).T
-            c = np.linalg.lstsq(A, y[sel], rcond=None)[0]
-            fits.append(('free', smin, K, c))
+    for K in (4, 5):
+        c = np.linalg.lstsq(np.vander(u[sel], K, increasing=True), D[sel], rcond=None)[0]
+        fits.append(('free', smin, K, c))
+    for K in (3, 4):
+        A = np.vander(u[sel], K+1, increasing=True)[:, 1:]
+        c = np.linalg.lstsq(A, D[sel]-4/3, rcond=None)[0]
+        fits.append(('fixed', smin, K, c))
 a1_free = [f[3][0] for f in fits if f[0] == 'free']
 a2_fixed = [f[3][0] for f in fits if f[0] == 'fixed']
+
+g2 = json.loads((HERE/'global2.json').read_text())
+G = g2['True_10']
+_, rel = fit(S, Mv, G['kappa'], 10, True)
 
 mac = {
     'SstarRe': '0.0059232', 'SstarIm': '0.0548189', 'SstarAbs': '0.05514',
     'SmaxNum': f'{S.max():.0f}',
-    'StrongFitSentence': (f'Fitting $m-3s/4=a_1s^{{-1/2}}+a_2s^{{-1}}+\\dots$ on $s\\ge20$ gives '
+    'AoneLo': f'{min(a1_free):.4f}', 'AoneHi': f'{max(a1_free):.4f}',
+    'AtwoLo': f'{min(a2_fixed):.4f}', 'AtwoHi': f'{max(a2_fixed):.4f}',
+    'StrongFitSentence': (f'Fitting $(m-3s/4)\\sqrt s=a_1+a_2s^{{-1/2}}+\\dots$ on $s\\ge15$ gives '
                           f'$a_1\\in[{min(a1_free):.4f},{max(a1_free):.4f}]$ with all coefficients free, and '
-                          f'$a_2\\in[{min(a2_fixed):.4f},{max(a2_fixed):.4f}]$ with $a_1=4/3$ fixed.'),
-    'GlobalFitSentence': r'See \S4 for a compact approximant and its error.',
+                          f'$a_2\\in[{min(a2_fixed):.4f},{max(a2_fixed):.4f}]$ with $a_1=4/3$ fixed '
+                          f'(conditional prediction $0.456527$).'),
+    'GlobalKappa': f'{G["kappa"]:.4f}', 'GlobalErr': f'{np.max(np.abs(rel)):.1e}',
+    'GlobalFitSentence': (f'A ten-term approximant with the exact ends (\\S4) reproduces all '
+                          f'{len(S)} numerical points to {np.max(np.abs(rel)):.1e} (relative).'),
 }
 (HERE/'numbers.tex').write_text('\n'.join(f'\\newcommand{{\\{k}}}{{{v}}}' for k, v in mac.items())+'\n')
 
-lines = [r'Method (\texttt{strong/twoside.py}). The reduced fixed-$J$ system in the areal gauge',
-         r'$g=r^2$ is $f\'=F_1(r,f,h,h\')$, $h\'\'=F_2(r,f,h,h\')$ (two field equations, linear in $f\'$ and $h\'\'$;',
-         r'the lapse and the rotation are eliminated exactly). It is integrated outward from the',
-         r'horizon, starting from (i) its formal power series, whose level blocks have rank one and whose',
-         r'$h\'(r_H)$ is fixed by the reduced equation $N_h-\kappa N_b$, and (ii) the non-analytic throat mode',
-         r'$B\,x^\gamma(1+\psi_1x+\dots)$ with $\gamma$ the exact throat exponent; and inward from large $r$',
-         r'from the asymptotic series with free mass $\mu$ and squashing amplitude $b_4$. Matching',
-         r'$(f,h,h\')$ at an intermediate radius fixes $(B,\mu,b_4)$; $m=3\mu/4$. One-sided shooting',
-         r'is ill-conditioned (the squashing mode grows like $r^6$ relative to the decaying one) and is not used.',
-         '', r'\textbf{Checks.} The reduced equations are satisfied, to $10^{-7}$ (finite differences), by the',
-         r'independent spectral solution of \texttt{work/kkr-extremal} transformed to this gauge; the',
-         r'non-analytic mode extracted from that solution has the predicted $f/h$ ratio; the indicial',
-         r'roots of the series equal $\{-1-\gamma,-1,\gamma\}$ of the throat formula to $10^{-12}$.',
-         f'On the overlap $s\\le5.24$ the two methods agree to {maxdev:.1e} (relative, max over',
-         f'{len(cmp_rows)} points). Changing $x_0$, the matching radius and the outer radius moves $m$ by',
-         f'at most {max(variants) if variants else float("nan"):.1e}.', '',
-         r'\begin{center}\small\begin{tabular}{rrr}\toprule $s$ & $m(s)$ & $(m-3s/4)\sqrt s$\\\midrule']
-for d in sw:
-    lines.append(f"{d['s']:.6g} & {d['m']:.10f} & {(d['m']-0.75*d['s'])*np.sqrt(d['s']):.8f}\\\\")
-lines.append(r'\bottomrule\end{tabular}\end{center}')
-lines.append(r'Strong-coupling fits ($\sigma=s^{-1/2}$):')
-lines.append(r'\begin{center}\small\begin{tabular}{llll}\toprule fit & $s_{\min}$ & terms & coefficients\\\midrule')
+L = [r'\textbf{Methods.} (i) $s\le5.24$: the spectral branch of \texttt{work/kkr-extremal}.',
+     r'(ii) $2\le s\le8.6$: two-sided shooting (\texttt{strong/twoside.py}): outward from the horizon,',
+     r'with its formal series (rank-one level blocks) plus the non-analytic throat mode $B\,x^\gamma$',
+     r'($\gamma$ the exact throat exponent), inward from the large-$r$ series with free mass $\mu$ and',
+     r'squashing amplitude $b_4$; $m=3\mu/4$. (iii) $s\ge9$: multiple shooting (\texttt{strong/ms.py},',
+     r'\texttt{ms\_cont.py}). Single shooting fails for $s\gtrsim10$ because in the core the squashing',
+     r'mode behaves as $e^{\pm4\sqrt{6}\alpha/r}$ (a factor $e^{76}$ at $\alpha=10$). The solver places',
+     r'nodes at equal WKB phase in the core, integrates segments with $x\le0.5\rho$ in quadruple',
+     r'precision ($\_\_$float128 Bulirsch--Stoer) from 60-digit horizon series, and continues in $\alpha$',
+     r'across the resonances $\gamma=3,4$ ($\alpha=4.83,13.97$).', '',
+     r'\textbf{Checks.} At the common point $s=2.98202$ the two-sided and spectral values differ by',
+     f'{abs(sw0["m"]/3.04100567-1):.1e}; against a spline of the spectral branch the shooting/BVP',
+     f'values deviate by at most {maxdev:.1e}, the size of the spectral branch\'s own constraint',
+     f'violations (median {specmed:.0e}, max {specmax:.0e}). Varying the shooting parameters moves $m$ by',
+     f'at most {variants:.1e}.',
+     f'Multiple-shooting Newton residuals are below {maxres:.0e}. A degree-6 polynomial through the',
+     f'{len(near)} multiple-shooting points with $9.16\\le s\\le10.3$, extrapolated to the BVP point $s=9.0037$,',
+     f'agrees with it to {xdev:.0e}.', '',
+     r'\begin{center}\small\begin{tabular}{rrrl}\toprule $s$ & $m(s)$ & $(m-3s/4)\sqrt s$ & method\\\midrule']
+rows = [(d['s'], d['m'], 'shoot') for d in sw] + [(d['s'], d['m'], 'BVP') for d in bvp if d['s'] > 8.6] \
+    + [(d['s'], d['m'], 'MS') for d in ms[::3]] + [(ms[-1]['s'], ms[-1]['m'], 'MS')]
+seen = set()
+for s, m, k in sorted(rows):
+    if round(s, 4) in seen:
+        continue
+    seen.add(round(s, 4))
+    L.append(f"{s:.6g} & {m:.10f} & {(m-0.75*s)*np.sqrt(s):.8f} & {k}\\\\")
+L += [r'\bottomrule\end{tabular}\end{center}',
+      r'\textbf{Strong-coupling fits} ($\sigma=s^{-1/2}$; coefficients of $1,\sigma,\sigma^2,\dots$ for',
+      r'free fits, of $\sigma,\sigma^2,\dots$ after subtracting $4/3$ for fixed fits):',
+      r'\begin{center}\small\begin{tabular}{llll}\toprule fit & $s_{\min}$ & terms & coefficients\\\midrule']
 for kind, smin, K, c in fits:
-    lines.append(f"{'$a_1=4/3$' if kind == 'fixed' else 'free'} & {smin} & {K} & "
-                 + ', '.join(f'{v:.5f}' for v in c)+r'\\')
-lines.append(r'\bottomrule\end{tabular}\end{center}')
-(HERE/'numerics.tex').write_text('\n'.join(lines)+'\n')
-print(mac['StrongFitSentence']); print('max dev vs spectral', maxdev, 'variants', variants)
+    L.append(f"{'$a_1=4/3$' if kind == 'fixed' else 'free'} & {smin} & {K} & "+', '.join(f'{v:.5f}' for v in c)+r'\\')
+L += [r'\bottomrule\end{tabular}\end{center}',
+      r'\textbf{Global approximant} (\texttt{strong/global2.py}). With $t=(1+s/\kappa)^{-1/2}$,',
+      r'\[ m(s)\approx\frac{3s}{4}+\sum_{k=1}^{10}c_k\,t^k , \]',
+      r'which is analytic at $s=0$ and expands in $s^{-1/2}$ at infinity. Imposed exactly: $m(0)=3/2$,',
+      r"$m'(0)=1$, $c_1\sqrt\kappa=4/3$, $c_2\kappa=0.456527$; the other six $c_k$ and",
+      f'$\\kappa={G["kappa"]:.4f}$ are fitted. Maximum relative error {np.max(np.abs(rel)):.1e} on',
+      f'$0<s\\le{S.max():.0f}$. Coefficients: '
+      + ', '.join(f'{v:.6f}' for v in G['c'])+'.',
+      r'It is an interpolant, not a closed form; it does not reproduce the complex singularity at',
+      r'$|s_*|=0.055$, so its Taylor coefficients beyond $s^1$ are not those of $m(s)$.']
+(HERE/'numerics.tex').write_text('\n'.join(L)+'\n')
+print(mac['StrongFitSentence']); print(mac['GlobalFitSentence']); print('maxdev', maxdev, 'variants', variants)

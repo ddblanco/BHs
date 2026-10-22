@@ -69,3 +69,12 @@ STATUS 2026-10-20 (large s)
   strong/ms_cont.py: continuation with secant predictor, dense profiles in ms_sols/, results ms_results.json.
   Converged so far: s = 9.16 .. 9.32 (m(9.32) = 7.4580467158685), crossing gamma = 3 at alpha = 4.83 next.
   RULE: never kill with pkill/ps|grep patterns that occur in the same shell command; use the pid files (ms.pid).
+
+STATUS 2026-10-21 (strong coupling confirmed)
+  ms_cont crossed gamma = 3 (alpha 4.83) and gamma = 4 (alpha 13.97); converged m(s) to s = 48.9 (res ~1e-11), still running
+    (pid strong/ms.pid, log strong/ms_cont.log; restart: it resumes from ms_results.json + ms_sols/).
+  Fits of (m - 3s/4) sqrt(s) = a1 + a2 s^-1/2 + ... on s >= 15..25: a1 = 1.3333 +- 3e-4 (free fits) => a1 = 4/3 CONFIRMED;
+    with a1 = 4/3 fixed: a2 = 0.4565 +- 0.001, matching the conditional 0.456526735220 of reports/strong-coupling-endpoint.pdf.
+  strong/global2.py: global approximant y = m - 3s/4 = sum c_k t^k, t = (1+s/kappa)^-1/2, exact y(0), y'(0), a1 (and a2);
+    K = 10: max rel err 1.1e-5 on 0 < s < 49 (global2.json).
+  NEXT: more large-s points -> a2 to more digits, a3; make_numbers.py from all data; compile report; vault; commit/push.
