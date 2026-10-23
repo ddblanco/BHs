@@ -1,0 +1,322 @@
+\documentclass[11pt,a4paper]{article}
+\pdfoutput=1
+\usepackage{jheppub}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,booktabs,microtype}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\GB}{\mathrm{GB}}
+\newcommand{\z}{\zeta}
+\setlength{\emergencystretch}{2em}
+\input{authors}
+\hypersetup{pdftitle={Extremal mass of equal-spin black holes in five-dimensional Einstein-Gauss-Bonnet gravity},pdfauthor={Cecilia Bejarano, David Blanco, Andres Goya, Guillem Perez Nadal}}
+\title{Extremal mass of equal-spin black holes in five-dimensional Einstein--Gauss--Bonnet gravity}
+\abstract{We study the extremal branch of asymptotically flat, five-dimensional Einstein--Gauss--Bonnet black holes with two equal angular momenta. We combine a coupling response extracted from non-extremal solutions, direct extremal constructions, and a weak-coupling expansion through sixth order. The solutions support a positive mass shift at fixed angular momentum. The coupling conjugate falls below its perturbative value, reaches a broad minimum, and rises again. Direct extremal solutions extend the mass curve to strong coupling, where it approaches the singular static mass threshold. Fits support a leading correction linear in angular momentum and inversely proportional to the square root of the coupling. A thermodynamic correspondence with a three-dimensional black hole motivates its coefficient, conditional on extending the static correspondence to the rotating core. We describe the numerical methods and distinguish their measured sensitivities from complete error bounds. The analytic structure of the near-horizon solution and the regularity of the full extremal horizon remain important qualifications.}
+\keywords{Black Holes, Classical Theories of Gravity}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Higher-curvature terms change the relation between mass and angular momentum at extremality. For five-dimensional black holes with two equal angular momenta, Ma, Li and L\"u obtained the first-order correction in the Gauss--Bonnet coupling \cite{Ma2020}:
+\begin{equation}
+ M_\ext(J,\alpha)=\frac32\pi^{1/3}J^{2/3}+\pi\alpha+O(\alpha^2),
+ \label{eq:linear}
+\end{equation}
+where $J$ is the angular momentum in each rotation plane and $G_5=1$. The correction is positive. The question addressed here is how this relation continues beyond first order.
+
+The equal-spin restriction reduces the field equations to ordinary differential equations. Brihaye, Kleihaus, Kunz and Radu constructed the non-extremal family and determined the extremal near-horizon geometry \cite{Brihaye2010}. Kleihaus, Kunz and Radu later constructed extremal solutions directly and mapped their domain of existence \cite{KKR2023}. Their mass-normalised extremal curve already contains the fixed-angular-momentum mass relation. Our purpose is to resolve that relation and its coupling response, connect it to higher-order perturbation theory, and follow it towards the strong-coupling regime. The existence of the equal-spin family and its extremal boundary are therefore prior results, not claims of novelty here.
+
+We organise the calculation around one dimensionless function,
+\begin{equation}
+ M_\ext=\pi^{1/3}J^{2/3}m(s),\qquad
+ s=\frac{\pi^{2/3}\alpha}{J^{2/3}}.
+ \label{eq:scaling}
+\end{equation}
+The non-extremal response determines the initial finite-coupling behaviour; a direct extremal construction tests the temperature extrapolation; shooting methods extend the mass curve to $s\simeq103$. The weak-coupling exterior expansion supplies complementary information through $s^6$. These methods have different numerical limitations and should not be assigned a common accuracy merely because they describe the same branch.
+
+Throughout, ``extremal mass'' means the mass on the branch connected continuously to equal-spin Myers--Perry. We do not establish a global minimum over other branches, horizon topologies or unequal angular momenta. At strong coupling we treat Einstein--Gauss--Bonnet (EGB) gravity as a classical theory in its own right. This regime is not a controlled truncation of a generic effective action containing further curvature operators.
+
+\section{Solutions and thermodynamic conventions}
+\label{sec:setup}
+We use the action
+\begin{equation}
+ I=\frac1{16\pi}\int\dd^5x\sqrt{-g}\,(R+\alpha\mathcal L_\GB),\qquad
+ \mathcal L_\GB=R^2-4R_{ab}R^{ab}+R_{abcd}R^{abcd},
+ \label{eq:action}
+\end{equation}
+with $\alpha\ge0$. The equations are $G_{ab}+\alpha H_{ab}=0$, where
+\begin{equation}
+ H_{ab}=2\left(RR_{ab}-2R_{ac}R_b{}^c-2R^{cd}R_{acbd}
+                  +R_a{}^{cde}R_{bcde}\right)-\tfrac12g_{ab}\mathcal L_\GB.
+\end{equation}
+This is the standard Lanczos tensor, recalled here to fix conventions. The metric ansatz of ref.~\cite{Brihaye2010} is
+\begin{align}
+ \dd s^2={}&-b\,\dd t^2+\frac{\dd r^2}{f}
+ +g\left[\dd\theta^2+\sin^2\theta\cos^2\theta(\dd\varphi_1-\dd\varphi_2)^2\right]
+ \nonumber\\
+ &+h\left(\sin^2\theta\,\dd\varphi_1+\cos^2\theta\,\dd\varphi_2-w\,\dd t\right)^2 .
+ \label{eq:metric}
+\end{align}
+The functions depend on $r$ only, $0\le\theta\le\pi/2$, and both azimuthal angles have period $2\pi$. One radial coordinate freedom remains. For the non-extremal calculation we set $g=r^2$, with $b=f=0$ at $r_H$. At infinity, $b,f,h/r^2\to1$ and $w\to0$.
+
+In this gauge the charges and horizon quantities are
+\begin{gather}
+ b=1+\frac{U}{r^2}+O(r^{-4}),\quad
+ w=\frac{W_\infty}{r^4}+O(r^{-6}),\qquad
+ M=-\frac{3\pi U}{8},\quad J=\frac{\pi W_\infty}{4},\label{eq:charges}\\
+ \Omega_H=w(r_H),\qquad T=\frac{\sqrt{b'(r_H)f'(r_H)}}{4\pi},\\
+ S=\frac{\pi^2}{2}g_H\sqrt{h_H}
+ \left[1+2\alpha\left(\frac8{g_H}-\frac{2h_H}{g_H^2}\right)\right].
+ \label{eq:entropy}
+\end{gather}
+The entropy is the stationary Lovelock horizon entropy \cite{Jacobson1993,Wald1993}. Its explicit coupling dependence must be retained when differentiating a family of solutions.
+
+With the coupling varied, the first law and Smarr relation are \cite{Kastor2010,Neri2024}
+\begin{equation}
+ \dd M=T\dd S+2\Omega_H\dd J+\Psi\dd\alpha,\qquad
+ 2M=3TS+6\Omega_HJ+2\alpha\Psi.
+ \label{eq:firstlaw}
+\end{equation}
+The factor of two in the angular term counts the two equal spins. Along an admissible extremal branch the coupling conjugate is the fixed-$J$ extremal mass derivative. Identifying it with a non-extremal limit requires that the limiting family and its thermodynamic derivatives exist. This qualification matters because the extremal horizon can contain non-integer radial powers (appendix~\ref{app:direct}).
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{@{}ll@{}}\toprule
+Quantity & Convention or conversion\\\midrule
+Individual angular momentum & $J_1=J_2=J$; total angular momentum $2J$\\
+Coupling in ref.~\cite{Brihaye2010} & $\alpha_{\mathrm{BKKR}}=4\alpha$\\
+Variables of the non-extremal study & $y=\alpha/J^{2/3}$, $\mu=M_\ext/J^{2/3}$\\
+Variables used here & $s=\pi^{2/3}y$, $m=\mu/\pi^{1/3}$\\
+Mass-normalised variables \cite{KKR2023} & $x=3\pi\alpha/(4M)$, $j=(3/2)^{3/2}\sqrt\pi J/M^{3/2}$\\
+Non-extremal continuation parameter & $q=r_H\Omega_H$; not the conserved $J$\\\bottomrule
+\end{tabular}
+\caption{Conventions used to combine the calculations. The horizon radius is set to one only in the non-extremal runs. The fixed-$J$ shooting normalisation is specified in appendix~\ref{app:shoot}.}
+\label{tab:conventions}
+\end{table}
+
+\section{The extremal mass curve}
+\subsection{Weak coupling}
+The exterior perturbation calculation extends eq.~\eqref{eq:linear} to
+\begin{equation}
+ m(s)=\frac32+s-\frac{236}{105}s^2+d_3s^3+d_4s^4+d_5s^5+d_6s^6+O(s^7).
+ \label{eq:weak}
+\end{equation}
+The coefficients are
+\begin{align}
+ d_3&=\frac{60851752}{33075}-1536\z(3),\nonumber\\
+ d_4&=\frac{3170304}{25}\z(2)^2+\frac{227328}{5}\z(3)
+       -\frac{592541765354296}{1489863375},\label{eq:d34}\\
+ d_5&\simeq423.920197004910,\qquad d_6\simeq-4737.494826989936.\nonumber
+\end{align}
+Appendix~\ref{app:series} gives the higher coefficients and the procedure used to obtain them. The rational second-order coefficient comes from the exterior solution, not from fitting the numerical mass curve. The claimed exact forms involving zeta values are conditional on numerical integer-relation identifications of horizon constants; high-precision agreement alone is not an analytic proof.
+
+The algebraic near-horizon system has candidate physical-sheet branch points at
+\begin{equation}
+ s_*\simeq0.0059232\pm0.0548189\,i,\qquad |s_*|\simeq0.05514.
+ \label{eq:branchpoints}
+\end{equation}
+These are reported for the horizon data. The sign pattern of the first six mass coefficients is consistent with the same singularities controlling $m(s)$, but six coefficients do not establish that conclusion. We therefore treat a mass-series radius near $|s_*|$ as a hypothesis. A Taylor series with a finite nonzero convergence radius should not be called merely an asymptotic expansion within that radius. No non-existence theorem for a closed-form mass function follows from these observations.
+
+\subsection{Finite coupling and the coupling response}
+The non-extremal computation obtains $\Psi$ by implicit differentiation of the discretised field equations, followed by the first-law subtraction in eq.~\eqref{eq:firstlaw}. It does not differentiate neighbouring extremal masses. At each coupling, the zero-temperature values are fitted intercepts of cold sequences, as described in appendix~\ref{app:nonext}.
+
+The thirteen sampled central slopes are positive. Their lowest sampled value is $\Psi_\ext\simeq1.07149$ at $y\simeq0.1752$, compared with the perturbative value $\pi$. The slope then rises to about $1.44440$ at $y\simeq0.5112$. The extremal mass in that range increases by about $31\%$ relative to its Einstein value. The lowest sampled value is not a precise determination of the location of the continuous minimum.
+
+Direct extremal solutions provide an additional comparison that does not use a temperature fit. Across twelve polished overlap points, the archived comparison reports maximum absolute differences $6.2\times10^{-6}$ in $\mu$ and $1.9\times10^{-5}$ in $\Psi$. These are differences between two calculations, not absolute error bounds. Representative values are shown in table~\ref{tab:overlap}. They support the broad decrease and subsequent increase of the response, while leaving common equation, normalisation and charge-extraction errors possible.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{@{}rrrrr@{}}\toprule
+$y$ & $\mu$ (direct) & $\mu$ ($T\to0$) & $\Psi$ (direct) & $\Psi$ ($T\to0$)\\\midrule
+0.056889 & 2.3280166 & 2.3280172 & 1.659079 & 1.659080\\
+0.175201 & 2.4739927 & 2.4739932 & 1.071493 & 1.071492\\
+0.229060 & 2.5319360 & 2.5319363 & 1.090071 & 1.090070\\
+0.511244 & 2.8885340 & 2.8885349 & 1.444398 & 1.444398\\\bottomrule
+\end{tabular}
+\caption{Selected archived comparisons between the direct extremal construction and the non-extremal extrapolation. Digits are retained to display the comparison, not to claim equivalent continuum accuracy. The quoted $y$ is rounded; it should not be used with these values as an exact interpolation node.}
+\label{tab:overlap}
+\end{table}
+
+\subsection{Continuation to strong coupling}
+Two-sided shooting overlaps the direct spectral branch and reaches $s\simeq8.6$. Multiple shooting then extends the calculation to $s\simeq103$. Table~\ref{tab:mass} gives selected recorded values. The change of method is necessary because an exponentially growing core mode makes long integrations unstable, rather than because the branch is observed to terminate.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{@{}rrl@{}}\toprule
+$s$ (rounded) & $m(s)$ & Method\\\midrule
+2 & 2.4446986200 & Two-sided shooting\\
+2.98202 & 3.0410066937 & Two-sided shooting\\
+8.5683 & 6.9145757941 & Two-sided shooting\\
+9.00366 & 7.2290351282 & Boundary-value solve\\
+9.16046 & 7.3425005931 & Multiple shooting\\
+20.278 & 15.5223943713 & Multiple shooting\\
+48.8667 & 36.8490546261 & Multiple shooting\\
+102.857 & 77.2785158831 & Multiple shooting\\\bottomrule
+\end{tabular}
+\caption{Selected masses transcribed from the strong-coupling record. The many stored digits make cross-comparisons possible but are not certified accuracy. Couplings are printed at the precision of that record; machine-readable data retain the full inputs.}
+\label{tab:mass}
+\end{table}
+
+The large-$s$ data were fitted in the form
+\begin{equation}
+ m(s)=\frac34s+a_1s^{-1/2}+a_2s^{-1}+a_3s^{-3/2}+\cdots .
+ \label{eq:strong}
+\end{equation}
+With all coefficients free, the recorded five- to seven-term fits over $s\ge10,15,20$ give $a_1\in[1.33330,1.33369]$. This supports $a_1=4/3$. With that value imposed, $a_2\in[0.45658,0.45669]$ and $a_3$ is approximately between $-0.268$ and $-0.265$. Imposing also the conditional matched-asymptotic value $a_2=0.456527$ gives comparably small residuals and shifts $a_3$ to $[-0.2625,-0.2623]$. Thus the evidence for the leading coefficient is stronger than for a precise value of the subleading ones. These intervals describe fit choices, not confidence intervals or a complete systematic uncertainty.
+
+The corresponding proposed expansion in physical units is
+\begin{equation}
+ M_\ext=\frac{3\pi\alpha}{4}+\frac{4J}{3\sqrt\alpha}
+ +a_2\frac{J^{4/3}}{\pi^{1/3}\alpha}
+ +a_3\frac{J^{5/3}}{\pi^{2/3}\alpha^{3/2}}+\cdots .
+ \label{eq:physicalstrong}
+\end{equation}
+The limiting mass is the singular zero-radius static threshold discussed in ref.~\cite{KKR2023}. The finite-$s$ sequence supports approach to this threshold; it does not construct the $J=0$ endpoint or prove that continuation to it is unique.
+
+\section{Interpretation and limitations}
+\subsection{A conditional explanation of the leading strong-coupling term}
+The static small-hole limit has the thermodynamic behaviour discussed for critical odd-dimensional Lovelock gravity in ref.~\cite{Dadhich2012}. The existing strong-coupling analysis writes this correspondence as
+\begin{equation}
+ \Delta M=\frac{3\pi}{8}r_h^2,\qquad
+ S\simeq6\pi^2\alpha r_h,\qquad T\simeq\frac{r_h}{8\pi\alpha},
+ \qquad \ell^2=4\alpha,\quad\frac1{4G_3}=3\pi\alpha,
+ \label{eq:dictionary}
+\end{equation}
+where $\Delta M=M-3\pi\alpha/4$. This identifies the leading static thermodynamics with that of a BTZ black hole. It is a thermodynamic correspondence, not a demonstrated dimensional reduction of the rotating five-dimensional metric.
+
+The further step is to assume that the rotating extremal core uses the same dictionary. The standard extremal BTZ relation, recalled in the source analysis, is then
+\begin{equation}
+ \Delta M=\frac{S^2}{48\pi^3\alpha^2}.
+ \label{eq:btz}
+\end{equation}
+Inserting the previously obtained near-horizon entropy gives the candidate correction $4J/(3\sqrt\alpha)$. The independent numerical fits are consistent with that coefficient. They do not prove the rotating dictionary or remove possible contributions from matching the core to the asymptotically flat exterior. We accordingly regard $a_1=4/3$ as a conditional analytic prediction supported by numerical evidence. The next coefficient is even more sensitive to that matching.
+
+\subsection{What the calculations establish}
+The complementary constructions support a positive finite-coupling mass shift on the sampled branch and a non-monotonic coupling response. They extend the first-order result of ref.~\cite{Ma2020}, while recovering the extremal family of refs.~\cite{Brihaye2010,KKR2023}. No implication for charged weak-gravity bounds, dynamical stability or a global lower mass bound is assumed.
+
+There are three main limits to the quantitative interpretation. First, the non-extremal temperature-fit envelopes and the direct-solver resolution comparisons measure selected sensitivities. Neither is a complete error budget. Second, direct extremal solutions contain a possible non-integer throat mode, so smoothness at the horizon must be assessed separately from residuals outside it. Third, strong-coupling fit stability over a finite interval does not establish an asymptotic remainder bound. The singular endpoint, the mass function's complex singularities, and the rotating BTZ correspondence remain hypotheses where no complete assertion or proof is available.
+
+The source calculations report useful checks: analytic Einstein and static limits, thermodynamic identities, a curvature-based off-grid equation residual, an on-shell coupling integral, and the algebraic near-horizon entropy. The latter tests horizon data, not the asymptotic mass. The response and on-shell integral use different evaluations but share numerical profiles. Agreement among such checks is valuable without making them independent determinations of every observable. An ergosurface-radius discrepancy with ref.~\cite{Brihaye2010} remains unresolved in the non-extremal source study and should not be counted as a successful external reproduction.
+
+\section{Conclusions}
+The fixed-angular-momentum extremal mass can be followed well beyond its known linear correction by combining the coupling response, direct extremal solutions and shooting methods. The numerical data resolve a broad minimum of the coupling response and support a strong-coupling approach to the singular static mass threshold. A leading correction $4J/(3\sqrt\alpha)$ is consistent with the numerical fits and has a conditional thermodynamic explanation. The exterior weak-coupling expansion supplies information through sixth order, with the stated qualification on the exact zeta-valued constants.
+
+The most useful next steps are a continuum error analysis across the method overlaps, a geometric regularity test of the extremal horizon, and a derivation of the rotating core-to-exterior matching. These would determine whether the suggested strong-coupling coefficients and complex analytic structure can be promoted from well-motivated hypotheses to controlled results.
+
+\acknowledgments
+OpenAI Codex assisted with organisation, drafting, source comparison and LaTeX preparation of this version on 23 October 2026. This editorial pass performed no new physics calculation, solver run, fit or symbolic verification. Equations and numerical results are transcribed or condensed from the existing project calculations and cited literature; no new derivation is claimed here. The underlying direct-extremal write-up also records assistance from Claude (Anthropic). The scope of this editorial verification is specified in appendix~E.
+
+\appendix
+\section{Non-extremal collocation and the coupling response}
+\label{app:nonext}
+At $r_H=1$, write $z=1/r$, $\chi=1-z$, and factor the known boundary behaviour as
+\begin{equation}
+ b=(1-z^2)B,\quad f=(1-z^2)F,\quad
+ h=\frac{1+z^4H}{z^2},\quad w=z^4W.
+\end{equation}
+The amplitudes are collocated at Chebyshev--Lobatto nodes. Infinity has $B=F=1$ and $H'=W'=0$, with primes denoting $\chi$ derivatives. Three horizon regularity relations and $W(0)=\Omega_H$ supply the horizon conditions. Damped Newton iteration solves the generated equations. Production uses $N=64$, with refinement to $96$ where required and selected comparison walks at $48$.
+
+For the discrete residual $R_N(u;\alpha,r_H,\Omega_H)=0$, the previously used implicit-response equations are
+\begin{equation}
+ A u_\alpha=-\partial_\alpha R_N,\qquad A=\partial_uR_N,\qquad
+ \Psi=\frac{\dd M}{\dd\alpha}-T\frac{\dd S}{\dd\alpha}
+                  -2\Omega_H\frac{\dd J}{\dd\alpha}.
+ \label{eq:response}
+\end{equation}
+These derivatives follow the numerical family at fixed $(r_H,\Omega_H)$; the subtraction converts them to the thermodynamic conjugate. Local derivatives are assembled by the chain rule using complex steps of $10^{-20}$. This avoids real subtractive differencing of neighbouring solutions but retains discretisation and conditioning errors. The explicit coupling derivative of the entropy is included.
+
+Charges are extracted from asymptotic fits. An independent curvature evaluator tests $G_{ab}+\alpha H_{ab}$ at 51 off-grid points, with a relative acceptance threshold $10^{-8}$ and the absolute residual recorded separately. Such a threshold is an equation-residual criterion, not an error bound for a fitted charge.
+
+At each coupling the central zero-temperature values are cubic intercepts through the six coldest states. Sensitivities vary the degree, use six or up to twelve states, and compare the coordinates $T$ and $TJ^{1/3}$. Additional probes include square-root and $T^2\log T$ terms; they are not derived near-extremal expansions. Asymptotic extraction, grid resolution, nonlinear tolerance and correlated errors in $M$ and $J$ remain separate contributions. Direct extremal comparisons in table~\ref{tab:overlap} supply a stronger test of the temperature limit than changing the fit family alone.
+
+\section{Direct extremal collocation and horizon regularity}
+\label{app:direct}
+In the radial gauge used for the direct extremal construction, let $u=r^2+1$. The recorded ansatz is
+\begin{gather}
+ b=\frac{P_1r^4}{u^2+1},\qquad f=\frac{r^2}{P_1u},\qquad
+ g=P_2u,\qquad h=P_2P_3u(1+u^{-2}),\qquad
+ w=\frac{\sqrt2}{u^2+1}+W.
+\end{gather}
+The horizon is at $r=0$ and $P_i=1$, $W=0$ gives extremal Myers--Perry. The fixed product $bf$ excludes nearby non-extremal solutions that otherwise produce nearly null directions in the discretisation. The horizon size is fixed by $P_2(0)=1$; the residual radial freedom is removed by eliminating a $1/r$ term at infinity.
+
+With $\xi=r/(1+r)$, the unknowns are
+\begin{equation}
+ P_i=1+(1-\xi)^2Q_i,\qquad W=(1-\xi)^2Q_4.
+\end{equation}
+This representation enforces the asymptotic fall-off and makes the mass an endpoint value:
+\begin{equation}
+ c_t=\tfrac12Q_1(1),\qquad M=\tfrac{3\pi}{4}(1-c_t).
+\end{equation}
+The angular momentum is extracted from the conserved momentum of $w$ in the reduced action. This avoids high endpoint derivatives of spectral interpolants.
+
+The four gauge-fixed equations are collocated on a Chebyshev grid. At the horizon the three degenerate $P_i$ equations are replaced by $P_i'=0$; the size condition replaces a neighbouring equation. Degenerate infinity equations are evaluated between the last two nodes. Separate algebraically equivalent residual expressions are used near each boundary to reduce cancellation. Newton iteration uses a complex-step chain-rule Jacobian and a line search. Resolution pairs, the unused Hamiltonian constraint and spectral tails are checked during continuation. The recorded branch relaxed the constraint threshold as coupling grew and increased the resolution up to 312; its worst constraint residual was $7.3\times10^{-5}$. Precision claims must therefore be local to the corresponding run.
+
+The throat perturbation contains an allowed term $B\rho^\gamma$, where $\rho$ is the near-horizon radial coordinate and $\gamma$ is generally non-integer. The recorded linear analysis finds a minimum near $\gamma=1.773$; in this gauge $\rho\propto r^2$. A nonzero mode amplitude can limit differentiability and cause algebraic spectral convergence. The allowed exponent alone does not establish the amplitude in every global solution, nor an invariant curvature singularity. Curvature in a parallelly propagated frame and an admissible horizon extension were not established in the source analysis. Non-smooth extremal horizons in higher-curvature gravity are also discussed in ref.~\cite{Horowitz2023}.
+
+\section{Two-sided and multiple shooting at fixed angular momentum}
+\label{app:shoot}
+The strong-coupling solver fixes the angular momentum in code units so that $s=2\alpha$ and $m=3\mu_{\rm shoot}/4$, where $\mu_{\rm shoot}$ is its asymptotic mass coefficient. It is not the $\mu$ of table~\ref{tab:conventions}. The reduced system evolves $(f,h,h')$ after using the angular first integral and the remaining algebraic relations.
+
+For two-sided shooting, an outward integration starts at $r_H+x_0$ with a truncated horizon series plus the non-analytic mode of amplitude $B$. An inward integration starts at a finite outer radius $R$ with a large-$r$ series containing free mass $\mu_{\rm shoot}$ and squashing coefficient $b_4$. Matching $(f,h,h')$ at an intermediate radius determines $(B,\mu_{\rm shoot},b_4)$. The implementation uses DOP853, with typical relative tolerance $10^{-13}$, and damped Newton matching. Its stopping rule can also terminate at a residual floor, so the actual final mismatch, rather than the requested tolerance, must accompany each accepted solution.
+
+At larger coupling a core squashing mode behaves, in the source's fixed-$J$ units, as $\exp(\pm4\sqrt6\,\alpha/r)$. Multiple shooting splits the interval into roughly 50--130 segments and treats the interface data as unknowns. Segment lengths follow the WKB phase in the stiff core. Newton matching then prevents an unstable mode from being amplified across the entire interval in one integration. Near-horizon segments use \texttt{\_\_float128} Bulirsch--Stoer integration seeded by 60-digit horizon series; other segments use double precision. Continuation crosses integer exponent values, where resonant terms and conditioning require particular care.
+
+Outer data are imposed at $R=12\sqrt\alpha$ below approximately $s=80$ and $R=8\sqrt\alpha$ above it. A discarded $R=25\sqrt\alpha$ run lost sensitivity to the squashing datum, which enters only at relative order $R^{-6}$, despite placing the boundary farther away. This illustrates why moving a numerical boundary outward is not automatically a refinement in floating-point arithmetic.
+
+The source records a two-sided/spectral difference $3.4\times10^{-7}$ at $s=2.98202$, shooting-parameter mass variations up to $2.8\times10^{-8}$, and multiple-shooting Newton residuals below $3\times10^{-10}$. At $s\simeq48.9$, the two outer-radius choices agree in $m$ to $5\times10^{-10}$. The comparison around $s\simeq9$ uses a degree-six polynomial extrapolation from 18 multiple-shooting points to a boundary-value point, agreeing to $5\times10^{-9}$; it is not a same-input solver comparison. These checks were recorded by the original calculations and were not rerun for this draft. A full uncertainty budget still needs joint variations of horizon-series order, start radius, precision, segmentation, outer-series order and matching tolerance.
+
+\section{Exterior series and the global interpolation}
+\label{app:series}
+The weak-coupling calculation solves the extremal exterior order by order using hyperlogarithmic quadratures. Integration constants enforce asymptotic flatness and a double zero of the radial inverse metric. Some regularised horizon constants are identified with multiple zeta values through high-precision integer relations. The recorded first-law residual vanishes at orders two through six, and the fifth- and sixth-order horizon shifts agree with the independent algebraic throat prediction. These checks support consistency, but do not replace a proof of the integer relations.
+
+For completeness the conditional higher coefficients are
+\begin{align}
+ d_5={}&\frac{447853140007115845664}{6100990520625}
+ +\frac{657983488}{175}\z(3)-\frac{3972366336}{625}\z(2)^2
+ -\frac{1464139776}{25}\z(5),\\
+ d_6={}&-\frac{1245254609028150217918650165824}{88766575114501659375}
+ +\frac{15735548018688}{6125}\z(2)^3\nonumber\\
+ &-\frac{57616520085504}{109375}\z(2)^2
+ +\frac{5569511424}{35}\z(3)^2\nonumber\\
+ &
+ -\frac{94884252024832}{165375}\z(3)
+ +\frac{2699634147328}{625}\z(5).
+\end{align}
+These expressions have the conditional status explained above. They were transcribed from the archived coefficient file, not rederived here.
+
+For numerical use, the strong-coupling report supplies the interpolant
+\begin{equation}
+ m_{\rm fit}(s)=\frac34s+\sum_{k=1}^{10}c_k t^k,\qquad
+ t=(1+s/\kappa)^{-1/2},\qquad \kappa=0.356242695,
+\end{equation}
+with
+\begin{center}\small
+\begin{tabular}{@{}rr|rr@{}}\toprule
+$k$ & $c_k$ & $k$ & $c_k$\\\midrule
+1 & 2.233910 & 6 & 230.148117\\
+2 & 1.281505 & 7 & -352.252482\\
+3 & -0.713812 & 8 & 303.906361\\
+4 & 6.055449 & 9 & -142.214324\\
+5 & -75.189708 & 10 & 28.244984\\\bottomrule
+\end{tabular}
+\end{center}
+The unrounded fit imposes $m(0)=3/2$, $m'(0)=1$, $a_1=4/3$ and $a_2=0.456527$; the last two constraints are conditional predictions. The source reports maximum relative error $1.1\times10^{-5}$ on 126 stored points in $0<s\le103$, including a check with the printed coefficients. This is an in-sample discrepancy. The formula is not a certified approximation between points, outside that interval, or for derivatives. It does not reproduce the candidate complex branch points or the weak coefficients beyond first order.
+
+\section{Provenance and scope of verification}
+The numerical values in this paper come from the existing project records: the non-extremal manuscript, the 23 October 2026 extremal-mass report and its strong-coupling supplement, the direct-extremal comparison, and the coefficient archive. In the accompanying repository these are respectively \texttt{manuscript/}, \texttt{extremal-mass/}, \texttt{work/kkr-extremal/}, and \texttt{extremal-mass/series/coefficients.json}. The strong-coupling implementation and stored fits are under \texttt{extremal-mass/strong/}. They are supporting records of this work, not independent publications.
+
+The present revision checks document construction and source transcription only. It does not independently establish the numerical claims, reproduce published figures, recompute coefficients, test the field equations, or verify horizon regularity. Standard identities are recalled with references; earlier project derivations are reported as such. No new derivation is asserted. The accompanying referee report identifies the scientific validation needed before submission.
+
+\begin{thebibliography}{99}
+\bibitem{Brihaye2010} Y.~Brihaye, B.~Kleihaus, J.~Kunz and E.~Radu, \emph{Rotating black holes with equal-magnitude angular momenta in $d=5$ Einstein-Gauss-Bonnet theory}, JHEP \textbf{11} (2010) 098 [\href{https://arxiv.org/abs/1010.0860}{arXiv:1010.0860}].
+\bibitem{Ma2020} L.~Ma, Y.-Z.~Li and H.~L\"u, \emph{$D=5$ rotating black holes in Einstein-Gauss-Bonnet gravity: mass and angular momentum in extremality}, [\href{https://arxiv.org/abs/2009.00015}{arXiv:2009.00015}].
+\bibitem{KKR2023} B.~Kleihaus, J.~Kunz and E.~Radu, \emph{Phases of rotating black objects in $d=5$ Einstein-Gauss-Bonnet theory}, [\href{https://arxiv.org/abs/2303.12471}{arXiv:2303.12471}].
+\bibitem{Jacobson1993} T.~Jacobson and R.~C.~Myers, \emph{Black hole entropy and higher curvature interactions}, Phys. Rev. Lett. \textbf{70} (1993) 3684 [\href{https://arxiv.org/abs/hep-th/9305016}{hep-th/9305016}].
+\bibitem{Wald1993} R.~M.~Wald, \emph{Black hole entropy is the Noether charge}, Phys. Rev. D \textbf{48} (1993) R3427 [\href{https://arxiv.org/abs/gr-qc/9307038}{gr-qc/9307038}].
+\bibitem{Kastor2010} D.~Kastor, S.~Ray and J.~Traschen, \emph{Smarr formula and an extended first law for Lovelock gravity}, Class. Quant. Grav. \textbf{27} (2010) 235014 [\href{https://arxiv.org/abs/1005.5053}{arXiv:1005.5053}].
+\bibitem{Neri2024} G.~Neri and S.~Liberati, \emph{Covariant phase space analysis of Lanczos--Lovelock gravity with boundaries}, [\href{https://arxiv.org/abs/2404.16981}{arXiv:2404.16981}].
+\bibitem{Dadhich2012} N.~Dadhich, J.~M.~Pons and K.~Prabhu, \emph{On the static Lovelock black holes}, [\href{https://arxiv.org/abs/1201.4994}{arXiv:1201.4994}].
+\bibitem{Horowitz2023} G.~T.~Horowitz, M.~Kolanowski, G.~N.~Remmen and J.~E.~Santos, \emph{Extremal Kerr black holes as amplifiers of new physics}, [\href{https://arxiv.org/abs/2303.07358}{arXiv:2303.07358}].
+\end{thebibliography}
+\end{document}

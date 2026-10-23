@@ -1,0 +1,79 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\hypersetup{pdftitle={Referee report: Extremal mass of equal-spin EGB black holes},pdfauthor={OpenAI Codex}}
+\title{Referee report\\\large Extremal mass of equal-spin black holes in five-dimensional Einstein--Gauss--Bonnet gravity}
+\author{Independent critical assessment prepared with OpenAI Codex}
+\date{23 October 2026}
+\begin{document}
+\maketitle
+\noindent\textbf{Recommendation: major revision before submission.}
+The combined work addresses a useful question and has a credible core result: the finite-coupling extremal mass relation on the equal-spin branch, together with a coupling response that decreases and then rises. The direct extremal and shooting extensions materially strengthen the older manuscript. The leading strong-coupling behaviour and higher weak-coupling coefficients could make the paper substantially more interesting. Their evidential status must, however, remain explicit.
+
+\paragraph{Scope of this review.}
+I read the existing manuscript, the 23 October extremal-mass report, its strong-coupling supplement, the direct-extremal write-up, selected implementation passages and the two requested model papers. I assessed claims, assumptions, presentation and recorded checks. I performed no calculation, fit, numerical solve, symbolic derivation or physics test. All numerical values discussed below are quotations from the records. This is a simulated referee assessment, not a report commissioned by JHEP.
+
+\section*{1. The central physical issue is horizon admissibility}
+The direct-extremal analysis admits a non-integer throat perturbation, with the recorded exponent falling below two in part of the coupling range. It does not establish the amplitude of this mode in every global solution or compute curvature in a parallelly propagated frame. Consequently, neither a smooth extremal horizon nor a physical singularity has been demonstrated across the branch. A finite mass and small exterior field-equation residual do not decide this question.
+
+\textbf{Possible correction.} State the admissibility criterion for the extremal solutions. In future work, determine whether the mode is excited by asymptotically flat matching, examine an admissible horizon extension, and test tidal curvature in an appropriate frame. If the exactly extremal geometry fails the required regularity, present the mass curve as the limit of non-extremal solutions and explain whether the thermodynamic derivative survives that limit. The new draft flags this issue but cannot resolve it editorially.
+
+\section*{2. The BTZ argument is a conditional prediction}
+The static thermodynamic dictionary does not by itself establish a rotating dimensional reduction. Applying the extremal BTZ mass--entropy relation to the five-dimensional rotating core assumes that the same normalisation and energy above the static threshold apply after matching to the exterior. This is precisely the step needed to obtain the proposed coefficient $4/3$. Agreement of free numerical fits with that number is evidence for it, not a proof of the dictionary.
+
+The earlier report sometimes describes the endpoint and this coefficient more strongly than its assumptions warrant. The approach to the singular static mass is not a construction of the endpoint, and finite-range continuation does not exclude a later obstruction.
+
+\textbf{Possible correction.} Keep the argument labelled conditional, as in the new draft. A derivation would require control of the rotating core, its conserved charges, and its matching to the asymptotically flat region. Publish the free-coefficient fits before imposing the prediction. Describe the singular endpoint as supported by the available continuation, without claiming a regular static extremal black hole.
+
+\section*{3. Numerical agreement is not a complete uncertainty budget}
+The evidence now includes more than the old positive-temperature extrapolation. Twelve polished direct-extremal comparisons support that extrapolation, and shooting overlaps the spectral method. This makes the older blanket objection that ``no direct extremal solution was constructed'' obsolete.
+
+Nevertheless, the methods share analytic reductions and physical conventions, and individual checks have unequal coverage. Some direct-spectral constraint thresholds were relaxed at larger coupling. The comparison near $s\simeq9$ involves polynomial extrapolation between different inputs. The outer-radius check at $s\simeq48.9$ is useful but does not certify every strong-coupling point. Small Newton residuals describe the discrete matching equations, not the error in the continuum mass.
+
+\textbf{Possible correction.} Supply a compact point-by-point error table covering resolution, constraint residuals, asymptotic extraction, horizon-series truncation, start radius, arithmetic precision, integration tolerance and matching residuals. Compare independent methods at identical physical inputs. Emphasise representative points around the response minimum, every method transition, integer throat-exponent crossings and the largest coupling. These are proposed checks; none was run in this review.
+
+\section*{4. The strong-coupling fit does not yet fix subleading coefficients}
+The recorded leading free-fit coefficient lies near $4/3$, but the fitted subleading coefficients depend on which predictions are imposed. With $a_1$ fixed, the quoted range for $a_2$ is approximately $0.45658$--$0.45669$. Fixing $a_2$ instead to $0.456527$ still gives small residuals and shifts $a_3$ appreciably. This is evidence of parameter correlation and unresolved truncation effects. An apparently precise value such as $a_3\simeq-0.263$ should not be advertised without its conditioning assumptions.
+
+The fit intervals do not include every systematic uncertainty of the underlying masses. A very small fit residual can coexist with biased coefficients when only a finite interval is available.
+
+\textbf{Possible correction.} Separate free and constrained fits in the main result table, state the full fit windows and orders, and report coefficient correlations and sensitivity to the input-error model. Use withheld data or a genuinely extended interval to test the expansion. Until then, retain a robust leading-coefficient claim and give subleading coefficients as conditional ranges rather than precision determinations.
+
+\section*{5. High-precision recognition is not an exact proof}
+The weak-coupling report uses integer-relation recognition of regularised horizon constants at high precision. The first-law and horizon-shift checks are strong consistency tests but can reuse the same recognised constants. They therefore do not independently prove those constants' proposed exact forms.
+
+\textbf{Possible correction.} Provide the integral definitions, regularisation prescription, allowed transcendental basis, precision and integer-relation residuals for each constant. An analytic reduction would remove the qualification. Otherwise consistently describe the zeta-valued coefficients as conditional exact forms supported by high-precision evidence. The second-order rational coefficient should be distinguished from coefficients that need this recognition step.
+
+\section*{6. The mass-series singularity and absence of closed form are not established}
+The algebraic horizon data and the asymptotic mass are different objects. A branch point of the former need not be a singularity of the latter: global matching can change the analytic structure or cancel a local singular contribution. Agreement of six coefficient signs with a proposed singularity pattern is suggestive but cannot locate the nearest singularity of the full mass function.
+
+The reports' argument that zeta values exclude an algebraic mass function is also too strong without specifying the coefficient field and proving the required arithmetic independence. Nor does a pair of complex branch points exclude elementary or special-function representations. Failure to find a closed form is not a non-existence result. Finally, a Taylor expansion with a finite nonzero convergence radius is convergent inside that disk; calling it ``only asymptotic'' is misleading.
+
+\textbf{Possible correction.} Retain the horizon branch points as a result of the horizon analysis and the proposed mass radius as a hypothesis. Remove the non-existence claims, as the new draft does. A stronger mass claim would need controlled analytic continuation of the exterior problem or substantially more independent coefficient information with an appropriate singularity analysis.
+
+\section*{7. The scope and novelty should remain narrow and explicit}
+The equal-spin EGB family, its extremal near-horizon geometry and the numerical domain boundary precede this work. The boundary already encodes an extremal mass relation after changing normalisation. The contribution should therefore be the quantitatively resolved fixed-$J$ curve and response, the complementary constructions, the higher-order exterior series, and the extension towards strong coupling.
+
+No uniqueness, dynamical stability or global minimum over other branches has been shown. Positive mass shifts for a neutral rotating branch are not automatically statements about charged weak-gravity bounds. Strong finite coupling in classical EGB is not automatically an effective-field-theory prediction.
+
+\textbf{Possible correction.} Preserve the branch-specific language of the new draft. Distinguish the lowest sampled slope from the continuous minimum and the observed positive samples from a proof of positivity at every coupling. Give a short comparison with the precise content of refs. 1010.0860, 2009.00015 and 2303.12471, without claiming first construction of their solutions.
+
+\section*{8. Reproducibility and presentation can be improved without new physics}
+The combined draft is clearer than treating the manuscript and reports as independent narratives, but a submission should expose the provenance of its numbers more directly. Rounded coupling values paired with long mass mantissas are useful for comparisons but unsuitable as exact interpolation nodes. The global approximant is constrained by conditional asymptotic coefficients and checked on its fitting data; its quoted maximum discrepancy is not an out-of-sample error or a derivative guarantee.
+
+Selected source-code reading also shows that two-sided Newton matching can terminate on a residual floor. A requested integration tolerance is therefore not enough to characterise an accepted point. Earlier strong-coupling runs with a distant outer boundary were discarded; the retained release must make that distinction unambiguous.
+
+\textbf{Possible correction.} Freeze the accepted data and solver configuration, record actual termination diagnostics, and map each printed table to machine-readable inputs. Supply only the accepted branch in the publication dataset while preserving discarded runs as explicitly labelled diagnostics. State which global-fit constraints are assumed and provide full-precision coefficients. Include a verified mass-curve figure and a convergence figure from the retained data in a later scientific revision; no new figure or figure reproduction was attempted here. Check bibliography metadata, author information and the journal's disclosure requirements before upload.
+
+\section*{Assessment of the revised draft}
+The new draft already corrects several editorial overstatements: it restricts the mass claim to the constructed branch, labels the rotating BTZ argument conditional, avoids proving a mass-series radius from horizon data, removes claims excluding a closed form, and separates recorded checks from work performed in this revision. It also includes the direct-extremal evidence that was absent from the older referee report.
+
+The unresolved issues are substantive rather than stylistic. Horizon admissibility, continuum uncertainties and the status of the analytic constants require further scientific work if the strongest claims are retained. A narrower numerical paper could proceed with the strong-coupling coefficients and singularity interpretation explicitly presented as conjectural extensions. For a broader paper, I would request the evidence outlined above before recommending publication.
+
+\paragraph{What was not checked.}
+No field equation, perturbative coefficient, fit, mass value, uncertainty, horizon invariant or published figure was recomputed. No stability or uniqueness analysis was performed. Standard thermodynamic relations were recalled from the cited material rather than rederived. This report judges the sufficiency and interpretation of the recorded evidence; it does not certify its numerical correctness.
+\end{document}
