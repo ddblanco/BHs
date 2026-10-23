@@ -78,3 +78,22 @@ STATUS 2026-10-21 (strong coupling confirmed)
   strong/global2.py: global approximant y = m - 3s/4 = sum c_k t^k, t = (1+s/kappa)^-1/2, exact y(0), y'(0), a1 (and a2);
     K = 10: max rel err 1.1e-5 on 0 < s < 49 (global2.json).
   NEXT: more large-s points -> a2 to more digits, a3; make_numbers.py from all data; compile report; vault; commit/push.
+  2026-10-22: user decision: run the continuation to s ~ 200 and stop (waiter kills ms.pid when max s >= 200).
+    Then: refit (make_numbers.py; add a3 estimate), rerun global2.py, recompile report, update vault, commit/push.
+  2026-10-22 ACCURACY ISSUE FOUND: with R = 25 sqrt(alpha) the far-field segments are noise-limited (Newton floor ~1e-10,
+    residual grows like r^4 toward R; m shifts 1e-7..3e-7 with nfar at s = 96, 1.8e-7 at s = 49). R = 12 sqrt(alpha) and
+    8 sqrt(alpha) agree to 5e-10 and are nfar-independent (ms_check.py, ms_check.json).  MS now has Rfac option.
+    v2 rerun: MS_TAG=_v2 MS_KW='{"Rfac": 12}' ms_cont.py ... (ladder in strong/v2_ladder.txt) -> ms_results_v2.json, ms_sols_v2/.
+    Use v2 for all fits; v1 (ms_results.json) values at s >~ 20 carry errors up to ~1e-6.
+    Also fixed: profile() hit the eval budget (crash after a converged point at alpha 51.4).
+  2026-10-23: v2 (Rfac 12) good to s = 78.5 (b4*alpha ~ -0.2247 smooth, res ~5e-12).  At s >= 84 Newton stuck at res 2e-10
+    on a wrong b4 (b4 enters h(R) at ~R^-6 relative: ill-conditioned) and m off by 2e-6.  Rfac = 8 converges cleanly at
+    s = 84 (res 7e-12, b4 on trend).  Rejected points: ms_results_v2_rejected.json, ms_sols_v2/*.rejected.
+    s >= 84 rerun with MS_KW='{"Rfac": 8}' (recorded in each record's 'kw').  QUALITY CHECK for any point: b4*alpha smooth.
+    Also: profile() now capped per segment (it took ~45 min/point after the budget fix); ms.py has qfar option (quad far
+    segments) - tested, double and quad far flows agree to 4e-16, so not needed.
+    Clean-data fits (s <= 78.5): a2 = 0.4566 +- 0.0001 (conditional 0.456527), a3 = -0.266 +- 0.004, a4 ~ -0.63.
+  2026-10-23 FINAL (user: stop at s ~ 100): v2 points to s = 102.86 (Rfac 8 for s > 80), all res <= 1.4e-11, b4*alpha smooth.
+    a1 = 1.33333 (free 6-7 term fits), a2 = 0.4566 +- 0.0002 (a1 fixed), a2 = 0.456527 fixed fits equally well, a3 ~ -0.263.
+    Global approximant (global2.py, K=10): max rel err 1.1e-5 (spectral data noise), 4e-6 on MS points.
+    Report recompiled: extremal-mass/strong-coupling-report.pdf.

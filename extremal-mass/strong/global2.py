@@ -14,6 +14,15 @@ ROOT = HERE.parents[1]
 A2 = 0.456526735220      # conditional value (reports/strong-coupling-endpoint.pdf)
 
 
+def ms_points():
+    """multiple-shooting points: v2 (R = 12 sqrt(alpha)) wherever available, v1 only below it (s < 9.7,
+    where the two agree to ~1e-9)"""
+    v2 = [d for d in json.loads((HERE/'ms_results_v2.json').read_text()) if d['ok']]
+    smin = min(d['s'] for d in v2)
+    v1 = [d for d in json.loads((HERE/'ms_results.json').read_text()) if d['ok'] and d['s'] < smin-1e-9]
+    return sorted(v1+v2, key=lambda d: d['s'])
+
+
 def data():
     pts = []
     for r in json.loads((ROOT/'work/kkr-extremal/analysis.json').read_text())['branch']:
@@ -24,7 +33,7 @@ def data():
     pts += [(d['s'], d['m'], 'sweep') for d in json.loads((HERE/'sweep.json').read_text())]
     pts += [(d['s'], d['m'], 'bvp') for d in json.loads((HERE/'bvp_results.json').read_text())
             if d['status'] == 0 and d['s'] < 9.1]
-    pts += [(d['s'], d['m'], 'ms') for d in json.loads((HERE/'ms_results.json').read_text()) if d['ok']]
+    pts += [(d['s'], d['m'], 'ms') for d in ms_points()]
     pts.sort()
     return np.array([p[0] for p in pts]), np.array([p[1] for p in pts]), [p[2] for p in pts]
 

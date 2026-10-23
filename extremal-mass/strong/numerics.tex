@@ -7,7 +7,11 @@ squashing amplitude $b_4$; $m=3\mu/4$. (iii) $s\ge9$: multiple shooting (\texttt
 mode behaves as $e^{\pm4\sqrt{6}\alpha/r}$ (a factor $e^{76}$ at $\alpha=10$). The solver places
 nodes at equal WKB phase in the core, integrates segments with $x\le0.5\rho$ in quadruple
 precision ($\_\_$float128 Bulirsch--Stoer) from 60-digit horizon series, and continues in $\alpha$
-across the resonances $\gamma=3,4$ ($\alpha=4.83,13.97$).
+across the resonances $\gamma=3,4,5$ ($\alpha=4.83,13.97,31.66$). The large-$r$ data (series in $1/r$
+with free $\mu,b_4$) are imposed at $R=12\sqrt\alpha$ ($s<80$) and $R=8\sqrt\alpha$ ($s>80$). At larger $R$
+the squashing datum $b_4$ enters $h(R)$ only at relative order $R^{-6}$; Newton then stalls on a residual
+floor and $m$ is wrong by up to $\sim10^{-6}$ (a first run with $R=25\sqrt\alpha$ is discarded for this
+reason; \texttt{ms\_check.py}).
 
 \textbf{Checks.} At the common point $s=2.98202$ the two-sided and spectral values differ by
 3.4e-07; against a spline of the spectral branch the shooting/BVP
@@ -16,7 +20,9 @@ violations (median 3e-06, max 7e-05). Varying the shooting parameters moves $m$ 
 at most 2.8e-08.
 Multiple-shooting Newton residuals are below 3e-10. A degree-6 polynomial through the
 18 multiple-shooting points with $9.16\le s\le10.3$, extrapolated to the BVP point $s=9.0037$,
-agrees with it to 2e-09.
+agrees with it to 5e-09. At $s=48.9$, $R=8\sqrt\alpha$ and $12\sqrt\alpha$ agree to $5\times10^{-10}$
+and $m$ is independent of the number of far nodes to $5\times10^{-15}$. Quality check on every point:
+$\alpha b_4$ varies smoothly (for $s>40$ it lies in $[-0.2255,-0.2214]$).
 
 \begin{center}\small\begin{tabular}{rrrl}\toprule $s$ & $m(s)$ & $(m-3s/4)\sqrt s$ & method\\\midrule
 2 & 2.4446986200 & 1.33600560 & shoot\\
@@ -31,38 +37,45 @@ agrees with it to 2e-09.
 9.32 & 7.4580467159 & 1.42888461 & MS\\
 9.52 & 7.6030391456 & 1.42868400 & MS\\
 9.59986 & 7.6609741162 & 1.42859997 & MS\\
-9.86 & 7.8498672728 & 1.42831221 & MS\\
-10.08 & 8.0097946897 & 1.42805387 & MS\\
-11.0299 & 8.7020175240 & 1.42681967 & MS\\
-13.5121 & 10.5212075494 & 1.42316670 & MS\\
-16.5529 & 12.7633325405 & 1.41866050 & MS\\
-20.278 & 15.5223943689 & 1.41364795 & MS\\
-24.8414 & 18.9136032758 & 1.40838925 & MS\\
+9.86 & 7.8498672737 & 1.42831221 & MS\\
+10.08 & 8.0097946907 & 1.42805387 & MS\\
+11.0299 & 8.7020175250 & 1.42681968 & MS\\
+13.5121 & 10.5212075510 & 1.42316671 & MS\\
+16.5529 & 12.7633325407 & 1.41866050 & MS\\
+20.278 & 15.5223943713 & 1.41364796 & MS\\
+24.8414 & 18.9136032782 & 1.40838926 & MS\\
 32.562 & 24.6670488835 & 1.40131488 & MS\\
-39.8898 & 30.1384093228 & 1.39612751 & MS\\
-48.8667 & 36.8490548018 & 1.39113450 & MS\\
+39.8898 & 30.1384092467 & 1.39612703 & MS\\
+48.8667 & 36.8490546261 & 1.39113327 & MS\\
+59.8638 & 45.0770724775 & 1.38638522 & MS\\
+78.4693 & 59.0078117196 & 1.38048665 & MS\\
+96.1283 & 72.2365798289 & 1.37640334 & MS\\
+102.857 & 77.2785158831 & 1.37510768 & MS\\
 \bottomrule\end{tabular}\end{center}
-\textbf{Strong-coupling fits} ($\sigma=s^{-1/2}$; coefficients of $1,\sigma,\sigma^2,\dots$ for
-free fits, of $\sigma,\sigma^2,\dots$ after subtracting $4/3$ for fixed fits):
-\begin{center}\small\begin{tabular}{llll}\toprule fit & $s_{\min}$ & terms & coefficients\\\midrule
-free & 15 & 4 & 1.33285, 0.46502, -0.30670, -0.67069\\
-free & 15 & 5 & 1.33382, 0.44473, -0.14893, -1.20874, 0.67936\\
-$a_1=4/3$ & 15 & 3 & 0.45752, -0.26849, -0.73442\\
-$a_1=4/3$ & 15 & 4 & 0.45483, -0.22703, -0.94389, 0.34674\\
-free & 20 & 4 & 1.33309, 0.46096, -0.28422, -0.71170\\
-free & 20 & 5 & 1.33361, 0.44934, -0.18722, -1.06855, 0.48851\\
-$a_1=4/3$ & 20 & 3 & 0.45692, -0.26188, -0.75242\\
-$a_1=4/3$ & 20 & 4 & 0.45554, -0.23883, -0.87926, 0.23015\\
-free & 25 & 4 & 1.33321, 0.45884, -0.27176, -0.73598\\
-free & 25 & 5 & 1.33344, 0.45342, -0.22291, -0.93062, 0.28970\\
-$a_1=4/3$ & 25 & 3 & 0.45666, -0.25873, -0.76166\\
-$a_1=4/3$ & 25 & 4 & 0.45591, -0.24528, -0.84159, 0.15735\\
+\textbf{Strong-coupling fits} ($\sigma=s^{-1/2}$; free: leading coefficients of $1,\sigma,\sigma^2,\dots$;
+$a_1=4/3$: of $\sigma,\sigma^2,\dots$ after subtracting $4/3$; rms of the fit to $(m-3s/4)\sqrt s$):
+\begin{center}\small\begin{tabular}{lllll}\toprule fit & $s_{\min}$ & terms & leading coefficients & rms\\\midrule
+free & 10 & 5 & 1.33369, 0.44648, -0.15638, -1.20273 & 9e-07\\
+free & 10 & 6 & 1.33334, 0.45635, -0.26292, -0.65016 & 3e-08\\
+free & 10 & 7 & 1.33331, 0.45763, -0.28038, -0.52680 & 1e-08\\
+$a_1=4/3$ & 10 & 5 & 0.45661, -0.26572, -0.63587, -0.72216 & 4e-08\\
+$a_1=4/3$ & 10 & 6 & 0.45669, -0.26776, -0.61457, -0.82906 & 2e-08\\
+free & 15 & 5 & 1.33351, 0.45100, -0.19687, -1.04730 & 2e-07\\
+free & 15 & 6 & 1.33333, 0.45688, -0.26917, -0.61436 & 9e-09\\
+free & 15 & 7 & 1.33333, 0.45683, -0.26841, -0.62052 & 9e-09\\
+$a_1=4/3$ & 15 & 5 & 0.45664, -0.26621, -0.63186, -0.73601 & 1e-08\\
+$a_1=4/3$ & 15 & 6 & 0.45659, -0.26466, -0.65039, -0.62776 & 9e-09\\
+free & 20 & 5 & 1.33345, 0.45268, -0.21350, -0.97594 & 6e-08\\
+free & 20 & 6 & 1.33333, 0.45682, -0.26833, -0.61983 & 1e-08\\
+free & 20 & 7 & 1.33330, 0.45789, -0.28617, -0.46370 & 9e-09\\
+$a_1=4/3$ & 20 & 5 & 0.45662, -0.26571, -0.63673, -0.71557 & 1e-08\\
+$a_1=4/3$ & 20 & 6 & 0.45658, -0.26457, -0.65151, -0.62130 & 1e-08\\
 \bottomrule\end{tabular}\end{center}
 \textbf{Global approximant} (\texttt{strong/global2.py}). With $t=(1+s/\kappa)^{-1/2}$,
 \[ m(s)\approx\frac{3s}{4}+\sum_{k=1}^{10}c_k\,t^k , \]
 which is analytic at $s=0$ and expands in $s^{-1/2}$ at infinity. Imposed exactly: $m(0)=3/2$,
 $m'(0)=1$, $c_1\sqrt\kappa=4/3$, $c_2\kappa=0.456527$; the other six $c_k$ and
 $\kappa=0.3562$ are fitted. Maximum relative error 1.1e-05 on
-$0<s\le49$. Coefficients: 2.233910, 1.281505, -0.714086, 6.058693, -75.205525, 230.189503, -352.315510, 303.962417, -142.241360, 28.250452.
+$0<s\le103$. Coefficients: 2.233910, 1.281505, -0.713812, 6.055449, -75.189708, 230.148117, -352.252482, 303.906361, -142.214324, 28.244984.
 It is an interpolant, not a closed form; it does not reproduce the complex singularity at
 $|s_*|=0.055$, so its Taylor coefficients beyond $s^1$ are not those of $m(s)$.

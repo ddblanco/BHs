@@ -11,7 +11,7 @@
 
 {\Large\bfseries Extremal mass of equal-spin EGB black holes in $D=5$:\\[2pt]
 weak series to $s^6$, its singularity, and the strong-coupling limit}\\[3pt]
-{\small 16--21 October 2026. Continuation of \texttt{extremal-mass-report.pdf}.
+{\small 16--23 October 2026. Continuation of \texttt{extremal-mass-report.pdf}.
 $G_5=1$, action $R+\alpha\mathcal L_{\rm GB}$, $J_1=J_2=J$,
 $M_\ext=\pi^{1/3}J^{2/3}m(s)$, $s=\pi^{2/3}\alpha/J^{2/3}$.}
 
@@ -37,8 +37,10 @@ independent route.
 \item \textbf{Numerics at strong coupling.} Two-sided shooting ($s\le8.6$) and multiple shooting
 with quadruple-precision near-horizon segments reach $s=\SmaxNum$ (the spectral branch stopped at
 $5.24$). \StrongFitSentence{} Hence, numerically,
-\[ m(s)=\frac{3s}{4}+\frac43\,s^{-1/2}+a_2\,s^{-1}+O(s^{-3/2}),\qquad a_2\simeq0.4565, \]
-confirming $a_1=4/3$ and agreeing, within the fit spread, with the conditional matched-asymptotics value $a_2=0.456527$.
+\[ m(s)=\frac{3s}{4}+\frac43\,s^{-1/2}+a_2\,s^{-1}+a_3\,s^{-3/2}+O(s^{-2}),\qquad
+a_2=0.4566\pm0.0002,\quad a_3\simeq-0.26, \]
+confirming $a_1=4/3$ and the conditional matched-asymptotics value $a_2=0.456527$
+(fits with $a_2$ fixed to it are as good as free fits).
 \item \textbf{No closed form.} $\zeta(3),\zeta(5),\zeta(3)^2,\pi^{2k}$ in $d_n$ exclude an algebraic
 $m(s)$; the complex singularity at $|s|=0.055$ excludes a simple elementary form built from the
 two ends. \GlobalFitSentence
@@ -112,8 +114,8 @@ means the next coefficient $a_2$ of $s^{-1}$ in $m(s)$ cannot come from the core
 \textbf{Exact:} $d_5,d_6$ (conditional on the zeta identifications); the algebraic throat and
 $g_H(s)$; the location of $s_*$; $a_1=4/3$ \emph{given} the BTZ dictionary for the rotating core.
 \textbf{Numerical:} $m(s)$ for $0<s\le\SmaxNum$ with the error budget of \S4;
-$a_1=4/3$ to $3\times10^{-4}$; $a_2\in[\AtwoLo,\AtwoHi]$, consistent with the conditional
-analytic value $0.456527$ (which is therefore supported but not derived here).
+$a_1=4/3$ to $4\times10^{-4}$ (free fits); $a_2\in[\AtwoLo,\AtwoHi]$ with $a_1$ fixed, consistent with the
+conditional analytic value $0.456527$ (supported, not derived here); $a_3\in[\AthreeLo,\AthreeFixHi]$.
 \textbf{Conjectural:} that $s_*$ is the nearest singularity of $m(s)$. \textbf{Not obtained:} a closed form for $m(s)$.
 
 \vfill

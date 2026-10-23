@@ -1,13 +1,16 @@
 """Continuation in alpha with multiple shooting (ms.MS).  Seed: a converged profile (pickle (t, Y, p, rH)).
 Results -> ms_results.json, profiles -> ms_sols/.  On failure a midpoint alpha is inserted (depth <= 3).
-Usage: python ms_cont.py seed.pkl alpha_seed alpha1,alpha2,..."""
-import json, pickle, sys, time
+Usage: python ms_cont.py seed.pkl alpha_seed alpha1,alpha2,...
+Environment: MS_TAG (suffix of the output json/dir, e.g. '_v2'), MS_KW (json dict of MS options, e.g. {"nfar": 60})."""
+import json, os, pickle, sys, time
 import numpy as np
 from pathlib import Path
 from ms import MS
 HERE = Path(__file__).resolve().parent
-OUT = HERE/'ms_results.json'
-SOLS = HERE/'ms_sols'; SOLS.mkdir(exist_ok=True)
+TAG = os.environ.get('MS_TAG', '')
+KW = json.loads(os.environ.get('MS_KW', '{}'))
+OUT = HERE/f'ms_results{TAG}.json'
+SOLS = HERE/f'ms_sols{TAG}'; SOLS.mkdir(exist_ok=True)
 
 
 HIST = []      # last converged (alpha, (t, Y, beta, mu, b4))
@@ -16,7 +19,7 @@ HIST = []      # last converged (alpha, (t, Y, beta, mu, b4))
 def attempt(al, prev):
     t, Y, mu, b4 = prev
     t0 = time.time()
-    M = MS(al)
+    M = MS(al, **KW)
     try:
         if len(HIST) >= 2:
             (a0, P0), (a1, P1) = HIST[-2], HIST[-1]
@@ -26,7 +29,7 @@ def attempt(al, prev):
         u = M.solve(u0, verbose=False)
         ok = M.res < 1e-8 and 0 < u[-2] < 10*al+20
         rec = dict(alpha=al, s=2*al, m=0.75*u[-2], mu=u[-2], b4=u[-1], beta=u[0], res=M.res, K=M.K,
-                   seconds=time.time()-t0, ok=bool(ok))
+                   seconds=time.time()-t0, ok=bool(ok), kw=KW)
         prof = M.profile() if ok else None
     finally:
         if M.pool is not None:

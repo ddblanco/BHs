@@ -19,8 +19,8 @@ from bvp import BVP
 _W = {}
 
 
-def _winit(alpha, dphi, nh, nfar, rtol, xf):
-    _W['ms'] = MS(alpha, dphi, nh, nfar, rtol, pool=False, xf=xf)
+def _winit(alpha, dphi, nh, nfar, rtol, xf, R, qfar):
+    _W['ms'] = MS(alpha, dphi, nh, nfar, rtol, pool=False, xf=xf, R=R, qfar=qfar)
 
 
 def _wflow(args):
@@ -29,8 +29,13 @@ def _wflow(args):
 
 
 class MS:
-    def __init__(self, alpha, dphi=6.0, nh=12, nfar=25, rtol=1e-12, pool=True, nproc=14, xf=0.003):
-        self.b = BVP(alpha, xf=xf)
+    def __init__(self, alpha, dphi=6.0, nh=12, nfar=25, rtol=1e-12, pool=True, nproc=14, xf=0.003, R=None, Rfac=None,
+                 qfar=False):
+        # outer radius: R = max(30, Rfac sqrt(alpha)) if Rfac is given.  The default 25 sqrt(alpha) is
+        # noise-limited at large alpha (m off by ~2e-7 at s = 49); Rfac = 8 and 12 agree to 5e-10 (ms_check.json)
+        if Rfac is not None:
+            R = max(30., Rfac*np.sqrt(alpha))
+        self.b = BVP(alpha, xf=xf, R=R)
         b = self.b
         self.alpha = float(alpha)
         # left family at x0 = xf*rho:  Z0 = U + Bhat V,  B = Bhat rho^-gamma  (60-digit series, linear in B;
@@ -40,10 +45,14 @@ class MS:
         U = [float(v) for v in Yb]; V = [float((g-bb)*sc) for g, bb in zip(Yg, Yb)]
         self.U = np.array([U[0]/b.x0**2, U[1], U[2]]); self.V = np.array([V[0]/b.x0**2, V[1], V[2]])
         self.rtol = rtol
+        self.stag = 0.5        # Newton stops when |res| > stag * best after it >= 2
         # nodes: log x near the horizon, WKB phase 4 sqrt6 alpha / r in the core, log r outside
         c = 4*np.sqrt(6)*self.alpha
         r_core_in = b.rH+10*b.rho
         r_core_out = 3*np.sqrt(self.alpha)+b.rH
+        # qfar: far segments (r >= r_core_out) in quad.  In double, h ~ r^2 swamps the b4/r^4 data at R
+        # (relative 1e-11 at s = 84), giving a Newton floor ~2e-10 there
+        self.x_far = r_core_out-b.rH if qfar else np.inf
         xs = list(np.geomspace(b.x0, 0.05*b.rho, 5))+list(np.geomspace(0.05*b.rho, 10*b.rho, nh+1)[1:])
         if r_core_out > r_core_in:
             ph_in, ph_out = c/r_core_in, c/r_core_out
@@ -56,7 +65,7 @@ class MS:
         self.pool = None
         if pool:
             from multiprocessing import Pool
-            self.pool = Pool(nproc, initializer=_winit, initargs=(alpha, dphi, nh, nfar, rtol, xf))
+            self.pool = Pool(nproc, initializer=_winit, initargs=(alpha, dphi, nh, nfar, rtol, xf, R, qfar))
 
     def flows(self, tasks):
         if self.pool is None:
@@ -78,7 +87,7 @@ class MS:
     def flow(self, i, Z):
         if not np.all(np.isfinite(Z)):
             return np.full(3, np.nan)
-        if np.exp(self.t[i+1]) <= 0.5*self.b.rho*1.000001:
+        if np.exp(self.t[i+1]) <= 0.5*self.b.rho*1.000001 or np.exp(self.t[i]) >= self.x_far*0.999999:
             return self.qflow(i, Z)
         self._nev = 0; self._maxev = 300000
         try:
@@ -180,7 +189,7 @@ class MS:
             if verbose:
                 beta, mu, b4, Z = self.unpack(u)
                 print(f'  it {it}: |res|={nr:.2e} beta={beta:.12g} mu={mu:.13f} b4={b4:.8g} m={0.75*mu:.13f}', flush=True)
-            if nr < tol or (it >= 2 and nr > 0.5*best):
+            if nr < tol or (it >= 2 and nr > self.stag*best):
                 break
             best = min(best, nr) if it else nr
             J = self.jacobian(u, F)
@@ -287,8 +296,21 @@ class MS:
         ts, Ys = [], []
         for i in range(self.K):
             te = np.linspace(self.t[i], self.t[i+1], npts)
-            sol = solve_ivp(self.rhsZ, (self.t[i], self.t[i+1]), Z[i], method='DOP853', rtol=self.rtol, atol=1e-14,
-                            t_eval=te)
+            self._nev = 0; self._maxev = 20000      # the profile is only a continuation guess: cap each segment
+            try:
+                sol = solve_ivp(self.rhsZ, (self.t[i], self.t[i+1]), Z[i], method='DOP853', rtol=1e-10,
+                                atol=1e-14, t_eval=te)
+                ok = sol.status == 0 and sol.y.shape[1] == npts
+            except MS._Budget:
+                ok = False
+            self._maxev = 10**9
+            if not ok:                               # fall back to the two node states
+
+                class _S:
+                    pass
+                sol = _S()
+                Zi1 = Z[i+1] if i < self.K-1 else self.right(mu, b4)
+                sol.t = np.array([self.t[i], self.t[i+1]]); sol.y = np.array([Z[i], Zi1]).T
             x = np.exp(sol.t)
             ts.append(sol.t[:-1] if i < self.K-1 else sol.t)
             Yi = np.vstack([sol.y[0]*x**2, sol.y[1], sol.y[2]])
