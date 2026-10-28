@@ -1,0 +1,28 @@
+Christoffels done 4 s
+Riemann done 6 s
+Riemann lowered 8 s
+R = e**2*v3/(2*v1**2) + 8/v2 - 2*v3/v2**2 - 2/v1
+L_GB = -2*(-4*e**2*v2*v3 + 3*e**2*v3**2 + 16*v1*v2 - 4*v1*v3)/(v1**2*v2**2)
+curvature done 34 s
+PASS R and L_GB constant on the throat
+PASS -det g = v1^2 v2^2 v3 sin^2 cos^2  (so sqrt(-g) = v1 v2 sqrt(v3) sin cos)
+alpha=0 solutions: [{e: -1/2, v2: 4*v1, v3: 8*v1}, {e: 1/2, v2: 4*v1, v3: 8*v1}]
+PASS alpha=0: v2 = 4 v1, v3 = 8 v1 (manuscript app. B)
+alpha=0: e = 1/2
+alpha=0 with v2 = r_H^2 = 2a^2: J_total = 2*pi*a**3  S = 2*pi**2*a**3
+PASS alpha=0: J_total = 2 pi a^3 (pi a^3 per plane), S = 2 pi^2 a^3 = 2 pi J_each
+degrees of F_i in (v1, e2): [(2, 1), (2, 1), (2, 1)]
+1 solutions of E1 = E2 = 0
+  v1 = (4*a*q + 1)*(12*a*q - 16*a - 1)/(4*(6*a*q**2 - 16*a*q - 1)) 
+  e^2 = (q - 4)*(4*a*q + 1)**2*(12*a*q - 16*a - 1)/(4*q*(6*a*q**2 - 16*a*q - 1)**2) 
+  third equation -> -6*pi*(4*a*q + 1)*(12*a*q - 16*a - 1)*(16*a**2*q**3 - 64*a**2*q**2 + 16*a*q**2 - 56*a*q + 32*a - q + 2)
+PASS v1 = v(a,q) of strong-coupling-endpoint.pdf eq. (2)  [equal modulo P(a,q) = 0]
+PASS e^2 = k^2 = 4(4-q)v^2/(qR) of eq. (2)  [modulo P = 0]
+PASS throat curvature: R = 8 - 2q - 2/v + q k^2/(2 v^2) (report, recalled identity) with k = e, g_H = 1
+PASS third stationarity equation reduces to P(a,q) = 0 of eq. (1)
+PASS 8 J_each^2/(pi^2 g_H^3) = q^2(4-q)R/8  [eq. (3)]
+PASS KKR 2023 eq. (3.18) equals J_total = J1 + J2
+PASS S_ext = Wald = KKR (3.19) on P = 0
+PASS KKR (3.17) is the physical root of P(a,q) = 0
+
+12 assertions passed in 37 s

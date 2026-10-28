@@ -1,0 +1,41 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=20mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,graphicx,xcolor}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\title{On the possibility of an analytic expression for the extremal mass\\
+\large of equal-spin rotating black holes in five-dimensional Einstein--Gauss--Bonnet gravity}
+\author{Review by Claude (Fable 5.1), for C.~Bejarano}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\input{analytic-expression-en}
+
+\begin{table}[h]
+\centering\footnotesize
+\begin{tabular}{@{}p{.5\textwidth}cp{.33\textwidth}@{}}
+\toprule
+comparison (worst over the common range) & quantity & deviation\\
+\midrule
+manuscript $T\to0$ vs exact weak series ($s<0.055$) & $m$ & $4.9\times10^{-6}$ rel.\\
+manuscript $T\to0$ vs global approximant (13 rows) & $m$ & $6.4\times10^{-6}$ rel.\\
+manuscript $T\to0$ vs direct $T=0$ solver & $\mu$ & $2.4\times10^{-5}$\\
+manuscript $\Psi_{\rm ext}$ vs $\pi m'$ of the approximant & slope & $2.1\times10^{-3}$\\
+manuscript $\Psi_{\rm ext}$ vs direct $T=0$ solver $\mu'$ & slope & $3.0\times10^{-4}$\\
+multiple-shooting table ($2\le s\le103$) vs approximant & $m$ & $6.9\times10^{-6}$ rel.\\
+\midrule
+minimum of the slope: approximant / direct solver / manuscript lowest sample & $\mu'$ & $1.0700\,(y{=}0.185)$ / $1.0698\,(y{=}0.195)$ / $1.0715\,(y{=}0.175)$\\
+\bottomrule
+\end{tabular}
+\caption{Cross-validation of the three independent numerical determinations
+(\texttt{checks/check\_branch\_consistency.py}).}
+\label{tab:threeroutes}
+\end{table}
+
+\begin{figure}[h]\centering\includegraphics[width=.8\textwidth]{figures/fig-three-routes.pdf}
+\caption{The three numerical routes and the global approximant; lower panel: relative residuals.}\label{fig:three}\end{figure}
+\begin{figure}[h]\centering\includegraphics[width=.8\textwidth]{figures/fig-slope.pdf}
+\caption{The slope $\partial M_{\rm ext}/\partial\alpha|_J$ by the three routes.}\label{fig:slope}\end{figure}
+\end{document}

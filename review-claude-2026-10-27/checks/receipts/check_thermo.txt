@@ -1,0 +1,51 @@
+PASS BD: N(r_H) = 0
+PASS BD: U = -(r_H^2+2 alpha)
+PASS BD: M = 3 pi (r_H^2 + 2 alpha)/8
+PASS BD: T = r_H/(2 pi (r_H^2 + 4 alpha))
+PASS BD: S = pi^2 r_H^3/2 + 6 pi^2 alpha r_H
+PASS BD: dM = T dS at fixed alpha
+PASS BD: Psi_static = (3pi/4)(4 abar - 3)/(1 + 4 abar)
+PASS BD: Psi_static -> -9pi/4 at alpha=0
+PASS BD: Psi_static = 0 at abar = 3/4
+PASS BD: Smarr 2M = 3TS + 2 alpha Psi
+PASS BD: abar = 3/4 <-> x = 3/5
+PASS BD: t_H = sqrt(1+2 abar)/(1+4 abar)
+PASS KKR (2.11): s = sqrt(1-x)(1+5x) on the static branch
+PASS BTZ dictionary: T matches leading small-r_H EGB temperature
+PASS BTZ dictionary: S matches leading small-r_H EGB entropy
+PASS BTZ dictionary: M matches Delta M = 3 pi r_H^2/8
+PASS extremal BTZ: Delta M = S^2/(48 pi^3 alpha^2)
+PASS Wald: Ricci scalar of squashed S^3 = 8/g - 2h/g^2
+PASS Wald: horizon volume = 2 pi^2 g sqrt(h)
+PASS Wald entropy = KKR (3.19) S_extremal formula
+PASS MP: extremal at mu = 4a^2, rho_+ = a
+PASS MP extremal: M = 3 pi a^2/2, J = pi a^3
+PASS MP extremal: M = (3/2) pi^(1/3) J^(2/3)
+PASS MP extremal: S = 2 pi^2 a^3 = 2 pi J
+PASS MP extremal: Smarr M = 3 Omega J at T=0
+PASS MP extremal: omega = Omega J^(1/3) = pi^(1/3)/2
+PASS MP: q = a/r_H and q_ext = 1/sqrt2
+PASS MP: u = q^2/(1-q^2)
+PASS MP: h_H/r_H^2 = 1/(1-q^2)
+PASS Psi_0(u=0) = -9pi/4 (static) and Psi_0(u=1) = pi (extremal)
+PASS Psi_0 zero at q = 0.634936
+   analytic zero q = 0.634935845830
+PASS dM_ext/dalpha|_J = mu'(y)
+PASS Smarr at T=0 gives 3 omega = mu - y mu'
+PASS Psi_ext = mu'(y) = pi m'(s)
+PASS code units: s = 2 alpha
+PASS code units: m = 2M/pi
+PASS code units: mu = 3 m/4 ... no: mu = M/J0^(2/3) = pi^(1/3) m
+PASS Ma-Li-Lu: M_ext = (3/2)pi^(1/3)J^(2/3) + pi alpha  <->  m = 3/2 + s
+PASS generated EGB equations vanish on Boulware-Deser (finite alpha)
+PASS generated EGB equations vanish on extremal Myers-Perry at alpha=0
+PASS extremal MP profiles: h_H = 2 = 1/(1-q^2), q = w(1) = 1/sqrt2, U = -2 -> M = 3pi/4, W = sqrt2 -> J = pi sqrt2/4
+PASS extremal MP in code units: m = 2M/pi = 3/2, s = 0
+
+42 assertions passed; 6 of them certified numerically at random rational points (60 digits) rather than symbolically:
+   numeric: 1 + r_H**2*(1 - sqrt(8*alpha*(2*alpha + r_H**2)/r_H**4 + 1))
+   numeric: -r_H/(2*pi*(4*alpha + r_H**2)) - r_H**3/(8*pi*alpha*sqrt(16*
+   numeric: 3*pi*r_H/4 - (-12*pi**2*alpha + 3*pi**2*r_H**2*(12*alpha/r_H
+   numeric: -3*pi*(4*alpha/r_H**2 - 3)/(4*(4*alpha/r_H**2 + 1)) + 3*pi/4
+   numeric: -2*alpha*(3*pi/4 + 3*pi*r_H**4/(4*alpha*sqrt(16*alpha**2 + 8
+   numeric: -sqrt(2*alpha/r_H**2 + 1)/(4*alpha/r_H**2 + 1) - r_H**3*sqrt

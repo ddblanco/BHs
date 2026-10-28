@@ -1,0 +1,510 @@
+...................................F.................................... [ 14%]
+........................................................................ [ 28%]
+...........................................................ss........... [ 43%]
+........................................................................ [ 57%]
+........................................................................ [ 72%]
+........................................................................ [ 86%]
+....F............................................................        [100%]
+=================================== FAILURES ===================================
+____________________ test_published_distribution_is_intact _____________________
+
+    def test_published_distribution_is_intact():
+>       assert checker().main(ROOT) == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = <function main at 0x7ff5357b3740>(PosixPath('/home/cbejarano/Desktop/BHs-main'))
+E        +    where <function main at 0x7ff5357b3740> = <module 'distribution' from '/home/cbejarano/Desktop/BHs-main/checks/verify_distribution.py'>.main
+E        +      where <module 'distribution' from '/home/cbejarano/Desktop/BHs-main/checks/verify_distribution.py'> = checker()
+
+tests/test_distribution.py:22: AssertionError
+----------------------------- Captured stdout call -----------------------------
+FAIL: changed: .gitignore
+FAIL: unlisted: .claude/settings.local.json
+FAIL: unlisted: extremal-mass/README.md
+FAIL: unlisted: extremal-mass/RESUME.txt
+FAIL: unlisted: extremal-mass/code/c_constants.json
+FAIL: unlisted: extremal-mass/code/c_constants.py
+FAIL: unlisted: extremal-mass/code/check_c111.py
+FAIL: unlisted: extremal-mass/code/constants.json
+FAIL: unlisted: extremal-mass/code/constants.py
+FAIL: unlisted: extremal-mass/code/extremal_perturbation.json
+FAIL: unlisted: extremal-mass/code/extremal_perturbation.py
+FAIL: unlisted: extremal-mass/code/hyperlog.py
+FAIL: unlisted: extremal-mass/code/master_k1.json
+FAIL: unlisted: extremal-mass/code/master_k1.py
+FAIL: unlisted: extremal-mass/code/pert.py
+FAIL: unlisted: extremal-mass/code/pert_fields_order4.json
+FAIL: unlisted: extremal-mass/code/pert_fields_order5.json
+FAIL: unlisted: extremal-mass/code/pert_fields_order6.json
+FAIL: unlisted: extremal-mass/code/pert_order4.json
+FAIL: unlisted: extremal-mass/code/pert_order5.json
+FAIL: unlisted: extremal-mass/code/pert_order6.json
+FAIL: unlisted: extremal-mass/code/probe.py
+FAIL: unlisted: extremal-mass/code/radial_series.py
+FAIL: unlisted: extremal-mass/code/reduced_system.py
+FAIL: unlisted: extremal-mass/code/second_order.py
+FAIL: unlisted: extremal-mass/code/second_order_fields.json
+FAIL: unlisted: extremal-mass/extremal-mass-report.pdf
+FAIL: unlisted: extremal-mass/extremal-mass-report.tex
+FAIL: unlisted: extremal-mass/reports/strong-coupling-endpoint.pdf
+FAIL: unlisted: extremal-mass/series/coefficients.json
+FAIL: unlisted: extremal-mass/series/coefficients.py
+FAIL: unlisted: extremal-mass/series/conformal.py
+FAIL: unlisted: extremal-mass/series/singularity_fit.py
+FAIL: unlisted: extremal-mass/strong-coupling-report.pdf
+FAIL: unlisted: extremal-mass/strong-coupling-report.tex
+FAIL: unlisted: extremal-mass/strong/_U_generated.py
+FAIL: unlisted: extremal-mass/strong/_crhs.c
+FAIL: unlisted: extremal-mass/strong/_ode_generated.py
+FAIL: unlisted: extremal-mass/strong/_qrhs.c
+FAIL: unlisted: extremal-mass/strong/alphas.txt
+FAIL: unlisted: extremal-mass/strong/alphas2.txt
+FAIL: unlisted: extremal-mass/strong/analyse_sweep.py
+FAIL: unlisted: extremal-mass/strong/asym_numeric.py
+FAIL: unlisted: extremal-mass/strong/asym_series.py
+FAIL: unlisted: extremal-mass/strong/bisect_reach.py
+FAIL: unlisted: extremal-mass/strong/btz_universality.py
+FAIL: unlisted: extremal-mass/strong/build_crhs.py
+FAIL: unlisted: extremal-mass/strong/build_qrhs.py
+FAIL: unlisted: extremal-mass/strong/bvp.py
+FAIL: unlisted: extremal-mass/strong/bvp_cont.py
+FAIL: unlisted: extremal-mass/strong/bvp_guess_4.28415.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_results.json
+FAIL: unlisted: extremal-mass/strong/bvp_results_beta.json
+FAIL: unlisted: extremal-mass/strong/bvp_sols/2.62010470.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/2.80351200.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/2.99975800.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/3.20974100.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/3.43442300.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/3.67483200.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/3.93207100.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/4.20731600.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/4.50182800.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/4.62000000.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/4.73000000.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols/5.04000000.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/2.62010470.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/2.80351200.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/2.99975800.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/3.43442300.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/3.67483200.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/3.93207100.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/4.20731600.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/4.50182800.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/4.62000000.pkl
+FAIL: unlisted: extremal-mass/strong/bvp_sols_beta/4.73000000.pkl
+FAIL: unlisted: extremal-mass/strong/check_throat_vs_kkr.py
+FAIL: unlisted: extremal-mass/strong/dbg_v2.py
+FAIL: unlisted: extremal-mass/strong/explore_jac.py
+FAIL: unlisted: extremal-mass/strong/explore_series.py
+FAIL: unlisted: extremal-mass/strong/extremal_shoot.py
+FAIL: unlisted: extremal-mass/strong/from_kkr.py
+FAIL: unlisted: extremal-mass/strong/gH_branch.py
+FAIL: unlisted: extremal-mass/strong/gH_series.json
+FAIL: unlisted: extremal-mass/strong/gH_series.py
+FAIL: unlisted: extremal-mass/strong/gamma_mode.py
+FAIL: unlisted: extremal-mass/strong/global2.json
+FAIL: unlisted: extremal-mass/strong/global2.py
+FAIL: unlisted: extremal-mass/strong/global_fit.py
+FAIL: unlisted: extremal-mass/strong/horizon_series.py
+FAIL: unlisted: extremal-mass/strong/make_numbers.py
+FAIL: unlisted: extremal-mass/strong/mp_cache/10.138978_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/10.660336_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/10.848707_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/1009.464574_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/101.167878_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/1016.955735_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/1080.127094_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/10_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/11.608116_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/114.058353_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/115.827104_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/1155.735991_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/12.420685_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/12.792403_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/123.935001_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/13.290132_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/132.610451_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/136.870024_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/141.893183_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/15.215873_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/15.350884_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/151.825705_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/16.280984_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/162.453505_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/164.244029_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/17.420653_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/173.82525_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/18.421061_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/18.640098_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/185.993017_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/19.944905_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/197.092834_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/199.012529_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/2.62010470446_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/2.803512_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/2.999758_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/21.341049_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/212.943406_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/22.105273_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/22.834922_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/227.849444_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/236.511401_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/24.433367_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/243.798905_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/26.143702_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/26.526328_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/260.864829_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/27.973761_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/283.813682_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/29.931925_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/298.664142_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/3.209741_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/3.434423_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/3.4_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/3.674832_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/3.932071_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/319.570632_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/34.26906_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/340.576418_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/341.940576_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/36.667895_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/365.876417_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/38.197912_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/39.234647_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/391.487766_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.207316_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.28415_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.501828_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.560531_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.580231_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.619943_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.62_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.639928_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.647258_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.648849_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.65044_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.653625_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.66_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.674676_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.73_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.76_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.774976_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.778728_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.782482_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.799928_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.79_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.7_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.809876_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.829834_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.869_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.87_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.93_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.97_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/4.9_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/408.691702_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/41.981073_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/44.919748_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/448.214343_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/45.837494_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/479.589347_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/48.06413_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/490.430042_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/5.04_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/5.09_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/5.14098_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/5.154143_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/5.514932_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/5.900978_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/51.428619_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/513.160602_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/549.081844_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/55.004993_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/55.028623_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/58.880626_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/587.517573_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/588.51605_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/5_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/6.169176_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/6.314046_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/6.756029_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/628.643803_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/66.005991_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/67.412429_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/672.648869_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/7.228952_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/7.403011_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/7.734978_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/706.21926_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/719.73429_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/72.131299_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/77.18049_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/770.11569_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/79.20719_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/8.276427_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/8.855776_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/8.883613_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/82.583124_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/824.023789_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/847.463112_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/88.363943_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/881.705454_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/9.475681_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/94.549419_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/943.424836_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_cache/95.048628_L18_n10.json
+FAIL: unlisted: extremal-mass/strong/mp_series.py
+FAIL: unlisted: extremal-mass/strong/ms.py
+FAIL: unlisted: extremal-mass/strong/ms_check.json
+FAIL: unlisted: extremal-mass/strong/ms_check.py
+FAIL: unlisted: extremal-mass/strong/ms_cont.py
+FAIL: unlisted: extremal-mass/strong/ms_results.json
+FAIL: unlisted: extremal-mass/strong/ms_results_v2.json
+FAIL: unlisted: extremal-mass/strong/ms_results_v2_rejected.json
+FAIL: unlisted: extremal-mass/strong/ms_sols/10.13897800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/10.84870700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/11.60811600.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/12.42068500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/13.29013200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/15.21587300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/16.28098400.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/17.42065300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/18.64009800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/19.94490500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/21.34104900.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/22.83492200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/24.43336700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/26.14370200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/27.97376100.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/29.93192500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/34.26906000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/36.66789500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/39.23464700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.58023100.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.61994300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.63992800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.66000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.70000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.73000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.76000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.77497600.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.79000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.79992800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.87000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.90000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.93000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/4.97000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/41.98107300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/44.91974800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/48.06413000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/5.00000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/5.04000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/5.09000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/5.15414300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/5.51493200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/5.90097800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/6.31404600.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/6.75602900.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/7.22895200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/7.73497800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/8.27642700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/8.85577600.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols/9.47568100.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/10.13897800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/10.84870700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/11.60811600.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/12.42068500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/13.29013200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/15.21587300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/16.28098400.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/17.42065300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/18.64009800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/19.94490500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/21.34104900.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/22.83492200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/24.43336700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/26.14370200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/27.97376100.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/29.93192500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/34.26906000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/36.66789500.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/39.23464700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/4.87000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/4.90000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/4.93000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/4.97000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/41.98107300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/41.98107300.rejected
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/44.91974800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/44.91974800.rejected
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/48.06413000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/48.06413000.rejected
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/5.00000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/5.04000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/5.09000000.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/5.15414300.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/5.51493200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/5.90097800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/51.42861900.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/6.31404600.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/6.75602900.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/7.22895200.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/7.73497800.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/8.27642700.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/8.85577600.pkl
+FAIL: unlisted: extremal-mass/strong/ms_sols_v2/9.47568100.pkl
+FAIL: unlisted: extremal-mass/strong/numbers.tex
+FAIL: unlisted: extremal-mass/strong/numerics.tex
+FAIL: unlisted: extremal-mass/strong/ode_U.py
+FAIL: unlisted: extremal-mass/strong/ode_coeffs.py
+FAIL: unlisted: extremal-mass/strong/ode_poly.pkl
+FAIL: unlisted: extremal-mass/strong/ode_poly.py
+FAIL: unlisted: extremal-mass/strong/precache.py
+FAIL: unlisted: extremal-mass/strong/precache2.py
+FAIL: unlisted: extremal-mass/strong/precache3.py
+FAIL: unlisted: extremal-mass/strong/probe_level2.py
+FAIL: unlisted: extremal-mass/strong/probe_levels.py
+FAIL: unlisted: extremal-mass/strong/probe_struct.py
+FAIL: unlisted: extremal-mass/strong/probe_struct2.py
+FAIL: unlisted: extremal-mass/strong/prof.py
+FAIL: unlisted: extremal-mass/strong/q_map.py
+FAIL: unlisted: extremal-mass/strong/reduced_eqs.pkl
+FAIL: unlisted: extremal-mass/strong/reduced_ode.pkl
+FAIL: unlisted: extremal-mass/strong/reduced_ode.py
+FAIL: unlisted: extremal-mass/strong/reduced_ode2.py
+FAIL: unlisted: extremal-mass/strong/run_cont.sh
+FAIL: unlisted: extremal-mass/strong/scan_reach.py
+FAIL: unlisted: extremal-mass/strong/series_symbolic.py
+FAIL: unlisted: extremal-mass/strong/shoot.py
+FAIL: unlisted: extremal-mass/strong/strong_fit.json
+FAIL: unlisted: extremal-mass/strong/strong_fit.py
+FAIL: unlisted: extremal-mass/strong/sweep.json
+FAIL: unlisted: extremal-mass/strong/sweep.py
+FAIL: unlisted: extremal-mass/strong/t_bvp.py
+FAIL: unlisted: extremal-mass/strong/t_cont.py
+FAIL: unlisted: extremal-mass/strong/t_det.py
+FAIL: unlisted: extremal-mass/strong/t_fitB.py
+FAIL: unlisted: extremal-mass/strong/t_ind.py
+FAIL: unlisted: extremal-mass/strong/t_ind2.py
+FAIL: unlisted: extremal-mass/strong/t_mu.py
+FAIL: unlisted: extremal-mass/strong/t_mu2.py
+FAIL: unlisted: extremal-mass/strong/t_nt2.py
+FAIL: unlisted: extremal-mass/strong/t_prec.py
+FAIL: unlisted: extremal-mass/strong/t_quad.py
+FAIL: unlisted: extremal-mass/strong/t_res.py
+FAIL: unlisted: extremal-mass/strong/t_scan.py
+FAIL: unlisted: extremal-mass/strong/t_scan2.py
+FAIL: unlisted: extremal-mass/strong/t_scan3.py
+FAIL: unlisted: extremal-mass/strong/t_shoot.py
+FAIL: unlisted: extremal-mass/strong/t_step.py
+FAIL: unlisted: extremal-mass/strong/throat.py
+FAIL: unlisted: extremal-mass/strong/throat_series.py
+FAIL: unlisted: extremal-mass/strong/throat_singularities.py
+FAIL: unlisted: extremal-mass/strong/tps.py
+FAIL: unlisted: extremal-mass/strong/twoside.py
+FAIL: unlisted: extremal-mass/strong/twoside_q.py
+FAIL: unlisted: extremal-mass/strong/v2_ladder.txt
+FAIL: unlisted: output/pdf/jhep-extremal-mass-referee.pdf
+FAIL: unlisted: output/pdf/jhep-extremal-mass-source.zip
+FAIL: unlisted: output/pdf/jhep-extremal-mass.pdf
+FAIL: unlisted: papers/1201.4994-dadhich-pons-prabhu-static-lovelock-black-holes.pdf
+FAIL: unlisted: reports/kkr-extremal-mass/commentary.html
+FAIL: unlisted: reports/kkr-extremal-mass/commentary.pdf
+FAIL: unlisted: vault/concepts/btz-universality-extremal-egb.md
+FAIL: unlisted: vault/exercises/jhep-extremal-mass-paper.md
+FAIL: unlisted: vault/papers/arxiv-1201.4994.md
+FAIL: unlisted: work/jhep-paper/.gitignore
+FAIL: unlisted: work/jhep-paper/authors.tex
+FAIL: unlisted: work/jhep-paper/build.sh
+FAIL: unlisted: work/jhep-paper/check_documents.py
+FAIL: unlisted: work/jhep-paper/jheppub.sty
+FAIL: unlisted: work/jhep-paper/main.pdf
+FAIL: unlisted: work/jhep-paper/main.tex
+FAIL: unlisted: work/jhep-paper/referee-report.pdf
+FAIL: unlisted: work/jhep-paper/referee-report.tex
+438 distribution files; 404 failures
+___________________ test_spectral_converges_with_resolution ____________________
+
+    def test_spectral_converges_with_resolution():
+>       errors = [_oracle_error(solve(0.3, method='spectral', resolution=n, tol=1e-13), 0.3)
+                  for n in (10, 16, 24)]
+
+tests/test_static_egb_bvp.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_static_egb_bvp.py:68: in <listcomp>
+    errors = [_oracle_error(solve(0.3, method='spectral', resolution=n, tol=1e-13), 0.3)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/rotating_bh/static_egb_bvp.py:172: in solve
+    return _spectral(alpha_hat, resolution, tol, previous, max_iterations, cutoff)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+alpha_hat = 0.3, n = 24, tol = 1e-13, previous = None, max_iterations = 30
+cutoff = 0.001
+
+    def _spectral(alpha_hat, n, tol, previous, max_iterations, cutoff):
+        L = 1-cutoff
+        z = np.cos(np.pi*np.arange(n)/(n-1))
+        x = L*(z+1)/2
+        weights = np.ones(n); weights[[0, -1]] = 2; weights *= (-1.)**np.arange(n)
+        differences = z[:, None]-z[None, :]
+        D = (weights[:, None]/weights[None, :])/(differences+np.eye(n))
+        D -= np.diag(D.sum(axis=1))
+        D *= 2/L
+    
+        def residual(F):
+            dF = D@F
+            out = np.empty_like(F)
+            out[:-1] = dF[:-1]-ode(x[:-1], F[:-1], alpha_hat)
+            out[-1] = F[-1]-0.
+            return out
+    
+        F = _guess(x, previous)
+        for iteration in range(max_iterations+1):
+            res = residual(F)
+            norm = np.max(np.abs(res))
+            if np.isfinite(norm) and norm < tol:
+                break
+            if iteration == max_iterations:
+                raise SolverFailure(f'spectral Newton exhausted {max_iterations} iterations; residual={norm:g}')
+            jac = np.empty((n, n))
+            for j in range(n):
+                trial = F.astype(complex); trial[j] += 1e-20j
+                jac[:, j] = residual(trial).imag/1e-20
+            try:
+                step = np.linalg.solve(jac, -res)
+            except np.linalg.LinAlgError as error:
+                raise SolverFailure('singular spectral Jacobian') from error
+            for power in range(16):
+                trial = F+step*2.**(-power)
+                if np.min(trial) < -1e-6 or np.max(trial) > 1+1e-3:
+                    continue
+                trial_norm = np.max(np.abs(residual(trial)))
+                if np.isfinite(trial_norm) and trial_norm < norm:
+                    F = trial
+                    break
+            else:
+>               raise SolverFailure(f'spectral line search failed; residual={norm:g}')
+E               rotating_bh.static_egb_bvp.SolverFailure: spectral line search failed; residual=1.16282e-13
+
+src/rotating_bh/static_egb_bvp.py:106: SolverFailure
+============================= slowest 15 durations =============================
+62.15s call     tests/test_neural_seed.py::test_trivial_seed_reproduces_the_solvers_own_fallback
+60.85s setup    tests/test_egb_rotating_adaptive.py::test_egb_rotating_methods_agree
+55.79s call     tests/test_neural_seed.py::test_objective_is_the_solvers_own_system
+43.54s call     tests/test_neural_seed.py::test_anchor_is_the_alpha_zero_solution[0.5]
+42.47s call     tests/test_egb_rotating_convergence.py::test_real_study_solves_instead_of_returning_the_seed
+37.26s call     tests/test_egb_rotating_bvp.py::test_converged_solution_satisfies_the_independent_tensor_equations
+29.05s call     tests/test_gb_response.py::test_the_exact_derivatives_match_central_differences[0.5-0.1]
+29.00s call     tests/test_gb_response.py::test_the_exact_derivatives_match_central_differences[0.3-0.1]
+28.97s call     tests/test_gb_response.py::test_dropping_the_explicit_wald_term_would_be_caught
+24.57s call     tests/test_egb_rotating_bvp.py::test_continuation_reaches_nonzero_alpha_gb
+21.25s call     tests/test_vacuum_benchmark.py::test_benchmark_accepts_fine_runs_and_preserves_coarse_rejections
+19.58s call     tests/test_neural_seed.py::test_anchor_is_the_alpha_zero_solution[0.3]
+17.39s call     tests/test_gb_response.py::test_the_predictor_reaches_what_previous_seeding_cannot
+16.41s call     tests/test_egb_rotating_bvp.py::test_tensor_residual_small_at_individual_points[0.15]
+15.51s call     tests/test_egb_rotating_bvp.py::test_tensor_residual_small_at_individual_points[0.5]
+=========================== short test summary info ============================
+FAILED tests/test_distribution.py::test_published_distribution_is_intact - As...
+FAILED tests/test_static_egb_bvp.py::test_spectral_converges_with_resolution
+2 failed, 493 passed, 2 skipped in 657.96s (0:10:57)
+pytest exit 1
